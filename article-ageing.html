@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ageing and the Autonomic Nervous System — IBT Aura</title>
+  <meta name="description" content="Ageing fundamentally alters the autonomic nervous system. Learn how HRV declines with age, how biological age diverges from chronological age, and what interventions can slow autonomic ageing." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-ageing.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/ageing-hero.jpg" alt="Ageing and the Autonomic Nervous System" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Ageing and the Autonomic Nervous System: What Changes and What You Can Do</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Ageing is not a single process. It is a collection of interrelated declines across every physiological system, each proceeding at its own pace and influenced by a distinct mix of genetic, environmental, and behavioural factors. Among the most consequential of these declines, and one of the least visible, is the progressive deterioration of the autonomic nervous system.</p>
+
+    <p>The autonomic nervous system governs the functions you never consciously control: heart rate regulation, blood pressure adjustment, thermoregulation, digestion, respiratory modulation, and immune surveillance. When it operates effectively, these systems respond fluidly to changing demands. When it declines, the body loses its capacity to adapt, and the consequences ripple across virtually every organ system.</p>
+
+    <p>What makes autonomic ageing particularly significant is that it does not proceed at the same rate in all individuals. Two people of the same chronological age can have vastly different autonomic function, a divergence that is reflected in their heart rate variability, baroreflex sensitivity, and cardiovascular responsiveness. Understanding this divergence, and the factors that drive it, is central to the emerging science of biological ageing and longevity.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. How the Autonomic Nervous System Ages</h2>
+
+    <p>The ageing of the autonomic nervous system involves structural, functional, and neurochemical changes that accumulate over decades. These changes affect both the sympathetic and parasympathetic branches, though not equally.</p>
+
+    <p>The parasympathetic nervous system, mediated primarily through the vagus nerve, shows the most pronounced age-related decline. Vagal tone, the tonic level of parasympathetic activity that modulates heart rate and promotes recovery, decreases progressively from early adulthood onward. This decline is reflected directly in heart rate variability, which serves as the most accessible non-invasive marker of parasympathetic function. The reduction in vagal tone means that the ageing heart becomes less responsive to moment-to-moment demands, less able to recover from stress, and less efficient at maintaining the dynamic equilibrium that characterises youthful cardiovascular regulation.</p>
+
+    <p>The sympathetic nervous system, paradoxically, tends to become more active with age rather than less. Baseline levels of circulating catecholamines, particularly norepinephrine, increase with ageing, reflecting a state of chronic low-grade sympathetic activation. However, the responsiveness of target tissues to sympathetic stimulation decreases, a phenomenon known as beta-adrenergic desensitisation. The result is a system that is simultaneously overactive at baseline and underresponsive when challenged, a combination that impairs both resting cardiovascular function and the body's ability to respond to acute stress or physical exertion.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">~3%</p>
+        <p class="article-stat-label">Average annual decline in SDNN (HRV) per year after age 30</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">50%</p>
+        <p class="article-stat-label">Reduction in HRV from age 20 to age 60 in sedentary adults</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">10-15 yr</p>
+        <p class="article-stat-label">Potential biological age gap between active and sedentary individuals</p>
+      </div>
+    </div>
+
+    <h2>2. HRV Decline Across the Lifespan</h2>
+
+    <p>Heart rate variability is perhaps the single most informative metric for tracking autonomic ageing. The decline in HRV with age is one of the most consistently documented findings in autonomic physiology, observed across populations, ethnicities, and geographic regions.</p>
+
+    <!-- HRV Decline by Decade Chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">Average Resting SDNN (HRV) by Age Decade</p>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Axes -->
+        <line x1="70" y1="30" x2="70" y2="250" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="70" y1="250" x2="680" y2="250" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Y-axis labels (SDNN in ms) -->
+        <text x="60" y="50" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">160 ms</text>
+        <text x="60" y="100" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">130 ms</text>
+        <text x="60" y="150" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">100 ms</text>
+        <text x="60" y="200" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">70 ms</text>
+        <text x="60" y="250" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">40 ms</text>
+        <!-- Grid lines -->
+        <line x1="70" y1="50" x2="680" y2="50" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="70" y1="100" x2="680" y2="100" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="70" y1="150" x2="680" y2="150" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="70" y1="200" x2="680" y2="200" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Bars for each decade - sedentary (brown) -->
+        <rect x="100" y="55" width="45" height="195" rx="5" fill="#5d4037" opacity="0.7"/>
+        <rect x="195" y="85" width="45" height="165" rx="5" fill="#5d4037" opacity="0.7"/>
+        <rect x="290" y="115" width="45" height="135" rx="5" fill="#5d4037" opacity="0.7"/>
+        <rect x="385" y="150" width="45" height="100" rx="5" fill="#5d4037" opacity="0.7"/>
+        <rect x="480" y="180" width="45" height="70" rx="5" fill="#5d4037" opacity="0.7"/>
+        <rect x="575" y="205" width="45" height="45" rx="5" fill="#5d4037" opacity="0.7"/>
+        <!-- Bars for each decade - active (green overlay) -->
+        <rect x="150" y="45" width="45" height="205" rx="5" fill="#34C759" opacity="0.6"/>
+        <rect x="245" y="62" width="45" height="188" rx="5" fill="#34C759" opacity="0.6"/>
+        <rect x="340" y="82" width="45" height="168" rx="5" fill="#34C759" opacity="0.6"/>
+        <rect x="435" y="108" width="45" height="142" rx="5" fill="#34C759" opacity="0.6"/>
+        <rect x="530" y="140" width="45" height="110" rx="5" fill="#34C759" opacity="0.6"/>
+        <rect x="625" y="168" width="45" height="82" rx="5" fill="#34C759" opacity="0.6"/>
+        <!-- Value labels -->
+        <text x="122" y="50" font-family="SF Pro Text, system-ui" font-size="9" fill="#5d4037" font-weight="600" text-anchor="middle">155</text>
+        <text x="172" y="40" font-family="SF Pro Text, system-ui" font-size="9" fill="#34C759" font-weight="600" text-anchor="middle">165</text>
+        <text x="217" y="80" font-family="SF Pro Text, system-ui" font-size="9" fill="#5d4037" font-weight="600" text-anchor="middle">135</text>
+        <text x="267" y="57" font-family="SF Pro Text, system-ui" font-size="9" fill="#34C759" font-weight="600" text-anchor="middle">150</text>
+        <text x="312" y="110" font-family="SF Pro Text, system-ui" font-size="9" fill="#5d4037" font-weight="600" text-anchor="middle">110</text>
+        <text x="362" y="77" font-family="SF Pro Text, system-ui" font-size="9" fill="#34C759" font-weight="600" text-anchor="middle">132</text>
+        <text x="407" y="145" font-family="SF Pro Text, system-ui" font-size="9" fill="#5d4037" font-weight="600" text-anchor="middle">85</text>
+        <text x="457" y="103" font-family="SF Pro Text, system-ui" font-size="9" fill="#34C759" font-weight="600" text-anchor="middle">112</text>
+        <text x="502" y="175" font-family="SF Pro Text, system-ui" font-size="9" fill="#5d4037" font-weight="600" text-anchor="middle">65</text>
+        <text x="552" y="135" font-family="SF Pro Text, system-ui" font-size="9" fill="#34C759" font-weight="600" text-anchor="middle">90</text>
+        <text x="597" y="200" font-family="SF Pro Text, system-ui" font-size="9" fill="#5d4037" font-weight="600" text-anchor="middle">50</text>
+        <text x="647" y="163" font-family="SF Pro Text, system-ui" font-size="9" fill="#34C759" font-weight="600" text-anchor="middle">72</text>
+        <!-- X-axis decade labels -->
+        <text x="147" y="270" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">20s</text>
+        <text x="242" y="270" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">30s</text>
+        <text x="337" y="270" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">40s</text>
+        <text x="432" y="270" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">50s</text>
+        <text x="527" y="270" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">60s</text>
+        <text x="622" y="270" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">70s</text>
+        <!-- Legend -->
+        <rect x="220" y="288" width="12" height="12" rx="3" fill="#5d4037" opacity="0.7"/>
+        <text x="238" y="298" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Sedentary adults</text>
+        <rect x="380" y="288" width="12" height="12" rx="3" fill="#34C759" opacity="0.6"/>
+        <text x="398" y="298" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Physically active adults</text>
+      </svg>
+      <p class="article-graph-caption">HRV declines progressively with age in all populations, but physically active individuals maintain significantly higher values at every decade. The gap between sedentary and active cohorts widens with age, suggesting that exercise becomes increasingly important for autonomic health as we grow older.</p>
+    </div>
+
+    <p>The steepest decline typically occurs between the third and fifth decades of life, with SDNN values decreasing by approximately 25 to 30 percent between age 20 and age 50 in sedentary individuals. The decline continues into the sixth, seventh, and eighth decades, though at a somewhat reduced rate. By age 70, the average sedentary adult has an HRV roughly one-third of what it was at age 20.</p>
+
+    <p>Critically, the rate of HRV decline is not fixed. It is profoundly influenced by lifestyle factors, particularly physical activity, sleep quality, chronic stress, and body composition. This is the key insight: while some HRV decline with age is unavoidable, the magnitude of that decline is substantially modifiable. An active 60-year-old may have HRV values comparable to a sedentary 40-year-old, a difference that reflects not just fitness but genuine autonomic resilience.</p>
+
+    <div class="article-highlight">
+      <p>The rate at which your autonomic nervous system ages is not predetermined. It is shaped by the accumulated impact of decades of lifestyle choices, and the window for intervention remains open far longer than most people assume.</p>
+    </div>
+
+    <h2>3. Baroreflex Sensitivity: The Ageing Feedback Loop</h2>
+
+    <p>The baroreflex is one of the most important autonomic feedback mechanisms in the cardiovascular system. It is the reflex arc that senses changes in blood pressure through stretch receptors in the carotid sinus and aortic arch, and adjusts heart rate and vascular tone in real time to maintain circulatory stability. When blood pressure rises, the baroreflex slows the heart and dilates blood vessels. When blood pressure drops, it accelerates the heart and constricts vessels.</p>
+
+    <p>Baroreflex sensitivity, a measure of how effectively this feedback loop operates, declines significantly with ageing. In young adults, a one-millimetre-of-mercury change in systolic blood pressure might produce a 15 to 20 millisecond change in the R-R interval. By age 70, that same blood pressure change might produce only a 3 to 5 millisecond response. The feedback loop becomes sluggish and less effective.</p>
+
+    <p>The clinical consequences of reduced baroreflex sensitivity are substantial. Orthostatic hypotension, the lightheadedness or fainting that occurs upon standing, becomes increasingly common with age precisely because the baroreflex can no longer compensate rapidly enough for the gravitational pooling of blood in the lower extremities. Blood pressure variability increases, creating wider swings that stress the vascular system. And the risk of falls, one of the leading causes of injury and mortality in older adults, increases as circulatory stability deteriorates.</p>
+
+    <h2>4. Cardiovascular Ageing: Beyond Heart Rate</h2>
+
+    <p>The age-related changes in autonomic function do not occur in isolation. They interact with structural changes in the heart and blood vessels to produce a compounding decline in cardiovascular performance that accelerates if left unaddressed.</p>
+
+    <p>The heart itself undergoes significant remodelling with age. The left ventricular wall thickens as cardiomyocytes enlarge to compensate for increased afterload caused by stiffening arteries. The number of pacemaker cells in the sinoatrial node decreases, with some estimates suggesting that by age 75, only 10 percent of the pacemaker cells present at age 20 remain. This loss directly reduces the heart's intrinsic rate variability and increases susceptibility to arrhythmias.</p>
+
+    <p>Arterial stiffness, measured by pulse wave velocity, increases progressively with age. The elastic fibres in the arterial wall degrade and are replaced by stiffer collagen. This reduces the ability of arteries to absorb and smooth the pulsatile output of the heart, increasing systolic blood pressure and pulse pressure. The increased workload on the heart, combined with reduced autonomic modulation, creates a cycle of increasing cardiovascular stress.</p>
+
+    <ol>
+      <li><strong>Maximum heart rate declines.</strong> The familiar formula of 220 minus age for estimating maximum heart rate reflects a real physiological limitation. Reduced beta-adrenergic receptor sensitivity means the heart cannot achieve the same peak rates it reached in youth, even under maximum sympathetic stimulation.</li>
+      <li><strong>Heart rate recovery slows.</strong> The speed at which heart rate returns to baseline after exercise is a marker of parasympathetic reactivation. This recovery becomes progressively slower with age, reflecting diminished vagal tone and reduced autonomic flexibility.</li>
+      <li><strong>Blood pressure regulation becomes less precise.</strong> The combined effects of arterial stiffening, reduced baroreflex sensitivity, and altered sympathovagal balance lead to wider blood pressure fluctuations and increased risk of both hypertension and hypotension.</li>
+      <li><strong>Cardiac output reserve diminishes.</strong> The ability to increase cardiac output during exercise or stress is reduced by the combination of lower maximum heart rate, impaired contractile reserve, and stiffened vasculature. This translates directly into reduced exercise capacity and functional independence.</li>
+    </ol>
+
+    <h2>5. Sarcopenia, the Nervous System, and Ageing</h2>
+
+    <p>The loss of muscle mass and function that accompanies ageing, known as sarcopenia, is not purely a musculoskeletal phenomenon. It is intimately connected to the nervous system, and its progression is both a cause and a consequence of autonomic decline.</p>
+
+    <p>Skeletal muscle is innervated by motor neurons that originate in the spinal cord. With ageing, there is a progressive loss of these motor neurons, particularly the large alpha motor neurons that innervate fast-twitch (type II) muscle fibres. The denervated muscle fibres atrophy, and while some are reinnervated by surviving motor neurons through a process called axonal sprouting, the result is larger, less efficient motor units that produce slower, weaker contractions.</p>
+
+    <p>This neuromuscular decline interacts with autonomic ageing through several pathways. Reduced physical capacity leads to decreased physical activity, which further accelerates autonomic decline. Skeletal muscle is a significant site of glucose uptake and metabolic regulation; as muscle mass decreases, metabolic efficiency declines, promoting insulin resistance and inflammation, both of which further suppress autonomic function. The relationship is bidirectional and self-reinforcing.</p>
+
+    <p>Resistance training directly addresses this cascade. By loading the neuromuscular system with progressive resistance, strength training stimulates motor neuron survival, promotes muscle protein synthesis, improves insulin sensitivity, and, through its effects on systemic inflammation and metabolic function, supports autonomic health. This is why resistance training is increasingly viewed not merely as a strategy for maintaining muscle mass but as a fundamental intervention for healthy ageing across multiple physiological systems.</p>
+
+    <h2>6. Exercise as an Anti-Ageing Intervention</h2>
+
+    <p>If there is a single intervention with the most robust evidence for slowing autonomic ageing, it is regular physical exercise. The data supporting exercise as a modulator of age-related autonomic decline is extensive, consistent, and clinically meaningful.</p>
+
+    <p>Aerobic exercise has been shown to maintain and even partially restore parasympathetic tone in older adults. Studies comparing lifelong exercisers with sedentary age-matched controls consistently demonstrate significantly higher HRV values in the active group, with differences that increase with age. The mechanism involves improved vagal tone, enhanced baroreflex sensitivity, reduced resting sympathetic activity, and favourable changes in cardiac structure and function.</p>
+
+    <p>The magnitude of the exercise effect is striking. In some studies, regularly exercising adults in their 60s and 70s exhibit HRV values comparable to sedentary individuals 15 to 20 years younger. This does not mean exercise halts ageing. It means that exercise dramatically moderates the rate at which the autonomic nervous system declines, preserving a level of function that translates into tangible clinical benefits: lower cardiovascular risk, better blood pressure regulation, improved orthostatic tolerance, and enhanced exercise capacity.</p>
+
+    <div class="article-highlight">
+      <p>The autonomic nervous system does not have a fixed expiration date. It responds to training stimuli at every age. Research has demonstrated measurable improvements in HRV and baroreflex sensitivity in previously sedentary individuals who begin exercising even in their seventh and eighth decades of life.</p>
+    </div>
+
+    <h2>7. Biological Age vs Chronological Age</h2>
+
+    <p>The concept of biological age attempts to capture what chronological age cannot: the actual functional state of an individual's physiology relative to population norms. Two people born in the same year can have profoundly different biological ages, reflecting cumulative differences in genetics, environment, lifestyle, and disease history.</p>
+
+    <!-- Biological Age vs Chronological Age Divergence Chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">Biological Age Divergence from Chronological Age</p>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Axes -->
+        <line x1="70" y1="30" x2="70" y2="250" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="70" y1="250" x2="680" y2="250" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Y-axis labels (biological age) -->
+        <text x="60" y="45" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">80</text>
+        <text x="60" y="100" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">65</text>
+        <text x="60" y="155" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">50</text>
+        <text x="60" y="210" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">35</text>
+        <text x="60" y="250" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="end">20</text>
+        <!-- X-axis labels (chronological age) -->
+        <text x="100" y="268" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">20</text>
+        <text x="220" y="268" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">30</text>
+        <text x="340" y="268" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">40</text>
+        <text x="460" y="268" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">50</text>
+        <text x="580" y="268" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">60</text>
+        <text x="660" y="268" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">65</text>
+        <!-- Grid lines -->
+        <line x1="70" y1="45" x2="680" y2="45" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="70" y1="100" x2="680" y2="100" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="70" y1="155" x2="680" y2="155" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="70" y1="210" x2="680" y2="210" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Reference line (bio age = chrono age) -->
+        <line x1="100" y1="250" x2="660" y2="45" stroke="#d1d1d6" stroke-width="1.5" stroke-dasharray="6"/>
+        <text x="560" y="105" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" transform="rotate(-30, 560, 105)">Bio age = Chrono age</text>
+        <!-- Accelerated ageing trajectory (red) -->
+        <path d="M100,248 C180,230 260,185 340,138 C420,88 500,55 580,38" fill="none" stroke="#FF3B30" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Healthy ageing trajectory (green) -->
+        <path d="M100,248 C180,238 260,218 340,192 C420,168 500,148 580,132" fill="none" stroke="#34C759" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Divergence annotation at age 50 -->
+        <line x1="460" y1="120" x2="460" y2="178" stroke="#3e2723" stroke-width="1.5"/>
+        <text x="475" y="152" font-family="SF Pro Text, system-ui" font-size="10" fill="#3e2723" font-weight="600">15-year gap</text>
+        <!-- End annotations -->
+        <text x="585" y="30" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" font-weight="600">Accelerated ageing</text>
+        <text x="585" y="126" font-family="SF Pro Text, system-ui" font-size="10" fill="#34C759" font-weight="600">Healthy ageing</text>
+        <!-- Axis labels -->
+        <text x="370" y="290" font-family="SF Pro Text, system-ui" font-size="12" fill="#86868b" text-anchor="middle">Chronological Age (years)</text>
+        <text x="20" y="150" font-family="SF Pro Text, system-ui" font-size="12" fill="#86868b" text-anchor="middle" transform="rotate(-90, 20, 150)">Biological Age (years)</text>
+      </svg>
+      <p class="article-graph-caption">Biological age can diverge significantly from chronological age over the lifespan. By age 50, the gap between accelerated and healthy ageing trajectories can span 15 or more years, with profound implications for disease risk and functional capacity.</p>
+    </div>
+
+    <p>Multiple biomarker-based approaches to estimating biological age have been developed, including epigenetic clocks based on DNA methylation patterns, telomere length measurements, composite blood biomarker panels, and physiological function tests. HRV features prominently in several of these models as a marker of autonomic and cardiovascular ageing.</p>
+
+    <p>The practical value of biological age estimation lies in its ability to identify individuals who are ageing faster or slower than expected and to track whether interventions are changing the trajectory. An individual whose biological age exceeds their chronological age by ten years has a materially different risk profile than someone whose biological age is ten years below their chronological age, even if their calendar birthdays are identical.</p>
+
+    <h2>8. Longevity Biomarkers and Wearable Monitoring</h2>
+
+    <p>The convergence of wearable sensor technology and ageing science is creating new possibilities for tracking biological ageing in real time, outside the laboratory. While no single wearable metric can fully characterise biological age, the combination of continuously tracked physiological parameters creates a composite picture that becomes increasingly informative over time.</p>
+
+    <ol>
+      <li><strong>Heart rate variability trend.</strong> The long-term trajectory of resting HRV is among the most informative continuous biomarkers of autonomic ageing. A gradually declining trend may signal accelerating biological ageing, while a stable or improving trend suggests that lifestyle interventions are having a protective effect.</li>
+      <li><strong>Resting heart rate.</strong> While less nuanced than HRV, resting heart rate provides a complementary view of cardiovascular efficiency. A lower resting heart rate generally reflects better cardiac conditioning and parasympathetic tone, both markers of slower biological ageing.</li>
+      <li><strong>Heart rate recovery.</strong> The speed of heart rate decline after exercise cessation is a validated marker of parasympathetic reactivation that correlates with cardiovascular mortality risk and biological age.</li>
+      <li><strong>Sleep architecture.</strong> Deep sleep duration, sleep efficiency, and nocturnal HRV patterns all change with ageing. Tracking these metrics over months and years provides insight into the pace of neurological and autonomic ageing.</li>
+      <li><strong>Physical performance metrics.</strong> VO2 max estimates, walking speed, grip strength equivalents, and exercise recovery all serve as functional markers that correlate with biological age and predict long-term health outcomes.</li>
+    </ol>
+
+    <p>At IBT Aura, the Aura Clarus platform is being developed with the explicit goal of integrating these diverse biomarkers into a unified, longitudinal picture of biological ageing. By tracking HRV, sleep quality, cardiovascular metrics, and activity patterns continuously over months and years, the platform aims to provide users with a dynamic, evolving understanding of their biological age trajectory. The goal is not merely to measure ageing but to provide the data and insights that empower individuals to slow it, in real time, through informed, data-driven decisions about exercise, sleep, stress management, and recovery.</p>
+
+    <p>The ageing of the autonomic nervous system is inevitable. Its rate is not.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

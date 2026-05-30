@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Blood Oxygen Saturation — IBT Aura</title>
+  <meta name="description" content="Blood oxygen saturation is one of the most critical vital signs your body produces. Learn how SpO2 monitoring through wearable technology is advancing preventive health." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-spo2.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/spo2-hero.jpg" alt="Understanding Blood Oxygen Saturation" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Understanding Blood Oxygen Saturation: The Vital Sign on Your Wrist</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Every cell in your body depends on a continuous supply of oxygen to function. Blood oxygen saturation, measured as SpO2, tells you how effectively your cardiovascular and respiratory systems are delivering that oxygen. It is one of the most fundamental vital signs in medicine, and it is now available on your wrist.</p>
+
+    <p>For decades, pulse oximetry was confined to hospitals, emergency departments, and intensive care units. It was the tool clinicians reached for when a patient's breathing was laboured, when surgery was underway, or when a respiratory condition needed monitoring. The small clip placed on a fingertip could tell a physician, within seconds, whether the blood was carrying enough oxygen to sustain normal function.</p>
+
+    <p>The migration of this technology to consumer wearables has been one of the most significant developments in personal health monitoring. Devices like Aura Clarus now measure SpO2 continuously, revealing patterns that a single clinical reading could never capture. Nocturnal dips, exercise recovery curves, altitude responses, and the subtle signatures of respiratory conditions all become visible when oxygen saturation is tracked over time rather than at a single point.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. What SpO2 Actually Measures</h2>
+
+    <p>SpO2 stands for peripheral capillary oxygen saturation. It is a percentage that represents the proportion of haemoglobin molecules in the arterial blood that are currently bound to oxygen, relative to the total amount of haemoglobin available. A reading of 98 percent means that 98 out of every 100 haemoglobin molecules passing through the sensor are carrying oxygen.</p>
+
+    <p>Haemoglobin is the iron-containing protein within red blood cells responsible for oxygen transport. Each haemoglobin molecule can bind up to four oxygen molecules. When haemoglobin is fully loaded with oxygen, it is called oxyhaemoglobin and appears bright red. When it has released its oxygen to the tissues, it becomes deoxyhaemoglobin and takes on a darker, bluish-red colour. This colour difference is the physical principle that makes pulse oximetry possible.</p>
+
+    <p>It is important to understand that SpO2 measures saturation, not the total amount of oxygen in the blood. A person with severe anaemia could have a normal SpO2 reading because the limited haemoglobin they have is fully saturated, even though their total oxygen-carrying capacity is dangerously reduced. SpO2 tells you about the efficiency of oxygen loading at the lungs, not the total oxygen delivery to tissues.</p>
+
+    <h2>2. The Oxygen-Haemoglobin Relationship</h2>
+
+    <p>The relationship between oxygen and haemoglobin is not linear. It follows a sigmoidal curve known as the oxygen-haemoglobin dissociation curve, and understanding this curve is essential for interpreting SpO2 readings correctly.</p>
+
+    <!-- Oxygen-Haemoglobin Dissociation Curve -->
+    <div class="article-graph">
+      <p class="article-graph-title">Oxygen-Haemoglobin Dissociation Curve</p>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="80" y1="30" x2="80" y2="240" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="80" y1="240" x2="660" y2="240" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Horizontal gridlines -->
+        <line x1="80" y1="60" x2="660" y2="60" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="80" y1="100" x2="660" y2="100" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="80" y1="140" x2="660" y2="140" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="80" y1="180" x2="660" y2="180" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis labels -->
+        <text x="70" y="48" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">100%</text>
+        <text x="70" y="108" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">75%</text>
+        <text x="70" y="148" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">50%</text>
+        <text x="70" y="188" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">25%</text>
+        <text x="70" y="245" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">0%</text>
+        <!-- Y-axis title -->
+        <text x="20" y="145" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle" transform="rotate(-90, 20, 145)">SpO2 (%)</text>
+        <!-- X-axis labels -->
+        <text x="80" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">0</text>
+        <text x="225" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">26</text>
+        <text x="370" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">53</text>
+        <text x="515" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">80</text>
+        <text x="660" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">106</text>
+        <!-- X-axis title -->
+        <text x="370" y="278" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Partial Pressure of Oxygen (mmHg)</text>
+        <!-- Sigmoidal curve -->
+        <path d="M80,238 C120,236 160,230 200,220 C240,200 280,160 320,120 C360,80 400,58 440,48 C480,42 520,40 560,38 C600,37 640,36 660,36" fill="none" stroke="#e53935" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Area fill -->
+        <path d="M80,238 C120,236 160,230 200,220 C240,200 280,160 320,120 C360,80 400,58 440,48 C480,42 520,40 560,38 C600,37 640,36 660,36 L660,240 L80,240 Z" fill="#e53935" opacity="0.08"/>
+        <!-- Key point markers -->
+        <circle cx="320" cy="120" r="5" fill="#e53935"/>
+        <text x="330" y="112" font-family="SF Pro Text, system-ui" font-size="10" fill="#e53935" font-weight="600">P50 = 26.6 mmHg</text>
+        <!-- Normal range zone -->
+        <rect x="500" y="36" width="160" height="20" rx="4" fill="#34C759" opacity="0.15"/>
+        <text x="580" y="30" font-family="SF Pro Text, system-ui" font-size="10" fill="#34C759" font-weight="600">Normal Range (95-100%)</text>
+        <!-- Concern zone -->
+        <rect x="340" y="80" width="100" height="30" rx="4" fill="#FF9500" opacity="0.15"/>
+        <text x="390" y="75" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF9500" font-weight="600">Concern (90-94%)</text>
+        <!-- Danger zone annotation -->
+        <text x="240" y="165" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" font-weight="600">Danger Zone (&lt;90%)</text>
+      </svg>
+      <p class="article-graph-caption">The S-shaped curve shows that small drops in oxygen pressure at high saturation levels cause minimal changes in SpO2, but once saturation falls below approximately 90%, even small decreases in oxygen pressure cause rapid desaturation.</p>
+    </div>
+
+    <p>At the upper portion of the curve, where SpO2 typically sits for healthy individuals at sea level, the relationship is flat. This means that relatively large changes in the partial pressure of oxygen in the blood produce only small changes in saturation. This is a protective mechanism: the blood remains well-saturated even when oxygen delivery varies modestly.</p>
+
+    <p>However, the curve steepens dramatically at lower saturations. Below approximately 90 percent, even small decreases in oxygen availability cause rapid drops in saturation. This is why clinicians treat a reading below 90 percent as a clinical emergency. The steep portion of the curve means that the body's oxygen reserves are nearly exhausted, and further decline can be precipitous.</p>
+
+    <div class="article-highlight">
+      <p>The difference between 98 percent and 94 percent SpO2 may seem small numerically, but it represents a fundamentally different position on the dissociation curve and a significant reduction in the body's oxygen safety margin.</p>
+    </div>
+
+    <h2>3. Normal Ranges and What Abnormal Readings Mean</h2>
+
+    <p>For a healthy individual breathing room air at sea level, normal SpO2 ranges from 95 to 100 percent. Most healthy adults at rest will consistently read between 96 and 99 percent. Readings below 95 percent are considered below normal and warrant attention, while readings below 90 percent indicate hypoxemia and require medical evaluation.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">95-100</p>
+        <p class="article-stat-label">Normal SpO2 range (%) at sea level</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">&lt;90%</p>
+        <p class="article-stat-label">Clinical hypoxemia threshold requiring medical attention</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">2-4%</p>
+        <p class="article-stat-label">Typical SpO2 reduction at 2500 metres altitude</p>
+      </div>
+    </div>
+
+    <p>Context matters enormously when interpreting SpO2 readings. A reading of 92 percent in a healthy 30-year-old at sea level is a cause for concern and warrants investigation. The same reading in a patient with severe chronic obstructive pulmonary disease may be their stable baseline, carefully managed with supplemental oxygen therapy. Similarly, a reading of 93 percent in someone who has just ascended to 3,000 metres elevation may reflect normal acclimatisation rather than pathology.</p>
+
+    <h3>Conditions Associated with Low SpO2</h3>
+    <p>Persistent or recurrent low SpO2 readings can indicate a range of respiratory and cardiovascular conditions. Chronic obstructive pulmonary disease, pneumonia, pulmonary embolism, heart failure, sleep apnoea, and interstitial lung disease all produce characteristic patterns of desaturation. In many cases, wearable SpO2 monitoring can detect these patterns before they become clinically apparent, particularly when they occur primarily during sleep or physical exertion.</p>
+
+    <h3>Transient Desaturation Events</h3>
+    <p>Brief drops in SpO2 that resolve spontaneously are common during sleep, particularly during the transition between sleep stages. Mild desaturation events lasting a few seconds are generally normal. However, frequent desaturation events, especially those dropping below 90 percent and lasting more than 10 seconds, can indicate obstructive sleep apnoea, a condition affecting an estimated one billion people worldwide, the majority of whom remain undiagnosed.</p>
+
+    <h2>4. SpO2 During Sleep: A Window into Respiratory Health</h2>
+
+    <p>Nocturnal SpO2 monitoring is perhaps the most clinically valuable application of wrist-based pulse oximetry. During sleep, the body's compensatory mechanisms for maintaining oxygen levels are reduced, respiratory drive decreases, and the airway is more vulnerable to obstruction. This makes sleep the period during which oxygen desaturation is most likely to occur and most likely to reveal underlying pathology.</p>
+
+    <!-- SpO2 During Sleep Chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">SpO2 Patterns During Sleep: Normal vs Sleep Apnoea</p>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="220" x2="680" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Y-axis labels (SpO2 %) -->
+        <text x="50" y="38" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">100%</text>
+        <text x="50" y="78" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">95%</text>
+        <text x="50" y="128" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">90%</text>
+        <text x="50" y="178" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">85%</text>
+        <text x="50" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">80%</text>
+        <!-- Gridlines -->
+        <line x1="60" y1="70" x2="680" y2="70" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="120" x2="680" y2="120" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="170" x2="680" y2="170" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Danger zone -->
+        <rect x="60" y="120" width="620" height="100" fill="#FF3B30" opacity="0.04"/>
+        <text x="670" y="135" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" text-anchor="end" font-weight="500">Below 90%</text>
+        <!-- Normal sleep pattern (green) — stable with minor variation -->
+        <polyline points="60,42 100,44 140,40 180,44 220,42 260,46 300,42 340,44 380,40 420,44 460,42 500,46 540,42 580,44 620,40 660,42 680,44" fill="none" stroke="#34C759" stroke-width="2" stroke-linejoin="round"/>
+        <!-- Sleep apnoea pattern (red) — repeated desaturation events -->
+        <polyline points="60,50 80,52 95,80 105,130 115,160 125,120 140,60 160,55 175,85 185,140 195,170 205,130 220,65 240,58 255,90 265,145 275,165 285,125 300,62 320,55 340,58 355,88 365,150 375,175 385,135 400,60 420,55 440,58 460,55 475,85 485,148 495,172 505,130 520,62 540,55 560,58 575,90 585,155 595,180 605,140 620,65 640,58 660,55 680,52" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linejoin="round"/>
+        <!-- Legend -->
+        <line x1="60" y1="250" x2="80" y2="250" stroke="#34C759" stroke-width="2"/>
+        <text x="88" y="254" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Normal sleep</text>
+        <line x1="200" y1="250" x2="220" y2="250" stroke="#FF3B30" stroke-width="2"/>
+        <text x="228" y="254" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Obstructive sleep apnoea</text>
+        <!-- Time labels -->
+        <text x="60" y="236" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">11 PM</text>
+        <text x="215" y="236" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">1 AM</text>
+        <text x="370" y="236" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">3 AM</text>
+        <text x="525" y="236" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">5 AM</text>
+        <text x="680" y="236" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">7 AM</text>
+      </svg>
+      <p class="article-graph-caption">Normal sleep shows stable SpO2 with minor physiological variation. Obstructive sleep apnoea produces a characteristic sawtooth pattern of repeated desaturation and recovery events throughout the night.</p>
+    </div>
+
+    <p>In obstructive sleep apnoea, the upper airway collapses repeatedly during sleep, blocking airflow for periods typically lasting 10 to 60 seconds. Each apnoea event produces a measurable drop in SpO2, followed by a recovery as the brain triggers a brief arousal to restore airway patency. This sawtooth pattern, repeated dozens or even hundreds of times per night, is one of the most recognisable signatures in wearable SpO2 data.</p>
+
+    <p>The clinical significance of untreated sleep apnoea extends far beyond daytime fatigue. Chronic intermittent hypoxia has been linked to hypertension, atrial fibrillation, stroke, type 2 diabetes, and increased all-cause mortality. The repeated cycles of desaturation and reoxygenation generate oxidative stress and systemic inflammation that damage the cardiovascular system over time.</p>
+
+    <div class="article-highlight">
+      <p>An estimated 80 percent of moderate to severe obstructive sleep apnoea cases remain undiagnosed. Continuous wrist-based SpO2 monitoring has the potential to identify these individuals years before traditional clinical pathways would detect their condition.</p>
+    </div>
+
+    <h2>5. Altitude, Exercise, and Environmental Effects on SpO2</h2>
+
+    <p>SpO2 is not a fixed value. It responds dynamically to environmental conditions, physical activity, and the body's moment-to-moment metabolic demands. Understanding these normal variations is critical for distinguishing physiological responses from pathological changes.</p>
+
+    <h3>Altitude Effects</h3>
+    <p>As altitude increases, atmospheric pressure decreases, and with it the partial pressure of oxygen in the air. At sea level, the air contains approximately 21 percent oxygen at a total pressure of 760 mmHg. At 2,500 metres, the percentage remains the same, but the reduced atmospheric pressure means each breath delivers significantly less oxygen to the alveoli. SpO2 typically drops by two to four percentage points at this altitude, and can fall below 90 percent at elevations above 4,000 metres in unacclimatised individuals.</p>
+
+    <p>The body adapts to altitude through a process called acclimatisation, which involves increasing red blood cell production, enhancing the efficiency of oxygen extraction at the tissue level, and adjusting ventilation patterns. This process takes days to weeks. Monitoring SpO2 during altitude exposure provides objective data on how well an individual is acclimatising and whether they are at risk for altitude-related illness.</p>
+
+    <h3>Exercise Response</h3>
+    <p>During moderate exercise, SpO2 typically remains stable or drops by only one to two percentage points in healthy individuals. The increased cardiac output and ventilation rate compensate for the increased oxygen demand. However, at very high exercise intensities, particularly in trained endurance athletes, a phenomenon called exercise-induced arterial hypoxemia can occur, with SpO2 dropping to 91 to 93 percent. This is generally not dangerous and resolves immediately upon cessation of exercise, but it can affect performance at the highest levels of competition.</p>
+
+    <h2>6. How Pulse Oximetry Works: The Technology Behind the Measurement</h2>
+
+    <p>Pulse oximetry exploits a fundamental optical property of haemoglobin. Oxyhaemoglobin and deoxyhaemoglobin absorb light at different wavelengths. Oxyhaemoglobin absorbs more infrared light and allows more red light to pass through. Deoxyhaemoglobin absorbs more red light and allows more infrared light to pass through.</p>
+
+    <p>Traditional fingertip pulse oximeters use transmissive measurement: they shine red and infrared LEDs through the finger and detect the light that passes through on the other side. Wrist-worn devices use reflective photoplethysmography instead, measuring the light that bounces back from the blood vessels beneath the skin. This approach is more susceptible to interference from motion, ambient light, skin pigmentation, and sensor placement, but advances in signal processing have substantially improved its accuracy.</p>
+
+    <ol>
+      <li><strong>Red LED (660 nm wavelength)</strong> — This light is absorbed preferentially by deoxyhaemoglobin. Higher absorption at this wavelength indicates a lower proportion of oxygen-carrying haemoglobin.</li>
+      <li><strong>Infrared LED (940 nm wavelength)</strong> — This light is absorbed preferentially by oxyhaemoglobin. Higher absorption at this wavelength indicates a higher proportion of saturated haemoglobin.</li>
+      <li><strong>Ratio calculation</strong> — The device calculates the ratio of red to infrared light absorption during pulsatile blood flow. This ratio is then mapped to SpO2 using a calibration table derived from human volunteer studies.</li>
+      <li><strong>Pulsatile component isolation</strong> — By focusing on the pulsatile component of the signal, which corresponds to arterial blood flow during each heartbeat, the device isolates the arterial contribution from the background absorption of venous blood, tissue, and bone.</li>
+    </ol>
+
+    <h2>7. Limitations and Factors Affecting Accuracy</h2>
+
+    <p>While modern pulse oximeters are remarkably reliable, several factors can affect the accuracy of readings, particularly in consumer wearable devices. Understanding these limitations is essential for interpreting your data correctly and knowing when a reading requires clinical confirmation.</p>
+
+    <p>Motion artefact is the most common source of error in wrist-based oximetry. Movement creates noise in the optical signal that can be misinterpreted as changes in blood flow. Modern devices employ accelerometer-based motion compensation algorithms to mitigate this, but readings taken during vigorous physical activity remain less reliable than those taken at rest.</p>
+
+    <p>Skin pigmentation can also influence readings. Studies have demonstrated that pulse oximeters may slightly overestimate SpO2 in individuals with darker skin tones, particularly at lower saturation levels. This is an active area of research and device improvement, and users should be aware of this potential bias.</p>
+
+    <p>Other factors that can affect accuracy include poor sensor contact, extreme cold causing peripheral vasoconstriction, nail polish or artificial nails on fingertip devices, carbon monoxide exposure, and certain intravenous dyes used in medical procedures. None of these factors eliminate the value of wearable SpO2 monitoring, but they underscore the importance of interpreting data within context and seeking clinical confirmation for any concerning readings.</p>
+
+    <div class="article-highlight">
+      <p>Wearable SpO2 monitoring is a screening tool, not a diagnostic device. Its power lies in detecting trends and patterns over time that warrant clinical investigation, not in replacing clinical-grade measurement for acute medical decisions.</p>
+    </div>
+
+    <h2>8. The Clinical Future of Continuous SpO2 Monitoring</h2>
+
+    <p>The transition from spot-check oximetry to continuous, wearable SpO2 monitoring represents a paradigm shift in respiratory and cardiovascular health surveillance. The ability to track oxygen saturation across entire nights, during exercise, at varying altitudes, and through seasonal changes in respiratory health opens clinical possibilities that were unimaginable a decade ago.</p>
+
+    <p>For respiratory disease management, continuous SpO2 data can reveal the frequency and severity of desaturation events, track the response to therapy, and provide early warning of exacerbations. For sleep medicine, wrist-based oximetry is emerging as a viable screening tool for obstructive sleep apnoea, potentially reaching millions of undiagnosed individuals who would never undergo formal polysomnography.</p>
+
+    <p>At IBT Aura, continuous SpO2 monitoring is a core component of the Aura Clarus platform. By integrating oxygen saturation data with heart rate variability, sleep stage classification, activity patterns, and skin temperature, the platform builds a comprehensive physiological profile that enables detection of respiratory compromise at its earliest stages. The goal is not merely to display a number, but to transform continuous oxygen data into meaningful, personalised health intelligence.</p>
+
+    <p>Your blood oxygen level is a vital sign that your body produces every second of every day. Continuous monitoring means that every second is now visible, and the patterns they reveal may be the earliest warning you receive that something in your health is changing.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

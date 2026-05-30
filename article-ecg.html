@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wearable ECG Technology: Clinical-Grade Heart Monitoring — IBT Aura</title>
+  <meta name="description" content="Wearable ECG technology is bringing clinical-grade cardiac monitoring to your wrist. Learn how single-lead ECG, atrial fibrillation detection, and FDA-cleared wearables are reshaping heart health." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-ecg.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/ecg-hero.jpg" alt="Wearable ECG Technology" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Wearable ECG Technology: Clinical-Grade Heart Monitoring on Your Wrist</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">The electrocardiogram has been the gold standard for cardiac assessment since Willem Einthoven first recorded the electrical activity of the human heart in 1903. Today, more than a century later, that same diagnostic power is being miniaturised into devices that fit on your wrist and run on a single charge for days.</p>
+
+    <p>For most of its history, the ECG was an instrument confined to hospitals, clinics, and ambulances. Obtaining one required a trained technician, adhesive electrodes placed across the chest and limbs, and a dedicated machine that printed waveforms on thermal paper. Patients only received an ECG when they were already symptomatic, meaning the vast majority of cardiac events were captured after the fact, if they were captured at all.</p>
+
+    <p>Wearable ECG technology is fundamentally changing this paradigm. By embedding electrode sensors into watches, rings, and chest straps, manufacturers are enabling continuous or on-demand cardiac monitoring outside the clinical environment. This shift has profound implications for the detection of arrhythmias, the management of chronic heart conditions, and the broader movement toward proactive, rather than reactive, cardiac care.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. The ECG Signal: Understanding P-QRS-T Waves</h2>
+
+    <p>Every heartbeat produces a characteristic electrical signal that can be decomposed into a series of waves, each corresponding to a specific phase of cardiac contraction and relaxation. Understanding this waveform is essential for appreciating what wearable ECG devices can and cannot detect.</p>
+
+    <p>The cardiac cycle begins with the P wave, a small, rounded deflection that represents atrial depolarisation. This is the electrical signal that causes the two upper chambers of the heart, the atria, to contract and push blood into the ventricles. The P wave is typically subtle and low-amplitude, lasting approximately 80 to 100 milliseconds.</p>
+
+    <!-- ECG Waveform Anatomy Diagram -->
+    <div class="article-graph">
+      <p class="article-graph-title">Anatomy of an ECG Waveform</p>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Baseline grid -->
+        <line x1="40" y1="180" x2="680" y2="180" stroke="#e8e8ed" stroke-width="1"/>
+        <line x1="40" y1="120" x2="680" y2="120" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="40" y1="240" x2="680" y2="240" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- ECG waveform - single beat, enlarged -->
+        <path d="M40,180 L100,180 C110,180 115,175 120,165 C125,155 130,150 135,155 C140,160 145,170 150,180 L170,180 L180,178 L190,175 L195,190 L200,220 L210,60 L220,250 L230,140 L240,175 L250,180 L290,180 C300,180 310,160 320,150 C330,140 340,145 350,155 C360,165 370,175 380,180 L440,180 L500,180 C510,180 515,175 520,165 C525,155 530,150 535,155 C540,160 545,170 550,180 L570,180 L580,178 L590,175 L595,190 L600,220 L610,60 L620,250 L630,140 L640,175 L650,180 L680,180" fill="none" stroke="#007AFF" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- P wave label -->
+        <line x1="135" y1="145" x2="135" y2="115" stroke="#34C759" stroke-width="1.5"/>
+        <text x="135" y="108" font-family="SF Pro Display, system-ui" font-size="14" fill="#34C759" font-weight="700" text-anchor="middle">P</text>
+        <text x="135" y="96" font-family="SF Pro Text, system-ui" font-size="9" fill="#86868b" text-anchor="middle">Atrial depolarisation</text>
+        <!-- Q wave label -->
+        <line x1="200" y1="225" x2="200" y2="255" stroke="#FF9500" stroke-width="1.5"/>
+        <text x="200" y="270" font-family="SF Pro Display, system-ui" font-size="14" fill="#FF9500" font-weight="700" text-anchor="middle">Q</text>
+        <!-- R wave label -->
+        <line x1="210" y1="55" x2="210" y2="30" stroke="#FF3B30" stroke-width="1.5"/>
+        <text x="210" y="23" font-family="SF Pro Display, system-ui" font-size="14" fill="#FF3B30" font-weight="700" text-anchor="middle">R</text>
+        <text x="210" y="13" font-family="SF Pro Text, system-ui" font-size="9" fill="#86868b" text-anchor="middle">Ventricular depolarisation</text>
+        <!-- S wave label -->
+        <line x1="220" y1="255" x2="220" y2="275" stroke="#FF9500" stroke-width="1.5"/>
+        <text x="220" y="288" font-family="SF Pro Display, system-ui" font-size="14" fill="#FF9500" font-weight="700" text-anchor="middle">S</text>
+        <!-- T wave label -->
+        <line x1="320" y1="145" x2="320" y2="115" stroke="#5856D6" stroke-width="1.5"/>
+        <text x="320" y="108" font-family="SF Pro Display, system-ui" font-size="14" fill="#5856D6" font-weight="700" text-anchor="middle">T</text>
+        <text x="320" y="96" font-family="SF Pro Text, system-ui" font-size="9" fill="#86868b" text-anchor="middle">Ventricular repolarisation</text>
+        <!-- Interval brackets -->
+        <line x1="190" y1="180" x2="240" y2="180" stroke="#FF9500" stroke-width="0" />
+        <text x="215" y="298" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF9500" text-anchor="middle">QRS Complex</text>
+      </svg>
+      <p class="article-graph-caption">The P wave represents atrial contraction, the QRS complex represents ventricular contraction, and the T wave represents ventricular recovery. Wearable ECG devices capture all of these components from a single lead.</p>
+    </div>
+
+    <p>Following the P wave, there is a brief delay at the atrioventricular node, allowing the ventricles to fill with blood. Then comes the QRS complex, the most prominent feature of the ECG. This sharp, high-amplitude deflection represents ventricular depolarisation, the electrical activation that triggers the powerful contraction of the heart's two lower chambers. The entire QRS complex lasts only 80 to 120 milliseconds in a healthy heart, but it is the feature most easily detected by wearable sensors.</p>
+
+    <p>After ventricular contraction, the T wave appears. This broader, gentler wave represents ventricular repolarisation, the electrical recovery phase during which the heart muscle resets in preparation for the next beat. Abnormalities in T wave morphology can indicate ischaemia, electrolyte imbalances, or structural heart disease.</p>
+
+    <p>Between and around these primary waves lie intervals and segments that carry additional diagnostic information. The PR interval, measured from the onset of the P wave to the beginning of the QRS complex, reflects the conduction time through the atrioventricular node. The QT interval, spanning from the start of the QRS to the end of the T wave, indicates the total duration of ventricular electrical activity. Prolongation of either interval can signal serious conduction disorders.</p>
+
+    <h2>2. Single-Lead vs Twelve-Lead ECG: What Wearables Can See</h2>
+
+    <p>The standard clinical ECG uses twelve leads, meaning twelve different electrical perspectives of the heart, generated by placing ten electrodes at specific locations across the chest and limbs. Each lead captures the heart's electrical activity from a different angle, creating a comprehensive three-dimensional map of cardiac function.</p>
+
+    <p>Wearable ECG devices, by contrast, typically record a single lead, most commonly analogous to Lead I of the standard 12-lead configuration. This lead measures the electrical potential difference between two points, usually the left wrist and a contact point on the opposite hand or the device's back electrode touching the wrist.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">12</p>
+        <p class="article-stat-label">Leads in a standard clinical ECG</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">1</p>
+        <p class="article-stat-label">Lead in most wearable ECG devices</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">98.3%</p>
+        <p class="article-stat-label">AFib detection sensitivity in validated wearable ECGs</p>
+      </div>
+    </div>
+
+    <p>A single lead can reliably detect the timing and rhythm of heartbeats, making it well suited for identifying arrhythmias such as atrial fibrillation, premature contractions, and bradycardia or tachycardia. It captures the P wave, QRS complex, and T wave with sufficient resolution for rhythm analysis in most individuals.</p>
+
+    <p>However, a single lead cannot provide the spatial information needed to diagnose certain conditions that a 12-lead ECG can. Regional myocardial ischaemia, for example, may only be visible in specific leads corresponding to the affected area of the heart. Similarly, certain conduction abnormalities and structural changes require multiple viewing angles. This is why wearable ECG results always carry the caveat that they are not a substitute for a full clinical ECG when comprehensive cardiac evaluation is required.</p>
+
+    <div class="article-highlight">
+      <p>The power of a wearable ECG lies not in replacing the 12-lead clinical standard, but in capturing cardiac events that would otherwise go unrecorded because they occur outside the hospital, often during sleep, exercise, or moments of stress.</p>
+    </div>
+
+    <h2>3. Atrial Fibrillation: The Silent Arrhythmia</h2>
+
+    <p>Atrial fibrillation is the most common sustained cardiac arrhythmia, affecting an estimated 37.5 million people worldwide. It is characterised by rapid, irregular electrical activity in the atria, which replaces the normal coordinated contraction with a chaotic quivering. The result is an irregularly irregular ventricular rhythm that reduces cardiac efficiency and, critically, increases the risk of blood clot formation within the atrial chambers.</p>
+
+    <p>The clinical significance of atrial fibrillation cannot be overstated. It is associated with a fivefold increase in the risk of ischaemic stroke, a threefold increase in the risk of heart failure, and significantly elevated all-cause mortality. Yet a substantial proportion of atrial fibrillation cases are paroxysmal, meaning they come and go unpredictably, often lasting minutes to hours before spontaneously reverting to normal rhythm. This intermittent nature makes detection through standard clinical encounters extraordinarily difficult.</p>
+
+    <p>A patient experiencing paroxysmal atrial fibrillation may present with a perfectly normal ECG during a routine clinic visit, only to have an episode later that evening while watching television. Unless the patient is wearing a monitoring device during the event, the arrhythmia goes undetected. This is the clinical gap that wearable ECG technology is uniquely positioned to fill.</p>
+
+    <p>Modern wearable ECG devices employ algorithms trained on hundreds of thousands of clinically annotated ECG recordings. These algorithms analyse each captured rhythm strip for the hallmarks of atrial fibrillation: the absence of consistent P waves, an irregularly irregular RR interval pattern, and the presence of fibrillatory baseline activity. When these features are detected with sufficient confidence, the device alerts the wearer and stores the recording for clinical review.</p>
+
+    <h2>4. How Accurate Are Wearable ECGs?</h2>
+
+    <p>The accuracy of wearable ECG devices has been the subject of extensive clinical validation, particularly in the context of atrial fibrillation detection. Multiple large-scale studies have demonstrated that FDA-cleared wearable ECG devices achieve sensitivity and specificity rates that approach those of clinical-grade Holter monitors.</p>
+
+    <!-- AFib Detection Accuracy Comparison Chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">Atrial Fibrillation Detection: Wearable vs Clinical Methods</p>
+      <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Axes -->
+        <line x1="60" y1="30" x2="60" y2="260" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="260" x2="680" y2="260" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Y-axis labels -->
+        <text x="50" y="55" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">100%</text>
+        <text x="50" y="105" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">90%</text>
+        <text x="50" y="155" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">80%</text>
+        <text x="50" y="205" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">70%</text>
+        <text x="50" y="255" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">60%</text>
+        <!-- Grid lines -->
+        <line x1="60" y1="50" x2="680" y2="50" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="100" x2="680" y2="100" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="150" x2="680" y2="150" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="200" x2="680" y2="200" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Bar groups — Sensitivity (teal) and Specificity (blue) -->
+        <!-- 12-Lead ECG -->
+        <rect x="90" y="52" width="40" height="208" rx="4" fill="#004d40" opacity="0.85"/>
+        <rect x="135" y="55" width="40" height="205" rx="4" fill="#00796b" opacity="0.85"/>
+        <text x="132" y="280" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">12-Lead ECG</text>
+        <!-- Holter Monitor -->
+        <rect x="220" y="56" width="40" height="204" rx="4" fill="#004d40" opacity="0.85"/>
+        <rect x="265" y="60" width="40" height="200" rx="4" fill="#00796b" opacity="0.85"/>
+        <text x="262" y="280" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">Holter Monitor</text>
+        <!-- Wearable ECG (on-demand) -->
+        <rect x="350" y="62" width="40" height="198" rx="4" fill="#004d40" opacity="0.85"/>
+        <rect x="395" y="64" width="40" height="196" rx="4" fill="#00796b" opacity="0.85"/>
+        <text x="392" y="280" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">Wearable ECG</text>
+        <!-- PPG-Based Detection -->
+        <rect x="480" y="90" width="40" height="170" rx="4" fill="#004d40" opacity="0.85"/>
+        <rect x="525" y="80" width="40" height="180" rx="4" fill="#00796b" opacity="0.85"/>
+        <text x="522" y="280" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">PPG Optical</text>
+        <!-- Single-Lead Patch -->
+        <rect x="610" y="58" width="40" height="202" rx="4" fill="#004d40" opacity="0.85"/>
+        <rect x="655" y="58" width="40" height="202" rx="4" fill="#00796b" opacity="0.85"/>
+        <text x="652" y="280" font-family="SF Pro Text, system-ui" font-size="11" fill="#1d1d1f" text-anchor="middle">ECG Patch</text>
+        <!-- Percentage labels on bars -->
+        <text x="110" y="47" font-family="SF Pro Text, system-ui" font-size="10" fill="#004d40" font-weight="600" text-anchor="middle">99.5%</text>
+        <text x="155" y="50" font-family="SF Pro Text, system-ui" font-size="10" fill="#00796b" font-weight="600" text-anchor="middle">99.2%</text>
+        <text x="240" y="51" font-family="SF Pro Text, system-ui" font-size="10" fill="#004d40" font-weight="600" text-anchor="middle">99.1%</text>
+        <text x="285" y="55" font-family="SF Pro Text, system-ui" font-size="10" fill="#00796b" font-weight="600" text-anchor="middle">98.8%</text>
+        <text x="370" y="57" font-family="SF Pro Text, system-ui" font-size="10" fill="#004d40" font-weight="600" text-anchor="middle">98.3%</text>
+        <text x="415" y="59" font-family="SF Pro Text, system-ui" font-size="10" fill="#00796b" font-weight="600" text-anchor="middle">98.1%</text>
+        <text x="500" y="85" font-family="SF Pro Text, system-ui" font-size="10" fill="#004d40" font-weight="600" text-anchor="middle">91.5%</text>
+        <text x="545" y="75" font-family="SF Pro Text, system-ui" font-size="10" fill="#00796b" font-weight="600" text-anchor="middle">93.0%</text>
+        <text x="630" y="53" font-family="SF Pro Text, system-ui" font-size="10" fill="#004d40" font-weight="600" text-anchor="middle">98.9%</text>
+        <text x="675" y="53" font-family="SF Pro Text, system-ui" font-size="10" fill="#00796b" font-weight="600" text-anchor="middle">99.0%</text>
+        <!-- Legend -->
+        <rect x="200" y="305" width="12" height="12" rx="3" fill="#004d40"/>
+        <text x="218" y="315" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Sensitivity</text>
+        <rect x="340" y="305" width="12" height="12" rx="3" fill="#00796b"/>
+        <text x="358" y="315" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Specificity</text>
+      </svg>
+      <p class="article-graph-caption">Wearable ECG devices achieve sensitivity and specificity rates comparable to Holter monitors for atrial fibrillation detection. PPG-based optical methods are less accurate but enable continuous passive screening.</p>
+    </div>
+
+    <p>The sensitivity of a diagnostic test measures its ability to correctly identify individuals who have the condition. For atrial fibrillation detection, leading wearable ECG devices have demonstrated sensitivity rates exceeding 98 percent in controlled clinical studies. This means that when a patient is actually in atrial fibrillation, the device correctly identifies the arrhythmia in the vast majority of cases.</p>
+
+    <p>Specificity, which measures the ability to correctly identify individuals who do not have the condition, is equally important. A device with high sensitivity but low specificity would generate excessive false alarms, causing unnecessary anxiety and clinical workload. Validated wearable ECG devices have shown specificity rates above 98 percent as well, indicating that false positive alerts are rare.</p>
+
+    <p>These performance metrics are particularly impressive when considered alongside the practical advantages of continuous monitoring. A 12-lead ECG captures perhaps 10 seconds of cardiac activity during a clinic visit. A 24-hour Holter monitor captures one full day. A wearable ECG device, worn daily over months or years, captures cardiac data across thousands of hours of real-world living, dramatically increasing the probability of detecting an intermittent arrhythmia.</p>
+
+    <h2>5. ECG vs PPG: Two Approaches to Heart Monitoring</h2>
+
+    <p>Wearable heart monitoring relies on two fundamentally different sensing technologies: electrocardiography and photoplethysmography. Understanding the distinction between them is important for interpreting what your device is actually measuring and what its limitations are.</p>
+
+    <p>ECG measures the electrical activity of the heart directly. Electrodes on the device detect the tiny voltage changes that occur on the skin surface as the heart's electrical conduction system activates. This produces the familiar P-QRS-T waveform and provides information about the timing, rhythm, and electrical characteristics of each heartbeat.</p>
+
+    <p>PPG, by contrast, measures blood volume changes in the peripheral vasculature using light. An LED on the back of the device shines into the skin, and a photodetector measures how much light is absorbed or reflected. With each heartbeat, blood pulses through the capillaries, changing the optical properties of the tissue. The resulting signal provides pulse-to-pulse timing information that can be used to derive heart rate and, with sophisticated algorithms, inter-beat interval data analogous to heart rate variability.</p>
+
+    <ol>
+      <li><strong>Signal fidelity.</strong> ECG provides a direct measurement of the heart's electrical activity, capturing discrete waveforms with defined morphological features. PPG provides an indirect measurement of peripheral blood flow, which is influenced by factors beyond cardiac electrical activity, including vascular tone, blood pressure, and skin perfusion.</li>
+      <li><strong>Continuous vs on-demand monitoring.</strong> PPG sensors operate continuously and passively because they require no user interaction beyond wearing the device. ECG sensors in most wrist-worn devices require the user to actively touch an electrode, typically on the watch crown or bezel, to complete the circuit. This makes PPG better suited for round-the-clock screening, while ECG provides higher-fidelity snapshots when triggered.</li>
+      <li><strong>Motion artefact susceptibility.</strong> Both technologies are affected by motion, but PPG is significantly more vulnerable. Wrist movement during exercise, typing, or everyday activity can introduce noise that obscures the pulse signal. ECG is more resistant to motion artefact when proper skin contact is maintained, though it is not immune.</li>
+      <li><strong>Arrhythmia detection capability.</strong> ECG can directly visualise the P wave, QRS complex, and T wave, enabling identification of specific arrhythmia types and their underlying mechanisms. PPG can detect rhythm irregularity but cannot visualise the underlying electrical events, making definitive arrhythmia classification more difficult.</li>
+    </ol>
+
+    <div class="article-highlight">
+      <p>The most effective wearable cardiac monitoring platforms combine both technologies: PPG for continuous, passive rhythm screening, and ECG for on-demand, high-fidelity confirmation when an irregularity is detected.</p>
+    </div>
+
+    <h2>6. The Regulatory Landscape: FDA Clearance and Beyond</h2>
+
+    <p>The regulatory pathway for wearable ECG devices has evolved rapidly as the technology has matured. In the United States, the Food and Drug Administration classifies most wearable ECG devices as Class II medical devices, meaning they require premarket clearance through the 510(k) pathway. This process requires manufacturers to demonstrate that their device is substantially equivalent to a legally marketed predicate device in terms of intended use, safety, and effectiveness.</p>
+
+    <p>The FDA's De Novo classification pathway has also been used for novel wearable ECG applications. This pathway is designed for low-to-moderate risk devices that have no existing predicate. It was through this pathway that the first wearable wrist-based ECG received authorisation for over-the-counter atrial fibrillation detection, establishing a new regulatory category that subsequent devices have followed.</p>
+
+    <p>In Europe, wearable ECG devices fall under the Medical Devices Regulation, which requires a CE mark demonstrating conformity with safety and performance requirements. The regulatory requirements in Europe have become more stringent under the updated MDR framework, requiring more extensive clinical evidence and post-market surveillance than under the previous Medical Devices Directive.</p>
+
+    <p>In India, the Central Drugs Standard Control Organisation regulates medical devices under the Medical Devices Rules, 2017. Wearable ECG devices that make clinical claims must be registered and comply with the relevant classification requirements. The regulatory framework is continuing to develop as the market for consumer health wearables expands.</p>
+
+    <p>Regulatory clearance does not mean a device is equivalent to a clinical diagnostic instrument. It means the device has been demonstrated to be safe and effective for its specific intended use, which is typically limited to rhythm detection and atrial fibrillation screening rather than comprehensive cardiac diagnosis. This distinction is critical for both consumers and healthcare providers to understand.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">510(k)</p>
+        <p class="article-stat-label">Primary FDA clearance pathway for wearable ECGs</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">37.5M</p>
+        <p class="article-stat-label">People affected by atrial fibrillation worldwide</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">5x</p>
+        <p class="article-stat-label">Increased stroke risk from undetected AFib</p>
+      </div>
+    </div>
+
+    <h2>7. Practical Considerations for Wearable ECG Users</h2>
+
+    <p>Understanding how to use a wearable ECG device correctly is essential for obtaining reliable results and avoiding unnecessary alarm. While these devices are designed to be intuitive, several practical factors significantly influence the quality of the recordings they produce.</p>
+
+    <ol>
+      <li><strong>Ensure proper skin contact.</strong> The accuracy of any ECG measurement depends on the quality of electrical contact between the electrodes and the skin. For wrist-based devices, this means wearing the device snugly enough to maintain consistent contact with the back of the wrist. Loose straps, dry skin, or excessive wrist hair can degrade signal quality and lead to inconclusive readings.</li>
+      <li><strong>Remain still during recordings.</strong> Motion is the primary source of artefact in wearable ECG recordings. When taking an on-demand ECG reading, sit comfortably, rest your arms on a table or your lap, and remain as still as possible for the full recording duration, typically 30 seconds. Even subtle finger movements can introduce noise.</li>
+      <li><strong>Record during symptoms.</strong> The greatest diagnostic value of a wearable ECG comes from capturing recordings during symptomatic episodes. If you experience palpitations, dizziness, shortness of breath, or chest discomfort, taking an ECG at that moment provides a time-stamped recording that your physician can correlate with your symptoms.</li>
+      <li><strong>Understand what the device cannot do.</strong> A wearable ECG is not a diagnostic instrument. It is a screening tool that can identify certain rhythm abnormalities and flag them for clinical review. It cannot diagnose heart attacks, detect all types of arrhythmia, or replace the comprehensive evaluation provided by a clinical 12-lead ECG. Any abnormal finding should prompt consultation with a healthcare professional, not self-diagnosis.</li>
+      <li><strong>Share recordings with your physician.</strong> Most wearable ECG platforms allow users to export their recordings as PDF reports that can be shared electronically with healthcare providers. Building a library of recordings over time creates a longitudinal cardiac record that has significant clinical value, particularly for patients with intermittent symptoms that are difficult to capture in a clinical setting.</li>
+    </ol>
+
+    <h2>8. The Future of On-Wrist Cardiac Monitoring</h2>
+
+    <p>The current generation of wearable ECG devices represents the beginning of a much broader transformation in cardiac care. Several technological frontiers are converging to expand what on-wrist cardiac monitoring can achieve in the coming years.</p>
+
+    <p>Multi-lead wearable ECG systems are under active development. By incorporating additional electrodes at different body positions, whether through paired devices, smart clothing, or adhesive patches that communicate with a central hub, researchers are working to approximate the spatial information of a multi-lead clinical ECG from consumer-grade hardware. Early prototypes have shown promise in detecting ischaemic changes that single-lead devices miss.</p>
+
+    <p>Artificial intelligence is transforming the analytical capability of wearable ECG platforms. Deep learning models trained on millions of ECG recordings are being developed to detect not only atrial fibrillation but also other clinically significant conditions including atrial flutter, premature ventricular contractions, Wolff-Parkinson-White syndrome, and even early signs of heart failure. These algorithms can identify subtle patterns in the ECG waveform that may not be apparent to human observers.</p>
+
+    <p>Continuous, passive ECG monitoring is another active area of development. Current wrist-based devices require the user to touch an electrode to initiate a recording. Future devices may incorporate sensor configurations that enable continuous single-lead ECG capture without user interaction, similar to how PPG sensors already operate. This would dramatically increase the volume of captured data and the probability of detecting intermittent events.</p>
+
+    <p>At IBT Aura, the integration of ECG-quality cardiac monitoring into the Aura Clarus platform represents a commitment to clinical-grade accuracy in a consumer form factor. By combining advanced signal processing, validated arrhythmia detection algorithms, and seamless integration with healthcare workflows, the vision is to make comprehensive cardiac monitoring as natural and continuous as wearing a watch. Not as a replacement for clinical cardiology, but as its always-present companion, capturing the data that clinics cannot.</p>
+
+    <div class="article-highlight">
+      <p>The future of cardiac care will not be defined by what happens during a ten-minute clinic visit. It will be defined by the thousands of hours of cardiac data captured in the spaces between visits, during sleep, exercise, stress, and the ordinary rhythms of daily life.</p>
+    </div>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles — IBT Aura | Health Insights & Research</title>
+  <meta name="description" content="Health insights, research, and articles from IBT Aura Private Limited — makers of Aura Clarus, a next-generation wearable health device." />
+  <meta name="keywords" content="IBT Aura articles, Aura Clarus blog, health research, wearable health monitoring, health insights, IBT Aura" />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/articles.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="Articles — IBT Aura | Health Insights & Research" />
+  <meta property="og:description" content="Health insights, research, and articles from IBT Aura — makers of Aura Clarus." />
+  <meta property="og:url" content="https://www.ibtaura.com/articles.html" />
+  <meta property="og:site_name" content="IBT Aura" />
+  <meta property="og:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="IBT Aura Articles" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Articles — IBT Aura | Health Insights & Research" />
+  <meta name="twitter:description" content="Health insights, research, and articles from IBT Aura." />
+  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
+  <meta name="twitter:image:alt" content="IBT Aura Articles" />
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ibtaura.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://www.ibtaura.com/articles.html" }
+      ]
+    }
+  ]
+  </script>
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    /* ─── Lenis smooth scroll ────────────────────────────────── */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Articles page content ──────────────────────────── */
+    .articles-container {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+    }
+
+    /* ─── Article Cards Grid ────────────────────────────── */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .article-card {
+      background: #F4F5F5;
+      border-radius: 22px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .article-card:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .article-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-card-body {
+      padding: 24px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .article-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .article-card-tag {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #007AFF;
+      background: rgba(0,122,255,0.08);
+      padding: 3px 10px;
+      border-radius: 980px;
+    }
+
+    .article-card-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 12px;
+      color: #86868b;
+    }
+
+    .article-card-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    .article-card-desc {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0;
+      flex: 1;
+    }
+
+    .article-card-arrow {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #007AFF;
+      margin-top: 16px;
+      display: inline-block;
+    }
+
+    /* Coming soon placeholder card */
+    .article-card-soon {
+      cursor: default;
+    }
+
+    .article-card-soon:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .article-card-soon .article-card-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #e8e8ed 0%, #d2d2d7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .article-card-soon .article-card-img-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.3;
+    }
+
+    .article-card-soon .article-card-title {
+      color: #86868b;
+    }
+
+    .article-card-soon .article-card-desc {
+      color: #a1a1a6;
+    }
+
+    .article-card-gradient {
+      width: 100%;
+      height: 200px;
+      display: block;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 40px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .articles-container {
+        width: calc(100% - 16px);
+        margin-top: 56px;
+      }
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .article-card-img,
+      .article-card-gradient,
+      .article-card-soon .article-card-img-placeholder {
+        height: 160px;
+      }
+      .article-card-body {
+        padding: 20px 20px 24px;
+      }
+      .article-card-title {
+        font-size: 18px;
+      }
+      .footer-legal-section {
+        padding: 36px 24px 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .articles-container {
+        width: calc(100% - 12px);
+        margin-top: 48px;
+      }
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .article-card-img,
+      .article-card-gradient,
+      .article-card-soon .article-card-img-placeholder {
+        height: 180px;
+      }
+      .article-card-body {
+        padding: 18px 18px 22px;
+      }
+      .article-card-title {
+        font-size: 17px;
+      }
+      .footer-legal-section {
+        padding: 28px 16px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEO heading -->
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Articles — Health Insights & Research by IBT Aura</h1>
+
+  <!-- Articles Content -->
+  <div class="articles-container">
+    <div class="articles-grid">
+
+      <!-- 1 — HRV -->
+      <a href="article-hrv.html" class="article-card">
+        <img src="assets/images/articles/hrv-hero.jpg" alt="Heart Rate Variability" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Understanding Heart Rate Variability</h2>
+          <p class="article-card-desc">The hidden language of your nervous system. Discover how HRV monitoring is transforming preventive health.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 2 — Sleep -->
+      <a href="article-sleep.html" class="article-card">
+        <img src="assets/images/articles/sleep-hero.jpg" alt="Sleep Architecture" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Science of Sleep Architecture</h2>
+          <p class="article-card-desc">What happens when you close your eyes. Explore sleep stages, cycles, and why sleep quality matters more than quantity.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 3 — SpO2 -->
+      <a href="article-spo2.html" class="article-card">
+        <img src="assets/images/articles/spo2-hero.jpg" alt="Blood Oxygen Saturation" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Understanding Blood Oxygen Saturation</h2>
+          <p class="article-card-desc">The vital sign on your wrist. Learn how SpO2 monitoring reveals critical insights about respiratory and cardiovascular health.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 4 — Cortisol -->
+      <a href="article-cortisol.html" class="article-card">
+        <img src="assets/images/articles/cortisol-hero.jpg" alt="Cortisol and Stress" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Stress and the Body: The Cortisol Connection</h2>
+          <p class="article-card-desc">How your body's primary stress hormone shapes everything from immunity to metabolism, and what chronic stress really costs.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 5 — Circadian -->
+      <a href="article-circadian.html" class="article-card">
+        <img src="assets/images/articles/circadian-hero.jpg" alt="Circadian Rhythm" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Circadian Rhythm: Your Body's Master Clock</h2>
+          <p class="article-card-desc">Why timing matters as much as what you do. Explore the science of your internal clock and how to optimise your daily rhythm.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 6 — RHR -->
+      <a href="article-rhr.html" class="article-card">
+        <img src="assets/images/articles/rhr-hero.jpg" alt="Resting Heart Rate" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Resting Heart Rate: What Your Baseline Reveals</h2>
+          <p class="article-card-desc">Your resting heart rate is one of the simplest yet most powerful indicators of cardiovascular fitness and overall health.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 7 — Vagus Nerve -->
+      <a href="article-vagus.html" class="article-card">
+        <img src="assets/images/articles/vagus-hero.jpg" alt="Vagus Nerve" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Vagus Nerve: Your Body's Reset Button</h2>
+          <p class="article-card-desc">The longest cranial nerve controls your stress response, digestion, and recovery. Learn how to activate it.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 8 — Temperature -->
+      <a href="article-temperature.html" class="article-card">
+        <img src="assets/images/articles/temperature-hero.jpg" alt="Body Temperature Monitoring" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Body Temperature and Health Monitoring</h2>
+          <p class="article-card-desc">The overlooked vital sign. Discover how continuous temperature tracking can detect illness before symptoms appear.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 9 — Recovery -->
+      <a href="article-recovery.html" class="article-card">
+        <img src="assets/images/articles/recovery-hero.jpg" alt="Recovery Science" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Science of Recovery</h2>
+          <p class="article-card-desc">Why rest is the missing piece in performance. Understand supercompensation, overtraining, and recovery biomarkers.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 10 — Breathwork -->
+      <a href="article-breathwork.html" class="article-card">
+        <img src="assets/images/articles/breathwork-hero.jpg" alt="Breathwork" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Breathwork and Autonomic Regulation</h2>
+          <p class="article-card-desc">The power of controlled breathing. How simple breathing techniques can measurably shift your nervous system.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 11 — EDA -->
+      <a href="article-eda.html" class="article-card">
+        <img src="assets/images/articles/eda-hero.jpg" alt="Electrodermal Activity" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Electrodermal Activity and Stress</h2>
+          <p class="article-card-desc">What your skin reveals about your emotional state. The science of skin conductance and stress detection.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 12 — Gut-Brain -->
+      <a href="article-gut-brain.html" class="article-card">
+        <img src="assets/images/articles/gut-brain-hero.jpg" alt="Gut-Brain Axis" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Gut-Brain Axis</h2>
+          <p class="article-card-desc">How your microbiome shapes your mind. Explore the bidirectional communication between your gut and brain.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 13 — Hydration -->
+      <a href="article-hydration.html" class="article-card">
+        <img src="assets/images/articles/hydration-hero.jpg" alt="Hydration" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Hydration and Physiological Performance</h2>
+          <p class="article-card-desc">Beyond drinking eight glasses. The real science of hydration and its measurable impact on body and mind.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 14 — Blue Light -->
+      <a href="article-blue-light.html" class="article-card">
+        <img src="assets/images/articles/blue-light-hero.jpg" alt="Blue Light and Sleep" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Impact of Blue Light on Sleep</h2>
+          <p class="article-card-desc">How screens disrupt your circadian rhythm. Understand melatonin suppression and practical light hygiene strategies.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 15 — Inflammation -->
+      <a href="article-inflammation.html" class="article-card">
+        <img src="assets/images/articles/inflammation-hero.jpg" alt="Chronic Inflammation" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Chronic Inflammation: The Silent Driver</h2>
+          <p class="article-card-desc">The hidden mechanism behind most modern diseases. Learn how inflammation works and what you can do about it.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 16 — Meditation -->
+      <a href="article-meditation.html" class="article-card">
+        <img src="assets/images/articles/meditation-hero.jpg" alt="Meditation and the Brain" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Meditation and the Brain</h2>
+          <p class="article-card-desc">Measurable changes from mindful practice. How meditation reshapes neural pathways and improves autonomic health.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 17 — ECG -->
+      <a href="article-ecg.html" class="article-card">
+        <img src="assets/images/articles/ecg-hero.jpg" alt="Wearable ECG Technology" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Wearable ECG Technology</h2>
+          <p class="article-card-desc">Clinical-grade heart monitoring on your wrist. How wearable ECG is revolutionising cardiac health detection.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 18 — Metabolic -->
+      <a href="article-metabolic.html" class="article-card">
+        <img src="assets/images/articles/metabolic-hero.jpg" alt="Metabolic Health" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Understanding Metabolic Health</h2>
+          <p class="article-card-desc">Why BMI tells only half the story. Explore insulin resistance, glucose variability, and true metabolic fitness.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 19 — Cold Exposure -->
+      <a href="article-cold-exposure.html" class="article-card">
+        <img src="assets/images/articles/cold-exposure-hero.jpg" alt="Cold Exposure Therapy" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Cold Exposure Therapy</h2>
+          <p class="article-card-desc">The science behind the ice bath trend. What happens physiologically when you embrace the cold.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 20 — Ageing -->
+      <a href="article-ageing.html" class="article-card">
+        <img src="assets/images/articles/ageing-hero.jpg" alt="Ageing and Autonomic Nervous System" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">Ageing and the Autonomic Nervous System</h2>
+          <p class="article-card-desc">What changes with age and what you can do about it. Biological age versus chronological age explained.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+      <!-- 21 — Predictive Health -->
+      <a href="article-predictive-health.html" class="article-card">
+        <img src="assets/images/articles/predictive-health-hero.jpg" alt="Predictive Health" class="article-card-img" />
+        <div class="article-card-body">
+          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+          <h2 class="article-card-title">The Future of Predictive Health</h2>
+          <p class="article-card-desc">From reactive medicine to proactive wellness. How AI and wearable data are reshaping the future of healthcare.</p>
+          <span class="article-card-arrow">Read article ›</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

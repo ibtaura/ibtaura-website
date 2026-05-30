@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Circadian Rhythm: Your Body's Master Clock — IBT Aura</title>
+  <meta name="description" content="Your circadian rhythm governs sleep, metabolism, hormones, and immunity. Learn how this master clock works, what disrupts it, and how wearable technology can help you align with it." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-circadian.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/circadian-hero.jpg" alt="The Circadian Rhythm: Your Body's Master Clock" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">The Circadian Rhythm: Your Body's Master Clock and Why It Matters</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Deep within your brain, a cluster of roughly 20,000 neurons keeps time with remarkable precision. This internal clock, your circadian rhythm, orchestrates the timing of nearly every biological process in your body. When it runs correctly, you sleep deeply, think clearly, and recover efficiently. When it is disrupted, the consequences touch every system in your body.</p>
+
+    <p>The word circadian comes from the Latin circa diem, meaning approximately a day. This etymology reveals a fundamental truth about the system: the internal clock runs on a cycle of approximately 24.2 hours, slightly longer than the Earth's rotation period. Left without any external cues, such as when subjects are placed in isolation bunkers without access to daylight or clocks, the human sleep-wake cycle gradually drifts, extending by roughly 12 minutes each day. Under normal conditions, this drift is corrected daily by environmental time cues, called zeitgebers, with light being by far the most powerful.</p>
+
+    <p>Understanding your circadian rhythm is not an academic exercise. It is fundamental to understanding why you sleep the way you do, why certain times of day feel more productive than others, why shift work damages health, and why the timing of your behaviours, not just the behaviours themselves, determines their physiological impact.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. The Suprachiasmatic Nucleus: Your Master Clock</h2>
+
+    <p>The central pacemaker of the circadian system is the suprachiasmatic nucleus, a paired structure located in the hypothalamus, directly above the optic chiasm where the two optic nerves cross. This location is not coincidental: the suprachiasmatic nucleus receives direct input from the retina through a dedicated neural pathway called the retinohypothalamic tract, allowing it to synchronise its internal rhythm with the external light-dark cycle.</p>
+
+    <p>Each neuron within the suprachiasmatic nucleus contains a molecular clock, a self-sustaining oscillation driven by a transcription-translation feedback loop of clock genes. The proteins produced by these genes, including CLOCK, BMAL1, PER, and CRY, accumulate and degrade in a cycle that takes approximately 24 hours. This genetic clockwork is remarkably robust: even individual suprachiasmatic nucleus neurons, isolated in a dish, will continue to oscillate with near-24-hour periodicity.</p>
+
+    <p>The suprachiasmatic nucleus communicates its timing signal to the rest of the body through a combination of neural connections, hormonal signals, and body temperature regulation. It influences the pineal gland's production of melatonin, the adrenal glands' release of cortisol, the autonomic nervous system's balance between sympathetic and parasympathetic activity, and dozens of other physiological processes that need to occur at specific times of day.</p>
+
+    <h2>2. Light Entrainment: How the Clock Stays Synchronised</h2>
+
+    <p>The process by which external light resets the circadian clock each day is called entrainment. It is mediated by a specialised class of retinal cells called intrinsically photosensitive retinal ganglion cells. Unlike the rods and cones that support vision, these cells contain a photopigment called melanopsin that is maximally sensitive to short-wavelength blue light at approximately 480 nanometres.</p>
+
+    <p>When morning light strikes the retina, these ganglion cells send a signal directly to the suprachiasmatic nucleus, advancing the clock and suppressing melatonin production. This morning light exposure is the single most important daily reset for the circadian system. Without it, the clock drifts later each day, progressively misaligning with the desired sleep-wake schedule.</p>
+
+    <!-- Circadian Hormone Cycle Chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">Circadian Hormone Cycle Over 24 Hours</p>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="230" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="230" x2="680" y2="230" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Gridlines -->
+        <line x1="60" y1="80" x2="680" y2="80" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="130" x2="680" y2="130" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="180" x2="680" y2="180" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis -->
+        <text x="50" y="40" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">High</text>
+        <text x="50" y="135" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Mid</text>
+        <text x="50" y="225" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Low</text>
+        <!-- Night shade -->
+        <rect x="60" y="30" width="120" height="200" fill="#1a237e" opacity="0.04"/>
+        <rect x="560" y="30" width="120" height="200" fill="#1a237e" opacity="0.04"/>
+        <!-- Melatonin curve (blue) — peaks at night -->
+        <path d="M60,50 C90,48 120,60 160,120 C200,180 240,210 300,218 C360,220 420,218 480,218 C520,210 540,180 570,100 C600,55 640,42 680,50" fill="none" stroke="#1a237e" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Cortisol curve (orange) — peaks in morning -->
+        <path d="M60,190 C80,185 110,130 150,50 C190,60 230,90 290,130 C350,160 410,180 470,192 C530,198 570,200 620,198 C650,196 670,192 680,190" fill="none" stroke="#e65100" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Alertness curve (green) — follows cortisol with lag -->
+        <path d="M60,200 C90,195 130,160 170,100 C210,70 250,55 310,50 C370,55 410,80 450,120 C490,150 530,175 580,190 C620,196 660,200 680,200" fill="none" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-dasharray="6,3"/>
+        <!-- Time labels -->
+        <text x="60" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <text x="165" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 AM</text>
+        <text x="270" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 AM</text>
+        <text x="370" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 PM</text>
+        <text x="475" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 PM</text>
+        <text x="580" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 PM</text>
+        <text x="680" y="248" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <!-- Annotations -->
+        <text x="95" y="42" font-family="SF Pro Text, system-ui" font-size="10" fill="#1a237e" font-weight="600">Melatonin Peak</text>
+        <text x="155" y="42" font-family="SF Pro Text, system-ui" font-size="10" fill="#e65100" font-weight="600">Cortisol Surge</text>
+        <!-- Legend -->
+        <line x1="60" y1="275" x2="80" y2="275" stroke="#1a237e" stroke-width="2"/>
+        <text x="88" y="279" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Melatonin</text>
+        <line x1="180" y1="275" x2="200" y2="275" stroke="#e65100" stroke-width="2"/>
+        <text x="208" y="279" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Cortisol</text>
+        <line x1="290" y1="275" x2="310" y2="275" stroke="#34C759" stroke-width="2" stroke-dasharray="6,3"/>
+        <text x="318" y="279" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Alertness</text>
+      </svg>
+      <p class="article-graph-caption">Melatonin rises in the evening and peaks during the night, while cortisol surges in the early morning. Alertness follows cortisol with a slight lag. The interplay between these rhythms determines your daily energy, sleep quality, and performance pattern.</p>
+    </div>
+
+    <p>The timing of light exposure determines its effect on the clock. Light in the morning advances the clock, shifting the sleep-wake cycle earlier. Light in the evening delays the clock, pushing sleep onset later. This is why exposure to bright screens before bedtime is so disruptive: it sends a false signal to the suprachiasmatic nucleus that it is still daytime, delaying melatonin secretion and shifting the entire circadian programme later.</p>
+
+    <div class="article-highlight">
+      <p>Your circadian clock does not respond to your alarm. It responds to light. The most powerful thing you can do for your circadian health is to get bright light exposure within the first hour of waking and to minimise bright light exposure in the two hours before sleep.</p>
+    </div>
+
+    <h2>3. The Melatonin Cycle: Your Internal Darkness Signal</h2>
+
+    <p>Melatonin is often called the sleep hormone, but this is somewhat misleading. Melatonin does not directly induce sleep. Rather, it functions as a chemical signal of darkness, telling the body and brain that nighttime has arrived and that sleep-promoting processes should begin.</p>
+
+    <p>Melatonin is synthesised in the pineal gland from serotonin, and its production is under direct inhibitory control by the suprachiasmatic nucleus via a multi-synaptic pathway. During daylight hours, the suprachiasmatic nucleus suppresses melatonin production. As darkness falls and light input to the suprachiasmatic nucleus ceases, the inhibition is lifted, and melatonin secretion begins. This onset, called dim light melatonin onset, typically occurs approximately two hours before habitual bedtime in a well-entrained individual.</p>
+
+    <p>Melatonin production peaks between 2:00 AM and 4:00 AM and then declines, reaching negligible levels by morning. This decline, combined with the cortisol awakening response, creates the transition from sleep to wakefulness. Disruption of the melatonin rhythm, whether by evening light exposure, irregular sleep timing, or shift work, has downstream effects on sleep quality, body temperature regulation, immune function, and metabolic health.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">24.2h</p>
+        <p class="article-stat-label">Average length of the human circadian cycle without external cues</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">20K</p>
+        <p class="article-stat-label">Neurons in the suprachiasmatic nucleus driving your master clock</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">480nm</p>
+        <p class="article-stat-label">Peak wavelength sensitivity of melanopsin photoreceptors</p>
+      </div>
+    </div>
+
+    <h2>4. Circadian Misalignment: When the Clock and the World Disagree</h2>
+
+    <p>Circadian misalignment occurs when the body's internal clock is out of phase with the external environment or the demands being placed on it. This is not a rare clinical condition; it is an epidemic of modern life. Shift work, social jet lag, irregular sleep schedules, and excessive artificial light exposure all produce varying degrees of circadian disruption.</p>
+
+    <p>The consequences of circadian misalignment extend far beyond fatigue. When you eat at a time your body expects to be fasting, the same meal produces a higher glucose response and reduced insulin sensitivity. When you attempt to sleep during a phase of high circadian alertness, sleep is fragmented and less restorative. When cognitive performance is demanded at a circadian low point, errors, accidents, and impaired decision-making increase dramatically.</p>
+
+    <h3>Shift Work: The Most Severe Form of Circadian Disruption</h3>
+    <p>Approximately 15 to 20 percent of the global workforce engages in some form of shift work. For these individuals, the conflict between the internal clock and the work schedule is continuous and often unresolvable. The suprachiasmatic nucleus continues to receive daylight signals during sleep attempts and darkness during work periods, preventing full adaptation to the shifted schedule.</p>
+
+    <p>Epidemiological studies have consistently shown that long-term shift workers face elevated risks of cardiovascular disease, type 2 diabetes, obesity, depression, gastrointestinal disorders, and certain cancers. The International Agency for Research on Cancer has classified shift work involving circadian disruption as a probable human carcinogen. These are not subtle associations; they represent a significant occupational health burden affecting hundreds of millions of workers worldwide.</p>
+
+    <h3>Social Jet Lag: The Weekend Clock Shift</h3>
+    <p>Social jet lag refers to the discrepancy between an individual's biological clock and their social schedule, most commonly manifested as the difference between weekday and weekend sleep timing. If you wake at 6:30 AM on weekdays but sleep until 10:00 AM on weekends, you experience a social jet lag of 3.5 hours, equivalent to flying across several time zones every Monday morning.</p>
+
+    <p>Research has demonstrated that social jet lag of more than two hours is associated with increased body mass index, elevated markers of inflammation, poorer metabolic health, and reduced subjective well-being. The mechanism is straightforward: the body's peripheral clocks, which govern digestion, hormone secretion, and tissue repair, cannot fully adapt to a schedule that shifts by hours every few days.</p>
+
+    <h2>5. Body Temperature: The Circadian Thermometer</h2>
+
+    <p>Core body temperature follows one of the most robust circadian rhythms in human physiology. It reaches its minimum, approximately 36.2 degrees Celsius, in the early morning hours between 4:00 AM and 6:00 AM, and peaks at approximately 37.0 degrees Celsius in the late afternoon between 4:00 PM and 6:00 PM. This oscillation of about 0.8 degrees Celsius may seem small, but it has profound effects on sleep propensity, cognitive performance, and physical capacity.</p>
+
+    <!-- Body Temperature Over 24 Hours -->
+    <div class="article-graph">
+      <p class="article-graph-title">Core Body Temperature Circadian Rhythm</p>
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="200" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="200" x2="680" y2="200" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Gridlines -->
+        <line x1="60" y1="70" x2="680" y2="70" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="115" x2="680" y2="115" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="160" x2="680" y2="160" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis labels -->
+        <text x="50" y="44" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">37.2 C</text>
+        <text x="50" y="78" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">37.0 C</text>
+        <text x="50" y="120" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">36.7 C</text>
+        <text x="50" y="165" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">36.4 C</text>
+        <text x="50" y="205" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">36.1 C</text>
+        <!-- Temperature curve (orange) -->
+        <path d="M60,130 C90,150 120,170 160,185 C200,180 240,155 300,110 C340,80 380,60 420,50 C460,45 490,48 520,65 C550,85 580,110 620,140 C650,155 670,160 680,155" fill="none" stroke="#e65100" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Area fill -->
+        <path d="M60,130 C90,150 120,170 160,185 C200,180 240,155 300,110 C340,80 380,60 420,50 C460,45 490,48 520,65 C550,85 580,110 620,140 C650,155 670,160 680,155 L680,200 L60,200 Z" fill="#e65100" opacity="0.06"/>
+        <!-- Min and max markers -->
+        <circle cx="160" cy="185" r="5" fill="#007AFF"/>
+        <text x="160" y="198" font-family="SF Pro Text, system-ui" font-size="10" fill="#007AFF" font-weight="600" text-anchor="middle">Temperature Minimum</text>
+        <circle cx="440" cy="47" r="5" fill="#FF3B30"/>
+        <text x="440" y="40" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" font-weight="600" text-anchor="middle">Temperature Peak</text>
+        <!-- Time labels -->
+        <text x="60" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <text x="165" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 AM</text>
+        <text x="270" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 AM</text>
+        <text x="370" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 PM</text>
+        <text x="475" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 PM</text>
+        <text x="580" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 PM</text>
+        <text x="680" y="218" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <!-- Annotations -->
+        <text x="310" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#e65100" font-weight="600" text-anchor="middle">Peak cognitive performance 10 AM - 2 PM</text>
+        <text x="440" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" font-weight="600" text-anchor="middle">Peak physical performance 4-6 PM</text>
+      </svg>
+      <p class="article-graph-caption">Core body temperature reaches its minimum in the early morning and peaks in the late afternoon. The declining phase promotes sleep onset, while the rising phase drives morning alertness. Physical performance peaks when temperature is highest.</p>
+    </div>
+
+    <p>The temperature minimum is the anchor point of the circadian system. Sleep propensity is highest in the hours around the temperature minimum, and the rising phase of temperature that follows drives the transition to wakefulness. Physical performance, including strength, speed, reaction time, and cardiovascular efficiency, peaks when body temperature is at its highest in the late afternoon.</p>
+
+    <p>Wearable devices that track skin temperature can detect these circadian temperature patterns, providing an objective measure of circadian phase that complements sleep timing and heart rate data. Shifts in the temperature rhythm often precede changes in sleep quality, making them a valuable early indicator of circadian disruption.</p>
+
+    <h2>6. Chronotypes: Morning Larks, Night Owls, and Everyone Between</h2>
+
+    <p>Not everyone's circadian clock runs at the same pace or phase. Chronotype refers to an individual's natural tendency toward earlier or later timing of sleep and peak alertness. This is not a lifestyle choice; it is a genetically determined trait influenced by the specific variants of clock genes an individual carries.</p>
+
+    <div class="article-highlight">
+      <p>Forcing a late chronotype to wake at 5:30 AM is not discipline. It is asking their biology to perform at a time when their circadian system is still in its nocturnal phase. The result is not adaptation; it is chronic circadian misalignment, with measurable consequences for mood, metabolism, and cognitive performance.</p>
+    </div>
+
+    <p>Early chronotypes, sometimes called morning larks, have circadian clocks that run slightly shorter than 24 hours and naturally phase-advance, producing an earlier temperature minimum, earlier melatonin onset, and earlier cortisol peak. They wake easily in the morning, reach peak cognitive performance before noon, and experience sleepiness in the early evening.</p>
+
+    <p>Late chronotypes, or night owls, have clocks that run slightly longer than 24 hours and naturally phase-delay. Their temperature minimum occurs later, melatonin onset is delayed, and they reach peak alertness later in the day. They struggle with early wake times, perform best in the late morning to early afternoon, and remain alert well into the evening.</p>
+
+    <p>Most people fall somewhere between these extremes, with a slight tendency toward one end. Chronotype also shifts across the lifespan: children tend toward early chronotypes, adolescents shift dramatically toward late chronotypes, reaching maximum lateness around age 20, and then gradually shift earlier throughout adulthood.</p>
+
+    <h2>7. Practical Strategies for Circadian Health</h2>
+
+    <p>Optimising circadian function does not require living by the sun or abandoning modern life. It requires understanding the key signals your clock relies on and managing them deliberately.</p>
+
+    <ol>
+      <li><strong>Get bright morning light within 30 minutes of waking.</strong> This is the single most powerful circadian intervention. Step outside for 10 to 15 minutes, even on overcast days, when outdoor light intensity is still 10 to 50 times stronger than indoor lighting. If outdoor access is limited, a 10,000 lux light therapy lamp positioned at eye level during breakfast can serve as a substitute.</li>
+      <li><strong>Dim lights progressively in the evening.</strong> Begin reducing indoor lighting two hours before your intended sleep time. Switch to warm-toned lighting, use dimmer settings, and minimise screen brightness. If screens are necessary, enable night mode filters that reduce blue light emission and use the lowest comfortable brightness setting.</li>
+      <li><strong>Maintain consistent meal timing.</strong> Peripheral clocks in the liver, gut, and pancreas are strongly entrained by feeding schedules. Eating at consistent times each day reinforces circadian alignment and improves metabolic efficiency. Avoid large meals within three hours of bedtime, as late eating shifts peripheral clock timing and impairs sleep quality.</li>
+      <li><strong>Time exercise strategically.</strong> Morning exercise reinforces the circadian wake signal and enhances the cortisol awakening response. Late evening vigorous exercise can delay the circadian clock by raising core body temperature during the cooling phase that promotes sleep onset. For most people, completing intense exercise at least three hours before bedtime avoids this interference.</li>
+      <li><strong>Minimise social jet lag.</strong> Keep your weekend wake time within one hour of your weekday wake time. If you feel the need to sleep later on weekends, it is a signal that your weekday sleep is insufficient. Address the root cause by extending weeknight sleep rather than creating a circadian shift every weekend.</li>
+      <li><strong>Use caffeine strategically, not reflexively.</strong> Caffeine blocks adenosine receptors, masking sleep pressure but not eliminating it. Consuming caffeine within the first 90 minutes of waking, when cortisol is naturally high, adds little benefit. Timing caffeine for mid-morning, when the cortisol awakening response has subsided, maximises its alerting effect. Cease caffeine intake by early afternoon to avoid interference with evening melatonin onset.</li>
+      <li><strong>Monitor your circadian patterns with wearable data.</strong> Track your sleep timing, heart rate patterns, and skin temperature trends over weeks. Look for consistency in your sleep onset, your lowest resting heart rate timing, and your temperature nadir. These patterns reveal your actual circadian phase, which may differ from your assumed or desired schedule.</li>
+    </ol>
+
+    <h2>8. The Future of Circadian Medicine</h2>
+
+    <p>The emerging field of chronomedicine recognises that the timing of medical interventions, not just their dosage, can dramatically affect their efficacy. Blood pressure medications taken at bedtime rather than in the morning have been shown to reduce cardiovascular events more effectively. Chemotherapy administered at specific circadian phases produces better tumour response with fewer side effects. Vaccinations given in the morning elicit stronger immune responses than those given in the afternoon.</p>
+
+    <p>These findings reflect a fundamental principle: every cell in the body has a clock, and the function of that cell varies across the 24-hour cycle. Treatments that align with the body's circadian programming work more effectively and cause less harm than those administered without regard to timing.</p>
+
+    <p>Wearable technology is the key enabler of this circadian revolution. By providing continuous, personalised data on an individual's circadian phase, devices like Aura Clarus can help both individuals and their clinicians make timing-informed decisions about sleep, exercise, nutrition, medication, and intervention. The goal is not to impose a one-size-fits-all schedule but to help each person understand and align with their unique circadian biology.</p>
+
+    <p>Your body's master clock has been running since the day you were born. Understanding how it works, and working with it rather than against it, is one of the most impactful changes you can make for your long-term health.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

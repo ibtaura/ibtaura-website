@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stress and the Body: The Cortisol Connection — IBT Aura</title>
+  <meta name="description" content="Cortisol is the body's primary stress hormone, governing everything from metabolism to immune function. Learn how chronic stress reshapes your physiology and how wearable data can help." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-cortisol.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/cortisol-hero.jpg" alt="Stress and the Body: The Cortisol Connection" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Stress and the Body: Understanding the Cortisol Connection</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Cortisol is the molecule that connects your psychological experience of stress to the physical reality of your body's response. It mobilises energy, suppresses inflammation, sharpens focus, and prepares you for action. But when the stress never stops, cortisol transforms from a survival mechanism into a driver of chronic disease.</p>
+
+    <p>The human stress response evolved to handle acute, short-lived threats: predators, territorial conflicts, physical dangers that demanded immediate action and then resolved. In these situations, cortisol is precisely what you need. It floods the bloodstream, redirects resources, heightens awareness, and then subsides as the threat passes, allowing the body to return to its baseline state of rest and repair.</p>
+
+    <p>Modern life has fundamentally altered this equation. The threats we face today are rarely physical, and they rarely resolve. Financial pressure, work deadlines, social media comparison, relationship strain, and information overload create a chronic, low-grade activation of the same stress response that evolved for life-or-death situations. The cortisol that was meant to save your life in an emergency is now eroding your health every day.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. The HPA Axis: Your Body's Stress Command Centre</h2>
+
+    <p>The stress response is orchestrated by a cascade known as the hypothalamic-pituitary-adrenal axis, or HPA axis. This is not a single organ but a communication network between three structures that work in sequence to translate a perceived threat into a hormonal response.</p>
+
+    <ol>
+      <li><strong>The Hypothalamus</strong> — Located at the base of the brain, the hypothalamus serves as the integration centre for stress signals. When it detects a threat, whether from sensory input, emotional processing in the amygdala, or cognitive appraisal in the prefrontal cortex, it releases corticotropin-releasing hormone into the portal blood supply connecting it to the pituitary gland.</li>
+      <li><strong>The Pituitary Gland</strong> — Upon receiving corticotropin-releasing hormone, the anterior pituitary secretes adrenocorticotropic hormone into the general circulation. This hormone travels through the bloodstream to the adrenal glands, which sit atop the kidneys.</li>
+      <li><strong>The Adrenal Cortex</strong> — The outer layer of each adrenal gland responds to adrenocorticotropic hormone by synthesising and releasing cortisol into the bloodstream. Cortisol then acts on virtually every organ system in the body, initiating the metabolic, immune, and cardiovascular changes that constitute the stress response.</li>
+      <li><strong>Negative Feedback</strong> — In a healthy system, rising cortisol levels signal back to the hypothalamus and pituitary to reduce further production, creating a self-limiting loop. This negative feedback mechanism is what prevents cortisol from rising indefinitely after a stressor and allows the body to return to homeostasis. In chronic stress, this feedback mechanism becomes impaired, leading to sustained cortisol elevation.</li>
+    </ol>
+
+    <!-- Stress Response Cascade Diagram -->
+    <div class="article-graph">
+      <p class="article-graph-title">The HPA Axis Stress Response Cascade</p>
+      <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flow diagram — vertical cascade -->
+        <!-- Stressor box -->
+        <rect x="250" y="10" width="200" height="36" rx="8" fill="#7b1fa2" opacity="0.12"/>
+        <text x="350" y="33" font-family="SF Pro Display, system-ui" font-size="14" fill="#4a148c" text-anchor="middle" font-weight="600">Perceived Stressor</text>
+        <!-- Arrow 1 -->
+        <line x1="350" y1="46" x2="350" y2="65" stroke="#7b1fa2" stroke-width="1.5"/>
+        <polygon points="345,62 350,72 355,62" fill="#7b1fa2"/>
+        <!-- Hypothalamus -->
+        <rect x="220" y="72" width="260" height="36" rx="8" fill="#7b1fa2" opacity="0.15"/>
+        <text x="350" y="95" font-family="SF Pro Display, system-ui" font-size="13" fill="#4a148c" text-anchor="middle" font-weight="600">Hypothalamus releases CRH</text>
+        <!-- Arrow 2 -->
+        <line x1="350" y1="108" x2="350" y2="127" stroke="#7b1fa2" stroke-width="1.5"/>
+        <polygon points="345,124 350,134 355,124" fill="#7b1fa2"/>
+        <!-- Pituitary -->
+        <rect x="220" y="134" width="260" height="36" rx="8" fill="#7b1fa2" opacity="0.2"/>
+        <text x="350" y="157" font-family="SF Pro Display, system-ui" font-size="13" fill="#4a148c" text-anchor="middle" font-weight="600">Pituitary releases ACTH</text>
+        <!-- Arrow 3 -->
+        <line x1="350" y1="170" x2="350" y2="189" stroke="#7b1fa2" stroke-width="1.5"/>
+        <polygon points="345,186 350,196 355,186" fill="#7b1fa2"/>
+        <!-- Adrenal -->
+        <rect x="220" y="196" width="260" height="36" rx="8" fill="#7b1fa2" opacity="0.3"/>
+        <text x="350" y="219" font-family="SF Pro Display, system-ui" font-size="13" fill="#4a148c" text-anchor="middle" font-weight="600">Adrenal Cortex releases Cortisol</text>
+        <!-- Arrow 4 — effects fan out -->
+        <line x1="350" y1="232" x2="350" y2="250" stroke="#7b1fa2" stroke-width="1.5"/>
+        <polygon points="345,247 350,257 355,247" fill="#7b1fa2"/>
+        <!-- Effect boxes -->
+        <rect x="60" y="260" width="130" height="32" rx="6" fill="#FF9500" opacity="0.12"/>
+        <text x="125" y="281" font-family="SF Pro Text, system-ui" font-size="11" fill="#FF9500" text-anchor="middle" font-weight="600">Metabolism</text>
+        <rect x="210" y="260" width="130" height="32" rx="6" fill="#FF3B30" opacity="0.12"/>
+        <text x="275" y="281" font-family="SF Pro Text, system-ui" font-size="11" fill="#FF3B30" text-anchor="middle" font-weight="600">Immune System</text>
+        <rect x="360" y="260" width="130" height="32" rx="6" fill="#007AFF" opacity="0.12"/>
+        <text x="425" y="281" font-family="SF Pro Text, system-ui" font-size="11" fill="#007AFF" text-anchor="middle" font-weight="600">Cardiovascular</text>
+        <rect x="510" y="260" width="130" height="32" rx="6" fill="#34C759" opacity="0.12"/>
+        <text x="575" y="281" font-family="SF Pro Text, system-ui" font-size="11" fill="#34C759" text-anchor="middle" font-weight="600">Brain &amp; Mood</text>
+        <!-- Fan lines -->
+        <line x1="350" y1="257" x2="125" y2="260" stroke="#7b1fa2" stroke-width="0.8" opacity="0.5"/>
+        <line x1="350" y1="257" x2="275" y2="260" stroke="#7b1fa2" stroke-width="0.8" opacity="0.5"/>
+        <line x1="350" y1="257" x2="425" y2="260" stroke="#7b1fa2" stroke-width="0.8" opacity="0.5"/>
+        <line x1="350" y1="257" x2="575" y2="260" stroke="#7b1fa2" stroke-width="0.8" opacity="0.5"/>
+        <!-- Negative feedback arrow -->
+        <path d="M480,215 C560,215 560,90 480,90" fill="none" stroke="#86868b" stroke-width="1" stroke-dasharray="4"/>
+        <polygon points="483,92 477,88 480,96" fill="#86868b"/>
+        <text x="560" y="155" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle" transform="rotate(90,560,155)">Negative Feedback</text>
+      </svg>
+      <p class="article-graph-caption">The HPA axis operates as a cascade: perceived stress triggers the hypothalamus, which signals the pituitary, which activates the adrenals. Cortisol then affects multiple organ systems. A negative feedback loop normally limits the response.</p>
+    </div>
+
+    <h2>2. The Cortisol Curve: What a Healthy Day Looks Like</h2>
+
+    <p>Cortisol is not produced at a constant rate. In a healthy individual, it follows a distinct diurnal pattern known as the cortisol curve, with levels peaking in the morning and gradually declining through the afternoon and evening to reach their lowest point around midnight.</p>
+
+    <!-- Cortisol Curve Over 24 Hours -->
+    <div class="article-graph">
+      <p class="article-graph-title">Cortisol Levels Over 24 Hours: Healthy vs Chronic Stress</p>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="220" x2="680" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Gridlines -->
+        <line x1="60" y1="70" x2="680" y2="70" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="120" x2="680" y2="120" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="170" x2="680" y2="170" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis labels -->
+        <text x="50" y="40" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">High</text>
+        <text x="50" y="125" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Mid</text>
+        <text x="50" y="215" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Low</text>
+        <!-- Healthy cortisol curve (purple) -->
+        <path d="M60,180 C80,170 100,80 140,40 C180,50 220,70 280,100 C340,130 400,155 460,170 C520,182 580,190 640,195 C660,196 680,198 680,200" fill="none" stroke="#7b1fa2" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Area fill for healthy -->
+        <path d="M60,180 C80,170 100,80 140,40 C180,50 220,70 280,100 C340,130 400,155 460,170 C520,182 580,190 640,195 C660,196 680,198 680,200 L680,220 L60,220 Z" fill="#7b1fa2" opacity="0.08"/>
+        <!-- Chronic stress curve (red) — flattened, elevated baseline -->
+        <path d="M60,140 C80,130 100,100 140,90 C180,95 220,100 280,110 C340,115 400,118 460,120 C520,122 580,125 640,130 C660,132 680,135 680,138" fill="none" stroke="#FF3B30" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8,4"/>
+        <!-- Time labels -->
+        <text x="60" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <text x="140" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 AM</text>
+        <text x="230" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 AM</text>
+        <text x="370" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 PM</text>
+        <text x="510" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 PM</text>
+        <text x="600" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 PM</text>
+        <text x="680" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <!-- Annotations -->
+        <text x="140" y="30" font-family="SF Pro Text, system-ui" font-size="10" fill="#7b1fa2" font-weight="600" text-anchor="middle">Cortisol Awakening Response</text>
+        <text x="500" y="160" font-family="SF Pro Text, system-ui" font-size="10" fill="#7b1fa2" font-weight="600" text-anchor="middle">Healthy Evening Decline</text>
+        <text x="460" y="108" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" font-weight="600" text-anchor="middle">Elevated Evening Cortisol</text>
+        <!-- Legend -->
+        <line x1="60" y1="262" x2="80" y2="262" stroke="#7b1fa2" stroke-width="2"/>
+        <text x="88" y="266" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Healthy pattern</text>
+        <line x1="230" y1="262" x2="250" y2="262" stroke="#FF3B30" stroke-width="2" stroke-dasharray="6,3"/>
+        <text x="258" y="266" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Chronic stress pattern</text>
+      </svg>
+      <p class="article-graph-caption">A healthy cortisol curve shows a sharp morning peak (the Cortisol Awakening Response) followed by gradual decline. Chronic stress flattens this curve, blunting the morning peak while keeping evening levels elevated.</p>
+    </div>
+
+    <p>The cortisol awakening response, a sharp increase in cortisol that occurs within 30 to 45 minutes of waking, is one of the most robust and well-studied features of the healthy cortisol cycle. This surge serves to mobilise energy reserves, sharpen cognitive function, and prepare the body for the demands of the day. Its magnitude is typically 50 to 75 percent above baseline and lasts approximately one to two hours before cortisol begins its gradual decline.</p>
+
+    <p>The evening nadir is equally important. Low cortisol in the hours before sleep allows melatonin secretion to proceed unimpeded, facilitates the transition into deep sleep, and enables the parasympathetic nervous system to dominate. When this evening decline is disrupted, as it commonly is in chronic stress, the consequences cascade through sleep quality, immune function, and metabolic regulation.</p>
+
+    <div class="article-highlight">
+      <p>Chronic stress does not simply raise cortisol. It fundamentally reshapes the daily cortisol curve, blunting the morning peak that drives energy and performance while elevating the evening trough that should allow recovery. The result is a system that is simultaneously under-performing and over-stressed.</p>
+    </div>
+
+    <h2>3. Acute Stress vs Chronic Stress: Two Very Different Stories</h2>
+
+    <p>The distinction between acute and chronic stress is not merely one of duration. It is a distinction between a system operating within its design parameters and a system that has been pushed beyond its capacity to recover.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">77%</p>
+        <p class="article-stat-label">Of adults report physical symptoms caused by chronic stress</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">3-5x</p>
+        <p class="article-stat-label">Increased risk of cardiovascular disease with chronic stress</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">40%</p>
+        <p class="article-stat-label">Reduction in immune cell effectiveness under sustained cortisol</p>
+      </div>
+    </div>
+
+    <h3>Acute Stress: The System Working as Designed</h3>
+    <p>When you encounter an acute stressor, a near-miss while driving, a challenging exam, an unexpected confrontation, the HPA axis activates rapidly. Cortisol rises, heart rate increases, blood pressure elevates, glucose is mobilised from liver glycogen stores, non-essential functions like digestion and immune surveillance are temporarily suppressed, and cognitive resources are directed toward the immediate threat. This response is adaptive, time-limited, and followed by a recovery period during which the body returns to baseline.</p>
+
+    <p>In fact, moderate acute stress followed by adequate recovery is not merely benign; it is beneficial. This pattern, sometimes called hormesis, actually strengthens the stress response system over time, much as controlled physical stress from exercise strengthens muscles and cardiovascular fitness. The key is the recovery phase: the stress must end, and the body must be given time and resources to restore equilibrium.</p>
+
+    <h3>Chronic Stress: The System Breaking Down</h3>
+    <p>Chronic stress occurs when the stressor persists without resolution, or when the individual perceives ongoing threat even in the absence of immediate danger. In this state, the HPA axis remains activated for weeks, months, or years. Cortisol levels remain elevated throughout the day, the negative feedback mechanism becomes progressively less effective, and the body's systems, which were never designed for sustained mobilisation, begin to deteriorate.</p>
+
+    <p>The metabolic consequences are among the earliest to appear. Sustained cortisol promotes gluconeogenesis, the creation of new glucose from protein and fat, leading to elevated blood sugar even in the absence of dietary carbohydrate intake. Simultaneously, cortisol promotes visceral fat accumulation, the deep abdominal fat surrounding internal organs that is most strongly linked to cardiovascular disease and type 2 diabetes. Over months and years, these metabolic shifts create the conditions for insulin resistance, metabolic syndrome, and their downstream consequences.</p>
+
+    <h2>4. Cortisol and the Immune System</h2>
+
+    <p>One of cortisol's primary functions is immunomodulation, the regulation of immune system activity. In acute stress, cortisol transiently suppresses inflammatory pathways while redirecting immune resources toward wound healing and pathogen defence. This is protective: during a physical confrontation, you need your immune system focused on preventing infection from potential injuries, not on routine surveillance.</p>
+
+    <p>Under chronic stress, however, the relationship between cortisol and the immune system becomes pathological. Sustained cortisol exposure initially suppresses immune function broadly, reducing the number and effectiveness of natural killer cells, T-lymphocytes, and other immune effectors. Paradoxically, as the stress continues and the glucocorticoid receptors on immune cells become desensitised, the immune system rebounds into a state of chronic low-grade inflammation, a condition sometimes described as inflammaging when it occurs in the context of ageing.</p>
+
+    <p>This chronic inflammation has been implicated in a staggering range of conditions, including atherosclerosis, autoimmune disorders, depression, neurodegenerative disease, and cancer progression. The immune system is no longer responding appropriately to genuine threats; instead, it produces a persistent, unfocused inflammatory response that damages healthy tissue.</p>
+
+    <div class="article-highlight">
+      <p>The immune system under chronic stress is not simply weakened. It is dysregulated, simultaneously less effective at fighting infection and more prone to damaging the body through inappropriate inflammation. This dual failure explains why chronically stressed individuals are more susceptible to both infectious disease and inflammatory conditions.</p>
+    </div>
+
+    <h2>5. How Stress Manifests in Wearable Data</h2>
+
+    <p>While cortisol itself cannot yet be measured directly by consumer wearable devices, the physiological consequences of cortisol elevation produce clear, measurable signatures in heart rate, heart rate variability, skin temperature, sleep architecture, and respiratory patterns. These proxy measurements, when interpreted together, provide a surprisingly accurate picture of an individual's stress state.</p>
+
+    <h3>Heart Rate Variability: The Primary Stress Indicator</h3>
+    <p>Heart rate variability is the most well-validated wearable metric for stress assessment. Elevated cortisol drives sympathetic nervous system activation, which reduces HRV by imposing a more rigid, less variable heart rhythm. Sustained reductions in resting HRV, particularly during sleep, correlate strongly with chronic stress exposure and can detect stress patterns before the individual is consciously aware of their impact.</p>
+
+    <h3>Resting Heart Rate Elevation</h3>
+    <p>Chronic stress elevates baseline resting heart rate through sustained sympathetic activation. A gradual upward trend in morning resting heart rate over weeks, particularly when not explained by changes in fitness, illness, or medication, is a strong signal of increasing chronic stress load.</p>
+
+    <h3>Sleep Architecture Disruption</h3>
+    <p>Elevated evening cortisol directly impairs sleep onset, reduces deep sleep proportion, and increases nocturnal awakenings. Wearable devices that track sleep stages can detect these shifts, often revealing stress-related sleep degradation before the individual notices subjective changes in sleep quality.</p>
+
+    <h2>6. The Cortisol-Metabolism Connection</h2>
+
+    <p>Cortisol is fundamentally a metabolic hormone. Its effects on blood sugar, fat distribution, appetite, and energy regulation have profound implications for body composition, metabolic health, and the development of chronic metabolic diseases.</p>
+
+    <p>When cortisol levels are elevated, the liver increases glucose production through gluconeogenesis, simultaneously reducing insulin sensitivity in peripheral tissues. The result is elevated blood glucose that the cells cannot efficiently utilise. Over time, the pancreas must produce progressively more insulin to maintain glucose control, creating a trajectory toward insulin resistance and eventually type 2 diabetes.</p>
+
+    <p>Cortisol also exerts powerful effects on appetite and food preference. It increases the drive to eat, particularly foods high in sugar and fat, by modulating reward pathways in the brain. This is not a failure of willpower; it is a neurochemical response. The brain under cortisol stimulation literally derives more reward from calorie-dense foods, creating a pattern of stress-driven eating that is extremely difficult to override through conscious effort alone.</p>
+
+    <p>The fat that accumulates under cortisol influence is preferentially deposited in the visceral compartment, the deep abdominal fat surrounding the liver, intestines, and other organs. Visceral fat is metabolically active, producing its own inflammatory cytokines that further worsen insulin resistance and cardiovascular risk. This creates a vicious cycle: stress drives cortisol, cortisol drives visceral fat, and visceral fat drives inflammation that amplifies the metabolic damage.</p>
+
+    <h2>7. Evidence-Based Strategies for Managing Cortisol</h2>
+
+    <p>Reducing chronic cortisol exposure requires a multi-faceted approach that addresses both the sources of stress and the body's capacity to recover from it. The following strategies are supported by clinical evidence and can be implemented in combination for maximum effect.</p>
+
+    <ol>
+      <li><strong>Prioritise sleep consistency and duration.</strong> Sleep is the body's primary cortisol recovery period. Insufficient or disrupted sleep prevents the evening cortisol nadir from reaching its proper low point and impairs the restoration of HPA axis sensitivity. Seven to nine hours of consistent, high-quality sleep is the single most powerful cortisol-management strategy available.</li>
+      <li><strong>Practice regular physical activity.</strong> Moderate aerobic exercise produces a temporary, controlled increase in cortisol that improves HPA axis function over time, much as controlled physical stress improves cardiovascular fitness. Walking, cycling, swimming, and jogging for 30 to 45 minutes, three to five times per week, have been shown to reduce baseline cortisol levels within four to six weeks.</li>
+      <li><strong>Engage in deliberate relaxation practices.</strong> Meditation, deep breathing exercises, progressive muscle relaxation, and yoga have all demonstrated measurable effects on cortisol levels. Even five to ten minutes of slow diaphragmatic breathing at six breaths per minute can activate the vagus nerve and shift the autonomic balance toward parasympathetic dominance within minutes.</li>
+      <li><strong>Maintain social connection.</strong> Social isolation is a potent chronic stressor. Meaningful social interaction, whether with family, friends, or community, activates oxytocin pathways that directly buffer cortisol production. In-person social contact appears to be more effective than digital interaction for this purpose.</li>
+      <li><strong>Limit stimulant and alcohol intake.</strong> Caffeine increases cortisol production, particularly when consumed during periods of psychological stress. Alcohol, while subjectively relaxing, disrupts the cortisol curve during sleep and produces a cortisol rebound the following morning. Reducing or eliminating both can measurably lower baseline cortisol within two weeks.</li>
+      <li><strong>Spend time in natural environments.</strong> Research has demonstrated that spending 20 to 30 minutes in natural settings, forests, parks, or green spaces, produces measurable reductions in salivary cortisol compared to equivalent time spent in urban environments. This effect appears to be mediated by reductions in sympathetic nervous system activation and is sometimes called the nature-stress buffering effect.</li>
+      <li><strong>Use wearable data to identify stress patterns.</strong> Track your HRV, resting heart rate, and sleep quality over time. Correlate changes with specific events, behaviours, and periods. This objective data often reveals stress patterns that subjective self-assessment misses, and provides early warning when chronic stress is accumulating before it manifests as symptoms.</li>
+    </ol>
+
+    <div class="article-highlight">
+      <p>Managing stress is not about eliminating it. Acute, recoverable stress is healthy and necessary. The goal is to ensure that the body spends more time recovering than mobilising, and that the cortisol curve retains its natural rhythm of morning activation and evening restoration.</p>
+    </div>
+
+    <h2>8. The Future of Stress Monitoring: From Subjective to Objective</h2>
+
+    <p>The greatest challenge in stress management has always been measurement. Stress is subjective, and humans are remarkably poor at accurately assessing their own stress levels. We normalise chronic stress, dismiss early warning signs, and often fail to recognise the physiological toll until it manifests as illness.</p>
+
+    <p>Wearable technology is changing this by providing objective, continuous physiological data that reveals stress regardless of subjective perception. When your HRV has been declining for three weeks, your resting heart rate has crept up by four beats per minute, and your deep sleep has dropped by 20 percent, the data tells a story that your conscious mind may be ignoring.</p>
+
+    <p>The next generation of wearable stress assessment will integrate these physiological signals with contextual data, time of day, activity patterns, sleep timing, and behavioural changes, to provide a composite stress score that tracks not just acute stress events but the slow accumulation of chronic stress over weeks and months.</p>
+
+    <p>At IBT Aura, this is a central pillar of the Aura Clarus platform. By combining continuous HRV monitoring with sleep architecture analysis, resting heart rate trends, and activity patterns, the device builds a comprehensive stress profile that evolves with the user over time. The goal is to detect the physiological signatures of chronic stress at their earliest stages, before they reshape the cortisol curve, before they impair immune function, and before they set the stage for chronic disease.</p>
+
+    <p>Your body responds to stress whether you acknowledge it or not. The question is whether you have the data to see what your body already knows.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

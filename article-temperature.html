@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Body Temperature and Health: The Overlooked Vital Sign — IBT Aura</title>
+  <meta name="description" content="Body temperature follows a precise circadian rhythm and responds to illness, hormonal cycles, and metabolic changes. Learn how continuous temperature monitoring is reshaping preventive health." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-temperature.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/temperature-hero.jpg" alt="Body Temperature and Health Monitoring" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Body Temperature and Health: The Overlooked Vital Sign</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Body temperature is arguably the oldest vital sign in medicine, yet it remains one of the most underutilised in modern health monitoring. Beyond the binary question of fever or no fever, continuous temperature data reveals intricate patterns tied to circadian rhythm, hormonal cycles, metabolic health, and the earliest stages of illness.</p>
+
+    <p>For over a century, the clinical approach to body temperature has been largely unchanged: take a single reading, compare it to a threshold, and decide whether a fever is present. This approach, while useful for acute care, misses the extraordinary richness of information contained in the body's thermal patterns. Core temperature follows a precise circadian rhythm that varies by as much as one full degree Celsius over a 24-hour period. Deviations from that rhythm, even slight ones, can signal the onset of infection, hormonal shifts, metabolic dysfunction, or autonomic imbalance days before conventional symptoms appear.</p>
+
+    <p>Wearable technology has made continuous temperature monitoring possible for the first time outside of hospital settings, opening a new dimension of preventive health data that was previously invisible to both patients and clinicians.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. The Physiology of Thermoregulation</h2>
+
+    <p>The human body is an endothermic organism, meaning it generates its own heat through metabolic processes and maintains a relatively stable internal temperature regardless of external conditions. This capacity for thermoregulation is controlled primarily by the hypothalamus, a small region at the base of the brain that functions as the body's thermostat.</p>
+
+    <p>The hypothalamus receives input from temperature-sensitive neurons distributed throughout the body, including thermoreceptors in the skin, deep tissues, spinal cord, and abdominal organs. It integrates these signals and initiates compensatory responses to maintain core temperature within the narrow range of approximately 36.5 to 37.5 degrees Celsius that is optimal for enzymatic function, cellular metabolism, and organ performance.</p>
+
+    <p>When core temperature rises above the set point, the hypothalamus triggers heat dissipation mechanisms: cutaneous vasodilation increases blood flow to the skin surface, sweat glands become active, and behavioural responses such as seeking shade or removing clothing are initiated. When core temperature drops below the set point, the hypothalamus activates heat conservation and generation mechanisms: cutaneous vasoconstriction reduces heat loss from the skin, shivering generates metabolic heat through involuntary muscle contractions, and non-shivering thermogenesis in brown adipose tissue increases basal metabolic rate.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">1.0°C</p>
+        <p class="article-stat-label">Typical circadian temperature variation over 24 hours</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">36.6°C</p>
+        <p class="article-stat-label">Updated mean body temperature based on modern population studies</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">72 hrs</p>
+        <p class="article-stat-label">How early temperature deviations can precede symptom onset</p>
+      </div>
+    </div>
+
+    <p>The precision of this system is remarkable. Under normal conditions, core body temperature is maintained within a range of approximately 0.2 to 0.5 degrees Celsius at any given time of day. Deviations beyond this range, even when they do not meet the clinical threshold for fever, are physiologically significant and can indicate that the thermoregulatory system is responding to an internal challenge such as infection, inflammation, hormonal change, or metabolic stress.</p>
+
+    <h2>2. Core Temperature vs Skin Temperature</h2>
+
+    <p>A critical distinction in temperature physiology is the difference between core temperature and skin temperature. Core temperature refers to the temperature of the deep tissues, blood, and vital organs. It is tightly regulated, highly stable, and represents the true thermal state of the body. Skin temperature, by contrast, is influenced by external conditions, blood flow to the periphery, ambient humidity, and clothing, and can vary significantly from core temperature.</p>
+
+    <p>Clinical thermometry has traditionally focused on core temperature, measured via oral, rectal, tympanic, or temporal artery methods. Wearable devices, however, typically measure skin temperature from the wrist, finger, or ear. While skin temperature is not identical to core temperature, it is not independent of it either. Changes in core temperature produce corresponding, albeit attenuated and delayed, changes in skin temperature. With appropriate algorithmic correction, continuous skin temperature data can be used to infer core temperature trends with clinically useful accuracy.</p>
+
+    <p>The relationship between skin and core temperature is itself informative. The gradient between the two, known as distal-proximal skin temperature gradient, reflects the degree of peripheral vasodilation and is influenced by autonomic nervous system activity, sleep-wake transitions, and thermoregulatory demand. A narrowing of this gradient, indicating increased blood flow to the extremities, is associated with sleep onset and parasympathetic dominance. A widening gradient, indicating vasoconstriction and heat conservation, is associated with sympathetic activation and stress responses.</p>
+
+    <div class="article-highlight">
+      <p>The difference between your skin temperature and your core temperature is not noise. It is a signal that reflects autonomic regulation, sleep readiness, and circulatory health.</p>
+    </div>
+
+    <h2>3. The Circadian Temperature Rhythm</h2>
+
+    <p>Body temperature follows one of the most robust and predictable circadian rhythms in human physiology. Under normal conditions, core temperature reaches its lowest point, or nadir, between approximately 4:00 and 5:00 AM, rises steadily throughout the morning, peaks in the late afternoon between 4:00 and 6:00 PM, and then declines through the evening in preparation for sleep.</p>
+
+    <!-- Circadian temperature pattern -->
+    <div class="article-graph">
+      <p class="article-graph-title">Body Temperature Circadian Pattern Over 24 Hours</p>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="220" x2="680" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="80" x2="680" y2="80" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="130" x2="680" y2="130" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="170" x2="680" y2="170" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis labels -->
+        <text x="50" y="48" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">37.4°C</text>
+        <text x="50" y="88" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">37.1°C</text>
+        <text x="50" y="138" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">36.8°C</text>
+        <text x="50" y="178" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">36.5°C</text>
+        <text x="50" y="225" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">36.2°C</text>
+        <!-- Night shading -->
+        <rect x="60" y="30" width="130" height="190" fill="#1d1d1f" opacity="0.04"/>
+        <rect x="590" y="30" width="90" height="190" fill="#1d1d1f" opacity="0.04"/>
+        <text x="125" y="25" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">Night</text>
+        <text x="635" y="25" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">Night</text>
+        <!-- Area fill -->
+        <path d="M60,170 C100,185 140,200 180,210 C220,200 250,175 300,140 C350,110 390,80 440,60 C480,50 510,48 540,55 C570,65 600,90 640,130 C660,150 670,165 680,175 L680,220 L60,220 Z" fill="url(#tempGrad)" opacity="0.3"/>
+        <!-- Temperature curve -->
+        <path d="M60,170 C100,185 140,200 180,210 C220,200 250,175 300,140 C350,110 390,80 440,60 C480,50 510,48 540,55 C570,65 600,90 640,130 C660,150 670,165 680,175" fill="none" stroke="#e64a19" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Time labels -->
+        <text x="60" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <text x="165" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 AM</text>
+        <text x="270" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 AM</text>
+        <text x="370" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 PM</text>
+        <text x="475" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4 PM</text>
+        <text x="580" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">8 PM</text>
+        <text x="680" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">12 AM</text>
+        <!-- Annotations -->
+        <text x="180" y="205" font-family="SF Pro Text, system-ui" font-size="10" fill="#e64a19" font-weight="600">Nadir (~4-5 AM)</text>
+        <text x="500" y="40" font-family="SF Pro Text, system-ui" font-size="10" fill="#e64a19" font-weight="600">Peak (~4-6 PM)</text>
+        <!-- Gradient -->
+        <defs>
+          <linearGradient id="tempGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e64a19" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#e64a19" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <p class="article-graph-caption">Core body temperature follows a predictable circadian pattern, reaching its lowest point during early-morning sleep and peaking in the late afternoon. Disruptions to this pattern are among the earliest signs of illness or circadian misalignment.</p>
+    </div>
+
+    <p>This rhythm is governed by the suprachiasmatic nucleus of the hypothalamus, the same master clock that regulates melatonin secretion, cortisol release, and the sleep-wake cycle. The temperature rhythm is so tightly coupled to the circadian system that it is often used as a reliable marker of circadian phase in research settings. Disruptions to the circadian temperature rhythm, whether from shift work, jet lag, irregular sleep schedules, or chronic sleep deprivation, are associated with impaired cognitive performance, increased metabolic risk, and reduced immune function.</p>
+
+    <p>The evening decline in core temperature is particularly important for sleep initiation. The onset of melatonin secretion triggers peripheral vasodilation, which shunts warm blood from the core to the extremities, effectively radiating heat outward and lowering core temperature. This drop in core temperature is one of the primary physiological triggers for sleep onset. Individuals who have difficulty dissipating heat in the evening, whether due to warm ambient conditions, high sympathetic tone, or poor peripheral circulation, often experience delayed sleep onset and reduced sleep quality.</p>
+
+    <h2>4. The Fever Response: Thermoregulation Under Threat</h2>
+
+    <p>Fever is not a malfunction of the thermoregulatory system. It is a deliberate, coordinated response orchestrated by the immune system to create conditions that are inhospitable to pathogens and favourable to immune defence. When immune cells detect the presence of bacteria, viruses, or other infectious agents, they release endogenous pyrogens, primarily interleukin-1, interleukin-6, and tumour necrosis factor, which act on the hypothalamus to raise the thermoregulatory set point.</p>
+
+    <p>Once the set point is elevated, the body experiences its current temperature as too low and activates heat-generating responses: shivering increases metabolic heat production, peripheral vasoconstriction conserves heat, and behavioural changes such as seeking warmth and curling up reduce surface area for heat loss. The result is a rise in core temperature to the new, elevated set point. This elevated temperature enhances immune cell proliferation and function, increases the production of antibodies, impairs the replication of many viruses and bacteria, and accelerates tissue repair processes.</p>
+
+    <p>The clinical significance of this understanding is that mild to moderate fevers, while uncomfortable, are generally protective and should not always be suppressed. The routine use of antipyretic medications for low-grade fevers in otherwise healthy individuals remains a subject of active clinical debate, with growing evidence suggesting that allowing a fever to run its course may accelerate recovery from certain infections.</p>
+
+    <h3>The Pre-Symptomatic Temperature Signal</h3>
+    <p>Perhaps the most clinically valuable aspect of continuous temperature monitoring is the ability to detect deviations from the individual's established baseline before subjective symptoms appear. Research has demonstrated that subtle elevations in overnight skin temperature, even as small as 0.2 to 0.4 degrees Celsius above the personal baseline, can precede the onset of respiratory infections, urinary tract infections, and inflammatory flare-ups by one to three days.</p>
+
+    <!-- Temperature deviation during illness -->
+    <div class="article-graph">
+      <p class="article-graph-title">Temperature Deviation During Early Illness Onset</p>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="80" y1="30" x2="80" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="80" y1="220" x2="660" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="80" y1="130" x2="660" y2="130" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis labels -->
+        <text x="70" y="48" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">+0.8°C</text>
+        <text x="70" y="95" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">+0.4°C</text>
+        <text x="70" y="135" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Baseline</text>
+        <text x="70" y="180" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">-0.2°C</text>
+        <text x="70" y="225" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">-0.4°C</text>
+        <!-- Baseline band -->
+        <rect x="80" y="115" width="580" height="30" fill="#34C759" opacity="0.06"/>
+        <!-- X-axis labels (days) -->
+        <text x="120" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Day 1</text>
+        <text x="215" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Day 2</text>
+        <text x="310" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Day 3</text>
+        <text x="405" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Day 4</text>
+        <text x="500" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Day 5</text>
+        <text x="595" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Day 6</text>
+        <!-- Normal variation (days 1-2) -->
+        <path d="M80,130 C100,135 120,125 140,132 C160,128 180,133 200,130 C220,126 240,134 260,130" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round"/>
+        <!-- Deviation begins (day 3) -->
+        <path d="M260,130 C280,125 300,118 320,112 C340,105 360,95 380,85" fill="none" stroke="#FF9500" stroke-width="2" stroke-linecap="round"/>
+        <!-- Symptomatic phase (day 4-6) -->
+        <path d="M380,85 C400,70 420,55 440,48 C460,42 480,45 500,50 C520,58 540,70 560,82 C580,95 600,110 630,125 C645,130 655,132 660,133" fill="none" stroke="#FF3B30" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Symptom onset marker -->
+        <line x1="380" y1="30" x2="380" y2="220" stroke="#FF3B30" stroke-width="1" stroke-dasharray="4"/>
+        <text x="380" y="22" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" text-anchor="middle" font-weight="600">Symptom Onset</text>
+        <!-- Pre-symptomatic zone -->
+        <text x="310" y="100" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF9500" font-weight="600">Pre-symptomatic</text>
+        <text x="310" y="112" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF9500">deviation</text>
+        <!-- Legend -->
+        <line x1="100" y1="268" x2="130" y2="268" stroke="#86868b" stroke-width="2"/>
+        <text x="136" y="272" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Normal baseline</text>
+        <line x1="280" y1="268" x2="310" y2="268" stroke="#FF9500" stroke-width="2"/>
+        <text x="316" y="272" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Early deviation</text>
+        <line x1="450" y1="268" x2="480" y2="268" stroke="#FF3B30" stroke-width="2.5"/>
+        <text x="486" y="272" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Symptomatic phase</text>
+      </svg>
+      <p class="article-graph-caption">Continuous temperature monitoring can detect subtle elevations above the personal baseline 24 to 72 hours before subjective symptoms appear, creating a window for early intervention.</p>
+    </div>
+
+    <div class="article-highlight">
+      <p>A single temperature reading tells you whether a fever is present. A continuous temperature trend tells you whether illness is approaching, arriving, peaking, or resolving, often before you feel anything at all.</p>
+    </div>
+
+    <h2>5. Temperature and the Ovulation Cycle</h2>
+
+    <p>One of the most well-established applications of body temperature monitoring is in the assessment of the menstrual cycle and ovulation. Basal body temperature, the temperature measured at rest immediately upon waking, follows a biphasic pattern across the menstrual cycle that reflects the hormonal shifts governing reproductive physiology.</p>
+
+    <p>During the follicular phase, from the onset of menstruation until ovulation, basal body temperature is typically lower, ranging from approximately 36.1 to 36.4 degrees Celsius. Following ovulation, the corpus luteum begins producing progesterone, which has a thermogenic effect on the hypothalamus, raising the thermoregulatory set point. This produces a sustained elevation in basal body temperature of approximately 0.3 to 0.6 degrees Celsius that persists throughout the luteal phase until menstruation begins and progesterone levels decline.</p>
+
+    <p>This biphasic pattern has been used for decades in natural family planning and fertility awareness methods. However, traditional basal body temperature tracking requires disciplined morning measurements at the same time each day, under resting conditions, with an accurate thermometer. Wearable devices that continuously monitor skin temperature during sleep have automated this process, detecting the post-ovulatory temperature shift with high sensitivity and specificity without requiring any manual input from the user.</p>
+
+    <p>Beyond fertility tracking, the temperature characteristics of the menstrual cycle provide insight into broader hormonal and metabolic health. Absent or attenuated temperature shifts may indicate anovulatory cycles, luteal phase deficiency, or other endocrine disorders. Short luteal phases, characterised by a rapid return to pre-ovulatory temperatures, can indicate insufficient progesterone production and may be associated with difficulty maintaining early pregnancy.</p>
+
+    <h2>6. Wearable Temperature Sensing Technology</h2>
+
+    <p>The transition of body temperature monitoring from periodic clinical measurements to continuous wearable tracking has been enabled by advances in miniaturised thermistors, infrared sensors, and on-device signal processing algorithms. Modern wearable devices can measure skin temperature with a resolution of 0.01 degrees Celsius and an accuracy, after algorithmic correction, that approaches clinical standards for trend detection.</p>
+
+    <ol>
+      <li><strong>Thermistor-based sensors.</strong> These are the most common temperature sensors in wrist-worn wearables. A thermistor changes its electrical resistance in response to temperature changes, and this resistance change is converted to a digital temperature reading by the device's microprocessor. Thermistors are inexpensive, reliable, and highly sensitive, making them suitable for continuous monitoring.</li>
+      <li><strong>Infrared thermopile sensors.</strong> Some devices, particularly those designed for ear or forehead measurement, use infrared sensors that detect the thermal radiation emitted by the body. These sensors can measure temperature without direct skin contact and are capable of estimating core temperature more accurately than contact-based skin sensors under certain conditions.</li>
+      <li><strong>Multi-sensor fusion.</strong> Advanced wearable platforms combine temperature data with accelerometer, heart rate, and galvanic skin response data to improve the accuracy of core temperature estimation. By accounting for physical activity, ambient conditions, and autonomic state, multi-sensor algorithms can isolate the physiologically meaningful component of the temperature signal from environmental noise.</li>
+      <li><strong>Algorithmic correction.</strong> Raw skin temperature readings from wearable devices are heavily influenced by ambient temperature, air movement, skin moisture, and sensor contact quality. Sophisticated algorithms, often incorporating machine learning models trained on paired skin and core temperature datasets, are used to filter out these confounders and produce corrected temperature estimates that track core temperature trends with clinically useful fidelity.</li>
+    </ol>
+
+    <h2>7. Early Illness Detection Through Temperature Monitoring</h2>
+
+    <p>The application of continuous temperature monitoring to early illness detection represents one of the most promising frontiers in wearable health technology. The principle is straightforward: establish a personalised baseline of the individual's normal temperature rhythm, continuously monitor for deviations from that baseline, and flag statistically significant departures as potential early indicators of illness.</p>
+
+    <p>Large-scale studies during the respiratory illness outbreaks of the early 2020s demonstrated that wearable temperature sensors could identify infected individuals with high sensitivity during the pre-symptomatic and early symptomatic phases of illness. Elevated overnight skin temperature, when combined with changes in resting heart rate and heart rate variability, produced detection algorithms that outperformed single-symptom screening methods such as spot-check thermometry.</p>
+
+    <p>The key advantage of the continuous monitoring approach is personalisation. A single temperature threshold, such as the traditional 38.0 degrees Celsius fever cutoff, cannot account for individual variation in baseline temperature, circadian phase, hormonal status, or measurement site. A person whose normal overnight temperature is 36.2 degrees Celsius will show a meaningful deviation at 36.6 degrees, long before they reach the clinical fever threshold. Continuous monitoring detects these personalised deviations that population-level thresholds miss entirely.</p>
+
+    <div class="article-highlight">
+      <p>The future of temperature monitoring is not a better thermometer. It is a system that knows your normal pattern so intimately that it can detect a deviation of a fraction of a degree and tell you what it means before you feel anything.</p>
+    </div>
+
+    <h2>8. The Future of Temperature as a Continuous Health Metric</h2>
+
+    <p>As wearable temperature sensing technology continues to improve in accuracy, miniaturisation, and algorithmic sophistication, body temperature is transitioning from a reactive clinical measurement to a proactive, continuous health metric. The implications extend well beyond fever detection.</p>
+
+    <p>Continuous temperature data, when integrated with other physiological signals such as heart rate variability, respiratory rate, and activity levels, creates a multi-dimensional picture of health status that is far more informative than any single biomarker. Patterns in the temperature data that correlate with sleep quality, stress exposure, immune activation, metabolic rate, and hormonal status can be extracted and presented as actionable health insights.</p>
+
+    <p>At IBT Aura, the Aura Clarus platform incorporates continuous skin temperature monitoring as a core component of its multi-sensor health assessment system. By tracking the individual's temperature rhythm with high temporal resolution and correlating it with complementary physiological data, the platform aims to detect early illness signals, identify circadian disruptions, support reproductive health monitoring, and provide a holistic view of thermoregulatory health that evolves with the user over time.</p>
+
+    <p>The overlooked vital sign is finally getting the attention it deserves, not through a better thermometer, but through a fundamentally new approach to how we measure, interpret, and act on the thermal data our bodies produce every second of every day.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

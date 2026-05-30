@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electrodermal Activity: What Your Skin Reveals About Your Stress — IBT Aura</title>
+  <meta name="description" content="Electrodermal activity measures the electrical conductance of your skin, revealing autonomic nervous system arousal in real time. Learn how EDA sensors detect stress, emotional engagement, and sympathetic activation." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-eda.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/eda-hero.jpg" alt="Electrodermal Activity and Stress" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Electrodermal Activity: What Your Skin Reveals About Your Stress</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Your skin is an organ of expression. Beyond its role as a protective barrier, it functions as a real-time readout of your sympathetic nervous system, broadcasting your internal arousal state through subtle changes in electrical conductance that are invisible to the naked eye but measurable by modern sensors.</p>
+
+    <p>Electrodermal activity, formerly known as galvanic skin response, is the measure of electrical conductance changes at the surface of the skin caused by variations in sweat gland activity. Unlike the sweat produced during exercise for thermoregulation, the sweat that drives EDA is produced by eccrine glands controlled exclusively by the sympathetic nervous system in response to emotional arousal, cognitive load, and stress. This makes EDA one of the purest available windows into sympathetic nervous system activation.</p>
+
+    <p>The measurement has a rich scientific history spanning more than a century, from early psychophysiology laboratories to modern lie detection applications, and now to wearable health technology. As sensors have miniaturised and algorithms have matured, EDA has transitioned from a research curiosity to a practical biomarker for real-time stress detection, emotional health monitoring, and autonomic nervous system assessment.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. The Science of Skin Conductance</h2>
+
+    <p>The electrical properties of human skin are determined primarily by the activity of eccrine sweat glands, which are distributed across the entire body surface but are most densely concentrated on the palms, soles, and forehead. These glands are innervated exclusively by the sympathetic division of the autonomic nervous system through cholinergic nerve fibres, a unique arrangement in which the sympathetic system uses acetylcholine rather than noradrenaline as its neurotransmitter.</p>
+
+    <p>When the sympathetic nervous system is activated, whether by a stressful event, an emotional stimulus, cognitive effort, or a physical threat, the eccrine sweat glands increase their secretory activity. Even before visible perspiration appears, the microscopic filling of sweat ducts with ionic fluid increases the electrical conductance of the skin. This change can be detected by passing a small, imperceptible current between two electrodes placed on the skin surface and measuring the resulting change in conductance, typically expressed in microsiemens.</p>
+
+    <p>The elegance of EDA as a physiological measure lies in its specificity. While heart rate is influenced by both sympathetic and parasympathetic activity, and while many other autonomic measures reflect a blend of inputs, the eccrine sweat glands are controlled exclusively by the sympathetic nervous system. This means that any change in electrodermal activity reflects a change in sympathetic arousal, without the confounding influence of parasympathetic modulation. This makes EDA the most direct non-invasive measure of sympathetic nervous system activation available in ambulatory settings.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">3M+</p>
+        <p class="article-stat-label">Eccrine sweat glands distributed across the human body</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">1-3s</p>
+        <p class="article-stat-label">Typical latency from stimulus to detectable EDA response</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">100%</p>
+        <p class="article-stat-label">Sympathetically mediated — no parasympathetic confounding</p>
+      </div>
+    </div>
+
+    <div class="article-highlight">
+      <p>Electrodermal activity is the only non-invasive peripheral measure of pure sympathetic nervous system activation, making it uniquely valuable for detecting stress, emotional arousal, and autonomic imbalance without the confounding effects of parasympathetic input.</p>
+    </div>
+
+    <h2>2. Tonic vs Phasic EDA: Two Dimensions of Arousal</h2>
+
+    <p>The electrodermal signal contains two distinct components that carry different physiological information and require different analytical approaches. Understanding this distinction is essential for correctly interpreting EDA data, whether from laboratory equipment or consumer wearable devices.</p>
+
+    <p>Tonic skin conductance level represents the slowly changing baseline level of electrical conductance, reflecting the overall background level of sympathetic arousal. Tonic SCL typically ranges from 2 to 20 microsiemens and varies across individuals, body sites, and conditions. A person who is chronically stressed, anxious, or sleep-deprived will tend to have a higher tonic SCL than the same individual in a rested, calm state. Tonic SCL changes slowly, over minutes to hours, and reflects the cumulative sympathetic load on the nervous system.</p>
+
+    <p>Phasic skin conductance responses are rapid, transient increases in conductance superimposed on the tonic level. Each SCR represents a discrete sympathetic activation event, triggered by a specific stimulus such as a startling sound, an emotionally provocative image, a moment of cognitive effort, or an unexpected touch. Phasic SCRs typically begin one to three seconds after the triggering stimulus, peak within three to five seconds, and resolve within 10 to 20 seconds. Their amplitude, frequency, and recovery time provide information about the intensity and persistence of the sympathetic response.</p>
+
+    <!-- Tonic vs phasic EDA components -->
+    <div class="article-graph">
+      <p class="article-graph-title">Tonic vs Phasic EDA Components</p>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="220" x2="680" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Y-axis labels -->
+        <text x="50" y="55" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">High</text>
+        <text x="50" y="140" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Mid</text>
+        <text x="50" y="215" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Low</text>
+        <text x="15" y="140" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle" transform="rotate(-90, 15, 140)">Skin Conductance</text>
+        <!-- Tonic level (slowly rising baseline) -->
+        <path d="M60,170 C120,168 180,165 240,162 C300,158 360,150 420,145 C480,140 540,135 600,130 C640,127 660,125 680,124" fill="none" stroke="#6d4c41" stroke-width="2" stroke-dasharray="6" opacity="0.7"/>
+        <text x="685" y="120" font-family="SF Pro Text, system-ui" font-size="10" fill="#6d4c41" font-weight="500">Tonic SCL</text>
+        <!-- Combined signal with phasic responses -->
+        <path d="M60,170 C80,168 100,165 120,163 C130,160 135,110 140,80 C145,70 150,85 155,110 C160,130 165,148 170,155 C180,158 200,160 220,158 C240,156 260,155 270,150 C275,120 280,75 285,60 C290,70 295,90 300,120 C305,135 310,145 320,148 C340,150 360,148 380,145 C400,142 420,140 430,135 C435,100 440,60 445,45 C450,55 455,80 460,110 C465,125 470,132 480,135 C500,137 520,135 540,132 C560,130 570,128 580,120 C585,90 588,68 592,55 C596,65 600,85 605,105 C610,118 615,124 625,126 C640,127 660,125 680,124" fill="none" stroke="#4e342e" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Stimulus markers -->
+        <line x1="135" y1="220" x2="135" y2="230" stroke="#FF3B30" stroke-width="2"/>
+        <text x="135" y="242" font-family="SF Pro Text, system-ui" font-size="9" fill="#FF3B30" text-anchor="middle">Stimulus 1</text>
+        <line x1="280" y1="220" x2="280" y2="230" stroke="#FF3B30" stroke-width="2"/>
+        <text x="280" y="242" font-family="SF Pro Text, system-ui" font-size="9" fill="#FF3B30" text-anchor="middle">Stimulus 2</text>
+        <line x1="440" y1="220" x2="440" y2="230" stroke="#FF3B30" stroke-width="2"/>
+        <text x="440" y="242" font-family="SF Pro Text, system-ui" font-size="9" fill="#FF3B30" text-anchor="middle">Stimulus 3</text>
+        <line x1="588" y1="220" x2="588" y2="230" stroke="#FF3B30" stroke-width="2"/>
+        <text x="588" y="242" font-family="SF Pro Text, system-ui" font-size="9" fill="#FF3B30" text-anchor="middle">Stimulus 4</text>
+        <!-- Phasic label -->
+        <text x="450" y="38" font-family="SF Pro Text, system-ui" font-size="10" fill="#4e342e" font-weight="600">Phasic SCR</text>
+        <!-- Legend -->
+        <line x1="100" y1="268" x2="130" y2="268" stroke="#4e342e" stroke-width="2.5"/>
+        <text x="136" y="272" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Combined signal</text>
+        <line x1="310" y1="268" x2="340" y2="268" stroke="#6d4c41" stroke-width="2" stroke-dasharray="6"/>
+        <text x="346" y="272" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Tonic baseline</text>
+        <rect x="510" y="262" width="8" height="8" fill="#FF3B30"/>
+        <text x="524" y="272" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Stimulus event</text>
+      </svg>
+      <p class="article-graph-caption">The EDA signal combines a slowly changing tonic baseline (dashed line) reflecting overall arousal with rapid phasic responses (peaks) triggered by discrete stimuli. Both components carry distinct physiological information.</p>
+    </div>
+
+    <p>In addition to stimulus-evoked SCRs, the skin also produces non-specific skin conductance responses, or NS-SCRs, which occur spontaneously without an identifiable external trigger. The frequency of NS-SCRs, typically measured as the number of responses per minute, is a sensitive indicator of background sympathetic arousal. Healthy, relaxed individuals produce approximately one to three NS-SCRs per minute, while stressed or anxious individuals may produce five to ten or more. The NS-SCR rate during sleep is used in research as a marker of sleep quality and nocturnal autonomic regulation.</p>
+
+    <h2>3. Eccrine Sweat Glands: The Sympathetic Sensor</h2>
+
+    <p>The eccrine sweat gland is remarkably sophisticated for such a small structure. Each gland consists of a coiled secretory portion embedded in the dermis, connected to the skin surface by a spiralling duct that traverses the epidermis. The secretory coil produces a dilute fluid containing primarily water, sodium chloride, and small quantities of urea, lactate, and potassium. This ionic fluid is the medium through which changes in sweat gland activity alter the electrical conductance of the skin.</p>
+
+    <p>The density of eccrine glands varies dramatically across the body. The palms and soles contain approximately 600 to 700 glands per square centimetre, the highest concentration anywhere on the body. The forehead has approximately 175 per square centimetre, while the trunk and limbs average 100 to 150. This distribution reflects the dual function of eccrine glands: thermoregulatory sweating occurs primarily on the trunk and limbs, while emotionally driven sweating is concentrated on the palms, soles, and face.</p>
+
+    <p>The preferential activation of palmar and plantar eccrine glands during emotional and cognitive arousal is an evolutionary adaptation. Moist palms improve grip strength, which would have been advantageous during fight-or-flight situations requiring climbing, grasping, or wielding tools. This same mechanism is what produces the clammy hands associated with anxiety, nervousness, and performance pressure, and it is what makes the palms and fingertips the optimal locations for EDA measurement.</p>
+
+    <h2>4. Emotional Arousal Detection and Clinical Applications</h2>
+
+    <p>The sensitivity of EDA to emotional arousal has made it one of the most widely used measures in experimental psychology, affective neuroscience, and clinical psychophysiology. The galvanic skin response, as it was historically called, has been employed in research for over a century, contributing to foundational discoveries about emotion, attention, decision-making, and consciousness.</p>
+
+    <p>In clinical settings, EDA is used extensively in the assessment and treatment of anxiety disorders, post-traumatic stress disorder, phobias, and dissociative conditions. During exposure therapy for phobias, for example, clinicians monitor EDA to objectively track the patient's fear response and verify that habituation is occurring across repeated exposures. A successful course of exposure therapy produces a measurable reduction in SCR amplitude to the feared stimulus, providing objective evidence of therapeutic progress that complements the patient's subjective reports.</p>
+
+    <ol>
+      <li><strong>Anxiety and stress assessment.</strong> EDA provides an objective, continuous measure of sympathetic arousal that is not subject to the reporting biases that affect self-report questionnaires. Elevated tonic SCL and increased NS-SCR frequency during daily activities indicate chronic sympathetic overdrive, even in individuals who do not subjectively identify as stressed.</li>
+      <li><strong>Sleep quality assessment.</strong> The pattern of EDA during sleep reflects the quality of autonomic regulation throughout the night. Elevated EDA activity during sleep, particularly during the first half of the night when deep sleep should predominate, suggests incomplete sympathetic downregulation and is associated with poor subjective sleep quality and reduced next-day cognitive performance.</li>
+      <li><strong>Emotional awareness training.</strong> For individuals with alexithymia, the difficulty identifying and describing emotions, or for those recovering from trauma who have become disconnected from their bodily signals, real-time EDA feedback can serve as a bridge between physiological arousal and conscious emotional awareness.</li>
+      <li><strong>Cognitive load and attention monitoring.</strong> EDA responses are reliably evoked by novel, unexpected, or cognitively demanding stimuli. This property makes EDA useful for assessing cognitive load, sustained attention, and the point at which cognitive resources become overwhelmed, with applications in ergonomics, education, and human-computer interaction research.</li>
+      <li><strong>Biofeedback for stress management.</strong> EDA biofeedback, in which individuals observe their own skin conductance in real time and practice techniques to reduce it, is an established intervention for generalised anxiety disorder, chronic stress, and related conditions. The immediacy of the EDA signal makes it particularly effective for biofeedback, as individuals can observe the physiological effect of a relaxation technique within seconds of initiating it.</li>
+    </ol>
+
+    <div class="article-highlight">
+      <p>EDA reveals the stress you cannot feel. Many individuals who report feeling fine show objectively elevated sympathetic arousal on EDA measurement, a disconnection between subjective experience and physiological reality that continuous monitoring can bridge.</p>
+    </div>
+
+    <h2>5. EDA in Clinical Research: A Century of Discovery</h2>
+
+    <p>The history of electrodermal measurement in science spans over 130 years, making it one of the oldest continuously used psychophysiological measures. The phenomenon was first described independently by French neurologist Jean-Baptiste de Tarchanoff in 1889 and Swiss physiologist Romain Vigouroux in 1879, who observed that the electrical properties of the skin changed in response to emotional stimulation.</p>
+
+    <p>Carl Jung adopted the galvanic skin response as a tool for his word association experiments in the early 1900s, using it to detect emotionally charged associations that patients might consciously suppress. This application established the fundamental principle that EDA reflects unconscious emotional processing, a property that has been leveraged in research on implicit attitudes, subliminal perception, and emotional memory ever since.</p>
+
+    <p>In the mid-twentieth century, EDA became central to the development of the polygraph, or lie detector, based on the premise that deceptive responses generate greater sympathetic arousal than truthful ones. While the forensic application of the polygraph remains controversial and of limited reliability, the underlying principle that EDA reflects the autonomic correlates of emotional and cognitive engagement is well-established and continues to drive productive research across multiple disciplines.</p>
+
+    <p>More recent research has extended the clinical applications of EDA into neurological assessment. Patients with damage to the ventromedial prefrontal cortex, a brain region critical for decision-making, show absent EDA responses to risky choices, even when they can verbally articulate the risks involved. This finding, demonstrated in the Iowa Gambling Task, revealed that emotional body signals, indexed by EDA, play a critical role in guiding adaptive decision-making, and that the absence of these signals leads to catastrophic real-world decisions despite intact intellectual capacity.</p>
+
+    <h2>6. Wearable EDA Sensors: Technology and Challenges</h2>
+
+    <p>The miniaturisation of EDA sensors for wearable devices represents both a significant technological achievement and an ongoing engineering challenge. Traditional laboratory EDA measurement uses two electrodes filled with isotonic electrode gel, placed on adjacent fingers or the palm, with a known constant voltage applied across them. The resulting current flow, proportional to skin conductance, is amplified, digitised, and recorded at high sampling rates.</p>
+
+    <p>Wearable devices must achieve comparable measurement quality under far more challenging conditions. The electrodes are typically dry, without conductive gel, which increases contact impedance and noise. The measurement site is often the wrist or finger rather than the optimal palmar location. Motion artefacts from daily activities produce spurious conductance changes that must be algorithmically distinguished from genuine sympathetic responses. Temperature changes, ambient humidity, and variations in electrode contact pressure all introduce additional confounders.</p>
+
+    <p>Despite these challenges, modern wearable EDA sensors have achieved impressive performance for trend detection and pattern recognition. Advanced signal processing algorithms can decompose the raw EDA signal into its tonic and phasic components in real time, filter out motion artefacts using concurrent accelerometer data, and correct for environmental confounders using temperature and humidity sensors. The result is a continuous stream of sympathetic arousal data that, while less precise than laboratory equipment on a moment-to-moment basis, is extraordinarily powerful for detecting patterns over hours, days, and weeks.</p>
+
+    <!-- EDA response to stress stimuli chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">EDA Response Pattern During a Typical Stress Protocol</p>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line x1="60" y1="30" x2="60" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="220" x2="680" y2="220" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="60" y1="130" x2="680" y2="130" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- Y-axis labels -->
+        <text x="50" y="45" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">High</text>
+        <text x="50" y="135" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Moderate</text>
+        <text x="50" y="215" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">Resting</text>
+        <!-- Phase zones -->
+        <rect x="60" y="30" width="120" height="190" fill="#34C759" opacity="0.04"/>
+        <rect x="180" y="30" width="200" height="190" fill="#FF3B30" opacity="0.04"/>
+        <rect x="380" y="30" width="300" height="190" fill="#34C759" opacity="0.04"/>
+        <!-- Phase labels -->
+        <text x="120" y="22" font-family="SF Pro Text, system-ui" font-size="10" fill="#34C759" text-anchor="middle" font-weight="600">Baseline</text>
+        <text x="280" y="22" font-family="SF Pro Text, system-ui" font-size="10" fill="#FF3B30" text-anchor="middle" font-weight="600">Stress Task</text>
+        <text x="530" y="22" font-family="SF Pro Text, system-ui" font-size="10" fill="#34C759" text-anchor="middle" font-weight="600">Recovery</text>
+        <!-- Phase dividers -->
+        <line x1="180" y1="30" x2="180" y2="220" stroke="#d1d1d6" stroke-width="0.5" stroke-dasharray="3"/>
+        <line x1="380" y1="30" x2="380" y2="220" stroke="#d1d1d6" stroke-width="0.5" stroke-dasharray="3"/>
+        <!-- High stress reactivity curve -->
+        <path d="M60,190 C80,188 100,186 120,185 C140,184 160,183 180,180 C200,155 220,100 240,65 C260,50 280,48 300,52 C320,56 340,58 360,55 C370,53 375,52 380,55 C400,75 420,105 440,130 C460,148 480,160 500,168 C520,173 540,176 560,178 C580,180 620,183 660,184 C670,184 678,184 680,184" fill="none" stroke="#FF3B30" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Low stress reactivity curve -->
+        <path d="M60,190 C80,189 100,188 120,187 C140,186 160,186 180,185 C200,175 220,155 240,140 C260,132 280,128 300,130 C320,133 340,138 360,140 C370,142 375,143 380,145 C400,155 420,165 440,174 C460,178 480,182 500,184 C520,186 540,187 560,188 C580,188 620,189 660,189 C670,189 678,189 680,189" fill="none" stroke="#6d4c41" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Time labels -->
+        <text x="60" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">0 min</text>
+        <text x="180" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">5 min</text>
+        <text x="380" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">15 min</text>
+        <text x="530" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">25 min</text>
+        <text x="680" y="240" font-family="SF Pro Text, system-ui" font-size="10" fill="#86868b" text-anchor="middle">35 min</text>
+        <!-- Legend -->
+        <line x1="100" y1="262" x2="130" y2="262" stroke="#FF3B30" stroke-width="2.5"/>
+        <text x="136" y="266" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">High stress reactivity</text>
+        <line x1="360" y1="262" x2="390" y2="262" stroke="#6d4c41" stroke-width="2.5"/>
+        <text x="396" y="266" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Low stress reactivity</text>
+      </svg>
+      <p class="article-graph-caption">During a standardised stress protocol, individuals with high stress reactivity show larger EDA increases and slower recovery, while those with lower reactivity show attenuated responses and faster return to baseline.</p>
+    </div>
+
+    <h2>7. Stress Detection Algorithms: From Signal to Insight</h2>
+
+    <p>Translating raw EDA data into meaningful health insights requires sophisticated algorithmic processing that goes far beyond simple threshold detection. Modern stress detection algorithms employ multi-stage signal processing pipelines that clean, decompose, classify, and contextualise the EDA signal before presenting actionable information to the user.</p>
+
+    <p>The first stage involves artefact removal. Motion artefacts, which produce sharp, irregular conductance changes, are identified using concurrent accelerometer data and either removed or flagged for exclusion from further analysis. Temperature corrections are applied to account for the known relationship between skin temperature and baseline conductance. Contact quality assessment, based on impedance monitoring, identifies periods when the sensor may have lost adequate skin contact.</p>
+
+    <p>The second stage involves signal decomposition. The cleaned EDA signal is separated into its tonic and phasic components using mathematical deconvolution methods. This decomposition allows the algorithm to independently assess background arousal level, which changes slowly and reflects chronic stress load, and acute sympathetic responses, which occur rapidly in response to discrete events.</p>
+
+    <p>The third stage involves contextual classification. Not all sympathetic activation represents harmful stress. Physical activity, excitement, laughter, and sexual arousal all produce legitimate increases in EDA that should not be classified as pathological stress. Advanced algorithms use concurrent data from accelerometers, heart rate sensors, and time-of-day information to distinguish between exercise-related activation, sleep disturbance, and genuine psychological stress. Machine learning models trained on labelled datasets of daily activities can achieve classification accuracies exceeding 85 percent in distinguishing stress from non-stress sympathetic activation.</p>
+
+    <ol>
+      <li><strong>Real-time stress alerts.</strong> When the algorithm detects a pattern of sustained sympathetic elevation consistent with psychological stress, and when contextual data rules out physical activity or other benign causes, the system can generate a timely notification prompting the user to engage in a stress-reduction technique such as controlled breathing or a brief mindfulness exercise.</li>
+      <li><strong>Daily stress summaries.</strong> Aggregate metrics such as total time in elevated sympathetic states, number of acute stress events, recovery speed after each event, and comparison to the personal baseline provide a daily overview of autonomic stress load that can be tracked over weeks and months.</li>
+      <li><strong>Sleep quality assessment.</strong> EDA patterns during sleep, including the frequency of non-specific SCRs, the depth of tonic SCL reduction during deep sleep, and the presence of sympathetic activation events during the night, provide objective measures of sleep quality that complement conventional sleep staging.</li>
+      <li><strong>Longitudinal trend analysis.</strong> The most valuable application of wearable EDA monitoring is the ability to detect long-term trends in sympathetic arousal. A gradual increase in baseline tonic SCL over weeks may indicate accumulating chronic stress, even when the individual does not perceive subjective worsening. This early detection creates an opportunity for intervention before burnout, illness, or mental health decline occurs.</li>
+    </ol>
+
+    <div class="article-highlight">
+      <p>The real power of wearable EDA monitoring is not in detecting the stress you already know about. It is in revealing the chronic sympathetic burden you have normalised, the background arousal you no longer notice because it has become your default state.</p>
+    </div>
+
+    <h2>8. The Future of EDA: Integrated Autonomic Intelligence</h2>
+
+    <p>The future of electrodermal activity monitoring lies not in EDA as an isolated metric but in its integration with other autonomic signals to create a comprehensive, multi-dimensional picture of nervous system function. When EDA data is combined with heart rate variability, respiratory rate, skin temperature, and activity data, the resulting composite provides a level of autonomic insight that no single sensor can achieve alone.</p>
+
+    <p>EDA provides the sympathetic component. HRV provides the parasympathetic component. Together, they reveal the full autonomic balance. Skin temperature adds information about thermoregulatory and circadian function. Respiratory rate adds information about respiratory drive and breathing pattern regularity. Activity data provides the context needed to interpret all other signals correctly.</p>
+
+    <p>At IBT Aura, the Aura Clarus platform is designed to integrate these multiple physiological streams into a unified autonomic health assessment. By combining continuous EDA monitoring with HRV, temperature, respiratory rate, and activity tracking, the platform aims to provide users with a real-time window into their autonomic nervous system function that is more comprehensive, more personalised, and more actionable than any single biomarker could offer alone.</p>
+
+    <p>Your skin has been telling your story all along. The technology to listen, understand, and respond to that story is finally here.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

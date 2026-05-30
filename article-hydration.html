@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hydration and Physiological Performance — IBT Aura</title>
+  <meta name="description" content="Hydration is fundamental to every physiological process in the human body. Learn the science behind water balance, electrolytes, and how even mild dehydration impairs cognitive and physical performance." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-hydration.html" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/hydration-hero.jpg" alt="Hydration and Physiological Performance" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">26 May 2026</span>
+      </div>
+      <h1 class="article-hero-title">Hydration and Physiological Performance: Beyond Drinking Eight Glasses</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+    <p class="lead">Water constitutes approximately 60 percent of the adult human body. It is the medium in which every biochemical reaction occurs, the solvent that carries nutrients to cells, and the thermoregulatory fluid that prevents your body from overheating. Yet despite its fundamental importance, hydration remains one of the most misunderstood aspects of human health.</p>
+
+    <p>The popular advice to drink eight glasses of water per day has persisted for decades despite having no rigorous scientific basis. The original recommendation, often attributed to a 1945 report by the United States National Research Council, actually suggested that most of this water intake would come from food. The eight-glass rule became a cultural shorthand that oversimplified a deeply individual physiological need. Your optimal hydration depends on your body mass, metabolic rate, activity level, climate, diet composition, and a host of other factors that no single number can capture.</p>
+
+    <p>What the science does tell us, with considerable certainty, is that even mild dehydration, defined as a loss of just 1 to 2 percent of body water, produces measurable declines in cognitive performance, physical endurance, mood, and cardiovascular efficiency. Understanding how water works in the body, how dehydration progresses, and how to develop a genuinely personalised hydration strategy is essential for anyone who takes their health seriously.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>1. Water's Role in Cellular Function</h2>
+
+    <p>Every cell in the human body depends on water. At the most fundamental level, water serves as the solvent for intracellular biochemistry, providing the medium in which enzymes catalyse reactions, proteins fold into their functional shapes, and DNA replicates. Without adequate intracellular water, the concentration of solutes rises, osmotic gradients shift, and cellular processes slow or become disordered.</p>
+
+    <p>Water participates directly in numerous metabolic reactions. Hydrolysis reactions, which break down macromolecules including proteins, carbohydrates, and fats, require water as a reactant. The electron transport chain in mitochondria, responsible for generating the vast majority of the body's adenosine triphosphate, produces water as a byproduct and depends on a precisely maintained electrochemical gradient across membranes that is sensitive to hydration status.</p>
+
+    <p>Beyond individual cells, water is the primary component of blood plasma, constituting approximately 92 percent of its volume. Plasma carries oxygen-bound haemoglobin, glucose, hormones, electrolytes, and immune cells to every tissue in the body. When plasma volume decreases due to dehydration, the blood becomes more viscous, the heart must work harder to maintain circulation, and the delivery of oxygen and nutrients to tissues becomes less efficient. This is why even modest fluid loss produces cardiovascular strain detectable through elevated heart rate and reduced stroke volume.</p>
+
+    <div class="article-stats">
+      <div class="article-stat">
+        <p class="article-stat-number">60%</p>
+        <p class="article-stat-label">Of adult body mass is water</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">75%</p>
+        <p class="article-stat-label">Of the brain is composed of water</p>
+      </div>
+      <div class="article-stat">
+        <p class="article-stat-number">2.5L</p>
+        <p class="article-stat-label">Average daily water loss through normal function</p>
+      </div>
+    </div>
+
+    <h2>2. The Stages of Dehydration and Their Physiological Effects</h2>
+
+    <p>Dehydration is not a binary state. It progresses through a continuum, and the physiological consequences escalate at each stage. Understanding this progression is critical because the earliest and most common form of dehydration, mild dehydration at 1 to 2 percent body water loss, often produces no sensation of thirst at all. By the time you feel thirsty, your body has already begun to compensate for a fluid deficit.</p>
+
+    <ol>
+      <li><strong>Mild dehydration (1-2% body water loss).</strong> Cognitive function declines measurably. Working memory, attention, and reaction time are all impaired. Mood deteriorates, with increased feelings of tension, anxiety, and fatigue. Heart rate increases by 5 to 8 beats per minute as the cardiovascular system compensates for reduced plasma volume. Physical endurance drops by approximately 10 to 15 percent.</li>
+      <li><strong>Moderate dehydration (3-5% body water loss).</strong> Thermoregulation becomes compromised. Core body temperature rises more rapidly during exertion. Muscle cramps and headaches become common. Concentration is significantly impaired, and cognitive errors increase substantially. Urine output decreases and becomes noticeably darker. Blood pressure may begin to drop.</li>
+      <li><strong>Severe dehydration (6-10% body water loss).</strong> This is a medical emergency. Symptoms include rapid heart rate, low blood pressure, sunken eyes, confusion, delirium, and potential loss of consciousness. Kidney function is compromised. Without intervention, organ damage can occur. Above 10 percent body water loss, the risk of death rises sharply.</li>
+    </ol>
+
+    <!-- Dehydration impact chart -->
+    <div class="article-graph">
+      <p class="article-graph-title">Impact of Dehydration on Cognitive and Physical Performance</p>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Axes -->
+        <line x1="80" y1="30" x2="80" y2="240" stroke="#d1d1d6" stroke-width="1"/>
+        <line x1="80" y1="240" x2="660" y2="240" stroke="#d1d1d6" stroke-width="1"/>
+        <!-- Y-axis labels -->
+        <text x="70" y="50" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">100%</text>
+        <text x="70" y="98" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">85%</text>
+        <text x="70" y="145" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">70%</text>
+        <text x="70" y="193" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">55%</text>
+        <text x="70" y="240" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="end">40%</text>
+        <!-- Grid lines -->
+        <line x1="80" y1="45" x2="660" y2="45" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="80" y1="93" x2="660" y2="93" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="80" y1="140" x2="660" y2="140" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="80" y1="188" x2="660" y2="188" stroke="#e8e8ed" stroke-width="0.5" stroke-dasharray="4"/>
+        <!-- X-axis labels -->
+        <text x="80" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">0%</text>
+        <text x="196" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">1%</text>
+        <text x="312" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">2%</text>
+        <text x="428" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">3%</text>
+        <text x="544" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">4%</text>
+        <text x="660" y="258" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">5%</text>
+        <text x="370" y="280" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Body Water Loss (%)</text>
+        <!-- Cognitive performance line -->
+        <path d="M80,45 C140,46 180,55 196,62 C240,78 280,98 312,115 C360,140 400,160 428,175 C480,195 520,210 544,218 C580,228 630,235 660,238" fill="none" stroke="#0288d1" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Physical performance line -->
+        <path d="M80,45 C140,48 180,60 196,72 C240,95 280,120 312,140 C360,165 400,185 428,198 C480,215 520,228 544,233 C580,237 630,239 660,240" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Mood line -->
+        <path d="M80,45 C140,50 180,65 196,80 C240,105 280,125 312,138 C360,155 400,168 428,178 C480,192 520,205 544,215 C580,225 630,232 660,235" fill="none" stroke="#FF3B30" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Legend -->
+        <line x1="160" y1="296" x2="180" y2="296" stroke="#0288d1" stroke-width="2.5"/>
+        <text x="186" y="300" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Cognitive Performance</text>
+        <line x1="340" y1="296" x2="360" y2="296" stroke="#FF9500" stroke-width="2.5"/>
+        <text x="366" y="300" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Physical Endurance</text>
+        <line x1="500" y1="296" x2="520" y2="296" stroke="#FF3B30" stroke-width="2.5"/>
+        <text x="526" y="300" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Mood</text>
+      </svg>
+      <p class="article-graph-caption">All three domains decline measurably at just 1 percent body water loss. By 2 percent, performance in each area has dropped by 10 to 25 percent. Physical endurance is the most sensitive to fluid deficit.</p>
+    </div>
+
+    <div class="article-highlight">
+      <p>Research consistently shows that by the time the sensation of thirst becomes conscious, the body has typically already lost 1 to 2 percent of its total water content, meaning that cognitive and physical performance have already begun to decline before you reach for a glass of water.</p>
+    </div>
+
+    <h2>3. Electrolytes: The Conductors of Cellular Communication</h2>
+
+    <p>Water alone does not sustain hydration. The balance of dissolved electrolytes, primarily sodium, potassium, chloride, magnesium, and calcium, determines how water moves between compartments in the body, how cells maintain their electrical charge, and how nerves and muscles function. Drinking large volumes of plain water without adequate electrolyte replacement can actually worsen hydration status by diluting blood sodium concentrations, a potentially dangerous condition called hyponatraemia.</p>
+
+    <p>Sodium is the dominant extracellular cation and plays the primary role in regulating plasma volume. When sodium levels are adequate, the kidneys retain water appropriately and maintain blood pressure. When sodium is depleted through heavy sweating without replacement, the kidneys excrete water to maintain concentration balance, paradoxically increasing fluid loss despite adequate water intake.</p>
+
+    <p>Potassium is the dominant intracellular cation and is essential for nerve impulse transmission, muscle contraction, and cardiac rhythm stability. Magnesium participates in over 300 enzymatic reactions, including those involved in ATP production, protein synthesis, and neuromuscular function. Calcium is critical for muscle contraction, blood clotting, and nerve signalling. Deficiency in any of these electrolytes disrupts cellular function and can produce symptoms ranging from fatigue and cramping to arrhythmias and seizures.</p>
+
+    <p>For most people eating a balanced diet and engaging in moderate activity, food provides sufficient electrolytes. However, during prolonged exercise, in hot environments, during illness involving vomiting or diarrhoea, or when following restrictive diets, deliberate electrolyte replenishment becomes important. The optimal approach is not a one-size-fits-all sports drink but a strategy tailored to individual sweat rate, sweat composition, and activity duration.</p>
+
+    <h2>4. Hydration and Cognitive Performance</h2>
+
+    <p>The brain, despite constituting only about 2 percent of body mass, receives approximately 20 percent of cardiac output and is composed of roughly 75 percent water. It is exquisitely sensitive to changes in hydration status. Even mild dehydration at 1 to 2 percent body water loss produces measurable impairments in attention, short-term memory, psychomotor speed, and executive function.</p>
+
+    <p>In controlled laboratory studies, participants who were mildly dehydrated performed significantly worse on tasks requiring sustained attention, visuospatial processing, and working memory compared to their normally hydrated state. Subjective ratings of alertness, concentration, and overall mood also declined. Importantly, these effects occurred at levels of dehydration that produced no conscious sensation of thirst in many participants, particularly in older adults whose thirst mechanisms are less sensitive.</p>
+
+    <p>The mechanisms are multifaceted. Dehydration reduces cerebral blood flow as plasma volume decreases and blood viscosity increases. It alters the concentration of neurotransmitters and the osmolarity of the extracellular fluid surrounding neurons. It triggers the release of cortisol as the body mounts a stress response to fluid deficit. And it increases the metabolic cost of cognitive processing, meaning the brain must work harder to produce the same output.</p>
+
+    <div class="article-highlight">
+      <p>A comprehensive meta-analysis of 33 studies found that dehydration of just 2 percent body mass impaired attention by 12 percent, degraded short-term memory by 9 percent, and increased the subjective perception of task difficulty by 18 percent, all without participants necessarily feeling thirsty.</p>
+    </div>
+
+    <h2>5. Sweat Rate, Exercise, and Fluid Replacement</h2>
+
+    <p>During physical exercise, the body generates heat as a byproduct of muscular contraction. The primary mechanism for dissipating this heat is evaporative cooling through sweat. Sweat rates vary enormously between individuals, ranging from 0.5 litres per hour in moderate conditions to over 2.5 litres per hour in elite athletes exercising in hot, humid environments. Understanding your own sweat rate is essential for developing an effective exercise hydration strategy.</p>
+
+    <p>Sweat is not pure water. It contains sodium at concentrations ranging from 20 to 80 millimoles per litre, with significant individual variation. Some individuals are salty sweaters, losing substantially more sodium per litre of sweat than others. This variation has practical implications: salty sweaters are at greater risk of hyponatraemia during prolonged exercise if they drink plain water without sodium replacement, and they are more likely to experience muscle cramping during extended efforts.</p>
+
+    <!-- Daily water balance diagram -->
+    <div class="article-graph">
+      <p class="article-graph-title">Daily Water Balance: Intake vs Output</p>
+      <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg">
+        <!-- Title labels -->
+        <text x="200" y="30" font-family="SF Pro Display, system-ui" font-size="14" fill="#0288d1" font-weight="600" text-anchor="middle">WATER IN</text>
+        <text x="500" y="30" font-family="SF Pro Display, system-ui" font-size="14" fill="#FF3B30" font-weight="600" text-anchor="middle">WATER OUT</text>
+        <!-- Water In bars -->
+        <text x="80" y="68" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Beverages</text>
+        <rect x="90" y="55" width="200" height="22" rx="6" fill="#0288d1" opacity="0.85"/>
+        <text x="296" y="70" font-family="SF Pro Text, system-ui" font-size="11" fill="#0288d1" font-weight="600">1,500 mL</text>
+        <text x="80" y="108" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Food</text>
+        <rect x="90" y="95" width="130" height="22" rx="6" fill="#0288d1" opacity="0.7"/>
+        <text x="226" y="110" font-family="SF Pro Text, system-ui" font-size="11" fill="#0288d1" font-weight="600">700 mL</text>
+        <text x="80" y="148" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Metabolic</text>
+        <rect x="90" y="135" width="60" height="22" rx="6" fill="#0288d1" opacity="0.55"/>
+        <text x="156" y="150" font-family="SF Pro Text, system-ui" font-size="11" fill="#0288d1" font-weight="600">300 mL</text>
+        <!-- Water Out bars -->
+        <text x="380" y="68" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Urine</text>
+        <rect x="390" y="55" width="200" height="22" rx="6" fill="#FF3B30" opacity="0.85"/>
+        <text x="596" y="70" font-family="SF Pro Text, system-ui" font-size="11" fill="#FF3B30" font-weight="600">1,500 mL</text>
+        <text x="380" y="108" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Skin</text>
+        <rect x="390" y="95" width="100" height="22" rx="6" fill="#FF3B30" opacity="0.7"/>
+        <text x="496" y="110" font-family="SF Pro Text, system-ui" font-size="11" fill="#FF3B30" font-weight="600">500 mL</text>
+        <text x="380" y="148" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Breathing</text>
+        <rect x="390" y="135" width="70" height="22" rx="6" fill="#FF3B30" opacity="0.6"/>
+        <text x="466" y="150" font-family="SF Pro Text, system-ui" font-size="11" fill="#FF3B30" font-weight="600">350 mL</text>
+        <text x="380" y="188" font-family="SF Pro Text, system-ui" font-size="12" fill="#1d1d1f" text-anchor="end">Faeces</text>
+        <rect x="390" y="175" width="30" height="22" rx="6" fill="#FF3B30" opacity="0.45"/>
+        <text x="426" y="190" font-family="SF Pro Text, system-ui" font-size="11" fill="#FF3B30" font-weight="600">150 mL</text>
+        <!-- Totals -->
+        <line x1="90" y1="210" x2="340" y2="210" stroke="#d1d1d6" stroke-width="1"/>
+        <text x="200" y="232" font-family="SF Pro Display, system-ui" font-size="14" fill="#0288d1" font-weight="700" text-anchor="middle">Total In: ~2,500 mL</text>
+        <line x1="390" y1="210" x2="640" y2="210" stroke="#d1d1d6" stroke-width="1"/>
+        <text x="500" y="232" font-family="SF Pro Display, system-ui" font-size="14" fill="#FF3B30" font-weight="700" text-anchor="middle">Total Out: ~2,500 mL</text>
+        <!-- Note -->
+        <text x="350" y="265" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b" text-anchor="middle">Sedentary adult in temperate climate. Exercise and heat dramatically increase output.</text>
+      </svg>
+      <p class="article-graph-caption">In a sedentary adult under normal conditions, the body maintains a daily water balance of approximately 2,500 millilitres. During exercise or in hot environments, sweat losses can add 500 to 2,500 millilitres per hour, dramatically shifting the balance.</p>
+    </div>
+
+    <p>The American College of Sports Medicine recommends pre-hydrating with 5 to 7 millilitres per kilogram of body weight at least four hours before exercise, consuming fluid at a rate guided by individual sweat rate during exercise, and replacing 125 to 150 percent of fluid lost during exercise in the recovery period. For efforts lasting longer than 60 to 90 minutes, sodium-containing fluids are preferred over plain water to maintain electrolyte balance and enhance intestinal absorption.</p>
+
+    <h2>6. Wearable Hydration Tracking and Physiological Signals</h2>
+
+    <p>One of the most significant challenges in hydration science has been the lack of a practical, real-time method for assessing hydration status outside of a laboratory. Traditional measures, including urine specific gravity, blood osmolality, and body mass changes, require either laboratory equipment or are impractical for continuous monitoring during daily life or exercise.</p>
+
+    <p>Wearable technology is beginning to change this. While no consumer wearable currently measures hydration directly, several physiological signals captured by modern devices serve as reliable indirect indicators of hydration status. Heart rate variability, resting heart rate, skin temperature, and electrodermal activity all respond to changes in fluid balance, and algorithms are being developed to integrate these signals into composite hydration assessments.</p>
+
+    <p>Heart rate variability is particularly informative. Dehydration activates the sympathetic nervous system, reduces plasma volume, and increases cardiac workload, all of which suppress HRV. Studies have shown that HRV declines measurably at fluid losses as small as 1.5 percent of body mass, making it one of the most sensitive non-invasive indicators of early dehydration. Wearable devices that track HRV continuously can detect these shifts in real time, providing users with an early warning system for fluid deficit before symptoms appear.</p>
+
+    <p>Skin temperature and its circadian variation also reflect hydration status. Dehydrated individuals show altered skin temperature patterns because reduced blood volume limits the body's ability to distribute heat effectively. Combining skin temperature data with heart rate and HRV creates a multivariate signal that, when processed through machine learning models, can estimate hydration status with increasing accuracy.</p>
+
+    <h2>7. Personalised Hydration Strategies: Beyond Generic Guidelines</h2>
+
+    <p>The most important insight from modern hydration science is that optimal fluid intake is deeply individual. Body size, metabolic rate, activity level, ambient temperature, humidity, altitude, dietary sodium intake, caffeine consumption, medication use, and even genetic variation in aquaporin expression all influence how much water your body needs and how efficiently it retains it.</p>
+
+    <ol>
+      <li><strong>Calculate your baseline needs.</strong> A reasonable starting point is 30 to 40 millilitres per kilogram of body weight per day for a sedentary adult in a temperate climate. A 70-kilogram person would need approximately 2,100 to 2,800 millilitres daily. This is a baseline, not a ceiling.</li>
+      <li><strong>Measure your sweat rate during exercise.</strong> Weigh yourself before and after a one-hour exercise session, accounting for any fluid consumed during the session. Each kilogram of weight lost represents approximately one litre of sweat. Repeat this in different conditions to build a personal sweat rate profile.</li>
+      <li><strong>Front-load your intake.</strong> Consume a significant portion of your daily water in the morning. The body is typically mildly dehydrated after sleep, and morning hydration supports cortisol regulation, cognitive sharpness, and metabolic function throughout the first half of the day.</li>
+      <li><strong>Monitor urine colour as a practical indicator.</strong> Pale straw-coloured urine generally indicates adequate hydration. Dark yellow or amber urine suggests insufficient fluid intake. Very clear, colourless urine may indicate overhydration. While imperfect, urine colour provides a useful daily reference.</li>
+      <li><strong>Adjust for environmental and situational factors.</strong> Increase intake in hot or humid weather, at altitude, during air travel, when consuming alcohol or caffeine, during illness, and during periods of high physical activity. Decrease slightly in cold environments where insensible losses are lower.</li>
+      <li><strong>Incorporate electrolyte-rich foods and drinks when appropriate.</strong> During prolonged exercise, illness, or heavy sweating, plain water alone is insufficient. Foods like bananas, avocados, leafy greens, and nuts provide potassium and magnesium. A pinch of salt in water or a balanced electrolyte solution supports sodium replacement.</li>
+    </ol>
+
+    <h2>8. The Integrated View: Hydration as a Pillar of Health Intelligence</h2>
+
+    <p>Hydration is not an isolated variable. It interacts with virtually every other aspect of physiological health. Sleep quality degrades when dehydration triggers nocturia or alters thermoregulation. Heart rate variability declines as plasma volume drops and sympathetic tone rises. Cognitive function suffers as cerebral blood flow decreases. Exercise performance falls as the cardiovascular system struggles to maintain output. Mood deteriorates as cortisol levels rise in response to the physiological stress of fluid deficit.</p>
+
+    <p>This interconnectedness is precisely why a holistic approach to health monitoring matters. Tracking hydration in isolation, just as tracking sleep or HRV in isolation, provides an incomplete picture. The value emerges when these signals are integrated, when a decline in HRV can be contextualised against fluid intake, activity level, sleep duration, and environmental conditions to produce a genuinely personalised and actionable health assessment.</p>
+
+    <p>At IBT Aura, the Aura Clarus platform is designed to capture this integrated picture. By continuously monitoring heart rate variability, skin temperature, activity patterns, and other physiological signals, Aura Clarus aims to detect the subtle signatures of dehydration, insufficient recovery, and autonomic stress before they escalate into clinical symptoms. The goal is not to replace your sense of thirst but to augment it, providing a data-driven layer of awareness that your subjective experience alone cannot deliver.</p>
+
+    <p>Water is the foundation. Everything else is built on top of it. When the foundation shifts, everything above it shifts too. The question is whether you are paying close enough attention to notice.</p>
+
+    <div class="article-divider"></div>
+
+    <p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

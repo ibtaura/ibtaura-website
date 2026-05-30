@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Clarus App — Health Intelligence Platform by IBT Aura</title>
+  <meta name="description" content="The Aura Clarus App is the health intelligence platform powering Aura Clarus. Proactive insights, real-time monitoring, and wellness guidance designed for real lives." />
+  <meta name="keywords" content="Aura Clarus App, IBT Aura, health app, wellness platform, health monitoring app, wearable app, IBT Aura Private Limited" />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/aura-clarus-app.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="Aura Clarus App — Health Intelligence Platform by IBT Aura" />
+  <meta property="og:description" content="The health intelligence platform powering Aura Clarus. Proactive insights designed for everyone." />
+  <meta property="og:url" content="https://www.ibtaura.com/aura-clarus-app.html" />
+  <meta property="og:site_name" content="IBT Aura" />
+  <meta property="og:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Aura Clarus App by IBT Aura" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aura Clarus App — Health Intelligence Platform by IBT Aura" />
+  <meta name="twitter:description" content="The health intelligence platform powering Aura Clarus. Proactive insights designed for everyone." />
+  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
+  <meta name="twitter:image:alt" content="Aura Clarus App by IBT Aura" />
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ibtaura.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Aura Clarus App", "item": "https://www.ibtaura.com/aura-clarus-app.html" }
+      ]
+    }
+  ]
+  </script>
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <style>
+    /* ─── Lenis smooth scroll ────────────────────────────────── */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    .app-hero-card {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .app-hero-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ─── Mode Cards — Static stacked ──────────────────── */
+    .mode-card {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .mode-inner {
+      display: flex;
+      align-items: stretch;
+      min-height: 520px;
+    }
+
+    .mode-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 40px;
+    }
+
+    .mode-text h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+
+    .mode-text p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 360px;
+    }
+
+    .mode-image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 32px 32px 0;
+    }
+
+    .mode-image img {
+      max-height: 460px;
+      width: auto;
+      height: 100%;
+      display: block;
+      border-radius: 36px;
+    }
+
+    /* ─── Beta TestFlight Card ───────────────────────────── */
+    .beta-card {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 56px 40px;
+      gap: 24px;
+    }
+
+    .beta-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.5px;
+      margin: 0 0 8px;
+    }
+
+    .beta-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+
+    .beta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 28px;
+      border-radius: 980px;
+      background: #007AFF;
+      color: #fff;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .beta-btn:hover {
+      background: #0064CC;
+    }
+
+    /* ─── Beta Verification Popup ────────────────────────── */
+    .beta-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .beta-popup-overlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .beta-popup {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 44px;
+      max-width: 400px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+      transform: scale(0.95);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .beta-popup-overlay.visible .beta-popup {
+      transform: scale(1);
+    }
+
+    .beta-popup-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #F4F5F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .beta-popup-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #007AFF;
+    }
+
+    .beta-popup-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0;
+    }
+
+    .beta-popup-body {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6e6e73;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .beta-popup-date {
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    .beta-popup-close {
+      margin-top: 16px;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #007AFF;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 24px;
+      border-radius: 980px;
+      transition: background 0.2s;
+    }
+
+    .beta-popup-close:hover {
+      background: rgba(0,122,255,0.08);
+    }
+
+    /* ─── Feature Cards Grid ─────────────────────────────── */
+    .feature-section {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-img-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+      aspect-ratio: auto;
+    }
+
+    .feature-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .feature-desc {
+      padding: 10px 4px 24px;
+    }
+
+    .feature-desc h4 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0 0 4px;
+    }
+
+    .feature-desc p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 40px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .app-hero-card {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .mode-card {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+      }
+      .mode-inner {
+        flex-direction: column-reverse;
+        min-height: auto;
+      }
+      .mode-text {
+        padding: 28px 24px;
+      }
+      .mode-text h3 {
+        font-size: 26px;
+      }
+      .mode-text p {
+        font-size: 14px;
+      }
+      .mode-image {
+        padding: 24px 24px 0;
+        justify-content: center;
+      }
+      .mode-image img {
+        max-height: 360px;
+      }
+      .beta-card {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        padding: 40px 24px;
+      }
+      .beta-content h3 {
+        font-size: 26px;
+      }
+      .feature-section {
+        width: calc(100% - 16px);
+      }
+      .feature-img-card {
+        border-radius: 18px;
+      }
+      .footer-legal-section {
+        padding: 36px 24px 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-hero-card {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .mode-card {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+      }
+      .mode-text {
+        padding: 24px 20px;
+      }
+      .mode-text h3 {
+        font-size: 22px;
+      }
+      .mode-image img {
+        max-height: 300px;
+      }
+      .beta-card {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        padding: 32px 16px;
+      }
+      .beta-content h3 {
+        font-size: 22px;
+      }
+      .feature-section {
+        width: calc(100% - 12px);
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .feature-img-card {
+        border-radius: 16px;
+      }
+      .footer-legal-section {
+        padding: 28px 16px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link active">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEO heading -->
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Aura Clarus App — Health Intelligence Platform by IBT Aura</h1>
+
+  <!-- App Hero Card -->
+  <div class="app-hero-card">
+    <img src="assets/images/app full.svg" alt="Aura Clarus App" />
+  </div>
+
+  <!-- Mode 1 — Travel Mode -->
+  <div class="mode-card">
+    <div class="mode-inner">
+      <div class="mode-text">
+        <h3>Travel Mode</h3>
+        <p>Built for entrepreneurs on the move. Maintain your health routines, track vital signs across time zones, and stay on top of your wellness — no matter where your journey takes you.</p>
+      </div>
+      <div class="mode-image">
+        <img src="assets/images/Travel mode.svg" alt="Aura Clarus App — Travel Mode" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Mode 2 — Smart Calendar Mode -->
+  <div class="mode-card">
+    <div class="mode-inner">
+      <div class="mode-text">
+        <h3>Smart Calendar</h3>
+        <p>Your schedule, powered by your body. Meetings, tasks, and breaks are intelligently arranged around your health data — so you perform at your best, every hour of the day.</p>
+      </div>
+      <div class="mode-image">
+        <img src="assets/images/Smart calender mode.svg" alt="Aura Clarus App — Smart Calendar Mode" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Mode 3 — Emotion Detection Mode -->
+  <div class="mode-card">
+    <div class="mode-inner">
+      <div class="mode-text">
+        <h3>Emotion Detection</h3>
+        <p>Your device reads what words cannot. Advanced biometric signals detect your emotional state in real time, helping you understand your inner rhythms and respond with clarity.</p>
+      </div>
+      <div class="mode-image">
+        <img src="assets/images/emotion dedection mode.svg" alt="Aura Clarus App — Emotion Detection Mode" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature Cards Grid -->
+  <div class="feature-section">
+    <div class="feature-grid">
+
+      <!-- Travel Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/TRAVEL%20CARD.svg" alt="Travel" />
+        </div>
+        <div class="feature-desc">
+          <h4>Travel</h4>
+          <p>Stay on top of your health wherever you go. Track jet lag recovery, monitor your body clock adjustments, and get real-time guidance for maintaining wellness across time zones and travel schedules.</p>
+        </div>
+      </div>
+
+      <!-- Smart Calendar Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/SMART%20CALENDER%20CARD.svg" alt="Smart Calendar" />
+        </div>
+        <div class="feature-desc">
+          <h4>Smart Calendar</h4>
+          <p>Your schedule, optimised by your body. Meetings, tasks, and breaks are intelligently arranged around your health data — helping you perform at your best, every hour of the day.</p>
+        </div>
+      </div>
+
+      <!-- Goals Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/GOALS%20CARD.svg" alt="Goals" />
+        </div>
+        <div class="feature-desc">
+          <h4>Goals</h4>
+          <p>Set personal wellness targets and watch your progress unfold over time. Define what matters most — steps, sleep, heart health, or mindfulness — and let the app guide you with daily check-ins and visual progress tracking.</p>
+        </div>
+      </div>
+
+      <!-- Story Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/STORY%20CARD.svg" alt="Story" />
+        </div>
+        <div class="feature-desc">
+          <h4>Story</h4>
+          <p>Your wellness journey told through a visual daily narrative. Review patterns, celebrate milestones, and understand how your choices shape your health — all presented in a timeline that makes your progress feel personal and meaningful.</p>
+        </div>
+      </div>
+
+      <!-- Actions Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/ACTIONS%20CARD.svg" alt="Actions" />
+        </div>
+        <div class="feature-desc">
+          <h4>Actions</h4>
+          <p>Receive intelligent, actionable steps tailored to your body. Based on your real-time vitals and daily trends, the app suggests what to do next — whether it is a breathing exercise, a hydration reminder, or the right moment to move.</p>
+        </div>
+      </div>
+
+      <!-- Streak Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/STREAK%20CARD.svg" alt="Streak" />
+        </div>
+        <div class="feature-desc">
+          <h4>Streak</h4>
+          <p>Build consistency with daily health monitoring and turn wellness into a habit. Track your streak across ECG readings, activity goals, and check-ins — the longer you stay consistent, the deeper your health insights become.</p>
+        </div>
+      </div>
+
+      <!-- Fitness Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/FITNESS%20CARD.svg" alt="Fitness" />
+        </div>
+        <div class="feature-desc">
+          <h4>Fitness</h4>
+          <p>Monitor your workouts with real-time pace, distance, heart rate, and performance insights. Whether you are running, walking, or training, the app tracks every session and shows you exactly how your body responded.</p>
+        </div>
+      </div>
+
+      <!-- Log Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/LOG%20CARD.svg" alt="Log" />
+        </div>
+        <div class="feature-desc">
+          <h4>Log</h4>
+          <p>Track and record your daily health entries with precision. Log meals, symptoms, mood, medication, and vitals — everything in one place, organised chronologically so you and your doctor always have the full picture.</p>
+        </div>
+      </div>
+
+      <!-- Scores Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/SCORES%20CARDS.svg" alt="Scores" />
+        </div>
+        <div class="feature-desc">
+          <h4>Scores</h4>
+          <p>A single score that captures your complete wellness picture. Combining heart health, activity, sleep quality, and recovery into one easy-to-read number — so you always know where you stand and what to improve.</p>
+        </div>
+      </div>
+
+      <!-- Parameters Card -->
+      <div class="feature-item">
+        <div class="feature-img-card">
+          <img src="assets/images/PARAMTERS%20CARD.svg" alt="Parameters" />
+        </div>
+        <div class="feature-desc">
+          <h4>Parameters</h4>
+          <p>View all your key health metrics in one place. Heart rate, blood oxygen, respiratory rate, body temperature, and more — tracked continuously and presented with clarity so you always have the full picture of your vitals.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Beta TestFlight Card -->
+  <div class="beta-card">
+    <div class="beta-content">
+      <h3>Beta Testing</h3>
+      <p>Only Available on iOS Devices</p>
+      <button class="beta-btn" onclick="document.getElementById('betaPopup').classList.add('visible')">Get Access</button>
+    </div>
+  </div>
+
+  <!-- Beta Verification Popup -->
+  <div class="beta-popup-overlay" id="betaPopup" onclick="if(event.target===this)this.classList.remove('visible')">
+    <div class="beta-popup">
+      <div class="beta-popup-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+      </div>
+      <h4 class="beta-popup-title">Verification in Progress</h4>
+      <p class="beta-popup-body">Verification is going on. It will be live on <span class="beta-popup-date">June 2nd, 2026</span>.</p>
+      <button class="beta-popup-close" onclick="document.getElementById('betaPopup').classList.remove('visible')">OK</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* ─── Lenis buttery smooth scroll ──────────────────────── */
+    var lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>

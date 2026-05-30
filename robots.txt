@@ -1,0 +1,14 @@
+# robots.txt — IBT Aura Private Limited
+# https://www.ibtaura.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ibtaura.com/sitemap.xml
+
+# Disallow asset directories from indexing
+User-agent: *
+Disallow: /assets/css/
+Disallow: /assets/js/
+Disallow: /assets/docs/
