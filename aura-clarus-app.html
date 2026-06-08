@@ -460,6 +460,15 @@
         padding: 28px 16px 24px;
       }
     }
+
+    /* ─── Confetti canvas ────────────────────────────────── */
+    #confettiCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 99999;
+    }
   </style>
 </head>
 <body>
@@ -650,7 +659,7 @@
     <div class="beta-content">
       <h3>Beta Testing</h3>
       <p>Only Available on iOS Devices</p>
-      <button class="beta-btn" onclick="document.getElementById('betaPopup').classList.add('visible')">Get Access</button>
+      <a href="https://testflight.apple.com/join/z2vp8qXW" class="beta-btn" target="_blank" rel="noopener noreferrer">Get Access</a>
     </div>
   </div>
 
@@ -660,9 +669,9 @@
       <div class="beta-popup-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
       </div>
-      <h4 class="beta-popup-title">Verification in Progress</h4>
-      <p class="beta-popup-body">Verification is going on. It will be live on <span class="beta-popup-date">June 2nd, 2026</span>.</p>
-      <button class="beta-popup-close" onclick="document.getElementById('betaPopup').classList.remove('visible')">OK</button>
+      <h4 class="beta-popup-title">Beta is Now Live!</h4>
+      <p class="beta-popup-body">Aura Clarus is now available for early testing on TestFlight. Join now and be among the first.</p>
+      <a href="https://testflight.apple.com/join/z2vp8qXW" class="beta-popup-close" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block;">Join on TestFlight</a>
     </div>
   </div>
 
@@ -701,6 +710,103 @@
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    /* ─── Confetti cannon ────────────────────────────────────── */
+    function launchConfetti() {
+      var canvas = document.createElement('canvas');
+      canvas.id = 'confettiCanvas';
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext('2d');
+
+      var colors = [
+        '#007AFF','#FF3B30','#FF9500','#FFCC00',
+        '#34C759','#AF52DE','#FF2D55','#5AC8FA',
+        '#FF6B6B','#FFD93D','#6BCB77','#C77DFF'
+      ];
+      var particles = [];
+
+      function rand(min, max) { return min + Math.random() * (max - min); }
+
+      var origins = [
+        { x: 0,                  y: canvas.height, angle: -55 },
+        { x: canvas.width,       y: canvas.height, angle: -125 },
+        { x: canvas.width * 0.5, y: canvas.height, angle: -90 }
+      ];
+
+      origins.forEach(function(o) {
+        for (var i = 0; i < 150; i++) {
+          var spread = 42;
+          var baseAngle = o.angle * (Math.PI / 180);
+          var a = baseAngle + rand(-spread, spread) * (Math.PI / 180);
+          var speed = rand(10, 28);
+          var shape = Math.random();
+          particles.push({
+            x: o.x, y: o.y,
+            vx: Math.cos(a) * speed,
+            vy: Math.sin(a) * speed,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            w: rand(7, 15), h: rand(3, 8),
+            rotation: rand(0, Math.PI * 2),
+            rotV: rand(-0.22, 0.22),
+            gravity: rand(0.15, 0.28),
+            drag: rand(0.978, 0.997),
+            alpha: 1,
+            fade: rand(0.004, 0.008),
+            shape: shape < 0.5 ? 'rect' : (shape < 0.75 ? 'circle' : 'ribbon'),
+            wobble: rand(0, Math.PI * 2),
+            wobbleSpeed: rand(0.04, 0.10)
+          });
+        }
+      });
+
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        particles.forEach(function(p) {
+          if (p.alpha <= 0) return;
+          alive = true;
+          p.x += p.vx; p.y += p.vy;
+          p.vy += p.gravity; p.vx *= p.drag;
+          p.rotation += p.rotV;
+          p.wobble   += p.wobbleSpeed;
+          p.alpha    -= p.fade;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.fillStyle = p.color;
+          if (p.shape === 'circle') {
+            ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx.fill();
+          } else if (p.shape === 'ribbon') {
+            ctx.scale(1, Math.sin(p.wobble));
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          } else {
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          }
+          ctx.restore();
+        });
+        if (alive) { requestAnimationFrame(tick); } else { canvas.remove(); }
+      }
+      tick();
+    }
+
+    /* Fire when beta section scrolls into view (once per page visit) */
+    (function() {
+      var betaCard = document.querySelector('.beta-card');
+      if (!betaCard || !('IntersectionObserver' in window)) return;
+      var fired = false;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !fired) {
+            fired = true;
+            setTimeout(launchConfetti, 300);
+          }
+        });
+      }, { threshold: 0.45 });
+      observer.observe(betaCard);
+    })();
   </script>
 </body>
 </html>
