@@ -1,0 +1,20 @@
+# Legacy URL redirects — old site structure → current live pages
+# Resolves "Redirect error" and "Not found (404)" reports in Google Search Console.
+# Format: <old-path>  <new-path>  <status>   (Cloudflare Pages / Workers Static Assets)
+
+# Old product / vision pages → Aura Clarus App page
+/product                    /aura-clarus-app.html   301
+/product.html               /aura-clarus-app.html   301
+/era                        /aura-clarus-app.html   301
+/era.html                   /aura-clarus-app.html   301
+
+# Old updates / news → Articles
+/updates                    /articles.html          301
+/updates.html               /articles.html          301
+/blog/*                     /articles.html          301
+
+# Old company pages → About
+/careers                    /about.html             301
+/careers.html               /about.html             301
+/investor-relations         /about.html             301
+/investor-relations.html    /about.html             301
