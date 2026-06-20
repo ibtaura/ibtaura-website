@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atrial Fibrillation and Wearable Detection — IBT Aura</title>
+  <meta name="description" content="Atrial fibrillation often strikes silently while raising stroke risk fivefold. Learn how wearables detect this common arrhythmia through PPG and ECG." />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-afib.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="Atrial Fibrillation: How Wearables Are Catching the Silent Arrhythmia" />
+  <meta property="og:description" content="Atrial fibrillation often strikes silently while raising stroke risk fivefold. Learn how wearables detect this common arrhythmia through PPG and ECG." />
+  <meta property="og:url" content="https://www.ibtaura.com/article-afib.html" />
+  <meta property="og:site_name" content="IBT Aura" />
+  <meta property="og:image" content="https://www.ibtaura.com/assets/images/articles/afib-hero.jpg" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="900" />
+  <meta property="article:published_time" content="2026-06-12" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Atrial Fibrillation: How Wearables Are Catching the Silent Arrhythmia" />
+  <meta name="twitter:description" content="Atrial fibrillation often strikes silently while raising stroke risk fivefold. Learn how wearables detect this common arrhythmia through PPG and ECG." />
+  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/articles/afib-hero.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Atrial Fibrillation: How Wearables Are Catching the Silent Arrhythmia",
+    "description": "Atrial fibrillation often strikes silently while raising stroke risk fivefold. Learn how wearables detect this common arrhythmia through PPG and ECG.",
+    "image": "https://www.ibtaura.com/assets/images/articles/afib-hero.jpg",
+    "datePublished": "2026-06-12",
+    "dateModified": "2026-06-12",
+    "author": { "@type": "Organization", "name": "IBT Aura Private Limited", "url": "https://www.ibtaura.com" },
+    "publisher": { "@type": "Organization", "name": "IBT Aura Private Limited", "logo": { "@type": "ImageObject", "url": "https://www.ibtaura.com/assets/images/aura-favicon.svg" } },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.ibtaura.com/article-afib.html" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ibtaura.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://www.ibtaura.com/articles.html" },
+      { "@type": "ListItem", "position": 3, "name": "Atrial Fibrillation: How Wearables Are Catching the Silent Arrhythmia", "item": "https://www.ibtaura.com/article-afib.html" }
+    ]
+  }
+  </script>
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=12" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/afib-hero.jpg" alt="Heart rhythm and ECG monitoring for atrial fibrillation" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">12 June 2026</span>
+      </div>
+      <h1 class="article-hero-title">Atrial Fibrillation: How Wearables Are Catching the Silent Arrhythmia</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+<p class="lead">Somewhere in your chest, several times a minute, a small cluster of cells fires a precise electrical spark that tells your heart when to beat. In atrial fibrillation, that orderly signal dissolves into noise — and for millions of people, it happens without a single symptom to warn them.</p>
+
+<p>Atrial fibrillation, or AFib, is the most common sustained heart rhythm disorder in the world. It is also one of the most quietly consequential. Left unrecognized, it raises the risk of stroke roughly fivefold and can slowly weaken the heart over years. Yet a large share of people who have it feel nothing at all, or dismiss the occasional flutter as stress, caffeine, or a bad night's sleep.</p>
+
+<p>For most of medical history, the problem was not treatment — effective therapies exist — but detection. AFib often comes and goes, and a heart that misbehaves at 2 a.m. tends to behave perfectly during a ten-minute clinic visit at noon. That detection gap is precisely where a new generation of wearable sensors has begun to make a measurable difference.</p>
+
+<div class="article-divider"></div>
+
+<h2>1. What atrial fibrillation actually is</h2>
+
+<p>A normal heartbeat begins in the sinoatrial node, a natural pacemaker in the upper right chamber of the heart. It sends a clean electrical wave across the two atria, prompting them to contract and push blood into the ventricles below. The result is the steady, organized rhythm a doctor hears through a stethoscope.</p>
+
+<p>In atrial fibrillation, that single coordinated wave is replaced by chaotic, disorganized electrical activity firing from many sites in the atria at once — often more than 300 impulses per minute. The atria no longer contract in a unified squeeze; they quiver, or fibrillate. The result is a heartbeat that is irregular and frequently rapid, with no discernible pattern from one beat to the next.</p>
+
+<h3>Paroxysmal versus persistent</h3>
+
+<p>AFib is not a single fixed state. In its earliest and most common form, paroxysmal AFib, the abnormal rhythm starts suddenly and stops on its own, usually within a day or two, before the heart slips back into normal rhythm. These episodes can be minutes long or hours long, and they may be separated by weeks or months of completely normal beats.</p>
+
+<p>When the rhythm no longer self-corrects and lasts longer than seven days — or requires medical intervention to reset — it is termed persistent AFib. Over time, paroxysmal AFib tends to become more frequent and longer-lasting, a progression captured in the clinical adage that "AFib begets AFib." The longer the heart spends in the abnormal rhythm, the more its electrical and structural properties adapt to sustain it.</p>
+
+<div class="article-divider"></div>
+
+<h2>2. Why it is dangerous</h2>
+
+<p>The danger of AFib is mostly indirect, which is part of why it is so easy to underestimate. When the atria quiver instead of contracting, blood no longer flows briskly through them. It can pool, particularly in a small pouch called the left atrial appendage, and stagnant blood tends to clot.</p>
+
+<p>If a clot forms there and is then ejected into the circulation, it can travel to the brain and block an artery, causing an ischemic stroke. This is why AFib is associated with roughly a fivefold increase in stroke risk. Strokes caused by AFib also tend to be more severe and more disabling than other strokes, because the clots involved are often larger.</p>
+
+<p>There is a second, slower harm. A heart that beats too fast and irregularly for long stretches becomes a less efficient pump. Over months and years, this can contribute to heart failure, a condition in which the heart struggles to meet the body's demand for blood. AFib and heart failure frequently coexist and worsen one another.</p>
+
+<div class="article-highlight"><p>The cruelty of atrial fibrillation is that its most serious consequence — a stroke — is often the first symptom a person notices. The rhythm itself can be silent for years while the underlying risk quietly accumulates.</p></div>
+
+<div class="article-divider"></div>
+
+<h2>3. The problem of the silent, intermittent rhythm</h2>
+
+<p>Surveys of people newly diagnosed with AFib consistently find that a substantial fraction — by many estimates around a third, and in some studies more — had no symptoms at all when their arrhythmia was discovered. When symptoms do occur, they are easy to rationalize: palpitations, a fluttering or pounding chest, breathlessness, fatigue, or light-headedness that comes and goes.</p>
+
+<p>The intermittent nature of paroxysmal AFib compounds the difficulty. A standard electrocardiogram (ECG) in a clinic captures only a few seconds of heart activity. If the heart happens to be in normal rhythm during that window — which is likely if episodes are brief and infrequent — the ECG reads as perfectly normal. Even a 24- or 48-hour Holter monitor can miss an arrhythmia that surfaces only once a week.</p>
+
+<p>This is the central diagnostic puzzle of AFib: the condition is defined by episodes that are, almost by design, unlikely to be present at the exact moment of measurement. Catching it has historically been a matter of luck and timing as much as medicine.</p>
+
+<div class="article-divider"></div>
+
+<h2>4. How wearables detect it</h2>
+
+<p>Wearable devices change the odds by doing something a clinic cannot: watching the heart continuously, in the background, across ordinary life. They do this in two complementary stages — screening and confirmation — and the distinction between the two is essential.</p>
+
+<h3>Stage one: photoplethysmography</h3>
+
+<p>The first stage relies on photoplethysmography, or PPG — the same green-light optical sensor that tracks your heart rate on the back of a smartwatch. PPG works by shining light into the skin and measuring subtle changes in how much is absorbed as blood pulses through the vessels of the wrist. From this, the device can infer the timing of each heartbeat.</p>
+
+<p>In atrial fibrillation, those intervals between beats become irregular in a characteristic, patternless way. Algorithms can analyze the variability of pulse-to-pulse timing during quiet moments — typically when you are still or asleep — and flag a rhythm that looks suspiciously like AFib. Because PPG runs passively and constantly, it can sample the heart thousands of times over days, dramatically improving the chance of catching an intermittent episode.</p>
+
+<h3>Stage two: single-lead ECG</h3>
+
+<p>PPG is powerful for screening but cannot, on its own, diagnose AFib. That requires looking at the heart's actual electrical signal. Many modern wearables now include an on-demand single-lead ECG, taken by placing a finger on the watch to complete a circuit across the body. This records a short electrical tracing — a simplified version of the clinical test — that a person, and a clinician, can review for the absence of the regular electrical landmark that vanishes in AFib.</p>
+
+<p>The scale at which this can work was demonstrated by the Apple Heart Study, which enrolled more than 400,000 participants. The study found that PPG-based irregular-rhythm screening could identify people likely to have AFib who could then pursue confirmatory testing. Crucially, only a minority of those who received a notification and went on to ECG monitoring had AFib confirmed — a result that underscores both the promise and the limits of screening at scale.</p>
+
+<div class="article-stats">
+  <div class="article-stat"><p class="article-stat-number">~5×</p><p class="article-stat-label">Increase in stroke risk associated with untreated AFib</p></div>
+  <div class="article-stat"><p class="article-stat-number">~1 in 3</p><p class="article-stat-label">People with AFib who have no noticeable symptoms</p></div>
+  <div class="article-stat"><p class="article-stat-number">400,000+</p><p class="article-stat-label">Participants in the Apple Heart Study of wearable screening</p></div>
+</div>
+
+<div class="article-divider"></div>
+
+<h2>5. Who is at risk</h2>
+
+<p>Atrial fibrillation is not random. A well-established set of factors makes it more likely, and many of them are common, cumulative, and partly modifiable.</p>
+
+<p>Age is the single strongest driver. AFib is uncommon before 50 and rises steeply thereafter, becoming substantially more prevalent in people over 65 as the heart's tissue gradually changes with time. High blood pressure is the most common treatable contributor, because chronic hypertension stretches and stiffens the atria, creating the kind of altered tissue in which fibrillation takes hold.</p>
+
+<p>Obstructive sleep apnea — repeated pauses in breathing during sleep — is a strong and frequently overlooked risk factor, which is one reason AFib episodes so often surface at night. Alcohol is another, with both heavy drinking and, for some people, even moderate intake capable of triggering episodes, a phenomenon long known as "holiday heart." Obesity, diabetes, thyroid disorders, and existing heart disease round out the list. The factors compound: someone with several carries considerably more risk than the sum of any one alone.</p>
+
+<div class="article-graph">
+  <p class="article-graph-title">Relative likelihood of AFib by contributing factor</p>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+    <text x="150" y="42" font-family="SF Pro Text, system-ui" font-size="13" fill="#1d1d1f" text-anchor="end">Age under 50</text>
+    <text x="150" y="82" font-family="SF Pro Text, system-ui" font-size="13" fill="#1d1d1f" text-anchor="end">Moderate alcohol</text>
+    <text x="150" y="122" font-family="SF Pro Text, system-ui" font-size="13" fill="#1d1d1f" text-anchor="end">Hypertension</text>
+    <text x="150" y="162" font-family="SF Pro Text, system-ui" font-size="13" fill="#1d1d1f" text-anchor="end">Age over 65</text>
+    <text x="150" y="202" font-family="SF Pro Text, system-ui" font-size="13" fill="#1d1d1f" text-anchor="end">Sleep apnea</text>
+    <text x="150" y="242" font-family="SF Pro Text, system-ui" font-size="13" fill="#1d1d1f" text-anchor="end">Several combined</text>
+    <rect x="160" y="30" width="200" height="22" rx="6" fill="#34C759" opacity="0.9"/>
+    <rect x="160" y="70" width="260" height="22" rx="6" fill="#FFCC00" opacity="0.9"/>
+    <rect x="160" y="110" width="360" height="22" rx="6" fill="#FF9500" opacity="0.9"/>
+    <rect x="160" y="150" width="440" height="22" rx="6" fill="#FF3B30" opacity="0.9"/>
+    <rect x="160" y="190" width="380" height="22" rx="6" fill="#007AFF" opacity="0.9"/>
+    <rect x="160" y="230" width="480" height="22" rx="6" fill="#007AFF" opacity="0.9"/>
+    <text x="370" y="46" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Baseline</text>
+    <text x="430" y="86" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Slightly higher</text>
+    <text x="530" y="126" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Higher</text>
+    <text x="610" y="166" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Much higher</text>
+    <text x="550" y="206" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">High</text>
+    <text x="640" y="246" font-family="SF Pro Text, system-ui" font-size="11" fill="#86868b">Compounded</text>
+  </svg>
+  <p class="article-graph-caption">Risk factors are illustrative and cumulative; they compound rather than act in isolation.</p>
+</div>
+
+<div class="article-divider"></div>
+
+<h2>6. What to do if you get an alert</h2>
+
+<p>A notification from a wearable that says it has detected signs of an irregular rhythm can be unsettling. The most useful first response is to understand exactly what it is — and what it is not.</p>
+
+<p>It is a screening signal, not a diagnosis. A wearable alert means the device observed pulse patterns or an ECG tracing consistent with AFib; it does not, by itself, confirm that you have the condition. False positives happen, and so do false reassurances. The correct next step is to capture and save the data — record an on-demand ECG if your device offers one, ideally while symptoms are present — and bring it to a doctor.</p>
+
+<p>A clinician can then arrange confirmatory testing: a standard 12-lead ECG, or extended monitoring with a Holter or patch monitor worn for days or weeks to catch an episode on a medical-grade device. If AFib is confirmed, treatment is well established and effective, typically combining stroke prevention, rhythm or rate control, and attention to the underlying risk factors. What matters is that the loop closes — that a wearable's signal becomes a clinical answer rather than a source of anxiety or false comfort.</p>
+
+<ol>
+  <li><strong>Screening</strong> — a passive or on-demand check that flags a heart rhythm as possibly abnormal and worth investigating; it estimates likelihood, not certainty.</li>
+  <li><strong>Confirmation</strong> — a medical-grade recording, interpreted by a clinician, that establishes whether AFib is genuinely present.</li>
+  <li><strong>Diagnosis</strong> — the formal clinical determination, made by a doctor using confirmed evidence, that then guides treatment and stroke-prevention decisions.</li>
+</ol>
+
+<div class="article-divider"></div>
+
+<h2>7. From single readings to continuous awareness</h2>
+
+<p>The deeper shift wearables represent is not any single measurement but a change in tempo. A clinic visit is a snapshot; a wrist-worn sensor is a slow, patient film of the heart across ordinary days and nights. For a condition that hides between appointments, that continuity is the whole point — it turns an arrhythmia that surfaces once a fortnight from something almost impossible to catch into something a device is statistically likely to witness.</p>
+
+<p>This is the principle behind Aura Clarus. Passive PPG monitoring runs quietly in the background, building a sense of your normal rhythm and noticing when pulse patterns drift toward the irregular signature of AFib. When something looks unusual, an on-demand single-lead ECG lets you capture a tracing in the moment and carry it to a clinician. The aim is not to replace the doctor or hand anyone a diagnosis — it is to surface a question early and put real data behind it, so that care can begin before a silent rhythm has its first loud consequence.</p>
+
+<p>Used this way, the wearable is a bridge, not a verdict. It widens the window in which AFib can be noticed, and it shifts the moment of discovery away from the emergency room and toward an ordinary, manageable conversation.</p>
+
+<p>The heart keeps its own time, beat after beat, mostly without asking for our attention. The promise of continuous monitoring is simply that when its rhythm starts to falter, someone — or something — is finally paying attention before it is too late to act.</p>
+
+<div class="article-divider"></div>
+
+<p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Related Articles -->
+  <section class="related-articles" aria-label="Related articles">
+    <h2 class="related-articles-heading">Related Reading</h2>
+    <div class="related-grid">
+      <a href="article-blood-pressure.html" class="related-card">
+        <img src="assets/images/articles/blood-pressure-hero.jpg" alt="Blood Pressure: The Silent Pressure Reshaping Your Arteries" class="related-card-img" loading="lazy" />
+        <div class="related-card-body">
+          <p class="related-card-title">Blood Pressure: The Silent Pressure Reshaping Your Arteries</p>
+        </div>
+      </a>
+      <a href="article-ecg.html" class="related-card">
+        <img src="assets/images/articles/ecg-hero.jpg" alt="Wearable ECG Technology: Clinical-Grade Heart Monitoring on Your Wrist" class="related-card-img" loading="lazy" />
+        <div class="related-card-body">
+          <p class="related-card-title">Wearable ECG Technology: Clinical-Grade Heart Monitoring on Your Wrist</p>
+        </div>
+      </a>
+      <a href="article-hrv.html" class="related-card">
+        <img src="assets/images/articles/hrv-hero.jpg" alt="Understanding Heart Rate Variability: The Hidden Language of Your Nervous System" class="related-card-img" loading="lazy" />
+        <div class="related-card-body">
+          <p class="related-card-title">Understanding Heart Rate Variability: The Hidden Language of Your Nervous System</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>
