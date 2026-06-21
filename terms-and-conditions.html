@@ -19,11 +19,14 @@
   <meta property="og:description" content="Terms governing use of the IBT Aura website, Aura Clarus device, and services." />
   <meta property="og:url" content="https://www.ibtaura.com/terms-and-conditions.html" />
   <meta property="og:site_name" content="IBT Aura" />
-  <meta property="og:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
+  <meta property="og:image" content="https://www.ibtaura.com/assets/images/articles/terms-hero.jpg" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="900" />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Terms and Conditions — IBT Aura Private Limited" />
   <meta name="twitter:description" content="Terms governing use of the IBT Aura website, Aura Clarus device, and services." />
+  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/articles/terms-hero.jpg" />
 
   <script type="application/ld+json">
   {
@@ -36,6 +39,7 @@
   }
   </script>
 
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
   <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/style.css?v=12" />
 
@@ -49,103 +53,187 @@
     .navbar { background: rgba(244,245,245,1); }
     .navbar.scrolled { background: rgba(244,245,245,0.45); }
 
-    .legal-page {
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
       max-width: 780px;
       margin: 0 auto;
-      padding: 100px 56px 64px;
+      padding: 44px 56px 20px;
     }
 
-    .legal-page-title {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 44px;
-      font-weight: 700;
-      color: #1d1d1f;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      margin: 0 0 8px;
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
     }
 
-    .legal-page-updated {
+    .article-date {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 14px;
+      font-weight: 500;
       color: #86868b;
-      margin: 0 0 48px;
+      letter-spacing: 0.02em;
     }
 
-    .legal-page h2 {
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 28px;
       font-weight: 700;
       color: #1d1d1f;
       letter-spacing: -0.3px;
-      margin: 56px 0 16px;
+      margin: 64px 0 20px;
       line-height: 1.18;
     }
 
-    .legal-page h3 {
+    .article-content h3 {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 21px;
       font-weight: 600;
       color: #1d1d1f;
-      margin: 36px 0 12px;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
       line-height: 1.25;
     }
 
-    .legal-page p {
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    .article-content ul, .article-content ol {
+      padding-left: 0;
+      list-style: none;
+      margin: 0 0 28px;
+    }
+
+    .article-content ul li {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 17px;
       color: #1d1d1f;
-      line-height: 1.65;
-      margin: 0 0 18px;
+      line-height: 1.76;
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
     }
 
-    .legal-page ul, .legal-page ol {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 17px;
-      color: #1d1d1f;
-      line-height: 1.65;
-      margin: 0 0 18px;
-      padding-left: 28px;
+    .article-content ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #86868b;
     }
 
-    .legal-page li {
-      margin-bottom: 8px;
-    }
-
-    .legal-page a {
+    .article-content a {
       color: #0071e3;
       text-decoration: none;
     }
 
-    .legal-page a:hover {
+    .article-content a:hover {
       text-decoration: underline;
     }
 
+    .article-content strong {
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      margin: 48px 0;
+    }
+
     .footer-legal-section {
+      position: relative;
+      z-index: 10;
       background: #ffffff;
       border-top: none;
       padding: 20px 40px 48px;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 60px auto 0;
     }
     .legal-block p { color: #a1a1a6; font-size: 12px; }
 
     @media (max-width: 768px) {
-      .legal-page { padding: 88px 24px 48px; }
-      .legal-page-title { font-size: 32px; }
-      .legal-page h2 { font-size: 24px; }
-      .legal-page p, .legal-page ul, .legal-page ol { font-size: 16px; }
+      .article-hero { width: calc(100% - 16px); border-radius: 18px; margin-top: 56px; }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
       .footer-legal-section { padding: 36px 24px 32px; }
     }
 
     @media (max-width: 480px) {
-      .legal-page { padding: 80px 16px 36px; }
-      .legal-page-title { font-size: 28px; }
+      .article-hero { width: calc(100% - 12px); border-radius: 16px; margin-top: 48px; }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p, .article-content ul li { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
       .footer-legal-section { padding: 28px 16px 24px; }
     }
   </style>
 </head>
 <body>
+
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
 
   <header class="navbar">
     <div class="navbar-inner">
@@ -158,138 +246,180 @@
     </div>
   </header>
 
-  <main class="legal-page">
-    <h1 class="legal-page-title">Terms and Conditions</h1>
-    <p class="legal-page-updated">Last updated: 21 June 2026</p>
+  <div class="article-hero">
+    <img src="assets/images/articles/terms-hero.jpg" alt="Legal terms and conditions" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">Last updated: 21 June 2026</span>
+      </div>
+      <h1 class="article-hero-title">Terms and Conditions</h1>
+    </div>
 
-    <p>These Terms and Conditions ("Terms") govern your access to and use of the website (ibtaura.com), mobile applications, the Aura Clarus wearable device, and all related products and services (collectively, the "Services") provided by IBT Aura Private Limited ("IBT Aura," "we," "us," or "our"), a company incorporated under the Companies Act, 2013, bearing CIN U26511TN2025PTC182694, with its registered office at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005, India.</p>
-    <p>By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, you must not use our Services.</p>
+  <div class="article-content">
 
-    <h2>1. Eligibility</h2>
-    <p>You must be at least 18 years of age to use our Services. By using the Services, you represent and warrant that you are at least 18 years old and have the legal capacity to enter into these Terms. If you are using the Services on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.</p>
+<p class="lead">These Terms and Conditions govern your access to and use of the website, mobile applications, the Aura Clarus wearable device, and all related products and services provided by IBT Aura Private Limited.</p>
 
-    <h2>2. Account Registration</h2>
-    <p>Certain features of the Services require you to create an account. When you register, you agree to:</p>
-    <ul>
-      <li>Provide accurate, current, and complete information</li>
-      <li>Maintain and update your information to keep it accurate and current</li>
-      <li>Maintain the security and confidentiality of your account credentials</li>
-      <li>Accept responsibility for all activities that occur under your account</li>
-      <li>Notify us immediately of any unauthorised use of your account</li>
-    </ul>
-    <p>We reserve the right to suspend or terminate accounts that contain inaccurate information or that we reasonably believe have been compromised.</p>
+<p>IBT Aura Private Limited ("IBT Aura," "we," "us," or "our") is a company incorporated under the Companies Act, 2013, bearing CIN U26511TN2025PTC182694, with its registered office at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005, India.</p>
 
-    <h2>3. Use of Services</h2>
+<p>By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, you must not use our Services.</p>
 
-    <h3>3.1 Permitted Use</h3>
-    <p>You may use the Services only for lawful purposes and in accordance with these Terms. The Services are intended for personal, non-commercial health monitoring and wellness tracking.</p>
+<div class="article-divider"></div>
 
-    <h3>3.2 Prohibited Conduct</h3>
-    <p>You agree not to:</p>
-    <ul>
-      <li>Use the Services in any way that violates applicable laws or regulations</li>
-      <li>Attempt to gain unauthorised access to any part of the Services or our systems</li>
-      <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of any software used in the Services</li>
-      <li>Use the Services to transmit malware, viruses, or other harmful code</li>
-      <li>Interfere with or disrupt the integrity or performance of the Services</li>
-      <li>Use automated means (bots, scrapers, crawlers) to access the Services without our express written permission</li>
-      <li>Reproduce, redistribute, or commercially exploit any content from the Services without our prior written consent</li>
-      <li>Use the Services to collect or harvest personal data of other users</li>
-    </ul>
+<h2>1. Eligibility</h2>
+<p>You must be at least 18 years of age to use our Services. By using the Services, you represent and warrant that you are at least 18 years old and have the legal capacity to enter into these Terms. If you are using the Services on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.</p>
 
-    <h2>4. Health and Medical Disclaimer</h2>
-    <p>The Services, including all health data, metrics, insights, scores, and recommendations provided through the Aura Clarus device and applications, are intended solely for general wellness and informational purposes. They are <strong>not</strong> intended to be, and must not be construed as:</p>
-    <ul>
-      <li>Medical advice, diagnosis, or treatment</li>
-      <li>A substitute for professional medical consultation, examination, or care</li>
-      <li>A medical device for the diagnosis, cure, mitigation, treatment, or prevention of any disease or condition (unless explicitly stated with applicable regulatory clearance)</li>
-    </ul>
-    <p>Always consult a qualified healthcare professional before making any health-related decisions based on information obtained through the Services. If you are experiencing a medical emergency, contact your local emergency services immediately. Do not rely on the Services for emergency medical decisions.</p>
-    <p>The accuracy of health measurements may vary based on factors including device fit, skin type, movement, environmental conditions, and individual physiology. IBT Aura does not guarantee the accuracy, completeness, or reliability of any health data or metrics provided through the Services.</p>
+<div class="article-divider"></div>
 
-    <h2>5. Intellectual Property</h2>
+<h2>2. Account Registration</h2>
+<p>Certain features of the Services require you to create an account. When you register, you agree to:</p>
+<ul>
+  <li>Provide accurate, current, and complete information</li>
+  <li>Maintain and update your information to keep it accurate and current</li>
+  <li>Maintain the security and confidentiality of your account credentials</li>
+  <li>Accept responsibility for all activities that occur under your account</li>
+  <li>Notify us immediately of any unauthorised use of your account</li>
+</ul>
+<p>We reserve the right to suspend or terminate accounts that contain inaccurate information or that we reasonably believe have been compromised.</p>
 
-    <h3>5.1 Our Intellectual Property</h3>
-    <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights in or arising from the Services are the exclusive property of IBT Aura Private Limited. These assets are protected under applicable Indian laws, including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and applicable international intellectual property treaties.</p>
+<div class="article-divider"></div>
 
-    <h3>5.2 Limited Licence</h3>
-    <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable licence to access and use the Services for your personal, non-commercial use. This licence does not include the right to:</p>
-    <ul>
-      <li>Modify, copy, or create derivative works based on the Services</li>
-      <li>Sublicence, sell, resell, or commercially exploit the Services</li>
-      <li>Use the Services to build a competing product or service</li>
-    </ul>
+<h2>3. Use of Services</h2>
 
-    <h3>5.3 User Content</h3>
-    <p>You retain ownership of any content you submit through the Services (such as feedback, reviews, or support communications). By submitting content, you grant us a non-exclusive, worldwide, royalty-free licence to use, reproduce, and display such content for the purpose of operating and improving the Services.</p>
+<h3>3.1 Permitted Use</h3>
+<p>You may use the Services only for lawful purposes and in accordance with these Terms. The Services are intended for personal, non-commercial health monitoring and wellness tracking.</p>
 
-    <h2>6. Pre-Orders, Payments, and Refunds</h2>
+<h3>3.2 Prohibited Conduct</h3>
+<p>You agree not to:</p>
+<ul>
+  <li>Use the Services in any way that violates applicable laws or regulations</li>
+  <li>Attempt to gain unauthorised access to any part of the Services or our systems</li>
+  <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of any software used in the Services</li>
+  <li>Use the Services to transmit malware, viruses, or other harmful code</li>
+  <li>Interfere with or disrupt the integrity or performance of the Services</li>
+  <li>Use automated means (bots, scrapers, crawlers) to access the Services without our express written permission</li>
+  <li>Reproduce, redistribute, or commercially exploit any content from the Services without our prior written consent</li>
+  <li>Use the Services to collect or harvest personal data of other users</li>
+</ul>
 
-    <h3>6.1 Pre-Orders</h3>
-    <p>If you place a pre-order for the Aura Clarus device, you agree to the pricing, estimated delivery timeline, and terms presented at the time of your order. Pre-order pricing is subject to change, but any price changes will not affect orders already placed and confirmed.</p>
+<div class="article-divider"></div>
 
-    <h3>6.2 Payments</h3>
-    <p>All payments are processed through secure, PCI-DSS compliant third-party payment processors. We do not store your complete payment card information on our servers. All prices are displayed in Indian Rupees (INR) unless otherwise specified, and are inclusive of applicable taxes unless stated otherwise.</p>
+<h2>4. Health and Medical Disclaimer</h2>
+<p>The Services, including all health data, metrics, insights, scores, and recommendations provided through the Aura Clarus device and applications, are intended solely for general wellness and informational purposes. They are <strong>not</strong> intended to be, and must not be construed as:</p>
+<ul>
+  <li>Medical advice, diagnosis, or treatment</li>
+  <li>A substitute for professional medical consultation, examination, or care</li>
+  <li>A medical device for the diagnosis, cure, mitigation, treatment, or prevention of any disease or condition (unless explicitly stated with applicable regulatory clearance)</li>
+</ul>
+<p>Always consult a qualified healthcare professional before making any health-related decisions based on information obtained through the Services. If you are experiencing a medical emergency, contact your local emergency services immediately. Do not rely on the Services for emergency medical decisions.</p>
+<p>The accuracy of health measurements may vary based on factors including device fit, skin type, movement, environmental conditions, and individual physiology. IBT Aura does not guarantee the accuracy, completeness, or reliability of any health data or metrics provided through the Services.</p>
 
-    <h3>6.3 Refunds and Cancellations</h3>
-    <p>Refund and cancellation policies for pre-orders and product purchases will be communicated at the time of purchase and are governed by the applicable product-specific terms. In general:</p>
-    <ul>
-      <li>Pre-order cancellations made before the product ships are eligible for a full refund</li>
-      <li>Returns of delivered products are subject to our return policy, which will be published with the product launch</li>
-      <li>Refunds will be processed to the original payment method within a reasonable timeframe</li>
-    </ul>
+<div class="article-divider"></div>
 
-    <h2>7. Third-Party Services</h2>
-    <p>The Services may contain links to or integrations with third-party websites, applications, or services. IBT Aura does not control, endorse, or assume responsibility for any third-party content or services. Your interactions with third-party services are governed by their respective terms and privacy policies. We encourage you to review those terms before use.</p>
+<h2>5. Intellectual Property</h2>
 
-    <h2>8. Limitation of Liability</h2>
-    <p>To the maximum extent permitted by applicable law:</p>
-    <ul>
-      <li>IBT Aura and its directors, officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Services</li>
-      <li>Our total aggregate liability for any claims arising from or related to the Services shall not exceed the amount you paid to IBT Aura in the twelve (12) months preceding the event giving rise to the claim</li>
-      <li>We shall not be liable for any loss or damage arising from circumstances beyond our reasonable control, including but not limited to natural disasters, government actions, network failures, or third-party service outages</li>
-    </ul>
-    <p>Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law, including liability for fraud or wilful misconduct.</p>
+<h3>5.1 Our Intellectual Property</h3>
+<p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights in or arising from the Services are the exclusive property of IBT Aura Private Limited. These assets are protected under applicable Indian laws, including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and applicable international intellectual property treaties.</p>
 
-    <h2>9. Indemnification</h2>
-    <p>You agree to indemnify, defend, and hold harmless IBT Aura Private Limited, its directors, officers, employees, contractors, and agents from and against any claims, liabilities, damages, losses, costs, and expenses (including reasonable legal fees) arising from:</p>
-    <ul>
-      <li>Your use of or access to the Services</li>
-      <li>Your violation of these Terms</li>
-      <li>Your violation of any applicable law or regulation</li>
-      <li>Your violation of any third-party rights</li>
-    </ul>
+<h3>5.2 Limited Licence</h3>
+<p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable licence to access and use the Services for your personal, non-commercial use. This licence does not include the right to:</p>
+<ul>
+  <li>Modify, copy, or create derivative works based on the Services</li>
+  <li>Sublicence, sell, resell, or commercially exploit the Services</li>
+  <li>Use the Services to build a competing product or service</li>
+</ul>
 
-    <h2>10. Modification of Services and Terms</h2>
-    <p>IBT Aura reserves the right to modify, suspend, or discontinue any part of the Services at any time, with or without notice. We also reserve the right to modify these Terms at any time. When we make material changes, we will notify you through the Services or by other appropriate means. Your continued use of the Services after any modification constitutes your acceptance of the updated Terms.</p>
+<h3>5.3 User Content</h3>
+<p>You retain ownership of any content you submit through the Services (such as feedback, reviews, or support communications). By submitting content, you grant us a non-exclusive, worldwide, royalty-free licence to use, reproduce, and display such content for the purpose of operating and improving the Services.</p>
 
-    <h2>11. Termination</h2>
-    <p>We may suspend or terminate your access to the Services at any time, with or without cause, and with or without notice. Upon termination:</p>
-    <ul>
-      <li>Your licence to use the Services will immediately cease</li>
-      <li>You may request a copy of your personal data before account deletion</li>
-      <li>Provisions of these Terms that by their nature should survive termination (including intellectual property, limitation of liability, indemnification, and governing law) will continue to apply</li>
-    </ul>
+<div class="article-divider"></div>
 
-    <h2>12. Governing Law and Dispute Resolution</h2>
-    <p>These Terms are governed by and construed in accordance with the laws of India. Any disputes arising from or in connection with these Terms or the Services shall be subject to the exclusive jurisdiction of the courts located in Salem, Tamil Nadu, India.</p>
-    <p>Before initiating any formal legal proceedings, both parties agree to attempt to resolve disputes through good-faith negotiation for a period of at least thirty (30) days following written notice of the dispute.</p>
+<h2>6. Pre-Orders, Payments, and Refunds</h2>
 
-    <h2>13. Severability</h2>
-    <p>If any provision of these Terms is held to be invalid, illegal, or unenforceable by a court of competent jurisdiction, such provision shall be modified to the minimum extent necessary to make it valid and enforceable, or if modification is not possible, it shall be severed from these Terms. The remaining provisions shall continue in full force and effect.</p>
+<h3>6.1 Pre-Orders</h3>
+<p>If you place a pre-order for the Aura Clarus device, you agree to the pricing, estimated delivery timeline, and terms presented at the time of your order. Pre-order pricing is subject to change, but any price changes will not affect orders already placed and confirmed.</p>
 
-    <h2>14. Entire Agreement</h2>
-    <p>These Terms, together with our <a href="privacy-policy.html">Privacy Policy</a> and any product-specific terms, constitute the entire agreement between you and IBT Aura Private Limited regarding your use of the Services. These Terms supersede all prior agreements, understandings, and communications, whether written or oral, relating to the subject matter hereof.</p>
+<h3>6.2 Payments</h3>
+<p>All payments are processed through secure, PCI-DSS compliant third-party payment processors. We do not store your complete payment card information on our servers. All prices are displayed in Indian Rupees (INR) unless otherwise specified, and are inclusive of applicable taxes unless stated otherwise.</p>
 
-    <h2>15. Contact Us</h2>
-    <p>If you have any questions or concerns about these Terms, please contact us:</p>
-    <p>
-      <strong>IBT Aura Private Limited</strong><br />
-      Plot No. 45, Electrical and Electronics Industrial Estate,<br />
-      Suramangalam, Salem, Tamil Nadu, 636005, India<br />
-      Email: <a href="mailto:admin@ibtaura.co.in">admin@ibtaura.co.in</a>
-    </p>
-  </main>
+<h3>6.3 Refunds and Cancellations</h3>
+<p>Refund and cancellation policies for pre-orders and product purchases will be communicated at the time of purchase and are governed by the applicable product-specific terms. In general:</p>
+<ul>
+  <li>Pre-order cancellations made before the product ships are eligible for a full refund</li>
+  <li>Returns of delivered products are subject to our return policy, which will be published with the product launch</li>
+  <li>Refunds will be processed to the original payment method within a reasonable timeframe</li>
+</ul>
+
+<div class="article-divider"></div>
+
+<h2>7. Third-Party Services</h2>
+<p>The Services may contain links to or integrations with third-party websites, applications, or services. IBT Aura does not control, endorse, or assume responsibility for any third-party content or services. Your interactions with third-party services are governed by their respective terms and privacy policies. We encourage you to review those terms before use.</p>
+
+<div class="article-divider"></div>
+
+<h2>8. Limitation of Liability</h2>
+<p>To the maximum extent permitted by applicable law:</p>
+<ul>
+  <li>IBT Aura and its directors, officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Services</li>
+  <li>Our total aggregate liability for any claims arising from or related to the Services shall not exceed the amount you paid to IBT Aura in the twelve (12) months preceding the event giving rise to the claim</li>
+  <li>We shall not be liable for any loss or damage arising from circumstances beyond our reasonable control, including but not limited to natural disasters, government actions, network failures, or third-party service outages</li>
+</ul>
+<p>Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law, including liability for fraud or wilful misconduct.</p>
+
+<div class="article-divider"></div>
+
+<h2>9. Indemnification</h2>
+<p>You agree to indemnify, defend, and hold harmless IBT Aura Private Limited, its directors, officers, employees, contractors, and agents from and against any claims, liabilities, damages, losses, costs, and expenses (including reasonable legal fees) arising from:</p>
+<ul>
+  <li>Your use of or access to the Services</li>
+  <li>Your violation of these Terms</li>
+  <li>Your violation of any applicable law or regulation</li>
+  <li>Your violation of any third-party rights</li>
+</ul>
+
+<div class="article-divider"></div>
+
+<h2>10. Modification of Services and Terms</h2>
+<p>IBT Aura reserves the right to modify, suspend, or discontinue any part of the Services at any time, with or without notice. We also reserve the right to modify these Terms at any time. When we make material changes, we will notify you through the Services or by other appropriate means. Your continued use of the Services after any modification constitutes your acceptance of the updated Terms.</p>
+
+<div class="article-divider"></div>
+
+<h2>11. Termination</h2>
+<p>We may suspend or terminate your access to the Services at any time, with or without cause, and with or without notice. Upon termination:</p>
+<ul>
+  <li>Your licence to use the Services will immediately cease</li>
+  <li>You may request a copy of your personal data before account deletion</li>
+  <li>Provisions of these Terms that by their nature should survive termination (including intellectual property, limitation of liability, indemnification, and governing law) will continue to apply</li>
+</ul>
+
+<div class="article-divider"></div>
+
+<h2>12. Governing Law and Dispute Resolution</h2>
+<p>These Terms are governed by and construed in accordance with the laws of India. Any disputes arising from or in connection with these Terms or the Services shall be subject to the exclusive jurisdiction of the courts located in Salem, Tamil Nadu, India.</p>
+<p>Before initiating any formal legal proceedings, both parties agree to attempt to resolve disputes through good-faith negotiation for a period of at least thirty (30) days following written notice of the dispute.</p>
+
+<div class="article-divider"></div>
+
+<h2>13. Severability</h2>
+<p>If any provision of these Terms is held to be invalid, illegal, or unenforceable by a court of competent jurisdiction, such provision shall be modified to the minimum extent necessary to make it valid and enforceable, or if modification is not possible, it shall be severed from these Terms. The remaining provisions shall continue in full force and effect.</p>
+
+<div class="article-divider"></div>
+
+<h2>14. Entire Agreement</h2>
+<p>These Terms, together with our <a href="privacy-policy.html">Privacy Policy</a> and any product-specific terms, constitute the entire agreement between you and IBT Aura Private Limited regarding your use of the Services. These Terms supersede all prior agreements, understandings, and communications, whether written or oral, relating to the subject matter hereof.</p>
+
+<div class="article-divider"></div>
+
+<h2>15. Contact Us</h2>
+<p>If you have any questions or concerns about these Terms, please contact us:</p>
+<p>
+  <strong>IBT Aura Private Limited</strong><br />
+  Plot No. 45, Electrical and Electronics Industrial Estate,<br />
+  Suramangalam, Salem, Tamil Nadu, 636005, India<br />
+  Email: <a href="mailto:admin@ibtaura.co.in">admin@ibtaura.co.in</a>
+</p>
+
+  </div>
+  </div>
 
   <footer class="footer-legal-section" id="contact">
     <div class="footer-legal-inner">
