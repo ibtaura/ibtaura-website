@@ -1,0 +1,15 @@
+.git/
+.gitignore
+.assetsignore
+.claude/
+.DS_Store
+._*
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+node_modules/
+.env
+.env.local
+wrangler.jsonc
