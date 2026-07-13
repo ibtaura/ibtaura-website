@@ -7,8 +7,6 @@ Allow: /
 # Sitemap
 Sitemap: https://www.ibtaura.com/sitemap.xml
 
-# Disallow asset directories from indexing
+# Disallow documents from indexing (PDFs, etc.)
 User-agent: *
-Disallow: /assets/css/
-Disallow: /assets/js/
 Disallow: /assets/docs/
