@@ -74,38 +74,65 @@
     .navbar { background: rgba(244,245,245,1); }
     .navbar.scrolled { background: rgba(244,245,245,0.45); }
 
-    /* ─── Articles page content ──────────────────────────── */
-    .articles-container {
-      max-width: 1100px;
-      width: calc(100% - 24px);
-      margin: 66px auto 0;
+    /* ─── Articles page layout ──────────────────────────── */
+    .articles-page {
+      margin-top: 66px;
+      padding-bottom: 20px;
     }
 
-    /* ─── Article Cards Grid ────────────────────────────── */
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* ─── Month Section ─────────────────────────────────── */
+    .articles-month {
+      margin-bottom: 48px;
+    }
+
+    .month-heading {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 0 0 20px;
+      padding-left: max(12px, calc((100vw - 1100px) / 2 + 12px));
+    }
+
+    /* ─── Horizontal Scroll Row ─────────────────────────── */
+    .month-scroll {
+      display: flex;
       gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-left: max(12px, calc((100vw - 1100px) / 2 + 12px));
+      padding-right: 40px;
+      padding-bottom: 4px;
+      scroll-snap-type: none;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
 
+    .month-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ─── Article Cards ─────────────────────────────────── */
     .article-card {
+      flex: 0 0 400px;
       background: #F4F5F5;
       border-radius: 22px;
       overflow: hidden;
       text-decoration: none;
       display: flex;
       flex-direction: column;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      scroll-snap-align: start;
+      transition: transform 0.3s ease;
     }
 
     .article-card:hover {
       transform: none;
-      box-shadow: none;
     }
 
     .article-card-img {
       width: 100%;
-      height: 200px;
+      height: 260px;
       object-fit: cover;
       display: block;
     }
@@ -168,45 +195,6 @@
       display: inline-block;
     }
 
-    /* Coming soon placeholder card */
-    .article-card-soon {
-      cursor: default;
-    }
-
-    .article-card-soon:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .article-card-soon .article-card-img-placeholder {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #e8e8ed 0%, #d2d2d7 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .article-card-soon .article-card-img-placeholder svg {
-      width: 48px;
-      height: 48px;
-      opacity: 0.3;
-    }
-
-    .article-card-soon .article-card-title {
-      color: #86868b;
-    }
-
-    .article-card-soon .article-card-desc {
-      color: #a1a1a6;
-    }
-
-    .article-card-gradient {
-      width: 100%;
-      height: 200px;
-      display: block;
-    }
-
     /* ─── Footer ──────────────────────────────────────────── */
     .footer-legal-section {
       position: relative;
@@ -224,18 +212,24 @@
 
     /* ─── Responsive ─────────────────────────────────────── */
     @media (max-width: 768px) {
-      .articles-container {
-        width: calc(100% - 16px);
+      .articles-page {
         margin-top: 56px;
       }
-      .articles-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .month-heading {
+        font-size: 24px;
+        padding-left: 16px;
+        margin-bottom: 16px;
+      }
+      .month-scroll {
+        padding-left: 16px;
+        padding-right: 24px;
         gap: 12px;
       }
-      .article-card-img,
-      .article-card-gradient,
-      .article-card-soon .article-card-img-placeholder {
-        height: 160px;
+      .article-card {
+        flex: 0 0 340px;
+      }
+      .article-card-img {
+        height: 210px;
       }
       .article-card-body {
         padding: 20px 20px 24px;
@@ -243,30 +237,42 @@
       .article-card-title {
         font-size: 18px;
       }
+      .articles-month {
+        margin-bottom: 36px;
+      }
       .footer-legal-section {
         padding: 36px 24px 32px;
       }
     }
 
     @media (max-width: 480px) {
-      .articles-container {
-        width: calc(100% - 12px);
+      .articles-page {
         margin-top: 48px;
       }
-      .articles-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+      .month-heading {
+        font-size: 22px;
+        padding-left: 12px;
+        margin-bottom: 14px;
       }
-      .article-card-img,
-      .article-card-gradient,
-      .article-card-soon .article-card-img-placeholder {
-        height: 180px;
+      .month-scroll {
+        padding-left: 12px;
+        padding-right: 16px;
+        gap: 10px;
+      }
+      .article-card {
+        flex: 0 0 300px;
+      }
+      .article-card-img {
+        height: 190px;
       }
       .article-card-body {
         padding: 18px 18px 22px;
       }
       .article-card-title {
         font-size: 17px;
+      }
+      .articles-month {
+        margin-bottom: 28px;
       }
       .footer-legal-section {
         padding: 28px 16px 24px;
@@ -289,6 +295,7 @@
         <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
         <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
         <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="newsroom.html" class="nav-link">Newsroom</a>
         <a href="about.html" class="nav-link">About</a>
       </nav>
     </div>
@@ -298,351 +305,412 @@
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Articles — Health Insights & Research by IBT Aura</h1>
 
   <!-- Articles Content -->
-  <div class="articles-container">
-    <div class="articles-grid">
+  <div class="articles-page">
 
-      <!-- NEW 1 — Healthspan Over Lifespan -->
-      <a href="article-longevity.html" class="article-card">
-        <img src="assets/images/articles/longevity-hero.jpg" alt="Healthspan and Longevity" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">15 June 2026</span></div>
-          <h2 class="article-card-title">Healthspan Over Lifespan</h2>
-          <p class="article-card-desc">Living longer means little without living well. The new science of healthspan and biological age.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+    <!-- ═══════════════ July 2026 ═══════════════ -->
+    <section class="articles-month">
+      <h2 class="month-heading">July 2026</h2>
+      <div class="month-scroll">
 
-      <!-- NEW 2 — Beyond 10,000 Steps -->
-      <a href="article-steps-movement.html" class="article-card">
-        <img src="assets/images/articles/steps-movement-hero.jpg" alt="Daily Movement" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">14 June 2026</span></div>
-          <h2 class="article-card-title">Beyond 10,000 Steps</h2>
-          <p class="article-card-desc">The 10,000-step goal was marketing, not science. What research really says about daily movement.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-autonomic.html" class="article-card">
+          <img src="assets/images/articles/autonomic-hero.jpg" alt="Autonomic Balance" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">13 July 2026</span></div>
+            <h3 class="article-card-title">Autonomic Balance: Your Body's Internal Tug of War</h3>
+            <p class="article-card-desc">How the sympathetic and parasympathetic nervous systems compete for control, and what it means for your health.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 3 — Stress Resilience and Allostatic Load -->
-      <a href="article-stress-resilience.html" class="article-card">
-        <img src="assets/images/articles/stress-resilience-hero.jpg" alt="Stress Resilience" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">13 June 2026</span></div>
-          <h2 class="article-card-title">Stress Resilience and Allostatic Load</h2>
-          <p class="article-card-desc">The cumulative biological cost of chronic stress, and how to build resilience you can measure.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-napping.html" class="article-card">
+          <img src="assets/images/articles/napping-hero.jpg" alt="Strategic Napping" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">11 July 2026</span></div>
+            <h3 class="article-card-title">The Science of Strategic Napping</h3>
+            <p class="article-card-desc">A well-timed nap does more for cognition and recovery than most people realise. The science behind optimal nap timing.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 4 — Atrial Fibrillation and Silent Arrhythmias -->
-      <a href="article-afib.html" class="article-card">
-        <img src="assets/images/articles/afib-hero.jpg" alt="Atrial Fibrillation" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">12 June 2026</span></div>
-          <h2 class="article-card-title">Atrial Fibrillation and Silent Arrhythmias</h2>
-          <p class="article-card-desc">The common arrhythmia that strikes silently while raising stroke risk. How wearables catch it.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-heart-zones.html" class="article-card">
+          <img src="assets/images/articles/heart-zones-hero.jpg" alt="Heart Rate Zones" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">9 July 2026</span></div>
+            <h3 class="article-card-title">Heart Rate Zones Explained</h3>
+            <p class="article-card-desc">Training in the right zone transforms your workout from guesswork to science. Zones 1 through 5 decoded.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 5 — Sleep Apnea: The Hidden Epidemic -->
-      <a href="article-sleep-apnea.html" class="article-card">
-        <img src="assets/images/articles/sleep-apnea-hero.jpg" alt="Sleep Apnea" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">11 June 2026</span></div>
-          <h2 class="article-card-title">Sleep Apnea: The Hidden Epidemic</h2>
-          <p class="article-card-desc">Most cases go undiagnosed. How wearables screen for it using overnight oxygen and heart-rate data.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-fasting.html" class="article-card">
+          <img src="assets/images/articles/fasting-hero.jpg" alt="Intermittent Fasting" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">7 July 2026</span></div>
+            <h3 class="article-card-title">Intermittent Fasting and Metabolic Health</h3>
+            <p class="article-card-desc">What fasting windows do to your insulin, glucose, and cellular repair — and what wearables reveal about the process.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 6 — The Menstrual Cycle as a Vital Sign -->
-      <a href="article-menstrual-cycle.html" class="article-card">
-        <img src="assets/images/articles/menstrual-cycle-hero.jpg" alt="Menstrual Cycle" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">10 June 2026</span></div>
-          <h2 class="article-card-title">The Menstrual Cycle as a Vital Sign</h2>
-          <p class="article-card-desc">How hormonal phases shift temperature, heart rate, and HRV, and how wearables track the rhythm.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-digital-detox.html" class="article-card">
+          <img src="assets/images/articles/digital-detox-hero.jpg" alt="Digital Detox" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">5 July 2026</span></div>
+            <h3 class="article-card-title">Digital Detox and Measurable Recovery</h3>
+            <p class="article-card-desc">The measurable health benefits when you unplug. How screen-free periods improve sleep, HRV, and cortisol levels.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 7 — Respiratory Rate: The Overlooked Vital Sign -->
-      <a href="article-respiratory-rate.html" class="article-card">
-        <img src="assets/images/articles/respiratory-rate-hero.jpg" alt="Respiratory Rate" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">8 June 2026</span></div>
-          <h2 class="article-card-title">Respiratory Rate: The Overlooked Vital Sign</h2>
-          <p class="article-card-desc">One of the earliest signals of illness, hiding in plain sight. How breathing rate becomes an early warning.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-noise-health.html" class="article-card">
+          <img src="assets/images/articles/noise-health-hero.jpg" alt="Noise Pollution" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">3 July 2026</span></div>
+            <h3 class="article-card-title">Noise Pollution and Cardiovascular Risk</h3>
+            <p class="article-card-desc">How environmental noise silently damages your heart and nervous system, raising blood pressure and disrupting sleep.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 8 — Blood Glucose and Metabolic Flexibility -->
-      <a href="article-glucose.html" class="article-card">
-        <img src="assets/images/articles/glucose-hero.jpg" alt="Blood Glucose" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">6 June 2026</span></div>
-          <h2 class="article-card-title">Blood Glucose and Metabolic Flexibility</h2>
-          <p class="article-card-desc">What your blood sugar response reveals about metabolic health, and why continuous monitoring matters.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+        <a href="article-immune.html" class="article-card">
+          <img src="assets/images/articles/immune-hero.jpg" alt="Immune System Signals" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">1 July 2026</span></div>
+            <h3 class="article-card-title">Your Immune System's Hidden Signals</h3>
+            <p class="article-card-desc">Subtle vital sign changes that reveal your immune system at work, often before symptoms appear.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- NEW 9 — Blood Pressure and Your Arteries -->
-      <a href="article-blood-pressure.html" class="article-card">
-        <img src="assets/images/articles/blood-pressure-hero.jpg" alt="Blood Pressure" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">4 June 2026</span></div>
-          <h2 class="article-card-title">Blood Pressure and Your Arteries</h2>
-          <p class="article-card-desc">The silent strain reshaping your arteries. Understand hypertension and the rise of cuffless monitoring.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+      </div>
+    </section>
 
-      <!-- NEW 10 — VO2 Max and the Science of Longevity -->
-      <a href="article-vo2-max.html" class="article-card">
-        <img src="assets/images/articles/vo2-max-hero.jpg" alt="VO2 Max" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">2 June 2026</span></div>
-          <h2 class="article-card-title">VO2 Max and the Science of Longevity</h2>
-          <p class="article-card-desc">The single best predictor of how long you'll live, and how wearables track cardiorespiratory fitness.</p>
-          <span class="article-card-arrow">Read article &rsaquo;</span>
-        </div>
-      </a>
+    <!-- ═══════════════ June 2026 ═══════════════ -->
+    <section class="articles-month">
+      <h2 class="month-heading">June 2026</h2>
+      <div class="month-scroll">
 
-      <!-- 1 — HRV -->
-      <a href="article-hrv.html" class="article-card">
-        <img src="assets/images/articles/hrv-hero.jpg" alt="Heart Rate Variability" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Understanding Heart Rate Variability</h2>
-          <p class="article-card-desc">The hidden language of your nervous system. Discover how HRV monitoring is transforming preventive health.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-longevity.html" class="article-card">
+          <img src="assets/images/articles/longevity-hero.jpg" alt="Healthspan and Longevity" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">15 June 2026</span></div>
+            <h3 class="article-card-title">Healthspan Over Lifespan</h3>
+            <p class="article-card-desc">Living longer means little without living well. The new science of healthspan and biological age.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 2 — Sleep -->
-      <a href="article-sleep.html" class="article-card">
-        <img src="assets/images/articles/sleep-hero.jpg" alt="Sleep Architecture" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Science of Sleep Architecture</h2>
-          <p class="article-card-desc">What happens when you close your eyes. Explore sleep stages, cycles, and why sleep quality matters more than quantity.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-steps-movement.html" class="article-card">
+          <img src="assets/images/articles/steps-movement-hero.jpg" alt="Daily Movement" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">14 June 2026</span></div>
+            <h3 class="article-card-title">Beyond 10,000 Steps</h3>
+            <p class="article-card-desc">The 10,000-step goal was marketing, not science. What research really says about daily movement.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 3 — SpO2 -->
-      <a href="article-spo2.html" class="article-card">
-        <img src="assets/images/articles/spo2-hero.jpg" alt="Blood Oxygen Saturation" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Understanding Blood Oxygen Saturation</h2>
-          <p class="article-card-desc">The vital sign on your wrist. Learn how SpO2 monitoring reveals critical insights about respiratory and cardiovascular health.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-stress-resilience.html" class="article-card">
+          <img src="assets/images/articles/stress-resilience-hero.jpg" alt="Stress Resilience" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">13 June 2026</span></div>
+            <h3 class="article-card-title">Stress Resilience and Allostatic Load</h3>
+            <p class="article-card-desc">The cumulative biological cost of chronic stress, and how to build resilience you can measure.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 4 — Cortisol -->
-      <a href="article-cortisol.html" class="article-card">
-        <img src="assets/images/articles/cortisol-hero.jpg" alt="Cortisol and Stress" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Stress and the Body: The Cortisol Connection</h2>
-          <p class="article-card-desc">How your body's primary stress hormone shapes everything from immunity to metabolism, and what chronic stress really costs.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-afib.html" class="article-card">
+          <img src="assets/images/articles/afib-hero.jpg" alt="Atrial Fibrillation" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">12 June 2026</span></div>
+            <h3 class="article-card-title">Atrial Fibrillation and Silent Arrhythmias</h3>
+            <p class="article-card-desc">The common arrhythmia that strikes silently while raising stroke risk. How wearables catch it.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 5 — Circadian -->
-      <a href="article-circadian.html" class="article-card">
-        <img src="assets/images/articles/circadian-hero.jpg" alt="Circadian Rhythm" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Circadian Rhythm: Your Body's Master Clock</h2>
-          <p class="article-card-desc">Why timing matters as much as what you do. Explore the science of your internal clock and how to optimise your daily rhythm.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-sleep-apnea.html" class="article-card">
+          <img src="assets/images/articles/sleep-apnea-hero.jpg" alt="Sleep Apnea" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">11 June 2026</span></div>
+            <h3 class="article-card-title">Sleep Apnea: The Hidden Epidemic</h3>
+            <p class="article-card-desc">Most cases go undiagnosed. How wearables screen for it using overnight oxygen and heart-rate data.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 6 — RHR -->
-      <a href="article-rhr.html" class="article-card">
-        <img src="assets/images/articles/rhr-hero.jpg" alt="Resting Heart Rate" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Resting Heart Rate: What Your Baseline Reveals</h2>
-          <p class="article-card-desc">Your resting heart rate is one of the simplest yet most powerful indicators of cardiovascular fitness and overall health.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-menstrual-cycle.html" class="article-card">
+          <img src="assets/images/articles/menstrual-cycle-hero.jpg" alt="Menstrual Cycle" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">10 June 2026</span></div>
+            <h3 class="article-card-title">The Menstrual Cycle as a Vital Sign</h3>
+            <p class="article-card-desc">How hormonal phases shift temperature, heart rate, and HRV, and how wearables track the rhythm.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 7 — Vagus Nerve -->
-      <a href="article-vagus.html" class="article-card">
-        <img src="assets/images/articles/vagus-hero.jpg" alt="Vagus Nerve" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Vagus Nerve: Your Body's Reset Button</h2>
-          <p class="article-card-desc">The longest cranial nerve controls your stress response, digestion, and recovery. Learn how to activate it.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-respiratory-rate.html" class="article-card">
+          <img src="assets/images/articles/respiratory-rate-hero.jpg" alt="Respiratory Rate" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">8 June 2026</span></div>
+            <h3 class="article-card-title">Respiratory Rate: The Overlooked Vital Sign</h3>
+            <p class="article-card-desc">One of the earliest signals of illness, hiding in plain sight. How breathing rate becomes an early warning.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 8 — Temperature -->
-      <a href="article-temperature.html" class="article-card">
-        <img src="assets/images/articles/temperature-hero.jpg" alt="Body Temperature Monitoring" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Body Temperature and Health Monitoring</h2>
-          <p class="article-card-desc">The overlooked vital sign. Discover how continuous temperature tracking can detect illness before symptoms appear.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-glucose.html" class="article-card">
+          <img src="assets/images/articles/glucose-hero.jpg" alt="Blood Glucose" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">6 June 2026</span></div>
+            <h3 class="article-card-title">Blood Glucose and Metabolic Flexibility</h3>
+            <p class="article-card-desc">What your blood sugar response reveals about metabolic health, and why continuous monitoring matters.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 9 — Recovery -->
-      <a href="article-recovery.html" class="article-card">
-        <img src="assets/images/articles/recovery-hero.jpg" alt="Recovery Science" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Science of Recovery</h2>
-          <p class="article-card-desc">Why rest is the missing piece in performance. Understand supercompensation, overtraining, and recovery biomarkers.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-blood-pressure.html" class="article-card">
+          <img src="assets/images/articles/blood-pressure-hero.jpg" alt="Blood Pressure" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">4 June 2026</span></div>
+            <h3 class="article-card-title">Blood Pressure and Your Arteries</h3>
+            <p class="article-card-desc">The silent strain reshaping your arteries. Understand hypertension and the rise of cuffless monitoring.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 10 — Breathwork -->
-      <a href="article-breathwork.html" class="article-card">
-        <img src="assets/images/articles/breathwork-hero.jpg" alt="Breathwork" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Breathwork and Autonomic Regulation</h2>
-          <p class="article-card-desc">The power of controlled breathing. How simple breathing techniques can measurably shift your nervous system.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-vo2-max.html" class="article-card">
+          <img src="assets/images/articles/vo2-max-hero.jpg" alt="VO2 Max" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">2 June 2026</span></div>
+            <h3 class="article-card-title">VO2 Max and the Science of Longevity</h3>
+            <p class="article-card-desc">The single best predictor of how long you'll live, and how wearables track cardiorespiratory fitness.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 11 — EDA -->
-      <a href="article-eda.html" class="article-card">
-        <img src="assets/images/articles/eda-hero.jpg" alt="Electrodermal Activity" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Electrodermal Activity and Stress</h2>
-          <p class="article-card-desc">What your skin reveals about your emotional state. The science of skin conductance and stress detection.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+      </div>
+    </section>
 
-      <!-- 12 — Gut-Brain -->
-      <a href="article-gut-brain.html" class="article-card">
-        <img src="assets/images/articles/gut-brain-hero.jpg" alt="Gut-Brain Axis" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Gut-Brain Axis</h2>
-          <p class="article-card-desc">How your microbiome shapes your mind. Explore the bidirectional communication between your gut and brain.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+    <!-- ═══════════════ May 2026 ═══════════════ -->
+    <section class="articles-month">
+      <h2 class="month-heading">May 2026</h2>
+      <div class="month-scroll">
 
-      <!-- 13 — Hydration -->
-      <a href="article-hydration.html" class="article-card">
-        <img src="assets/images/articles/hydration-hero.jpg" alt="Hydration" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Hydration and Physiological Performance</h2>
-          <p class="article-card-desc">Beyond drinking eight glasses. The real science of hydration and its measurable impact on body and mind.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-hrv.html" class="article-card">
+          <img src="assets/images/articles/hrv-hero.jpg" alt="Heart Rate Variability" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Understanding Heart Rate Variability</h3>
+            <p class="article-card-desc">The hidden language of your nervous system. Discover how HRV monitoring is transforming preventive health.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 14 — Blue Light -->
-      <a href="article-blue-light.html" class="article-card">
-        <img src="assets/images/articles/blue-light-hero.jpg" alt="Blue Light and Sleep" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Impact of Blue Light on Sleep</h2>
-          <p class="article-card-desc">How screens disrupt your circadian rhythm. Understand melatonin suppression and practical light hygiene strategies.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-sleep.html" class="article-card">
+          <img src="assets/images/articles/sleep-hero.jpg" alt="Sleep Architecture" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Science of Sleep Architecture</h3>
+            <p class="article-card-desc">What happens when you close your eyes. Explore sleep stages, cycles, and why sleep quality matters more than quantity.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 15 — Inflammation -->
-      <a href="article-inflammation.html" class="article-card">
-        <img src="assets/images/articles/inflammation-hero.jpg" alt="Chronic Inflammation" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Chronic Inflammation: The Silent Driver</h2>
-          <p class="article-card-desc">The hidden mechanism behind most modern diseases. Learn how inflammation works and what you can do about it.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-spo2.html" class="article-card">
+          <img src="assets/images/articles/spo2-hero.jpg" alt="Blood Oxygen Saturation" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Understanding Blood Oxygen Saturation</h3>
+            <p class="article-card-desc">The vital sign on your wrist. Learn how SpO2 monitoring reveals critical insights about respiratory and cardiovascular health.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 16 — Meditation -->
-      <a href="article-meditation.html" class="article-card">
-        <img src="assets/images/articles/meditation-hero.jpg" alt="Meditation and the Brain" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Meditation and the Brain</h2>
-          <p class="article-card-desc">Measurable changes from mindful practice. How meditation reshapes neural pathways and improves autonomic health.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-cortisol.html" class="article-card">
+          <img src="assets/images/articles/cortisol-hero.jpg" alt="Cortisol and Stress" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Stress and the Body: The Cortisol Connection</h3>
+            <p class="article-card-desc">How your body's primary stress hormone shapes everything from immunity to metabolism, and what chronic stress really costs.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 17 — ECG -->
-      <a href="article-ecg.html" class="article-card">
-        <img src="assets/images/articles/ecg-hero.jpg" alt="Wearable ECG Technology" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Wearable ECG Technology</h2>
-          <p class="article-card-desc">Clinical-grade heart monitoring on your wrist. How wearable ECG is revolutionising cardiac health detection.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-circadian.html" class="article-card">
+          <img src="assets/images/articles/circadian-hero.jpg" alt="Circadian Rhythm" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Circadian Rhythm: Your Body's Master Clock</h3>
+            <p class="article-card-desc">Why timing matters as much as what you do. Explore the science of your internal clock and how to optimise your daily rhythm.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 18 — Metabolic -->
-      <a href="article-metabolic.html" class="article-card">
-        <img src="assets/images/articles/metabolic-hero.jpg" alt="Metabolic Health" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Understanding Metabolic Health</h2>
-          <p class="article-card-desc">Why BMI tells only half the story. Explore insulin resistance, glucose variability, and true metabolic fitness.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-rhr.html" class="article-card">
+          <img src="assets/images/articles/rhr-hero.jpg" alt="Resting Heart Rate" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Resting Heart Rate: What Your Baseline Reveals</h3>
+            <p class="article-card-desc">Your resting heart rate is one of the simplest yet most powerful indicators of cardiovascular fitness and overall health.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 19 — Cold Exposure -->
-      <a href="article-cold-exposure.html" class="article-card">
-        <img src="assets/images/articles/cold-exposure-hero.jpg" alt="Cold Exposure Therapy" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Cold Exposure Therapy</h2>
-          <p class="article-card-desc">The science behind the ice bath trend. What happens physiologically when you embrace the cold.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-vagus.html" class="article-card">
+          <img src="assets/images/articles/vagus-hero.jpg" alt="Vagus Nerve" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Vagus Nerve: Your Body's Reset Button</h3>
+            <p class="article-card-desc">The longest cranial nerve controls your stress response, digestion, and recovery. Learn how to activate it.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 20 — Ageing -->
-      <a href="article-ageing.html" class="article-card">
-        <img src="assets/images/articles/ageing-hero.jpg" alt="Ageing and Autonomic Nervous System" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">Ageing and the Autonomic Nervous System</h2>
-          <p class="article-card-desc">What changes with age and what you can do about it. Biological age versus chronological age explained.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-temperature.html" class="article-card">
+          <img src="assets/images/articles/temperature-hero.jpg" alt="Body Temperature Monitoring" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Body Temperature and Health Monitoring</h3>
+            <p class="article-card-desc">The overlooked vital sign. Discover how continuous temperature tracking can detect illness before symptoms appear.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-      <!-- 21 — Predictive Health -->
-      <a href="article-predictive-health.html" class="article-card">
-        <img src="assets/images/articles/predictive-health-hero.jpg" alt="Predictive Health" class="article-card-img" />
-        <div class="article-card-body">
-          <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
-          <h2 class="article-card-title">The Future of Predictive Health</h2>
-          <p class="article-card-desc">From reactive medicine to proactive wellness. How AI and wearable data are reshaping the future of healthcare.</p>
-          <span class="article-card-arrow">Read article ›</span>
-        </div>
-      </a>
+        <a href="article-recovery.html" class="article-card">
+          <img src="assets/images/articles/recovery-hero.jpg" alt="Recovery Science" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Science of Recovery</h3>
+            <p class="article-card-desc">Why rest is the missing piece in performance. Understand supercompensation, overtraining, and recovery biomarkers.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
 
-    </div>
+        <a href="article-breathwork.html" class="article-card">
+          <img src="assets/images/articles/breathwork-hero.jpg" alt="Breathwork" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Breathwork and Autonomic Regulation</h3>
+            <p class="article-card-desc">The power of controlled breathing. How simple breathing techniques can measurably shift your nervous system.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-eda.html" class="article-card">
+          <img src="assets/images/articles/eda-hero.jpg" alt="Electrodermal Activity" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Electrodermal Activity and Stress</h3>
+            <p class="article-card-desc">What your skin reveals about your emotional state. The science of skin conductance and stress detection.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-gut-brain.html" class="article-card">
+          <img src="assets/images/articles/gut-brain-hero.jpg" alt="Gut-Brain Axis" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Gut-Brain Axis</h3>
+            <p class="article-card-desc">How your microbiome shapes your mind. Explore the bidirectional communication between your gut and brain.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-hydration.html" class="article-card">
+          <img src="assets/images/articles/hydration-hero.jpg" alt="Hydration" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Hydration and Physiological Performance</h3>
+            <p class="article-card-desc">Beyond drinking eight glasses. The real science of hydration and its measurable impact on body and mind.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-blue-light.html" class="article-card">
+          <img src="assets/images/articles/blue-light-hero.jpg" alt="Blue Light and Sleep" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Impact of Blue Light on Sleep</h3>
+            <p class="article-card-desc">How screens disrupt your circadian rhythm. Understand melatonin suppression and practical light hygiene strategies.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-inflammation.html" class="article-card">
+          <img src="assets/images/articles/inflammation-hero.jpg" alt="Chronic Inflammation" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Chronic Inflammation: The Silent Driver</h3>
+            <p class="article-card-desc">The hidden mechanism behind most modern diseases. Learn how inflammation works and what you can do about it.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-meditation.html" class="article-card">
+          <img src="assets/images/articles/meditation-hero.jpg" alt="Meditation and the Brain" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Meditation and the Brain</h3>
+            <p class="article-card-desc">Measurable changes from mindful practice. How meditation reshapes neural pathways and improves autonomic health.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-ecg.html" class="article-card">
+          <img src="assets/images/articles/ecg-hero.jpg" alt="Wearable ECG Technology" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Wearable ECG Technology</h3>
+            <p class="article-card-desc">Clinical-grade heart monitoring on your wrist. How wearable ECG is revolutionising cardiac health detection.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-metabolic.html" class="article-card">
+          <img src="assets/images/articles/metabolic-hero.jpg" alt="Metabolic Health" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Understanding Metabolic Health</h3>
+            <p class="article-card-desc">Why BMI tells only half the story. Explore insulin resistance, glucose variability, and true metabolic fitness.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-cold-exposure.html" class="article-card">
+          <img src="assets/images/articles/cold-exposure-hero.jpg" alt="Cold Exposure Therapy" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Cold Exposure Therapy</h3>
+            <p class="article-card-desc">The science behind the ice bath trend. What happens physiologically when you embrace the cold.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-ageing.html" class="article-card">
+          <img src="assets/images/articles/ageing-hero.jpg" alt="Ageing and Autonomic Nervous System" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">Ageing and the Autonomic Nervous System</h3>
+            <p class="article-card-desc">What changes with age and what you can do about it. Biological age versus chronological age explained.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+        <a href="article-predictive-health.html" class="article-card">
+          <img src="assets/images/articles/predictive-health-hero.jpg" alt="Predictive Health" class="article-card-img" loading="lazy" />
+          <div class="article-card-body">
+            <div class="article-card-meta"><span class="article-card-date">26 May 2026</span></div>
+            <h3 class="article-card-title">The Future of Predictive Health</h3>
+            <p class="article-card-desc">From reactive medicine to proactive wellness. How AI and wearable data are reshaping the future of healthcare.</p>
+            <span class="article-card-arrow">Read article &rsaquo;</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
   </div>
 
   <!-- Footer -->
@@ -680,6 +748,49 @@
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    document.querySelectorAll('.month-scroll').forEach(function(row) {
+      row.scrollLeft = 0;
+      var target = 0;
+      var current = 0;
+      var animating = false;
+      var ease = 0.08;
+      var maxScroll = row.scrollWidth - row.clientWidth;
+
+      function animate() {
+        current += (target - current) * ease;
+        if (Math.abs(target - current) < 0.5) {
+          current = target;
+          row.scrollLeft = current;
+          animating = false;
+          return;
+        }
+        row.scrollLeft = current;
+        requestAnimationFrame(animate);
+      }
+
+      row.addEventListener('wheel', function(e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        var delta = e.deltaX;
+        if (delta === 0) return;
+        maxScroll = row.scrollWidth - row.clientWidth;
+        e.preventDefault();
+        e.stopPropagation();
+        target = Math.max(0, Math.min(maxScroll, target + delta * 1.5));
+        current = row.scrollLeft;
+        if (!animating) {
+          animating = true;
+          requestAnimationFrame(animate);
+        }
+      }, { passive: false });
+
+      row.addEventListener('scroll', function() {
+        if (!animating) {
+          target = row.scrollLeft;
+          current = row.scrollLeft;
+        }
+      });
+    });
   </script>
 </body>
 </html>

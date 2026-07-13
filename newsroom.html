@@ -7,27 +7,27 @@
   <meta name="color-scheme" content="light only" />
   <meta name="supported-color-schemes" content="light only" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aura Clarus Desktop — Your Health Command Center for macOS</title>
-  <meta name="description" content="Aura Clarus Desktop brings health intelligence to your Mac. Dashboard, Focus mode, Trends, Calendar, Task management, Habits, and Eva AI assistant — all in one native app." />
-  <meta name="keywords" content="Aura Clarus Desktop, Aura Clarus macOS, desktop health app, health dashboard, focus mode, IBT Aura, productivity health, wearable desktop app" />
+  <title>Newsroom — IBT Aura | Company Updates</title>
+  <meta name="description" content="Monthly company updates from IBT Aura Private Limited — product development, hardware milestones, fundraising progress, and operational updates." />
+  <meta name="keywords" content="IBT Aura newsroom, ibtaura updates, company updates, Aura Clarus updates, IBT Aura news" />
   <meta name="author" content="IBT Aura Private Limited" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="canonical" href="https://www.ibtaura.com/aura-clarus-desktop.html" />
+  <link rel="canonical" href="https://www.ibtaura.com/newsroom.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_IN" />
-  <meta property="og:title" content="Aura Clarus Desktop — Your Health Command Center for macOS" />
-  <meta property="og:description" content="Health intelligence meets productivity. Dashboard, Focus, Trends, Calendar, Tasks, Habits, and Eva assistant — all on your Mac." />
-  <meta property="og:url" content="https://www.ibtaura.com/aura-clarus-desktop.html" />
+  <meta property="og:title" content="Newsroom — IBT Aura | Company Updates" />
+  <meta property="og:description" content="Monthly company updates from IBT Aura — product development, hardware, fundraising, and operations." />
+  <meta property="og:url" content="https://www.ibtaura.com/newsroom.html" />
   <meta property="og:site_name" content="IBT Aura" />
-  <meta property="og:image" content="https://www.ibtaura.com/assets/images/Dashboard.png" />
+  <meta property="og:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Aura Clarus Desktop — Your Health Command Center for macOS" />
-  <meta name="twitter:description" content="Health intelligence meets productivity on your Mac." />
-  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/Dashboard.png" />
+  <meta name="twitter:title" content="Newsroom — IBT Aura | Company Updates" />
+  <meta name="twitter:description" content="Monthly company updates from IBT Aura." />
+  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
 
   <script type="application/ld+json">
   [
@@ -36,17 +36,16 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ibtaura.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Aura Clarus Desktop", "item": "https://www.ibtaura.com/aura-clarus-desktop.html" }
+        { "@type": "ListItem", "position": 2, "name": "Newsroom", "item": "https://www.ibtaura.com/newsroom.html" }
       ]
     },
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Aura Clarus Desktop",
-      "operatingSystem": "macOS",
-      "applicationCategory": "HealthApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
-      "author": { "@type": "Organization", "name": "IBT Aura Private Limited", "url": "https://www.ibtaura.com" }
+      "@type": "Organization",
+      "name": "IBT Aura Private Limited",
+      "alternateName": ["IBT Aura", "ibtaura", "ibt aura", "IBT AURA", "Aura Clarus", "auraclarus", "aura clarus"],
+      "url": "https://www.ibtaura.com",
+      "logo": "https://www.ibtaura.com/assets/images/aura-favicon.svg"
     }
   ]
   </script>
@@ -64,101 +63,83 @@
     .navbar { background: rgba(244,245,245,1); }
     .navbar.scrolled { background: rgba(244,245,245,0.45); }
 
-    /* ─── Feature sections — full-width image + text below ── */
-    .desktop-feature {
+    /* ─── Newsroom container ────────────────────────────── */
+    .newsroom-container {
       max-width: 1100px;
       width: calc(100% - 24px);
-      margin: 12px auto 0;
+      margin: 66px auto 0;
     }
 
+    /* ─── Month Cards Grid ──────────────────────────────── */
+    .newsroom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
 
-    .desktop-feature-card {
+    .month-card {
+      background: #F4F5F5;
       border-radius: 22px;
       overflow: hidden;
-      background: #F4F5F5;
-    }
-
-    .desktop-feature-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .desktop-feature-text {
-      padding: 10px 8px 14px;
-    }
-
-    .desktop-feature-text h2 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: #1d1d1f;
-      margin: 0 0 4px;
-    }
-
-    .desktop-feature-text p {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: #86868b;
-      line-height: 1.4;
-      margin: 0;
-    }
-
-    /* ─── Coming Soon card ───────────────────────────────── */
-    .desktop-beta-card {
-      max-width: 1100px;
-      width: calc(100% - 24px);
-      margin: 12px auto 0;
-      border-radius: 22px;
-      overflow: hidden;
-      background: #F4F5F5;
+      text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 56px 40px;
-      gap: 12px;
+      min-height: 360px;
+      transition: transform 0.3s ease;
     }
 
-    .desktop-beta-card h3 {
+    .month-card:hover {
+      transform: none;
+    }
+
+    .month-label {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 34px;
-      font-weight: 600;
+      font-size: 48px;
+      font-weight: 700;
       color: #1d1d1f;
-      letter-spacing: -0.5px;
-      margin: 0;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin: 0 0 4px;
     }
 
-    .desktop-beta-card p {
+    .month-year {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #86868b;
+      margin: 0 0 20px;
+    }
+
+    .month-desc {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 400;
       color: #6e6e73;
       line-height: 1.5;
-      margin: 0 0 12px;
-      max-width: 480px;
+      margin: 0 0 24px;
+      max-width: 360px;
     }
 
-    .desktop-notify-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 28px;
-      border-radius: 980px;
-      background: #007AFF;
-      color: #fff;
+    .month-arrow {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 15px;
       font-weight: 500;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      color: #007AFF;
     }
 
-    .desktop-notify-btn:hover {
-      background: #0064CC;
+    .month-card-upcoming {
+      cursor: default;
+    }
+
+    .month-status {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #86868b;
     }
 
     /* ─── Footer ──────────────────────────────────────────── */
@@ -171,139 +152,95 @@
       max-width: 1100px;
       margin: 40px auto 0;
     }
-    .legal-block p { color: #a1a1a6; font-size: 12px; }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
 
     /* ─── Responsive ─────────────────────────────────────── */
     @media (max-width: 768px) {
-      .desktop-feature { width: calc(100% - 16px); }
-      .desktop-feature-card { border-radius: 18px; }
-      .desktop-feature-text h2 { font-size: 24px; }
-      .desktop-beta-card { width: calc(100% - 16px); border-radius: 18px; padding: 40px 24px; margin-top: 36px; }
-      .desktop-beta-card h3 { font-size: 26px; }
-      .footer-legal-section { padding: 36px 24px 32px; }
+      .newsroom-container {
+        width: calc(100% - 16px);
+        margin-top: 56px;
+      }
+      .newsroom-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .month-card {
+        padding: 40px 28px;
+        min-height: 280px;
+      }
+      .month-label {
+        font-size: 40px;
+      }
+      .footer-legal-section {
+        padding: 36px 24px 32px;
+      }
     }
 
     @media (max-width: 480px) {
-      .desktop-feature { width: calc(100% - 12px); }
-      .desktop-feature-card { border-radius: 16px; }
-      .desktop-feature-text h2 { font-size: 22px; }
-      .desktop-feature-text p { font-size: 14px; }
-      .desktop-beta-card { width: calc(100% - 12px); border-radius: 16px; padding: 32px 16px; margin-top: 28px; }
-      .desktop-beta-card h3 { font-size: 22px; }
-      .footer-legal-section { padding: 28px 16px 24px; }
+      .newsroom-container {
+        width: calc(100% - 12px);
+        margin-top: 48px;
+      }
+      .month-card {
+        padding: 32px 20px;
+        min-height: 240px;
+      }
+      .month-label {
+        font-size: 36px;
+      }
+      .footer-legal-section {
+        padding: 28px 16px 24px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Announcement Bar -->
   <div class="announcement-bar">
     <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
   </div>
 
+  <!-- Navigation -->
   <header class="navbar">
     <div class="navbar-inner">
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
-        <a href="aura-clarus-desktop.html" class="nav-link active">Aura Clarus Desktop</a>
+        <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
         <a href="articles.html" class="nav-link">Articles</a>
-        <a href="newsroom.html" class="nav-link">Newsroom</a>
+        <a href="newsroom.html" class="nav-link active">Newsroom</a>
         <a href="about.html" class="nav-link">About</a>
       </nav>
     </div>
   </header>
 
-  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Aura Clarus Desktop — Your Health Command Center for macOS</h1>
+  <!-- SEO heading -->
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Newsroom — Company Updates by IBT Aura</h1>
 
-  <!-- Hero Card -->
-  <div class="desktop-feature" style="margin-top:66px;">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Aura Clarus Desktop.png" alt="Aura Clarus Desktop" />
-    </div>
-  </div>
+  <!-- Newsroom Content -->
+  <div class="newsroom-container">
 
-  <!-- Dashboard -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Dashboard.png" alt="Aura Clarus Desktop — Dashboard" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Dashboard</h2>
-      <p>Your morning command center. One screen shows your body's readiness badge, today's AI-generated health alerts pulled from your wearable data, live vitals including recovery, HRV, and sleep, plus your priority tasks for the day. This is the only screen that shows your health and your work side by side — because your energy level determines what kind of work you should do today.</p>
-    </div>
-  </div>
+    <div class="newsroom-grid">
 
-  <!-- Focus -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Focus.png" alt="Aura Clarus Desktop — Focus Mode" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Focus</h2>
-      <p>A complete deep work environment built for founders who know willpower alone isn't enough. One tap starts your timer, blocks distracting websites at the OS level across every browser, plays focus music, and silences all notifications. When you're done, you see exactly how focused you actually were — context switches, refocus time, and minutes in true flow state.</p>
-    </div>
-  </div>
+      <a href="newsroom-june-2026.html" class="month-card">
+        <p class="month-label">June</p>
+        <p class="month-year">2026</p>
+        <p class="month-desc">Corporate restructuring, 21-month financial projections, website launch, app and desktop development, hardware manufacturing readiness, and Company OS.</p>
+        <span class="month-arrow">View updates &rsaquo;</span>
+      </a>
 
-  <!-- Trends -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Trends.png" alt="Aura Clarus Desktop — Trends" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Trends</h2>
-      <p>Your personal health analytics over 30, 45, and 60 days. See patterns in steps, deep sleep, HRV, stress, and recovery with detailed bar charts that reveal which weeks were strong and which weren't. AI-generated insights tell you what the trend actually means — "Your HRV has been declining for 3 weeks" is more useful than just showing today's number.</p>
-    </div>
-  </div>
+      <div class="month-card month-card-upcoming">
+        <p class="month-label">July</p>
+        <p class="month-year">2026</p>
+        <p class="month-desc">This month's updates are still in progress and are being compiled.</p>
+        <span class="month-status">Releasing August 1</span>
+      </div>
 
-  <!-- Calendar -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Calender.png" alt="Aura Clarus Desktop — Calendar" />
     </div>
-    <div class="desktop-feature-text">
-      <h2>Calendar</h2>
-      <p>Your entire week, colour-coded by energy type. Meetings in green, deep work in orange, wellness in purple, fitness in red, and personal time in teal — all visible at a glance across day, week, and month views. The colour coding isn't cosmetic — a week full of green with no orange tells you immediately that you have no time for actual work, changing how you plan before the week even starts.</p>
-    </div>
-  </div>
-
-  <!-- Task -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Task.png" alt="Aura Clarus Desktop — Task Management" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Work</h2>
-      <p>A Kanban board that lives alongside your health data. Three columns — Pending, Currently Working, and Completed — with colour-coded priority badges: red for urgent, orange for high, blue for medium, gray for low. This isn't competing with Linear or Jira. It's the personal task board where health data and work talk to each other — when your Dashboard says recovery is low, this is where you decide which tasks to defer.</p>
-    </div>
-  </div>
-
-  <!-- Habits -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Habits.png" alt="Aura Clarus Desktop — Habits" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Habits</h2>
-      <p>Daily habit tracking deeply integrated with your health wearable. Build streaks with recovery-aware grace days that don't break your chain when your body genuinely needs rest. Over time, see which habits actually move the needle on your HRV and sleep quality — turning guesswork into evidence-backed routines that compound into lasting change.</p>
-    </div>
-  </div>
-
-  <!-- Eva Assistant -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Eva assistant.png" alt="Aura Clarus Desktop — Eva AI Assistant" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Eva Assistant</h2>
-      <p>Your AI health companion with an iMessage-style interface. Ask "How's my stress?" and get a real answer backed by your actual wearable data, complete with mini health cards showing sparklines and trends. Not a generic chatbot regurgitating wellness tips — Eva is an assistant that genuinely knows your body, your patterns, and your history, giving answers no other AI can.</p>
-    </div>
-  </div>
-
-  <!-- Coming Soon Card -->
-  <div class="desktop-beta-card">
-    <h3>Coming Soon to macOS</h3>
-    <p>Aura Clarus Desktop is currently in development.</p>
-    <a href="#" class="desktop-notify-btn" onclick="event.preventDefault();alert('You will be notified when Aura Clarus Desktop launches.');">Notify Me</a>
   </div>
 
   <!-- Footer -->
@@ -324,11 +261,22 @@
     </div>
   </footer>
 
+  <!-- Lenis smooth scroll -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    var lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
   </script>
 </body>
