@@ -73,7 +73,7 @@ body {
 }
 .navbar.scrolled {
   background: rgba(255,255,255,0.45);
-  max-width: 600px;
+  max-width: 720px;
 }
 .navbar.scrolled .nav-link {
   opacity: 0.5;
@@ -118,6 +118,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 32px;
 }
 
@@ -126,6 +127,7 @@ body {
   font-weight: 400;
   color: rgba(0,0,0,0.8);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.2s, opacity 0.5s ease;
 }
 
@@ -704,6 +706,13 @@ body {
   }
   .navbar-inner {
     padding: 0 16px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .navbar-inner::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-links {
