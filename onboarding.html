@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Onboarding — IBT Aura</title>
+  <meta name="description" content="Onboarding form for new team members joining IBT Aura Private Limited." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=14" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Container ────────────────────────────────────── */
+    .onb-container {
+      max-width: 780px;
+      width: calc(100% - 24px);
+      margin: 124px auto 0;
+    }
+
+    /* ─── Intro ────────────────────────────────────────── */
+    .onb-intro {
+      text-align: center;
+      padding: 8px 8px 28px;
+    }
+
+    .onb-intro h1 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      margin: 0 0 10px;
+    }
+
+    .onb-intro p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0 auto;
+      max-width: 520px;
+    }
+
+    /* ─── Form card ────────────────────────────────────── */
+    .onb-card {
+      background: #F4F5F5;
+      border-radius: 22px;
+      padding: 44px 44px 40px;
+    }
+
+    .onb-section {
+      margin-bottom: 34px;
+    }
+
+    .onb-section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .onb-section-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #86868b;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    .onb-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .onb-field:last-child {
+      margin-bottom: 0;
+    }
+
+    .onb-field label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1d1d1f;
+    }
+
+    .onb-field .req {
+      color: #007AFF;
+    }
+
+    .onb-field .hint {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #86868b;
+      line-height: 1.4;
+    }
+
+    .onb-field input[type="text"],
+    .onb-field input[type="email"],
+    .onb-field input[type="tel"],
+    .onb-field select,
+    .onb-field textarea {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 10px;
+      outline: none;
+      background: #ffffff;
+      color: #1d1d1f;
+      width: 100%;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .onb-field select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2386868b'%3E%3Cpath d='M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+
+    .onb-field textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .onb-field input:focus,
+    .onb-field select:focus,
+    .onb-field textarea:focus {
+      border-color: #007AFF;
+    }
+
+    .onb-field input::placeholder,
+    .onb-field textarea::placeholder {
+      color: #b0b0b5;
+    }
+
+    /* ─── Choice pills (radio / checkbox) ──────────────── */
+    .onb-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .onb-choice {
+      position: relative;
+    }
+
+    .onb-choice input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .onb-choice span {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #1d1d1f;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 980px;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      user-select: none;
+    }
+
+    .onb-choice span:hover {
+      border-color: rgba(0,0,0,0.28);
+    }
+
+    .onb-choice input:checked + span {
+      background: #007AFF;
+      border-color: #007AFF;
+      color: #ffffff;
+    }
+
+    .onb-choice input:focus-visible + span {
+      box-shadow: 0 0 0 3px rgba(0,122,255,0.25);
+    }
+
+    /* ─── Submit ───────────────────────────────────────── */
+    .onb-submit-row {
+      margin-top: 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .onb-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 38px;
+      border-radius: 980px;
+      background: #007AFF;
+      color: #fff;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, opacity 0.3s ease;
+    }
+
+    .onb-submit:hover {
+      background: #0064CC;
+    }
+
+    .onb-submit:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .onb-note {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 12px;
+      color: #86868b;
+      text-align: center;
+      margin: 0;
+    }
+
+    .onb-error {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #d70015;
+      text-align: center;
+      margin: 0;
+      display: none;
+    }
+
+    .onb-error.active {
+      display: block;
+    }
+
+    /* ─── Success state ────────────────────────────────── */
+    .onb-success {
+      display: none;
+      background: #F4F5F5;
+      border-radius: 22px;
+      padding: 72px 44px;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .onb-success.active {
+      display: flex;
+    }
+
+    .onb-success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #007AFF;
+      color: #fff;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .onb-success h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.4px;
+      margin: 0 0 10px;
+    }
+
+    .onb-success p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 420px;
+    }
+
+    /* ─── Footer ───────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 40px auto 0;
+    }
+    .legal-block p { color: #a1a1a6; font-size: 12px; }
+
+    /* ─── Responsive ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .onb-container {
+        width: calc(100% - 16px);
+        margin-top: 108px;
+      }
+      .onb-intro h1 { font-size: 32px; }
+      .onb-card { padding: 32px 24px 28px; }
+      .onb-success { padding: 56px 24px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .onb-container {
+        width: calc(100% - 12px);
+        margin-top: 96px;
+      }
+      .onb-intro h1 { font-size: 28px; }
+      .onb-intro p { font-size: 14px; }
+      .onb-card { padding: 26px 18px 24px; }
+      .onb-choice span { font-size: 13px; padding: 9px 15px; }
+      .onb-success h2 { font-size: 25px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
+        <a href="articles.html" class="nav-link">Articles</a>
+        <a href="newsroom.html" class="nav-link">Newsroom</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="data-room.html" class="nav-link">Data Room</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="onb-container">
+
+    <div class="onb-intro">
+      <h1>Team Onboarding</h1>
+      <p>Welcome to IBT Aura. Please fill in your details below so we can set up your role, schedule, and access. It takes about three minutes.</p>
+    </div>
+
+    <!-- Form -->
+    <form class="onb-card" id="onboardingForm" novalidate>
+
+      <!-- Personal details -->
+      <div class="onb-section">
+        <p class="onb-section-title">Personal Details</p>
+
+        <div class="onb-field">
+          <label for="fullName">Full name <span class="req">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" required />
+        </div>
+
+        <div class="onb-field">
+          <label for="email">Email ID <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+
+        <div class="onb-field">
+          <label for="mobile">Mobile number <span class="req">*</span></label>
+          <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" autocomplete="tel" required />
+        </div>
+      </div>
+
+      <!-- Working preferences -->
+      <div class="onb-section">
+        <p class="onb-section-title">Working Preferences</p>
+
+        <div class="onb-field">
+          <label for="preferredTime">Preferred time to work <span class="req">*</span></label>
+          <select id="preferredTime" name="preferredTime" required>
+            <option value="" disabled selected>Select your preferred hours</option>
+            <option value="Morning (6 AM – 12 PM)">Morning (6 AM – 12 PM)</option>
+            <option value="Afternoon (12 PM – 6 PM)">Afternoon (12 PM – 6 PM)</option>
+            <option value="Evening (6 PM – 10 PM)">Evening (6 PM – 10 PM)</option>
+            <option value="Night (10 PM – 6 AM)">Night (10 PM – 6 AM)</option>
+            <option value="Flexible / Any time">Flexible / Any time</option>
+          </select>
+        </div>
+
+        <div class="onb-field">
+          <label>Are you available for on-site or online work? <span class="req">*</span></label>
+          <div class="onb-choices" id="workModeGroup">
+            <label class="onb-choice"><input type="radio" name="workMode" value="On-site" required /><span>On-site</span></label>
+            <label class="onb-choice"><input type="radio" name="workMode" value="Online / Remote" /><span>Online / Remote</span></label>
+            <label class="onb-choice"><input type="radio" name="workMode" value="Both" /><span>Both</span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="onb-section">
+        <p class="onb-section-title">Skills</p>
+
+        <div class="onb-field">
+          <label for="technicalSkills">Technical skills <span class="req">*</span></label>
+          <span class="hint">Tools, languages, software or hardware you can work with.</span>
+          <textarea id="technicalSkills" name="technicalSkills" placeholder="e.g. Python, PCB design, Figma, embedded C, data analysis…" required></textarea>
+        </div>
+
+        <div class="onb-field">
+          <label for="passiveSkills">Passive skills</label>
+          <span class="hint">Soft skills and strengths — communication, leadership, languages you speak, etc.</span>
+          <textarea id="passiveSkills" name="passiveSkills" placeholder="e.g. Public speaking, team coordination, Tamil / English / Hindi…"></textarea>
+        </div>
+      </div>
+
+      <!-- Travel -->
+      <div class="onb-section">
+        <p class="onb-section-title">Travel Availability</p>
+
+        <div class="onb-field">
+          <label>Can you travel for company work? Select all that apply.</label>
+          <div class="onb-choices">
+            <label class="onb-choice"><input type="checkbox" name="travel" value="Events" /><span>Events</span></label>
+            <label class="onb-choice"><input type="checkbox" name="travel" value="Other district" /><span>Other district</span></label>
+            <label class="onb-choice"><input type="checkbox" name="travel" value="Other state" /><span>Other state</span></label>
+            <label class="onb-choice"><input type="checkbox" name="travel" value="Other country" /><span>Other country</span></label>
+            <label class="onb-choice"><input type="checkbox" name="travel" value="Not available to travel" /><span>Not available to travel</span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Anything else -->
+      <div class="onb-section">
+        <p class="onb-section-title">Anything Else</p>
+
+        <div class="onb-field">
+          <label for="additional">Additional description</label>
+          <span class="hint">Anything else we should know — availability, notice period, interests, questions.</span>
+          <textarea id="additional" name="additional" placeholder="Tell us anything else you'd like us to know…"></textarea>
+        </div>
+      </div>
+
+      <div class="onb-submit-row">
+        <p class="onb-error" id="formError">Please fill in all required fields.</p>
+        <button type="submit" class="onb-submit" id="submitBtn">Submit details</button>
+        <p class="onb-note">Your details are used only for onboarding at IBT Aura Private Limited.</p>
+      </div>
+    </form>
+
+    <!-- Success -->
+    <div class="onb-success" id="successState">
+      <div class="onb-success-icon">&#10003;</div>
+      <h2>Thank you</h2>
+      <p>Your details have been submitted successfully. Someone from the IBT Aura team will be in touch with you shortly.</p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694, with its registered office at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005.</p>
+        <p style="margin-top:12px;">The personal information submitted through this form is collected solely for the purpose of onboarding and internal record keeping at IBT Aura Private Limited. It is handled in accordance with our <a href="privacy-policy.html" style="color:#0071e3;text-decoration:none;">Privacy Policy</a> and is not sold, rented, or shared with any third party.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('onboardingForm');
+      var successState = document.getElementById('successState');
+      var submitBtn = document.getElementById('submitBtn');
+      var formError = document.getElementById('formError');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formError.classList.remove('active');
+
+        if (!form.checkValidity()) {
+          formError.textContent = 'Please fill in all required fields.';
+          formError.classList.add('active');
+          var firstInvalid = form.querySelector(':invalid');
+          if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+
+        var data = {
+          fullName: form.fullName.value.trim(),
+          email: form.email.value.trim(),
+          mobile: form.mobile.value.trim(),
+          preferredTime: form.preferredTime.value,
+          workMode: (form.querySelector('input[name="workMode"]:checked') || {}).value || '',
+          technicalSkills: form.technicalSkills.value.trim(),
+          passiveSkills: form.passiveSkills.value.trim(),
+          travel: Array.prototype.slice
+            .call(form.querySelectorAll('input[name="travel"]:checked'))
+            .map(function (c) { return c.value; })
+            .join(', '),
+          additional: form.additional.value.trim(),
+          submittedAt: new Date().toISOString()
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting…';
+
+        fetch('/api/onboarding', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Request failed');
+            form.style.display = 'none';
+            successState.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          })
+          .catch(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit details';
+            formError.textContent = 'Something went wrong. Please try again, or email your details to lagaura.info@gmail.com';
+            formError.classList.add('active');
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
