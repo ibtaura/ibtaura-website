@@ -554,13 +554,15 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting…';
 
-        fetch('/api/onboarding', {
+        var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzo0O1S9sgHiPmO-AaB7fG7ZoftGCCRswSizqVWL0Pi-oMvNjsxWwg6k-yh3VOr6gBJqw/exec';
+
+        fetch(SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(data)
         })
-          .then(function (res) {
-            if (!res.ok) throw new Error('Request failed');
+          .then(function () {
             form.style.display = 'none';
             successState.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });

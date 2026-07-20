@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — IBT Aura</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=15" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    .admin-container {
+      max-width: 980px;
+      width: calc(100% - 24px);
+      margin: 124px auto 0;
+    }
+
+    .admin-intro {
+      text-align: center;
+      padding: 8px 8px 28px;
+    }
+
+    .admin-intro h1 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    /* Password gate */
+    .admin-gate {
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .admin-gate input {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      padding: 19px 22px;
+      border: 1px solid transparent;
+      border-radius: 22px;
+      outline: none;
+      background: #F4F5F5;
+      color: #1d1d1f;
+      width: 100%;
+      display: block;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      margin-bottom: 12px;
+    }
+
+    .admin-gate input:focus {
+      border-color: #007AFF;
+      background: #ffffff;
+    }
+
+    .admin-gate input::placeholder { color: #b0b0b5; }
+
+    .admin-gate-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 38px;
+      border-radius: 980px;
+      background: #007AFF;
+      color: #fff;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 4px;
+    }
+
+    .admin-gate-btn:hover { background: #0064CC; }
+
+    .admin-error {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #d70015;
+      margin: 12px 0 0;
+      display: none;
+    }
+
+    .admin-error.active { display: block; }
+
+    /* Results */
+    .admin-results { display: none; }
+    .admin-results.active { display: block; }
+
+    .admin-count {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      color: #86868b;
+      text-align: center;
+      margin: 0 0 28px;
+    }
+
+    .admin-card {
+      background: #F4F5F5;
+      border-radius: 22px;
+      padding: 28px 28px 24px;
+      margin-bottom: 16px;
+    }
+
+    .admin-card-name {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0 0 2px;
+    }
+
+    .admin-card-meta {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      margin: 0 0 16px;
+    }
+
+    .admin-card-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .admin-card-row:last-child { margin-bottom: 0; }
+
+    .admin-card-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1d1d1f;
+      min-width: 130px;
+      flex-shrink: 0;
+    }
+
+    .admin-card-value {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #1d1d1f;
+      line-height: 1.5;
+    }
+
+    .admin-empty {
+      text-align: center;
+      padding: 48px 24px;
+      background: #F4F5F5;
+      border-radius: 22px;
+    }
+
+    .admin-empty p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      color: #86868b;
+      margin: 0;
+    }
+
+    @media (max-width: 734px) {
+      .admin-container { margin-top: 96px; }
+      .admin-intro h1 { font-size: 28px; }
+      .admin-card { padding: 22px 20px 18px; }
+      .admin-card-row { flex-direction: column; gap: 2px; }
+      .admin-card-label { min-width: unset; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+
+    @media (min-width: 735px) and (max-width: 1068px) {
+      .admin-container { margin-top: 108px; }
+      .admin-intro h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
+        <a href="articles.html" class="nav-link">Articles</a>
+        <a href="newsroom.html" class="nav-link">Newsroom</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="data-room.html" class="nav-link">Data Room</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="admin-container">
+
+    <div class="admin-intro">
+      <h1>Admin</h1>
+    </div>
+
+    <!-- Password gate -->
+    <div class="admin-gate" id="gateSection">
+      <input type="password" id="adminPassword" placeholder="Enter admin password" autocomplete="off" />
+      <button class="admin-gate-btn" id="loginBtn">View submissions</button>
+      <p class="admin-error" id="gateError">Incorrect password. Please try again.</p>
+    </div>
+
+    <!-- Results (hidden until authenticated) -->
+    <div class="admin-results" id="resultsSection">
+      <p class="admin-count" id="resultCount"></p>
+      <div id="cardList"></div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p style="margin-top:12px;">For detailed information about how we handle your data and your rights, please <a href="privacy-policy.html" style="color:#0071e3;text-decoration:none;">visit our Privacy Policy</a>. For the complete terms governing the use of our website and services, please <a href="terms-and-conditions.html" style="color:#0071e3;text-decoration:none;">visit our Terms and Conditions</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var passwordInput = document.getElementById('adminPassword');
+      var loginBtn = document.getElementById('loginBtn');
+      var gateError = document.getElementById('gateError');
+      var gateSection = document.getElementById('gateSection');
+      var resultsSection = document.getElementById('resultsSection');
+      var resultCount = document.getElementById('resultCount');
+      var cardList = document.getElementById('cardList');
+
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function loadData() {
+        var password = passwordInput.value.trim();
+        if (!password) return;
+
+        loginBtn.disabled = true;
+        loginBtn.textContent = 'Loading…';
+        gateError.classList.remove('active');
+
+        var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzo0O1S9sgHiPmO-AaB7fG7ZoftGCCRswSizqVWL0Pi-oMvNjsxWwg6k-yh3VOr6gBJqw/exec';
+
+        fetch(SCRIPT_URL + '?password=' + encodeURIComponent(password))
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (!data) throw new Error('Empty');
+            if (data.error) {
+              gateError.classList.add('active');
+              loginBtn.disabled = false;
+              loginBtn.textContent = 'View submissions';
+              return;
+            }
+
+            gateSection.style.display = 'none';
+            resultsSection.classList.add('active');
+
+            var list = data.submissions || [];
+            list.reverse();
+
+            resultCount.textContent = list.length + ' submission' + (list.length !== 1 ? 's' : '');
+
+            if (list.length === 0) {
+              cardList.innerHTML = '<div class="admin-empty"><p>No submissions yet.</p></div>';
+              return;
+            }
+
+            var html = '';
+            for (var i = 0; i < list.length; i++) {
+              var s = list[i];
+              html += '<div class="admin-card">';
+              html += '<p class="admin-card-name">' + escapeHtml(s.fullName) + '</p>';
+              html += '<p class="admin-card-meta">' + escapeHtml(s.submittedAt || '') + '</p>';
+
+              var fields = [
+                ['Email', s.email],
+                ['Mobile', s.mobile],
+                ['Preferred time', s.preferredTime],
+                ['Work mode', s.workMode],
+                ['Technical skills', s.technicalSkills],
+                ['Passive skills', s.passiveSkills],
+                ['Travel', s.travel],
+                ['Additional', s.additional]
+              ];
+
+              for (var j = 0; j < fields.length; j++) {
+                var val = fields[j][1];
+                if (val) {
+                  html += '<div class="admin-card-row">';
+                  html += '<span class="admin-card-label">' + escapeHtml(fields[j][0]) + '</span>';
+                  html += '<span class="admin-card-value">' + escapeHtml(val) + '</span>';
+                  html += '</div>';
+                }
+              }
+
+              html += '</div>';
+            }
+
+            cardList.innerHTML = html;
+          })
+          .catch(function () {
+            gateError.textContent = 'Something went wrong. Please try again.';
+            gateError.classList.add('active');
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'View submissions';
+          });
+      }
+
+      loginBtn.addEventListener('click', loadData);
+      passwordInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') loadData();
+      });
+    })();
+  </script>
+</body>
+</html>
