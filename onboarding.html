@@ -556,23 +556,39 @@
 
         var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzo0O1S9sgHiPmO-AaB7fG7ZoftGCCRswSizqVWL0Pi-oMvNjsxWwg6k-yh3VOr6gBJqw/exec';
 
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(data)
-        })
-          .then(function () {
-            form.style.display = 'none';
-            successState.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          })
-          .catch(function () {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit details';
-            formError.textContent = 'Something went wrong. Please try again, or email your details to lagaura.info@gmail.com';
-            formError.classList.add('active');
-          });
+        var iframe = document.getElementById('submitFrame');
+        if (!iframe) {
+          iframe = document.createElement('iframe');
+          iframe.id = 'submitFrame';
+          iframe.name = 'submitFrame';
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
+        }
+
+        var hiddenForm = document.createElement('form');
+        hiddenForm.method = 'POST';
+        hiddenForm.action = SCRIPT_URL;
+        hiddenForm.target = 'submitFrame';
+        hiddenForm.style.display = 'none';
+
+        var keys = Object.keys(data);
+        for (var k = 0; k < keys.length; k++) {
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = keys[k];
+          input.value = data[keys[k]];
+          hiddenForm.appendChild(input);
+        }
+
+        document.body.appendChild(hiddenForm);
+        hiddenForm.submit();
+        document.body.removeChild(hiddenForm);
+
+        setTimeout(function () {
+          form.style.display = 'none';
+          successState.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1500);
       });
     })();
   </script>
