@@ -17,7 +17,7 @@ var SHEET_NAME = 'Submissions';
 
 function doPost(e) {
   try {
-    var data = e.parameter;
+    var data = JSON.parse(e.postData.contents);
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName(SHEET_NAME);
 
