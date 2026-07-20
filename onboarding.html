@@ -33,7 +33,7 @@
     /* ─── Intro ────────────────────────────────────────── */
     .onb-intro {
       text-align: center;
-      padding: 8px 8px 28px;
+      padding: 8px 8px 40px;
     }
 
     .onb-intro h1 {
@@ -43,28 +43,12 @@
       color: #1d1d1f;
       letter-spacing: -0.6px;
       line-height: 1.1;
-      margin: 0 0 10px;
+      margin: 0;
     }
 
-    .onb-intro p {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 400;
-      color: #6e6e73;
-      line-height: 1.5;
-      margin: 0 auto;
-      max-width: 520px;
-    }
-
-    /* ─── Form card ────────────────────────────────────── */
-    .onb-card {
-      background: #F4F5F5;
-      border-radius: 22px;
-      padding: 44px 44px 40px;
-    }
-
+    /* ─── Section ──────────────────────────────────────── */
     .onb-section {
-      margin-bottom: 34px;
+      margin-bottom: 40px;
     }
 
     .onb-section:last-of-type {
@@ -78,37 +62,16 @@
       color: #86868b;
       letter-spacing: 0.6px;
       text-transform: uppercase;
-      margin: 0 0 18px;
+      margin: 0 0 20px;
     }
 
+    /* ─── Field: grey control on top, text below ───────── */
     .onb-field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 18px;
+      margin-bottom: 30px;
     }
 
     .onb-field:last-child {
       margin-bottom: 0;
-    }
-
-    .onb-field label {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: #1d1d1f;
-    }
-
-    .onb-field .req {
-      color: #007AFF;
-    }
-
-    .onb-field .hint {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 12px;
-      font-weight: 400;
-      color: #86868b;
-      line-height: 1.4;
     }
 
     .onb-field input[type="text"],
@@ -117,15 +80,16 @@
     .onb-field select,
     .onb-field textarea {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 14px;
-      padding: 12px 14px;
-      border: 1px solid rgba(0,0,0,0.12);
-      border-radius: 10px;
+      font-size: 15px;
+      padding: 19px 22px;
+      border: 1px solid transparent;
+      border-radius: 22px;
       outline: none;
-      background: #ffffff;
+      background: #F4F5F5;
       color: #1d1d1f;
       width: 100%;
-      transition: border-color 0.2s;
+      display: block;
+      transition: border-color 0.2s, background 0.2s;
       -webkit-appearance: none;
       appearance: none;
     }
@@ -133,14 +97,14 @@
     .onb-field select {
       background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2386868b'%3E%3Cpath d='M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 12px center;
-      background-size: 16px;
-      padding-right: 38px;
+      background-position: right 20px center;
+      background-size: 18px;
+      padding-right: 48px;
       cursor: pointer;
     }
 
     .onb-field textarea {
-      min-height: 96px;
+      min-height: 118px;
       resize: vertical;
       line-height: 1.5;
     }
@@ -149,11 +113,40 @@
     .onb-field select:focus,
     .onb-field textarea:focus {
       border-color: #007AFF;
+      background: #ffffff;
     }
 
     .onb-field input::placeholder,
     .onb-field textarea::placeholder {
       color: #b0b0b5;
+    }
+
+    /* Text block that sits below the control */
+    .onb-text {
+      padding: 10px 8px 0;
+    }
+
+    .onb-text .onb-label {
+      display: block;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0 0 4px;
+      cursor: pointer;
+    }
+
+    .onb-text .req {
+      color: #007AFF;
+    }
+
+    .onb-text p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 0;
     }
 
     /* ─── Choice pills (radio / checkbox) ──────────────── */
@@ -178,20 +171,20 @@
       display: inline-flex;
       align-items: center;
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 400;
       color: #1d1d1f;
-      background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.12);
+      background: #F4F5F5;
+      border: 1px solid transparent;
       border-radius: 980px;
-      padding: 10px 18px;
+      padding: 14px 24px;
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
       user-select: none;
     }
 
     .onb-choice span:hover {
-      border-color: rgba(0,0,0,0.28);
+      border-color: rgba(0,0,0,0.18);
     }
 
     .onb-choice input:checked + span {
@@ -206,7 +199,7 @@
 
     /* ─── Submit ───────────────────────────────────────── */
     .onb-submit-row {
-      margin-top: 34px;
+      margin-top: 44px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -314,7 +307,7 @@
       border-top: none;
       padding: 20px 40px 48px;
       max-width: 1100px;
-      margin: 40px auto 0;
+      margin: 60px auto 0;
     }
     .legal-block p { color: #a1a1a6; font-size: 12px; }
 
@@ -324,8 +317,17 @@
         width: calc(100% - 16px);
         margin-top: 108px;
       }
+      .onb-intro { padding-bottom: 32px; }
       .onb-intro h1 { font-size: 32px; }
-      .onb-card { padding: 32px 24px 28px; }
+      .onb-field input[type="text"],
+      .onb-field input[type="email"],
+      .onb-field input[type="tel"],
+      .onb-field select,
+      .onb-field textarea {
+        font-size: 15px;
+        padding: 17px 20px;
+        border-radius: 18px;
+      }
       .onb-success { padding: 56px 24px; }
       .footer-legal-section { padding: 36px 24px 32px; }
     }
@@ -336,9 +338,10 @@
         margin-top: 96px;
       }
       .onb-intro h1 { font-size: 28px; }
-      .onb-intro p { font-size: 14px; }
-      .onb-card { padding: 26px 18px 24px; }
-      .onb-choice span { font-size: 13px; padding: 9px 15px; }
+      .onb-field { margin-bottom: 26px; }
+      .onb-text .onb-label { font-size: 14px; }
+      .onb-text p { font-size: 13px; }
+      .onb-choice span { font-size: 14px; padding: 12px 20px; }
       .onb-success h2 { font-size: 25px; }
       .footer-legal-section { padding: 28px 16px 24px; }
     }
@@ -365,29 +368,37 @@
 
     <div class="onb-intro">
       <h1>Team Onboarding</h1>
-      <p>Welcome to IBT Aura. Please fill in your details below so we can set up your role, schedule, and access. It takes about three minutes.</p>
     </div>
 
     <!-- Form -->
-    <form class="onb-card" id="onboardingForm" novalidate>
+    <form id="onboardingForm" novalidate>
 
       <!-- Personal details -->
       <div class="onb-section">
         <p class="onb-section-title">Personal Details</p>
 
         <div class="onb-field">
-          <label for="fullName">Full name <span class="req">*</span></label>
           <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" required />
+          <div class="onb-text">
+            <label class="onb-label" for="fullName">Full name <span class="req">*</span></label>
+            <p>Your full legal name as it should appear on company records and official documents.</p>
+          </div>
         </div>
 
         <div class="onb-field">
-          <label for="email">Email ID <span class="req">*</span></label>
           <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          <div class="onb-text">
+            <label class="onb-label" for="email">Email ID <span class="req">*</span></label>
+            <p>We will use this to set up your work account and for all official communication.</p>
+          </div>
         </div>
 
         <div class="onb-field">
-          <label for="mobile">Mobile number <span class="req">*</span></label>
           <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" autocomplete="tel" required />
+          <div class="onb-text">
+            <label class="onb-label" for="mobile">Mobile number <span class="req">*</span></label>
+            <p>A number we can reach you on for day-to-day coordination and urgent updates.</p>
+          </div>
         </div>
       </div>
 
@@ -396,7 +407,6 @@
         <p class="onb-section-title">Working Preferences</p>
 
         <div class="onb-field">
-          <label for="preferredTime">Preferred time to work <span class="req">*</span></label>
           <select id="preferredTime" name="preferredTime" required>
             <option value="" disabled selected>Select your preferred hours</option>
             <option value="Morning (6 AM – 12 PM)">Morning (6 AM – 12 PM)</option>
@@ -405,14 +415,21 @@
             <option value="Night (10 PM – 6 AM)">Night (10 PM – 6 AM)</option>
             <option value="Flexible / Any time">Flexible / Any time</option>
           </select>
+          <div class="onb-text">
+            <label class="onb-label" for="preferredTime">Preferred time to work <span class="req">*</span></label>
+            <p>The hours you work best in. We will try to build your schedule around this wherever possible.</p>
+          </div>
         </div>
 
         <div class="onb-field">
-          <label>Are you available for on-site or online work? <span class="req">*</span></label>
-          <div class="onb-choices" id="workModeGroup">
+          <div class="onb-choices">
             <label class="onb-choice"><input type="radio" name="workMode" value="On-site" required /><span>On-site</span></label>
             <label class="onb-choice"><input type="radio" name="workMode" value="Online / Remote" /><span>Online / Remote</span></label>
             <label class="onb-choice"><input type="radio" name="workMode" value="Both" /><span>Both</span></label>
+          </div>
+          <div class="onb-text">
+            <span class="onb-label">On-site or online work <span class="req">*</span></span>
+            <p>Whether you can work from our Salem office, work remotely, or are open to both.</p>
           </div>
         </div>
       </div>
@@ -422,15 +439,19 @@
         <p class="onb-section-title">Skills</p>
 
         <div class="onb-field">
-          <label for="technicalSkills">Technical skills <span class="req">*</span></label>
-          <span class="hint">Tools, languages, software or hardware you can work with.</span>
           <textarea id="technicalSkills" name="technicalSkills" placeholder="e.g. Python, PCB design, Figma, embedded C, data analysis…" required></textarea>
+          <div class="onb-text">
+            <label class="onb-label" for="technicalSkills">Technical skills <span class="req">*</span></label>
+            <p>Tools, languages, software or hardware you can work with, and your comfort level with each.</p>
+          </div>
         </div>
 
         <div class="onb-field">
-          <label for="passiveSkills">Passive skills</label>
-          <span class="hint">Soft skills and strengths — communication, leadership, languages you speak, etc.</span>
           <textarea id="passiveSkills" name="passiveSkills" placeholder="e.g. Public speaking, team coordination, Tamil / English / Hindi…"></textarea>
+          <div class="onb-text">
+            <label class="onb-label" for="passiveSkills">Passive skills</label>
+            <p>Soft skills and personal strengths — communication, leadership, organisation, and languages you speak.</p>
+          </div>
         </div>
       </div>
 
@@ -439,13 +460,16 @@
         <p class="onb-section-title">Travel Availability</p>
 
         <div class="onb-field">
-          <label>Can you travel for company work? Select all that apply.</label>
           <div class="onb-choices">
             <label class="onb-choice"><input type="checkbox" name="travel" value="Events" /><span>Events</span></label>
             <label class="onb-choice"><input type="checkbox" name="travel" value="Other district" /><span>Other district</span></label>
             <label class="onb-choice"><input type="checkbox" name="travel" value="Other state" /><span>Other state</span></label>
             <label class="onb-choice"><input type="checkbox" name="travel" value="Other country" /><span>Other country</span></label>
             <label class="onb-choice"><input type="checkbox" name="travel" value="Not available to travel" /><span>Not available to travel</span></label>
+          </div>
+          <div class="onb-text">
+            <span class="onb-label">Travel availability</span>
+            <p>Select every option you are able to travel for. This helps us plan events, site visits, and outreach.</p>
           </div>
         </div>
       </div>
@@ -455,9 +479,11 @@
         <p class="onb-section-title">Anything Else</p>
 
         <div class="onb-field">
-          <label for="additional">Additional description</label>
-          <span class="hint">Anything else we should know — availability, notice period, interests, questions.</span>
           <textarea id="additional" name="additional" placeholder="Tell us anything else you'd like us to know…"></textarea>
+          <div class="onb-text">
+            <label class="onb-label" for="additional">Additional description</label>
+            <p>Anything else we should know — your availability, notice period, interests, or any questions for us.</p>
+          </div>
         </div>
       </div>
 
