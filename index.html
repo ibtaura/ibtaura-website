@@ -116,54 +116,7 @@
     .home-card[data-card="2"] { z-index: 2; top: 128px; background: #000000; }
     .home-card[data-card="3"] { z-index: 1; top: 146px; background: #000000; }
 
-    /* ─── Card centered content — coming soon ─────────────────── */
-    .card-center {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      z-index: 2;
-    }
-
-    .card-center-title {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 32px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      margin: 0;
-    }
-
-    .card-center-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 20px;
-      border-radius: 980px;
-      font-family: 'SF Pro Rounded', 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      border: 1.5px solid #0071E3;
-      background: #0071E3;
-      color: #fff;
-    }
-
-    .card-center-btn:hover {
-      background: #0064CC;
-    }
-
-    /* Dark card — white text */
-    .home-card[data-card="2"] .card-center-title { color: #ffffff; }
-
-    /* Card 3 — black with render, white text */
-    .home-card[data-card="3"] .card-center-title { color: #ffffff; }
-
+    /* ─── Card 3 — black with wearable render ──────────────────── */
     .home-card[data-card="3"] .card-render-img {
       position: absolute;
       top: 0; left: 0;
@@ -377,12 +330,12 @@
       </div>
     </div>
 
-    <!-- Card 3 (back — black, coming soon) -->
+    <!-- Card 3 (back — black, wearable render) -->
     <div class="home-card" data-card="3">
       <img src="assets/images/aura-clarus-render.png" alt="Aura Clarus wearable" class="card-render-img" />
-      <div class="card-center">
-        <p class="card-center-title">Coming soon</p>
-        <a href="#" class="card-center-btn">Notify me</a>
+      <div class="card-btn-group">
+        <a href="#" class="card-btn card-btn-outline-dark" onclick="event.preventDefault();alert('This page is under construction.');">Learn More</a>
+        <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('This page is under construction.');">Access Now</a>
       </div>
     </div>
 
