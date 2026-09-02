@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inside the Wrist: How PPG Sensors Actually Work — IBT Aura</title>
+  <meta name="description" content="The green glow on the back of a wearable is doing real physics — reading blood volume with light to derive heart rate, HRV, and SpO2. How photoplethysmography works, and its limits." />
+  <meta name="keywords" content="photoplethysmography, PPG sensor, optical heart rate, SpO2, HRV, wearable technology, Aura Clarus, wearable health monitoring" />
+  <meta name="author" content="IBT Aura Private Limited" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.ibtaura.com/article-ppg-sensors.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="Inside the Wrist: How PPG Sensors Actually Work" />
+  <meta property="og:description" content="The green glow on the back of a wearable is doing real physics — reading blood volume with light to derive heart rate, HRV, and SpO2. How photoplethysmography works, and its limits." />
+  <meta property="og:url" content="https://www.ibtaura.com/article-ppg-sensors.html" />
+  <meta property="og:site_name" content="IBT Aura" />
+  <meta property="og:image" content="https://www.ibtaura.com/assets/images/articles/hrv-wearable.jpg" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="900" />
+  <meta property="article:published_time" content="2026-08-02" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Inside the Wrist: How PPG Sensors Actually Work" />
+  <meta name="twitter:description" content="The green glow on the back of a wearable is doing real physics — reading blood volume with light to derive heart rate, HRV, and SpO2. How photoplethysmography works, and its limits." />
+  <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/articles/hrv-wearable.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Inside the Wrist: How PPG Sensors Actually Work",
+    "description": "The green glow on the back of a wearable is doing real physics — reading blood volume with light to derive heart rate, HRV, and SpO2. How photoplethysmography works, and its limits.",
+    "image": "https://www.ibtaura.com/assets/images/articles/hrv-wearable.jpg",
+    "datePublished": "2026-08-02",
+    "dateModified": "2026-08-02",
+    "author": { "@type": "Organization", "name": "IBT Aura Private Limited", "url": "https://www.ibtaura.com" },
+    "publisher": { "@type": "Organization", "name": "IBT Aura Private Limited", "logo": { "@type": "ImageObject", "url": "https://www.ibtaura.com/assets/images/aura-favicon.svg" } },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.ibtaura.com/article-ppg-sensors.html" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ibtaura.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://www.ibtaura.com/articles.html" },
+      { "@type": "ListItem", "position": 3, "name": "Inside the Wrist: How PPG Sensors Actually Work", "item": "https://www.ibtaura.com/article-ppg-sensors.html" }
+    ]
+  }
+  </script>
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=14" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Article Hero Card ──────────────────────────────── */
+    .article-hero {
+      max-width: 860px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .article-hero-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-hero-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 56px 20px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .article-date {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.02em;
+    }
+
+    .article-hero-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    /* ─── Article Content ────────────────────────────────── */
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 56px 64px;
+    }
+
+    .article-content h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+      margin: 64px 0 20px;
+      line-height: 1.18;
+    }
+
+    .article-content h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.1px;
+      margin: 48px 0 14px;
+      line-height: 1.25;
+    }
+
+    .article-content p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin: 0 0 24px;
+      letter-spacing: 0.004em;
+    }
+
+    .article-content p.lead {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1d1d1f;
+      line-height: 1.55;
+      letter-spacing: -0.1px;
+      margin-bottom: 40px;
+    }
+
+    /* Inline image — full bleed within card */
+    .article-inline-img {
+      width: calc(100% + 112px);
+      margin-left: -56px;
+      border-radius: 0;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .article-img-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #86868b;
+      text-align: left;
+      margin: 0 0 40px;
+      line-height: 1.5;
+    }
+
+    /* Graph cards — clean white with subtle shadow */
+    .article-graph {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      margin: 40px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-graph-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: 0.01em;
+      margin: 0 0 20px;
+    }
+
+    .article-graph svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-graph-caption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+      margin: 16px 0 0;
+    }
+
+    /* Numbered list — Apple-clean style */
+    .article-content ol {
+      padding-left: 0;
+      counter-reset: article-counter;
+      list-style: none;
+      margin: 28px 0 36px;
+    }
+
+    .article-content ol li {
+      counter-increment: article-counter;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      color: #1d1d1f;
+      line-height: 1.76;
+      margin-bottom: 28px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .article-content ol li::before {
+      content: counter(article-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .article-content ol li strong {
+      color: #1d1d1f;
+      font-weight: 600;
+    }
+
+    /* Pull quote — elegant left border */
+    .article-highlight {
+      background: transparent;
+      border-left: 3px solid #1d1d1f;
+      border-radius: 0;
+      padding: 4px 0 4px 32px;
+      margin: 48px 0;
+    }
+
+    .article-highlight p {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: #1d1d1f;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+
+    /* Stats row — large numbers, minimal */
+    .article-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin: 44px 0;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .article-stat {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 32px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .article-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: #e8e8ed;
+    }
+
+    .article-stat-number {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -1px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .article-stat-label {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6e6e73;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Divider — minimal Apple style */
+    .article-divider {
+      width: 100%;
+      height: 1px;
+      background: #d2d2d7;
+      border-radius: 0;
+      margin: 48px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: 20px 40px 48px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+    .legal-block p {
+      color: #a1a1a6;
+      font-size: 12px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .article-hero {
+        width: calc(100% - 16px);
+        border-radius: 18px;
+        margin-top: 56px;
+      }
+      .article-hero-img { height: 280px; }
+      .article-hero-body { padding: 32px 28px 16px; }
+      .article-hero-title { font-size: 30px; }
+      .article-content { padding: 0 28px 40px; }
+      .article-content h2 { font-size: 24px; margin-top: 48px; }
+      .article-content h3 { font-size: 19px; margin-top: 36px; }
+      .article-inline-img { width: calc(100% + 56px); margin-left: -28px; }
+      .article-stats { grid-template-columns: 1fr; gap: 0; }
+      .article-stat:not(:last-child)::after { display: none; }
+      .article-stat:not(:last-child) { border-bottom: 1px solid #e8e8ed; }
+      .article-stat-number { font-size: 36px; }
+      .article-highlight { padding: 2px 0 2px 24px; margin: 36px 0; }
+      .article-highlight p { font-size: 19px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .article-hero {
+        width: calc(100% - 12px);
+        border-radius: 16px;
+        margin-top: 48px;
+      }
+      .article-hero-img { height: 200px; }
+      .article-hero-body { padding: 24px 20px 12px; }
+      .article-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+      .article-content { padding: 0 20px 32px; }
+      .article-content h2 { font-size: 22px; }
+      .article-content p { font-size: 16px; }
+      .article-content p.lead { font-size: 19px; }
+      .article-inline-img { width: calc(100% + 40px); margin-left: -20px; }
+      .article-graph { padding: 20px 16px 16px; border-radius: 14px; }
+      .article-stat { padding: 24px 16px; }
+      .article-stat-number { font-size: 32px; }
+      .article-highlight p { font-size: 18px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
+        <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
+        <a href="articles.html" class="nav-link active">Articles</a>
+        <a href="newsroom.html" class="nav-link">Newsroom</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="data-room.html" class="nav-link">Data Room</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <div class="article-hero">
+    <img src="assets/images/articles/hrv-wearable.jpg" alt="How optical PPG sensors measure the pulse" class="article-hero-img" />
+    <div class="article-hero-body">
+      <div class="article-meta">
+        <span class="article-date">2 August 2026</span>
+      </div>
+      <h1 class="article-hero-title">Inside the Wrist: How PPG Sensors Actually Work</h1>
+    </div>
+
+  <!-- Article Body -->
+  <div class="article-content">
+
+<p class="lead">Every wrist-worn health tracker rests on a deceptively simple idea: shine light into the skin, and read what comes back. The blood pulsing through the vessels beneath your wrist subtly changes how much light returns, and from that flicker a modern wearable reconstructs your heart rate, the spacing between beats, your blood oxygen and more. This is photoplethysmography, and understanding it clarifies both what these devices can tell you and where their limits lie.</p>
+
+<p>The term photoplethysmography — usually shortened to PPG — combines the Greek roots for light, volume and writing. Literally, it means writing a record of volume changes using light. That volume is blood, and the changes are the rhythmic swelling and relaxation of the small vessels in your skin with every heartbeat. A PPG sensor does not measure the heartbeat directly. It measures the optical shadow that circulating blood casts, then infers the mechanics of the cardiovascular system from that shadow.</p>
+
+<p>What makes this remarkable is that the underlying hardware is modest: a few light-emitting diodes, a light-sensitive detector, and a great deal of signal processing. The sophistication lives not in exotic components but in the mathematics that separates a faint, meaningful pulse from a torrent of noise. To appreciate a wrist sensor honestly, it helps to follow the light on its short journey into the skin and back.</p>
+
+<div class="article-divider"></div>
+
+<h2>1. Light, Blood and the Basic Principle</h2>
+
+<p>Human tissue is partly translucent. Shine a bright light against your fingertip and you will see a reddish glow through the other side — light is passing through skin, muscle and blood, and being selectively absorbed along the way. Blood, and specifically the hemoglobin that carries oxygen, absorbs certain wavelengths of light more strongly than the surrounding tissue does. This selective absorption is the physical hook on which all PPG depends.</p>
+
+<p>When your heart contracts, a pulse of blood surges into the arteries and the small vessels of the skin. For a brief moment there is slightly more blood in the illuminated patch of tissue, so slightly more light is absorbed and slightly less returns to the detector. When the heart relaxes, blood volume ebbs and more light returns. The detector therefore sees a signal that rises and falls in step with the pulse — a waveform whose peaks and troughs trace the cardiac cycle.</p>
+
+<h3>The AC and DC components</h3>
+
+<p>Engineers describe this signal as having two parts. The large, slowly changing background — absorption by skin, bone, tissue and the non-pulsing blood — is called the DC component. Riding on top of it is a small, rhythmic fluctuation caused by the pulsing arterial blood, called the AC component. The AC portion is tiny, often well under a few percent of the total signal, yet it carries nearly all the useful information. Extracting that small oscillation cleanly from the large steady background is the central engineering task of every wrist sensor.</p>
+
+<div class="article-highlight"><p>A PPG sensor never measures your heartbeat directly. It measures how the volume of blood beneath the skin changes the amount of light returning to a detector — and reconstructs the beating heart from that faint optical rhythm.</p></div>
+
+<div class="article-divider"></div>
+
+<h2>2. Why Green Light for Heart Rate</h2>
+
+<p>Most wrist wearables use green light for everyday heart-rate tracking, and the choice is deliberate. Hemoglobin absorbs green light strongly, which means the pulsing blood produces a comparatively large change in the returning green signal. A larger change is easier to detect against noise, so green light yields a robust, high-contrast pulse waveform — exactly what you want when the wearer is walking, typing or exercising.</p>
+
+<p>Green light also penetrates only shallowly into tissue. That sounds like a disadvantage, but at the wrist it is a strength: it confines the measurement to the superficial vessels and is less easily disturbed by deeper motion. In bright daylight and during movement — the very conditions in which reliable heart rate matters most — green light gives wrist devices their best signal-to-noise ratio.</p>
+
+<h3>The trade-off</h3>
+
+<p>The cost is that green light is not well suited to measuring blood oxygen. Estimating oxygen saturation requires comparing how blood absorbs two different wavelengths, and for that comparison to work the wavelengths must sit where oxygenated and deoxygenated hemoglobin behave distinctly. Green does not satisfy that condition well. So devices that measure oxygen carry additional LEDs of other colours, and switch between them depending on what they are trying to learn.</p>
+
+<div class="article-divider"></div>
+
+<h2>3. Red and Infrared for Blood Oxygen</h2>
+
+<p>Pulse oximetry — the estimation of blood oxygen saturation, often written SpO2 — rests on a specific optical fact. Oxygenated hemoglobin and deoxygenated hemoglobin absorb red and infrared light in opposite ways. Oxygen-rich blood lets more red light through and absorbs more infrared; oxygen-poor blood does the reverse. By shining both red and infrared light into the skin and comparing the pulsing signals each produces, a device can estimate the ratio of oxygenated to total hemoglobin.</p>
+
+<p>The method works on the pulsatile, arterial part of the signal specifically. Because the AC component comes from arterial blood surging with each beat, comparing the red and infrared AC signals isolates the property of arterial blood — which is what oxygen saturation is meant to describe. The device computes a ratio of ratios and maps it, through a calibration curve, to an estimated saturation percentage.</p>
+
+<div class="article-highlight"><p>Green light is chosen for its strong, motion-resistant pulse signal; red and infrared are chosen because oxygenated and deoxygenated blood absorb them in opposite ways. Different questions call for different colours of light.</p></div>
+
+<p>Wrist-based oximetry is harder than the fingertip clip used in hospitals. At the fingertip, light passes through thin, well-perfused tissue with vessels close to the surface. At the wrist, the sensor works in reflection — light goes in and bounces back from the same side — through tissue that is thicker and less richly supplied with blood. This is one reason wrist SpO2 readings are best treated as trend indicators for wellness rather than clinical-grade measurements.</p>
+
+<div class="article-divider"></div>
+
+<h2>4. From Waveform to Heart Rate and HRV</h2>
+
+<p>Once a clean pulse waveform exists, deriving heart rate is conceptually straightforward: count the peaks over time. Each peak marks one cardiac cycle, and the number of peaks per minute is the heart rate. The real subtlety lies in measuring the interval between consecutive beats with enough precision to study its variation.</p>
+
+<p>The spacing between successive heartbeats is never perfectly constant. It lengthens and shortens by small amounts, breath by breath and moment by moment, under the influence of the autonomic nervous system. This beat-to-beat variation is heart-rate variability, or HRV, and it has become one of the most watched signals in consumer wellness because it offers an indirect window onto the balance between the body's stress and recovery systems.</p>
+
+<h3>The precision problem</h3>
+
+<p>Measuring HRV from PPG demands timing accuracy on the order of milliseconds, because the variations being studied are themselves small. A clinical electrocardiogram detects the sharp electrical spike of each heartbeat and can time beats very precisely. PPG instead detects a smooth, rounded optical pulse whose peak is inherently less crisp, and which arrives slightly after the electrical event as the pressure wave travels to the wrist. Careful devices therefore measure HRV during still periods — typically overnight — when motion is minimal and the pulse shape is most stable, and they treat the result as a well-correlated proxy rather than an identical substitute for electrocardiogram-derived variability.</p>
+
+<div class="article-divider"></div>
+
+<h2>5. The Signal-Processing Challenge</h2>
+
+<p>The clean waveform described so far is an idealisation. In the real world the raw optical signal is buried under interference, and recovering a trustworthy pulse is the hardest part of the whole enterprise. Three sources of trouble dominate.</p>
+
+<h3>Motion, ambient light and perfusion</h3>
+
+<p>Motion is the largest. When the wrist moves, the sensor shifts against the skin, tissue compresses, and blood sloshes in ways unrelated to the heartbeat. These movements can produce fluctuations far larger than the true pulse, and worse, rhythmic motion such as running can masquerade as a plausible heart rhythm. Ambient light is the second: sunlight or lamplight leaking into the detector adds a spurious signal that must be rejected. The third is low perfusion — when the skin is cold, or the vessels are constricted, there is simply less pulsing blood to modulate the light, and the signal grows faint.</p>
+
+<p>To fight these, devices combine optical and computational defences. Sensor housings are designed to block stray light and maintain steady contact. Detectors sample the signal with the LEDs briefly off to measure and subtract ambient light. And crucially, a separate motion sensor — an accelerometer — records how the wrist is moving, so algorithms can recognise and remove the motion-induced components from the optical signal. This last technique, using the accelerometer as a reference for what to cancel, is one of the most important advances in wrist-based sensing.</p>
+
+<div class="article-stats">
+<div class="article-stat"><span class="article-stat-number">~2%</span><span class="article-stat-label">Typical share of the PPG signal carried by the pulsing arterial blood</span></div>
+<div class="article-stat"><span class="article-stat-number">~1 ms</span><span class="article-stat-label">Timing precision needed to resolve beat-to-beat variability</span></div>
+<div class="article-stat"><span class="article-stat-number">3</span><span class="article-stat-label">Chief adversaries of a clean reading: motion, ambient light, low perfusion</span></div>
+</div>
+
+<div class="article-divider"></div>
+
+<h2>6. Accuracy, Skin Tone and Honest Limits</h2>
+
+<p>No account of PPG is complete without a frank discussion of accuracy. These sensors are wellness instruments, not medical devices, and the distinction is not marketing caution — it reflects genuine physical constraints.</p>
+
+<p>One well-documented consideration is skin tone. Melanin, the pigment that gives skin its colour, absorbs light — and it absorbs green and, to a lesser degree, red light. In more pigmented skin, more of the emitted light is absorbed by melanin before it ever reaches the blood vessels, weakening the pulse signal that returns to the detector. Studies have found that this can reduce signal quality and, in some conditions, affect the reliability of readings across skin tones. Responsible manufacturers address this with brighter and more varied light sources, multiple detectors and adaptive algorithms, but it remains a real factor that the field continues to work on, and honesty about it matters.</p>
+
+<h3>Wellness versus clinical measurement</h3>
+
+<p>Other limits are inherent. Wrist perfusion varies with temperature and posture. Tattoos over the sensor can absorb light unpredictably. A loose fit lets in stray light and motion. Even under good conditions, a reflective wrist reading cannot match the accuracy of a transmissive fingertip clip or a chest electrocardiogram. This is why a well-designed device frames its numbers as trends and relative changes rather than diagnostic absolutes — a resting heart rate that is rising over weeks is meaningful even if any single reading carries uncertainty.</p>
+
+<div class="article-highlight"><p>The most useful thing a wrist sensor offers is not a single perfect number but a long, consistent record of your own patterns. A measurement that is slightly imprecise but taken thousands of times, always on the same body, reveals change that no one-off reading can.</p></div>
+
+<div class="article-divider"></div>
+
+<h2>7. Turning Signals into Insight</h2>
+
+<p>An individual PPG reading, however clean, is only a data point. The value emerges when many signals are fused and observed over time. This is where sensing becomes insight.</p>
+
+<p>Consider sleep. No single sensor detects sleep directly. Instead, a device blends the slowing and steadying of heart rate, the rise in heart-rate variability that accompanies rest, the stillness reported by the accelerometer, subtle shifts in skin temperature and respiratory rate inferred from the way breathing modulates the pulse, all set against the time of night. Taken together, these signals let algorithms estimate not just whether you are asleep but the texture of that sleep. The same fusion underpins measures of recovery and daily readiness: how far tonight's resting heart rate and variability sit from your own normal tells a richer story than any figure in isolation.</p>
+
+<p>The essential ingredient is a personal baseline. Because healthy values differ enormously between individuals, what matters is not how your numbers compare to a population but how today compares to your own established pattern. A device like Aura Clarus builds this longitudinal baseline quietly over weeks of wear, learning the range that is normal for you so that a meaningful departure can be recognised as such. That patient accumulation — the same body measured again and again — is what converts a stream of imperfect optical readings into a signal worth attending to.</p>
+
+<div class="article-divider"></div>
+
+<h2>8. Where the Wrist Goes Next</h2>
+
+<p>Photoplethysmography has already travelled a long way from its origins as a laboratory curiosity to a sensor worn by hundreds of millions. Its future is likely to be one of refinement and combination rather than a single dramatic leap. Additional wavelengths and multiple detectors promise better performance across skin tones and conditions. Smarter algorithms, increasingly running on the device itself, will separate signal from noise more effectively and extract information — such as respiratory patterns and estimates of vascular behaviour — that today is only beginning to be read from the same optical stream.</p>
+
+<p>The broader trajectory is toward context. A raw number means little; the same number interpreted against your history, your activity and your other signals can mean a great deal. As wearables grow better at that interpretation, and as they pair sensing with thoughtful guidance, their role shifts from displaying data to supporting understanding. The physics at the heart of it remains what it always was — light into skin, light back out, and blood volume written in the difference. What changes is how carefully, and how honestly, we learn to read it.</p>
+
+<p>Understood for what it is, the wrist sensor is a quietly impressive piece of engineering: a way to glimpse the beating cardiovascular system through the skin, without a needle or a wire, thousands of times a day. It will not replace a clinic. But as a patient, personal observer of your own patterns, it offers something a clinic cannot — continuity — and that is worth taking seriously, limits and all.</p>
+
+<p style="color:#86868b; font-size:14px; font-style:italic;">This article is published by IBT Aura Private Limited for educational and informational purposes only. It does not constitute medical advice. Consult a qualified healthcare professional before making any health-related decisions.</p>
+
+  </div>
+  </div>
+
+  <!-- Related Articles -->
+  <section class="related-articles" aria-label="Related articles">
+    <h2 class="related-articles-heading">Related Reading</h2>
+    <div class="related-grid">
+      <a href="article-ecg.html" class="related-card">
+        <img src="assets/images/articles/ecg-hero.jpg" alt="Wearable ECG Technology" class="related-card-img" loading="lazy" />
+        <div class="related-card-body">
+          <p class="related-card-title">Wearable ECG Technology</p>
+        </div>
+      </a>
+      <a href="article-hrv.html" class="related-card">
+        <img src="assets/images/articles/hrv-hero.jpg" alt="Understanding Heart Rate Variability" class="related-card-img" loading="lazy" />
+        <div class="related-card-body">
+          <p class="related-card-title">Understanding Heart Rate Variability</p>
+        </div>
+      </a>
+      <a href="article-spo2.html" class="related-card">
+        <img src="assets/images/articles/spo2-hero.jpg" alt="Understanding Blood Oxygen Saturation" class="related-card-img" loading="lazy" />
+        <div class="related-card-body">
+          <p class="related-card-title">Understanding Blood Oxygen Saturation</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>IBT Aura Private Limited is a company duly incorporated and registered under the Companies Act, 2013, bearing the Corporate Identity Number U26511TN2025PTC182694. The company is incorporated and domiciled in the state of Tamil Nadu, India, with its registered office situated at Plot No. 45, Electrical and Electronics Industrial Estate, Suramangalam, Salem, Tamil Nadu, 636005. IBT Aura Private Limited operates as a private limited entity in full compliance with the applicable provisions of Indian corporate law and is subject to the regulatory framework governing private limited companies in India.</p>
+        <p style="margin-top:12px;">For detailed information about how we handle your data and your rights, please <a href="privacy-policy.html" style="color:#0071e3;text-decoration:none;">visit our Privacy Policy</a>. For the complete terms governing the use of our website and services, please <a href="terms-and-conditions.html" style="color:#0071e3;text-decoration:none;">visit our Terms and Conditions</a>.</p>
+        <p>The company holds a valid and active Permanent Account Number AAICI3341P, issued by the Income Tax Department of India, and duly complies with all applicable direct tax obligations under the Income Tax Act, 1961. IBT Aura Private Limited is further recognized and registered with the Directorate General of Foreign Trade under the Ministry of Commerce and Industry, Government of India, and holds an active Importer Exporter Code bearing the reference AAICI3341P. This registration enables the company to lawfully participate in international trade, including the import and export of goods and services, in accordance with the Foreign Trade Policy of India and other applicable regulations governing cross-border commerce.</p>
+        <p>The company maintains authorized and verified banking relationships and customs compliance infrastructure through its registered Authorized Dealer Code and its primary banking channels maintained with State Bank of India. These arrangements ensure the company's full adherence to export regulations, foreign exchange management guidelines as prescribed under the Foreign Exchange Management Act, 1999, and all applicable financial compliance standards governing international commercial transactions originating from India. The company's banking and financial operations are conducted with transparency, accountability, and strict adherence to all regulatory requirements as mandated by the Reserve Bank of India and other relevant authorities.</p>
+        <p>IBT Aura Private Limited is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable data protection laws and regulations. IBT Aura Private Limited does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company ensures ongoing compliance with applicable data protection standards, frameworks, and regulations as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of IBT Aura Private Limited. These intellectual property assets are protected under applicable Indian laws including the Patents Act, 1970, the Trade Marks Act, 1999, the Copyright Act, 1957, and other relevant statutes, as well as under applicable international intellectual property treaties and conventions to which India is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of IBT Aura Private Limited, is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. IBT Aura Private Limited expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product related details presented on this website are subject to change at any time without prior notice, at the sole discretion of IBT Aura Private Limited. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws, regulations, and rules of the jurisdiction from which you are accessing the website. IBT Aura Private Limited reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+</body>
+</html>
