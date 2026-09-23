@@ -392,13 +392,16 @@
 
   /* ---------------- footer "Cookie Settings" link ------------------- */
   function injectFooterLink() {
-    var legal = document.querySelector('.sfl-legal');
+    var legal = document.querySelector('.af-bottom-nav, .sfl-legal');
     if (!legal || legal.querySelector('[data-cookie-settings]')) return;
+    if (legal.children.length) {
+      legal.appendChild(h('span', { class: 'af-sep', 'aria-hidden': 'true' }, '|'));
+    }
     var b = h('button', {
       type: 'button',
-      class: 'sfl-link acb-footer-link',
+      class: 'af-bottom-link',
       'data-cookie-settings': '1'
-    }, 'Cookie Settings &rsaquo;');
+    }, 'Cookie Settings');
     b.addEventListener('click', scrollTopThenOpen);
     legal.appendChild(b);
   }

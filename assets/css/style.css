@@ -920,62 +920,84 @@ body {
   }
 }
 
-/* ─── Site footer links (About-page docs-grid style) ─────── */
-.site-footer-links {
-  background: #ffffff;
+/* ─── Site footer (grouped columns) ──────────────────────── */
+.site-footer {
   max-width: 1100px;
   margin: 0 auto;
   padding: 4px 40px 44px;
+  font-family: -apple-system, system-ui, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
 }
-.sfl-grid {
+.af-cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0 24px;
+  padding-top: 22px;
+  border-top: 1px solid #d2d2d7;
 }
-.sfl-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 18px 24px 18px 0;
+.af-group + .af-group { margin-top: 26px; }
+.af-head {
+  font-family: -apple-system, system-ui, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #424245;
+  margin: 0 0 9px;
 }
-.sfl-head {
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #1d1d1f;
-  line-height: 1.4;
-}
-.sfl-link {
-  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-size: 14px;
+.af-list { list-style: none; margin: 0; padding: 0; }
+.af-list li { margin: 0 0 8px; }
+.af-list a {
+  font-size: 12px;
   font-weight: 400;
-  color: #0071e3;
+  line-height: 1.5;
+  color: #a1a1a6;
   text-decoration: none;
-  display: inline-block;
   transition: color 0.2s ease;
 }
-.sfl-link:hover { color: #005fcc; }
-.sfl-grid--legal {
-  border-top: 1px solid #ececec;
-  margin-top: 12px;
-  padding-top: 6px;
+.af-list a:hover { color: #6e6e73; text-decoration: underline; }
+
+.af-note {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #a1a1a6;
+  margin: 30px 0 0;
 }
-.sfl-legal {
+.af-note a { color: #0071e3; text-decoration: none; }
+.af-note a:hover { text-decoration: underline; }
+
+.af-bottom {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px 28px;
-  margin-top: 6px;
-  padding-top: 20px;
-  border-top: 1px solid #ececec;
+  gap: 8px 0;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #d2d2d7;
+}
+.af-copy { font-size: 12px; line-height: 1.5; color: #424245; margin-right: 24px; }
+.af-bottom-nav { display: inline-flex; align-items: center; flex-wrap: wrap; }
+.af-bottom-link {
+  font-size: 12px; line-height: 1.5; color: #424245; text-decoration: none;
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-family: inherit; -webkit-appearance: none; appearance: none;
+}
+.af-bottom-link:hover { color: #1d1d1f; text-decoration: underline; }
+.af-bottom-link:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+.af-sep { color: #a1a1a6; padding: 0 10px; font-size: 12px; line-height: 1.5; }
+.af-region { margin-left: auto; font-size: 12px; line-height: 1.5; color: #424245; }
+
+@media (max-width: 1024px) {
+  .af-cols { grid-template-columns: repeat(3, 1fr); gap: 26px 24px; }
 }
 @media (max-width: 768px) {
-  .site-footer-links { padding: 4px 24px 36px; }
-  .sfl-grid { grid-template-columns: 1fr; gap: 0; }
-  .sfl-item { padding: 16px 0; border-bottom: 1px solid #e8e8ed; }
-  .sfl-item:last-child { border-bottom: none; }
+  .site-footer { padding: 4px 24px 36px; }
+  .af-cols { grid-template-columns: repeat(2, 1fr); gap: 24px 20px; }
+  .af-region { margin-left: 0; width: 100%; }
 }
 @media (max-width: 480px) {
-  .site-footer-links { padding: 4px 16px 28px; }
+  .site-footer { padding: 4px 16px 28px; }
+  .af-cols { grid-template-columns: 1fr; gap: 22px 0; }
+  .af-bottom { gap: 6px 0; }
+  .af-copy { margin-right: 0; width: 100%; }
 }
 
 /* ─── Cookie consent — "Manage cookies" link + popup ─────── */
