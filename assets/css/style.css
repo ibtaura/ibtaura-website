@@ -955,6 +955,11 @@ body {
   transition: color 0.2s ease;
 }
 .sfl-link:hover { color: #005fcc; }
+.sfl-grid--legal {
+  border-top: 1px solid #ececec;
+  margin-top: 12px;
+  padding-top: 6px;
+}
 .sfl-legal {
   display: flex;
   flex-wrap: wrap;
