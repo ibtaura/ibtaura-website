@@ -14,7 +14,5 @@
 /blog/*                     /articles.html          301
 
 # Old company pages → About
-/careers                    /about.html             301
-/careers.html               /about.html             301
 /investor-relations         /about.html             301
 /investor-relations.html    /about.html             301

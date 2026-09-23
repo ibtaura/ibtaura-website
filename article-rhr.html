@@ -15,7 +15,7 @@
 
   <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
   <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/css/style.css?v=17" />
+  <link rel="stylesheet" href="assets/css/style.css?v=25" />
   <style>
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -654,14 +654,24 @@
     </div>
   </footer>
 
-  <!-- Footer quick-nav -->
-  <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="index.html">Home<span class="fn-arrow">&rsaquo;</span></a>
-    <a href="aura-clarus-app.html">Aura Clarus App<span class="fn-arrow">&rsaquo;</span></a>
-    <a href="aura-clarus-desktop.html">Aura Clarus Desktop<span class="fn-arrow">&rsaquo;</span></a>
-    <a href="newsroom.html">Newsroom<span class="fn-arrow">&rsaquo;</span></a>
-    <a href="data-room.html">Data Room<span class="fn-arrow">&rsaquo;</span></a>
-    <a href="kickstarter.html">Kickstarter<span class="fn-arrow">&rsaquo;</span></a>
+  <!-- Site footer links -->
+  <nav class="site-footer-links" aria-label="Site navigation">
+    <div class="sfl-grid">
+      <div class="sfl-item"><span class="sfl-head">Overview</span><a href="index.html" class="sfl-link">Home &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Mobile App</span><a href="aura-clarus-app.html" class="sfl-link">Aura Clarus App &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Desktop App</span><a href="aura-clarus-desktop.html" class="sfl-link">Aura Clarus Desktop &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Health Library</span><a href="articles.html" class="sfl-link">Articles &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Company News</span><a href="newsroom.html" class="sfl-link">Newsroom &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Our Company</span><a href="about.html" class="sfl-link">About &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Investors</span><a href="data-room.html" class="sfl-link">Data Room &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Campaign</span><a href="kickstarter.html" class="sfl-link">Kickstarter &rsaquo;</a></div>
+      <div class="sfl-item"><span class="sfl-head">Join Us</span><a href="careers.html" class="sfl-link">Careers &rsaquo;</a></div>
+    </div>
+    <div class="sfl-legal">
+      <a href="privacy-policy.html" class="sfl-link">Privacy Policy &rsaquo;</a>
+      <a href="terms-and-conditions.html" class="sfl-link">Terms and Conditions &rsaquo;</a>
+      <a href="vaccination-policy.html" class="sfl-link">Vaccination Policy &rsaquo;</a>
+    </div>
   </nav>
 
 
@@ -673,5 +683,8 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
+  <!-- Cookie consent + analytics -->
+  <script src="assets/js/analytics-config.js"></script>
+  <script src="assets/js/consent.js" defer></script>
 </body>
 </html>
