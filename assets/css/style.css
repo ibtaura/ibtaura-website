@@ -919,3 +919,38 @@ body {
     padding: 0 16px;
   }
 }
+
+/* ─── Footer quick-nav (bottom redirect links) ───────────── */
+.footer-nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+}
+.footer-nav a {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0071e3;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease;
+}
+.footer-nav a:hover { color: #005fcc; }
+.footer-nav a .fn-arrow {
+  font-size: 13px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.footer-nav a:hover .fn-arrow { transform: translateX(2px); }
+@media (max-width: 768px) {
+  .footer-nav { padding: 0 24px 40px; gap: 10px 22px; }
+}
+@media (max-width: 480px) {
+  .footer-nav { padding: 0 16px 32px; gap: 9px 18px; }
+}

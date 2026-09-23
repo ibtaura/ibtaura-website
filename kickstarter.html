@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="theme-color" content="#f5f5f7" />
-  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
   <meta name="color-scheme" content="light only" />
   <meta name="supported-color-schemes" content="light only" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>August 2026 — Newsroom | IBT Aura</title>
-  <meta name="description" content="IBT Aura August 2026 company updates — backend optimisation and finalisation, desktop app design refresh, a new CAD model, a launched YouTube channel, and an updated PCB design." />
-  <meta name="keywords" content="IBT Aura newsroom, August 2026 updates, Aura Clarus, company updates, startup progress, IBT Aura fundraising" />
+  <title>Kickstarter — IBT Aura | Campaign Documents</title>
+  <meta name="description" content="Aura Clarus Kickstarter campaign documents — the backer agreement, refund and shipping policies, wellness disclaimers, data-privacy statements, and company proof, published for transparency ahead of launch." />
+  <meta name="keywords" content="Aura Clarus Kickstarter, campaign documents, backer agreement, refund policy, wellness device, IBT Aura, Adarna Inc" />
   <meta name="author" content="IBT Aura Private Limited" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="canonical" href="https://www.ibtaura.com/newsroom-august-2026.html" />
+  <link rel="canonical" href="https://www.ibtaura.com/kickstarter.html" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_IN" />
-  <meta property="og:title" content="August 2026 — Newsroom | IBT Aura" />
-  <meta property="og:description" content="IBT Aura August 2026 company updates — backend optimisation and finalisation, desktop app design refresh, a new CAD model, a launched YouTube channel, and an updated PCB design." />
-  <meta property="og:url" content="https://www.ibtaura.com/newsroom-august-2026.html" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Kickstarter — IBT Aura | Campaign Documents" />
+  <meta property="og:description" content="Aura Clarus Kickstarter campaign documents, published for transparency ahead of launch." />
+  <meta property="og:url" content="https://www.ibtaura.com/kickstarter.html" />
   <meta property="og:site_name" content="IBT Aura" />
   <meta property="og:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="August 2026 — Newsroom | IBT Aura" />
-  <meta name="twitter:description" content="IBT Aura August 2026 company updates — backend optimisation and finalisation, desktop app design refresh, a new CAD model, a launched YouTube channel, and an updated PCB design." />
+  <meta name="twitter:title" content="Kickstarter — IBT Aura | Campaign Documents" />
+  <meta name="twitter:description" content="Aura Clarus Kickstarter campaign documents, published for transparency ahead of launch." />
   <meta name="twitter:image" content="https://www.ibtaura.com/assets/images/aura-clarus-image-02.png" />
 
   <script type="application/ld+json">
@@ -36,17 +35,29 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ibtaura.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Newsroom", "item": "https://www.ibtaura.com/newsroom.html" },
-        { "@type": "ListItem", "position": 3, "name": "August 2026", "item": "https://www.ibtaura.com/newsroom-august-2026.html" }
+        { "@type": "ListItem", "position": 2, "name": "Kickstarter", "item": "https://www.ibtaura.com/kickstarter.html" }
       ]
     },
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "IBT Aura Private Limited",
-      "alternateName": ["IBT Aura", "ibtaura", "Aura Clarus"],
-      "url": "https://www.ibtaura.com",
-      "logo": "https://www.ibtaura.com/assets/images/aura-favicon.svg"
+      "@type": "CollectionPage",
+      "name": "Kickstarter — IBT Aura",
+      "description": "Aura Clarus Kickstarter campaign documents covering the deal and the money, delivery, health and regulatory, data privacy, company proof, and community.",
+      "url": "https://www.ibtaura.com/kickstarter.html",
+      "inLanguage": "en",
+      "isPartOf": { "@type": "WebSite", "name": "IBT Aura", "url": "https://www.ibtaura.com" },
+      "publisher": { "@type": "Organization", "name": "IBT Aura Private Limited", "url": "https://www.ibtaura.com" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "The Deal & The Money" },
+          { "@type": "ListItem", "position": 2, "name": "Delivery & After-Sale" },
+          { "@type": "ListItem", "position": 3, "name": "Health, Safety & Regulatory" },
+          { "@type": "ListItem", "position": 4, "name": "Data Privacy & Security" },
+          { "@type": "ListItem", "position": 5, "name": "Company & Product Proof" },
+          { "@type": "ListItem", "position": 6, "name": "Community & Responsibility" }
+        ]
+      }
     }
   ]
   </script>
@@ -64,7 +75,26 @@
     .navbar { background: rgba(244,245,245,1); }
     .navbar.scrolled { background: rgba(244,245,245,0.45); }
 
-    /* ─── Update Card (compact: icon + heading + short desc + CTA) ── */
+    /* ─── Data Room container ──────────────────────────── */
+    .dataroom-container {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 66px auto 0;
+    }
+
+    /* ─── Cards Grid ───────────────────────────────────── */
+    .dataroom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    /* ─── Each section: card + text below ──────────────── */
+    .dataroom-section {
+      display: flex;
+      flex-direction: column;
+    }
+
     .update-card {
       border-radius: 22px;
       overflow: hidden;
@@ -75,7 +105,7 @@
       justify-content: center;
       text-align: center;
       padding: 56px 40px;
-      min-height: 615px;
+      min-height: 420px;
     }
 
     .update-icon {
@@ -97,12 +127,12 @@
 
     .update-desc {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 400;
       color: #6e6e73;
-      line-height: 1.5;
+      line-height: 1.45;
       margin: 0 0 24px;
-      max-width: 480px;
+      max-width: 420px;
     }
 
     .update-btn {
@@ -133,45 +163,12 @@
       fill: currentColor;
     }
 
-    /* ─── Feature sections — full-width image + text below ── */
-    .desktop-feature {
-      max-width: 1100px;
-      width: calc(100% - 24px);
-      margin: 12px auto 0;
-    }
-
-    .desktop-feature-card {
-      border-radius: 22px;
-      overflow: hidden;
-      background: #F4F5F5;
-    }
-
-    .desktop-feature-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Contained image variant — card keeps full height, image renders smaller inside */
-    .desktop-feature-card.img-contain {
-      height: 615px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .desktop-feature-card.img-contain img {
-      width: auto;
-      max-width: 82%;
-      max-height: 440px;
-      object-fit: contain;
-    }
-
-    .desktop-feature-text {
+    /* ─── Text below card ─────────────────────────────── */
+    .dataroom-text {
       padding: 10px 8px 14px;
     }
 
-    .desktop-feature-text h2 {
+    .dataroom-text h2 {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 15px;
       font-weight: 600;
@@ -179,7 +176,7 @@
       margin: 0 0 4px;
     }
 
-    .desktop-feature-text p {
+    .dataroom-text p {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 14px;
       font-weight: 400;
@@ -188,11 +185,11 @@
       margin: 0;
     }
 
-    /* ─── August Report card ───────────────────────────────── */
+    /* ─── Report Card ─────────────────────────────────── */
     .desktop-beta-card {
       max-width: 1100px;
       width: calc(100% - 24px);
-      margin: 12px auto 0;
+      margin: 16px auto 0;
       border-radius: 22px;
       overflow: hidden;
       background: #F4F5F5;
@@ -244,7 +241,7 @@
       background: #0064CC;
     }
 
-    /* ─── Footer ──────────────────────────────────────────── */
+    /* ─── Footer ──────────────────────────────────────── */
     .footer-legal-section {
       position: relative;
       z-index: 10;
@@ -256,39 +253,61 @@
     }
     .legal-block p { color: #a1a1a6; font-size: 12px; }
 
-    /* ─── Responsive ─────────────────────────────────────── */
+    /* ─── Responsive ─────────────────────────────────── */
     @media (max-width: 768px) {
-      .update-card { padding: 40px 24px; min-height: 460px; }
-      .update-heading { font-size: 24px; }
-      .update-desc { font-size: 14px; }
-      .desktop-feature { width: calc(100% - 16px); }
-      .desktop-feature-card { border-radius: 18px; }
-      .desktop-feature-card.img-contain { height: 460px; }
-      .desktop-feature-card.img-contain img { max-height: 340px; max-width: 88%; }
-      .desktop-feature-text h2 { font-size: 14px; }
-      .footer-legal-section { padding: 36px 24px 32px; }
+      .dataroom-container {
+        width: calc(100% - 16px);
+        margin-top: 56px;
+      }
+      .dataroom-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .update-card {
+        padding: 40px 24px;
+        min-height: 360px;
+      }
+      .update-heading {
+        font-size: 24px;
+      }
+      .update-desc {
+        font-size: 14px;
+      }
+      .footer-legal-section {
+        padding: 36px 24px 32px;
+      }
     }
 
     @media (max-width: 480px) {
-      .update-card { padding: 32px 20px; min-height: 380px; }
-      .update-heading { font-size: 22px; }
-      .update-desc { font-size: 13px; margin-bottom: 20px; }
-      .desktop-feature { width: calc(100% - 12px); }
-      .desktop-feature-card { border-radius: 16px; }
-      .desktop-feature-card.img-contain { height: 380px; }
-      .desktop-feature-card.img-contain img { max-height: 280px; max-width: 90%; }
-      .desktop-feature-text h2 { font-size: 13px; }
-      .desktop-feature-text p { font-size: 13px; }
-      .footer-legal-section { padding: 28px 16px 24px; }
+      .dataroom-container {
+        width: calc(100% - 12px);
+        margin-top: 48px;
+      }
+      .update-card {
+        padding: 32px 20px;
+        min-height: 320px;
+      }
+      .update-heading {
+        font-size: 22px;
+      }
+      .update-desc {
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+      .footer-legal-section {
+        padding: 28px 16px 24px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Announcement Bar -->
   <div class="announcement-bar">
     <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
   </div>
 
+  <!-- Navigation -->
   <header class="navbar">
     <div class="navbar-inner">
       <nav class="nav-links">
@@ -297,86 +316,131 @@
         <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
         <a href="newsroom.html" class="nav-link">Newsroom</a>
         <a href="data-room.html" class="nav-link">Data Room</a>
-        <a href="kickstarter.html" class="nav-link">Kickstarter</a>
+        <a href="kickstarter.html" class="nav-link active">Kickstarter</a>
       </nav>
     </div>
   </header>
 
-  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">August 2026 — Newsroom | IBT Aura</h1>
+  <!-- SEO heading -->
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Aura Clarus Kickstarter Campaign Documents — Adarna Inc.</h1>
 
-  <!-- Section 1 — Backend -->
-  <div class="desktop-feature" style="margin-top:66px;">
-    <div class="update-card">
-      <img src="assets/images/Pages.png" alt="Backend" class="update-icon" />
-      <h2 class="update-heading">Backend</h2>
-      <p class="update-desc">Optimised and finalised the entire backend, locking in the stable foundation that powers every part of Aura Clarus.</p>
-      <a href="assets/docs/ibt-aura-update-01-backend-finalised.pdf" download class="update-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
-        Download PDF
-      </a>
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Backend</h2>
-      <p>This month we brought the backend to completion, moving it from active development into an optimised, finalised state that now serves as the stable technical foundation beneath everything Aura Clarus does. The work focused as much on optimisation as on finishing, tightening how data is processed and served so that the system runs efficiently and predictably rather than simply working, which is exactly the kind of groundwork that pays off as usage grows. With the backend finalised, the most important architectural questions are settled, and the rest of the product, from the mobile and desktop apps to the hardware, can now build against one dependable, well-understood system instead of a moving target. Reaching this milestone means our infrastructure is no longer a work in progress but a committed, production-ready spine, and it clears the way for us to spend the coming months on the experiences that sit on top of it rather than the plumbing underneath.</p>
+  <!-- Kickstarter Content -->
+  <div class="dataroom-container">
+
+    <div class="dataroom-grid">
+
+      <!-- The Deal &amp; The Money -->
+      <div class="dataroom-section">
+        <div class="update-card">
+          <img src="assets/images/Pages.png" alt="The Deal &amp; The Money" class="update-icon" />
+          <h2 class="update-heading">The Deal &amp; The Money</h2>
+          <p class="update-desc">The pledge contract, refund terms, where the money goes, and an honest account of the risks.</p>
+          <a href="assets/docs/kickstarter-1-deal-and-money.zip" download class="update-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+            Download ZIP
+          </a>
+        </div>
+        <div class="dataroom-text">
+          <h2>The Deal &amp; The Money</h2>
+          <p>The four documents that define the financial relationship between you and Adarna Inc. — the Backer Agreement setting out what a pledge is and is not, the Refund &amp; Cancellation Policy, a plain Use of Funds breakdown showing where every dollar goes, and a candid Risks &amp; Challenges disclosure of what could go wrong and how we would handle it.</p>
+        </div>
+      </div>
+
+      <!-- Delivery &amp; After-Sale -->
+      <div class="dataroom-section">
+        <div class="update-card">
+          <img src="assets/images/Pages.png" alt="Delivery &amp; After-Sale" class="update-icon" />
+          <h2 class="update-heading">Delivery &amp; After-Sale</h2>
+          <p class="update-desc">How and when your reward reaches you, and how it is supported once it does.</p>
+          <a href="assets/docs/kickstarter-2-delivery-and-after-sale.zip" download class="update-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+            Download ZIP
+          </a>
+        </div>
+        <div class="dataroom-text">
+          <h2>Delivery &amp; After-Sale</h2>
+          <p>Everything about getting the product into your hands and standing behind it: the United-States-only Shipping &amp; Fulfilment Policy, a stage-by-stage Delivery Timeline with go/no-go gates, and a one-year Warranty &amp; Product Support Policy covering repair, replacement and dead-on-arrival units.</p>
+        </div>
+      </div>
+
+      <!-- Health, Safety &amp; Regulatory -->
+      <div class="dataroom-section">
+        <div class="update-card">
+          <img src="assets/images/Pages.png" alt="Health, Safety &amp; Regulatory" class="update-icon" />
+          <h2 class="update-heading">Health, Safety &amp; Regulatory</h2>
+          <p class="update-desc">What Aura Clarus is for, how its metrics work, and the certifications ahead.</p>
+          <a href="assets/docs/kickstarter-3-health-safety-regulatory.zip" download class="update-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+            Download ZIP
+          </a>
+        </div>
+        <div class="dataroom-text">
+          <h2>Health, Safety &amp; Regulatory</h2>
+          <p>The documents that keep Aura Clarus clearly on the wellness side of the line: the Intended Use &amp; Medical Device Disclaimer, a Measurement Methodology &amp; Limitations statement explaining how each metric is derived and its honest limits, and a Certification &amp; Compliance Roadmap tracking FCC, Bluetooth, battery and safety testing.</p>
+        </div>
+      </div>
+
+      <!-- Data Privacy &amp; Security -->
+      <div class="dataroom-section">
+        <div class="update-card">
+          <img src="assets/images/Pages.png" alt="Data Privacy &amp; Security" class="update-icon" />
+          <h2 class="update-heading">Data Privacy &amp; Security</h2>
+          <p class="update-desc">What we collect, how it is protected, and the control you keep over it.</p>
+          <a href="assets/docs/kickstarter-4-data-privacy-security.zip" download class="update-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+            Download ZIP
+          </a>
+        </div>
+        <div class="dataroom-text">
+          <h2>Data Privacy &amp; Security</h2>
+          <p>How your health data is handled: a Health Data Handling Statement, a dedicated Consumer Health Data Privacy Policy meeting US state health-privacy law, and a Security Overview describing the encryption, access controls and recovery behind the product. We do not sell your data.</p>
+        </div>
+      </div>
+
+      <!-- Company &amp; Product Proof -->
+      <div class="dataroom-section">
+        <div class="update-card">
+          <img src="assets/images/Pages.png" alt="Company &amp; Product Proof" class="update-icon" />
+          <h2 class="update-heading">Company &amp; Product Proof</h2>
+          <p class="update-desc">Who is behind the campaign, how the product is made, and what it is.</p>
+          <a href="assets/docs/kickstarter-5-company-and-product.zip" download class="update-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+            Download ZIP
+          </a>
+        </div>
+        <div class="dataroom-text">
+          <h2>Company &amp; Product Proof</h2>
+          <p>The evidence behind the campaign: a Company &amp; Legal Entity Disclosure identifying Adarna Inc. and its team, a Manufacturing &amp; Production Plan describing how the device moves from prototype to production, and a Product Specification Sheet with every figure marked confirmed or target.</p>
+        </div>
+      </div>
+
+      <!-- Community &amp; Responsibility -->
+      <div class="dataroom-section">
+        <div class="update-card">
+          <img src="assets/images/Pages.png" alt="Community &amp; Responsibility" class="update-icon" />
+          <h2 class="update-heading">Community &amp; Responsibility</h2>
+          <p class="update-desc">The answers, the ground rules, and our commitments to accessibility and the planet.</p>
+          <a href="assets/docs/kickstarter-6-community-and-responsibility.zip" download class="update-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+            Download ZIP
+          </a>
+        </div>
+        <div class="dataroom-text">
+          <h2>Community &amp; Responsibility</h2>
+          <p>The documents that shape the community around the campaign: a plain Campaign FAQ, a Backer Community Code of Conduct, an Accessibility Statement, and a Sustainability &amp; Materials Statement setting out modest, honest environmental commitments.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Section 2 — Desktop Design -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card img-contain">
-      <img src="assets/images/Aug Desktop design change.png" alt="Desktop Design" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Desktop Design</h2>
-      <p>This month the Aura Clarus desktop app went through a significant design change, reworking how the whole experience looks and feels so that it lands with the clarity and calm we want users to sense the moment they open it. Rather than a surface reskin, the update rethinks layout, hierarchy, and flow across the app, making the important things easier to find and the everyday interactions feel lighter, more considered, and more distinctly ours. The refreshed design also pulls the desktop experience into tighter alignment with the rest of the product, so that moving between devices feels like staying inside one coherent Aura Clarus rather than switching between different apps. With this design change in place, the desktop app looks and feels much closer to the finished product we are building toward, and it gives us a confident visual foundation to develop against as we push the desktop experience forward toward its beta and beyond.</p>
-    </div>
-  </div>
-
-  <!-- Section 3 — CAD Model -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card img-contain">
-      <img src="assets/images/Aug CAD design change.png" alt="CAD Model" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>CAD Model</h2>
-      <p>On the hardware side, we updated our CAD model with a new design that captures the latest thinking on how the physical device should look, fit, and be built. A CAD model is far more than a picture; it is the precise three-dimensional definition of every surface, tolerance, and part relationship, and updating it means our understanding of the product's form has matured to the point where it can be committed to exact geometry. This new model reflects real refinements to the shape and structure of the device, bringing the industrial design closer to something both beautiful to hold and genuinely manufacturable at scale. With an updated CAD model in hand, we have a single accurate source of truth for the hardware that prototyping, tooling, and manufacturing conversations can all be driven from, keeping the physical product moving forward in lockstep with the electronics and the software.</p>
-    </div>
-  </div>
-
-  <!-- Section 4 — YouTube -->
-  <div class="desktop-feature">
-    <div class="update-card">
-      <img src="assets/images/youtube-icon.png" alt="YouTube" class="update-icon" />
-      <h2 class="update-heading">YouTube</h2>
-      <p class="update-desc">Launched our official YouTube channel for tutorials, a podcast, and everything leading up to product launch.</p>
-      <a href="https://youtube.com/@IBTAura25" target="_blank" rel="noopener" class="update-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5 3a.75.75 0 0 1 0 1.5H4.75a.25.25 0 0 0-.25.25v6.5c0 .138.112.25.25.25h6.5a.25.25 0 0 0 .25-.25V9.5a.75.75 0 0 1 1.5 0v1.75A1.75 1.75 0 0 1 11.25 13h-6.5A1.75 1.75 0 0 1 3 11.25v-6.5A1.75 1.75 0 0 1 4.75 3H6.5Z"/><path d="M9.75 3a.75.75 0 0 0 0 1.5h1.69L7.22 8.72a.75.75 0 1 0 1.06 1.06L12.5 5.56v1.69a.75.75 0 0 0 1.5 0V3.75A.75.75 0 0 0 13.25 3H9.75Z"/></svg>
-        Visit Channel
-      </a>
-    </div>
-    <div class="desktop-feature-text">
-      <h2>YouTube</h2>
-      <p>This month we launched our official IBT Aura YouTube channel, giving the company a proper home for video and a direct, human way to bring people along on the journey. The channel is built around three things: clear tutorials that help users get the most out of Aura Clarus, a podcast where we share deeper conversations about health, technology, and the story behind what we are building, and the videos that will carry our product launch to the world when the time comes. Video lets us show rather than tell, whether that means walking through how a feature works, opening up the thinking behind a decision, or simply letting people see the faces and the values behind the product. Starting the channel now, ahead of launch, means we can build an audience and a rhythm of content early, so that by the time Aura Clarus is in people's hands there is already a familiar, trusted place for them to learn, watch, and follow along.</p>
-    </div>
-  </div>
-
-  <!-- Section 5 — PCB Design -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card img-contain">
-      <img src="assets/images/Aug PCB update.png" alt="PCB Design" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>PCB Design</h2>
-      <p>We also updated the PCB with a new model this month, advancing the board design a further step as our understanding of the electronics continues to sharpen. Each revision of the PCB brings the layout, routing, and component placement closer to a clean, reliable, production-ready state, and this new model folds in the latest refinements to how the board is organised and how its parts fit together. Keeping the PCB moving in step with the updated CAD model matters, because the board and the enclosure have to agree precisely on space, mounting, and fit for the device to come together as one integrated product rather than two designs forced to coexist. With this updated PCB model in place, the electronics stay aligned with the hardware's physical form, and the whole device edges closer to the point where design gives way to prototyping and, ultimately, to building the real thing.</p>
-    </div>
-  </div>
-
-  <!-- August Report Card -->
+  <!-- Download Complete Package -->
   <div class="desktop-beta-card">
-    <h3>August Report</h3>
-    <p>Download the detailed report.</p>
-    <a href="assets/docs/ibt-aura-august-2026-monthly-update.pdf" download class="desktop-notify-btn">Download Report</a>
+    <h3>All Campaign Documents</h3>
+    <p>Download the complete Aura Clarus Kickstarter documentation package — all six sets, twenty documents, in a single file.</p>
+    <a href="assets/docs/kickstarter-all-documents.zip" download class="desktop-notify-btn">Download Complete Package</a>
   </div>
+
 
   <!-- Footer -->
   <footer class="footer-legal-section" id="contact">
@@ -407,11 +471,22 @@
   </nav>
 
 
+  <!-- Lenis smooth scroll -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    var lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
   </script>
 </body>
