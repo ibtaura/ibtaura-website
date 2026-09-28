@@ -1,12 +1,9 @@
-# robots.txt — IBT Aura Private Limited
-# https://www.ibtaura.com
+# robots.txt — Adarna Inc. (Aura Clarus)
+# https://adarna.us
 
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://www.ibtaura.com/sitemap.xml
-
-# Disallow documents from indexing (PDFs, etc.)
-User-agent: *
+# Keep downloadable documents (PDFs, etc.) out of the index
 Disallow: /assets/docs/
+
+Sitemap: https://adarna.us/sitemap.xml
