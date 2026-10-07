@@ -203,8 +203,10 @@
 
     .team-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
+      max-width: 730px;
+      margin: 0 auto;
     }
 
     .team-item {
@@ -411,17 +413,6 @@
         </div>
       </div>
 
-      <div class="team-item">
-        <div class="team-img-card">
-          <img src="assets/images/Megavernan.png" alt="Megavarnan Govindaswamy" />
-        </div>
-        <div class="team-desc">
-          <h4>Megavarnan Govindaswamy</h4>
-          <p>Advisor, Adarna Inc.</p>
-        </div>
-      </div>
-
-    </div>
   </div>
 
   <!-- Our Culture -->
@@ -531,45 +522,6 @@
       <button class="doc-modal-close" onclick="hideDocPermission()">Close</button>
     </div>
   </div>
-
-  <!-- Additional Documents Section -->
-  <section class="docs-section">
-    <div class="docs-inner">
-      <div class="docs-grid">
-
-        <div class="doc-item">
-          <span class="doc-source">Ministry of Corporate Affairs</span>
-          <a href="assets/docs/ibt-aura-incorporation.pdf" target="_blank" rel="noopener" class="doc-link">Company Incorporation Certificate &rsaquo;</a>
-        </div>
-
-        <div class="doc-item">
-          <span class="doc-source">Goods and Services Department</span>
-          <a href="assets/docs/gst-ibt-aura.pdf" target="_blank" rel="noopener" class="doc-link">Goods &amp; Services Certificate &rsaquo;</a>
-        </div>
-
-        <div class="doc-item">
-          <span class="doc-source">Directorate General of Foreign Trade</span>
-          <a href="assets/docs/iec-code-ibt-aura.pdf" target="_blank" rel="noopener" class="doc-link">Import &amp; Export Certificate &rsaquo;</a>
-        </div>
-
-        <div class="doc-item">
-          <span class="doc-source">Adarna Inc.</span>
-          <button class="doc-link doc-link--gated" onclick="showDocPermission()">Financial Projection &rsaquo;</button>
-        </div>
-
-        <div class="doc-item">
-          <span class="doc-source">Adarna Inc.</span>
-          <button class="doc-link doc-link--gated" onclick="showDocPermission()">Market Research &rsaquo;</button>
-        </div>
-
-        <div class="doc-item">
-          <span class="doc-source">Adarna Inc.</span>
-          <button class="doc-link doc-link--gated" onclick="showDocPermission()">Financial Projections (FY2026) &rsaquo;</button>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- Investor & Partner FAQ Section -->
   <section class="docs-section faq-section">
