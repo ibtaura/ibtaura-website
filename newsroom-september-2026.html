@@ -7,25 +7,25 @@
   <meta name="color-scheme" content="light only" />
   <meta name="supported-color-schemes" content="light only" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adarna Newsroom — Aura Clarus &amp; Company Updates</title>
-  <meta name="description" content="Read Adarna company updates and the Aura Clarus development archive, including product progress, hardware milestones, and company news." />
+  <title>September 2026 Archive — Adarna Newsroom</title>
+  <meta name="description" content="Adarna&#x27;s September 2026 update: Adarna Inc. formed, aluminium and optical glass frames in manufacturing, adarna.us launched, Kickstarter plans and the 3D model." />
   <meta name="author" content="Adarna Inc." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="canonical" href="https://adarna.us/newsroom" />
+  <link rel="canonical" href="https://adarna.us/newsroom-september-2026" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Adarna Newsroom — Aura Clarus &amp; Company Updates" />
-  <meta property="og:description" content="Read Adarna company updates and the Aura Clarus development archive, including product progress, hardware milestones, and company news." />
-  <meta property="og:url" content="https://adarna.us/newsroom" />
+  <meta property="og:title" content="September 2026 Archive — Adarna Newsroom" />
+  <meta property="og:description" content="Adarna&#x27;s September 2026 update: Adarna Inc. formed, aluminium and optical glass frames in manufacturing, adarna.us launched, Kickstarter plans and the 3D model." />
+  <meta property="og:url" content="https://adarna.us/newsroom-september-2026" />
   <meta property="og:site_name" content="Adarna" />
   <meta property="og:image" content="https://adarna.us/assets/images/aura-clarus-image-02.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Adarna Newsroom — Aura Clarus &amp; Company Updates" />
-  <meta name="twitter:description" content="Read Adarna company updates and the Aura Clarus development archive, including product progress, hardware milestones, and company news." />
+  <meta name="twitter:title" content="September 2026 Archive — Adarna Newsroom" />
+  <meta name="twitter:description" content="Adarna&#x27;s September 2026 update: Adarna Inc. formed, aluminium and optical glass frames in manufacturing, adarna.us launched, Kickstarter plans and the 3D model." />
   <meta name="twitter:image" content="https://adarna.us/assets/images/aura-clarus-image-02.png" />
 
   <script type="application/ld+json">
@@ -45,6 +45,12 @@
           "position": 2,
           "name": "Newsroom",
           "item": "https://adarna.us/newsroom"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "September 2026",
+          "item": "https://adarna.us/newsroom-september-2026"
         }
       ]
     },
@@ -98,83 +104,184 @@
     .navbar { background: rgba(244,245,245,1); }
     .navbar.scrolled { background: rgba(244,245,245,0.45); }
 
-    /* ─── Newsroom container ────────────────────────────── */
-    .newsroom-container {
-      max-width: 1100px;
-      width: calc(100% - 24px);
-      margin: 66px auto 0;
-    }
-
-    /* ─── Month Cards Grid ──────────────────────────────── */
-    .newsroom-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .month-card {
-      background: #F4F5F5;
+    /* ─── Update Card (compact: icon + heading + short desc + CTA) ── */
+    .update-card {
       border-radius: 22px;
       overflow: hidden;
-      text-decoration: none;
+      background: #F4F5F5;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 56px 40px;
-      min-height: 360px;
-      transition: transform 0.3s ease;
+      min-height: 615px;
     }
 
-    .month-card:hover {
-      transform: none;
+    .update-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      margin-bottom: 24px;
     }
 
-    .month-label {
+    .update-heading {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 48px;
-      font-weight: 700;
+      font-size: 28px;
+      font-weight: 600;
       color: #1d1d1f;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      margin: 0 0 4px;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+      margin: 0 0 10px;
     }
 
-    .month-year {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 20px;
-      font-weight: 500;
-      color: #86868b;
-      margin: 0 0 20px;
-    }
-
-    .month-desc {
+    .update-desc {
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 400;
       color: #6e6e73;
       line-height: 1.5;
       margin: 0 0 24px;
-      max-width: 360px;
+      max-width: 480px;
     }
 
-    .month-arrow {
+    .update-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 980px;
+      background: #007AFF;
+      color: #fff;
       font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 15px;
       font-weight: 500;
-      color: #007AFF;
+      text-decoration: none;
+      letter-spacing: 0;
+      transition: background 0.2s ease;
+      cursor: pointer;
+      border: none;
     }
 
-    .month-card-upcoming {
-      cursor: default;
+    .update-btn:hover {
+      background: #005fcc;
     }
 
-    .month-status {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    .update-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ─── Feature sections — full-width image + text below ── */
+    .desktop-feature {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+    }
+
+    .desktop-feature-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .desktop-feature-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Contained image variant — card keeps full height, image renders smaller inside */
+    .desktop-feature-card.img-contain {
+      height: 615px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .desktop-feature-card.img-contain img {
+      width: auto;
+      max-width: 82%;
+      max-height: 440px;
+      object-fit: contain;
+    }
+
+    .desktop-feature-text {
+      padding: 10px 8px 14px;
+    }
+
+    .desktop-feature-text h2 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0 0 4px;
+    }
+
+    .desktop-feature-text p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
       color: #86868b;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ─── September Report card ───────────────────────────────── */
+    .desktop-beta-card {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 56px 40px;
+      gap: 12px;
+    }
+
+    .desktop-beta-card h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .desktop-beta-card p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0 0 12px;
+      max-width: 480px;
+    }
+
+    .desktop-notify-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 28px;
+      border-radius: 980px;
+      background: #007AFF;
+      color: #fff;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .desktop-notify-btn:hover {
+      background: #0064CC;
     }
 
     /* ─── Footer ──────────────────────────────────────────── */
@@ -187,109 +294,145 @@
       max-width: 1100px;
       margin: 40px auto 0;
     }
-    .legal-block p {
-      color: #a1a1a6;
-      font-size: 12px;
-    }
+    .legal-block p { color: #a1a1a6; font-size: 12px; }
 
     /* ─── Responsive ─────────────────────────────────────── */
     @media (max-width: 768px) {
-      .newsroom-container {
-        width: calc(100% - 16px);
-        margin-top: 56px;
-      }
-      .newsroom-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      .month-card {
-        padding: 40px 28px;
-        min-height: 280px;
-      }
-      .month-label {
-        font-size: 40px;
-      }
-      .footer-legal-section {
-        padding: 36px 24px 32px;
-      }
+      .update-card { padding: 40px 24px; min-height: 460px; }
+      .update-heading { font-size: 24px; }
+      .update-desc { font-size: 14px; }
+      .desktop-feature { width: calc(100% - 16px); }
+      .desktop-feature-card { border-radius: 18px; }
+      .desktop-feature-card.img-contain { height: 460px; }
+      .desktop-feature-card.img-contain img { max-height: 340px; max-width: 88%; }
+      .desktop-feature-text h2 { font-size: 14px; }
+      .footer-legal-section { padding: 36px 24px 32px; }
     }
 
     @media (max-width: 480px) {
-      .newsroom-container {
-        width: calc(100% - 12px);
-        margin-top: 48px;
-      }
-      .month-card {
-        padding: 32px 20px;
-        min-height: 240px;
-      }
-      .month-label {
-        font-size: 36px;
-      }
-      .footer-legal-section {
-        padding: 28px 16px 24px;
-      }
+      .update-card { padding: 32px 20px; min-height: 380px; }
+      .update-heading { font-size: 22px; }
+      .update-desc { font-size: 13px; margin-bottom: 20px; }
+      .desktop-feature { width: calc(100% - 12px); }
+      .desktop-feature-card { border-radius: 16px; }
+      .desktop-feature-card.img-contain { height: 380px; }
+      .desktop-feature-card.img-contain img { max-height: 280px; max-width: 90%; }
+      .desktop-feature-text h2 { font-size: 13px; }
+      .desktop-feature-text p { font-size: 13px; }
+      .footer-legal-section { padding: 28px 16px 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Announcement Bar -->
   <div class="announcement-bar">
     <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
   </div>
 
-  <!-- Navigation -->
   <header class="navbar">
     <div class="navbar-inner">
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
         <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
-        <a href="newsroom.html" class="nav-link active">Newsroom</a>
+        <a href="newsroom.html" class="nav-link">Newsroom</a>
         <a href="data-room.html" class="nav-link">Data Room</a>
         <a href="kickstarter.html" class="nav-link">Kickstarter</a>
       </nav>
     </div>
   </header>
 
-  <!-- SEO heading -->
-  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adarna Newsroom — Aura Clarus &amp; Company Updates</h1>
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">September 2026 Archive — Adarna Newsroom</h1>
 
-  <!-- Newsroom Content -->
-  <div class="newsroom-container">
-
-    <div class="newsroom-grid">
-
-      <a href="newsroom-june-2026.html" class="month-card">
-        <p class="month-label">June</p>
-        <p class="month-year">2026</p>
-        <p class="month-desc">Corporate restructuring, 21-month financial projections, website launch, app and desktop development, hardware manufacturing readiness, and Company OS.</p>
-        <span class="month-arrow">View updates &rsaquo;</span>
+  <!-- Section 1 — Company &amp; Funding -->
+  <div class="desktop-feature" style="margin-top:66px;">
+    <div class="update-card">
+      <img src="assets/images/Pages.png" alt="Company and funding update" class="update-icon" />
+      <h2 class="update-heading">Company &amp; Funding</h2>
+      <p class="update-desc">IBT Aura became Adarna Inc., a Delaware C-Corp, with $5,000 raised from family and the MGM partnership ending.</p>
+      <a href="assets/docs/adarna-update-01-company-update.pdf" download class="update-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 0 .75.75h7.5a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 1 1.5 0v1a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 2 13.25v-1a.75.75 0 0 1 .75-.75Z"/></svg>
+        Download PDF
       </a>
-
-      <a href="newsroom-july-2026.html" class="month-card">
-        <p class="month-label">July</p>
-        <p class="month-year">2026</p>
-        <p class="month-desc">Ownership structure, professional-grade PCB design, two new teammates, app and desktop design refinements, 519 confirmed health parameters, and AWS backend.</p>
-        <span class="month-arrow">View updates &rsaquo;</span>
-      </a>
-
-      <a href="newsroom-august-2026.html" class="month-card">
-        <p class="month-label">August</p>
-        <p class="month-year">2026</p>
-        <p class="month-desc">Backend optimisation and finalisation, desktop app design change, a new CAD model, a launched YouTube channel, and an updated PCB design.</p>
-        <span class="month-arrow">View updates &rsaquo;</span>
-      </a>
-
-      <a href="newsroom-september-2026.html" class="month-card">
-        <p class="month-label">September</p>
-        <p class="month-year">2026</p>
-        <p class="month-desc">Adarna Inc. formed as a Delaware C-Corp, family investment, aluminium and optical glass frames in manufacturing, the move to adarna.us, Kickstarter docs, and the Aura Clarus 3D model.</p>
-        <span class="month-arrow">View updates &rsaquo;</span>
-      </a>
-
     </div>
+    <div class="desktop-feature-text">
+      <h2>Company &amp; Funding</h2>
+      <p>This month the company took on a new identity and a new home: IBT Aura is now Adarna Inc., registered as a Delaware C-Corporation and set up as a separate entity, giving us the corporate structure that investors, partners and customers in the United States expect from day one. Alongside that change, we and our venture partner, MGM Investments, have decided to part ways because our visions for the company differ, and the termination of that arrangement is now in process, a decision taken deliberately so that the direction of the company stays clear and unambiguous. To keep momentum through the transition, we raised $5,000 in family investment, a modest but meaningful commitment that funds the immediate work on hardware, manufacturing and the launch ahead. Taken together, these steps leave Adarna with a cleaner structure, a single shared vision and the capital to keep building, and the full details are set out in the company update available to download here.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 — Aluminium Frame -->
+  <div class="desktop-feature">
+    <div class="desktop-feature-card img-contain">
+      <img src="assets/images/Sep Aluminium frame.png" alt="Aura Clarus three-part aluminium frame" />
+    </div>
+    <div class="desktop-feature-text">
+      <h2>Aluminium Frame</h2>
+      <p>The physical form of Aura Clarus moved from design into production this month, as the three-part aluminium frame entered the manufacturing process. The frame is the structural heart of the device, the part that holds the electronics, the glass and the band together and gives the product its feel on the wrist, so committing it to metal is one of the most important steps in turning a finished design into a real object. Making the frame as three separate parts lets each piece be produced to tight tolerances and then brought together into a single, rigid housing for the device. We expect the finished frames to arrive in late October 2026, and once they are in hand they will let us assemble and test complete devices for the first time, moving Aura Clarus another firm step closer to the people who will wear it.</p>
+    </div>
+  </div>
+
+  <!-- Section 3 — Optical Glass -->
+  <div class="desktop-feature">
+    <div class="desktop-feature-card img-contain">
+      <img src="assets/images/Sep Optical glass frame.png" alt="Aura Clarus optical glass frame" />
+    </div>
+    <div class="desktop-feature-text">
+      <h2>Optical Glass</h2>
+      <p>Alongside the aluminium frame, the optical glass frame for Aura Clarus has also entered the manufacturing process this month. The glass is far more than a cover: it sits between the device's optical sensors and the skin, so its clarity and fit directly shape how cleanly the sensors can read the signals that the whole product depends on. Producing it in parallel with the aluminium frame keeps the hardware schedule tight, so the two halves of the enclosure progress together and arrive close to one another rather than one waiting on the other. We expect the optical glass frames in early November 2026, at which point the frame, the glass and the electronics can come together into complete Aura Clarus units, ready for assembly and testing.</p>
+    </div>
+  </div>
+
+  <!-- Section 4 — Website -->
+  <div class="desktop-feature">
+    <div class="update-card">
+      <img src="assets/images/safari-icon.png" alt="Website" class="update-icon" />
+      <h2 class="update-heading">Website</h2>
+      <p class="update-desc">Our website moved from ibtaura.com to adarna.us, the new home for Adarna and Aura Clarus.</p>
+      <a href="https://adarna.us/" target="_blank" rel="noopener" class="update-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5 3a.75.75 0 0 1 0 1.5H4.75a.25.25 0 0 0-.25.25v6.5c0 .138.112.25.25.25h6.5a.25.25 0 0 0 .25-.25V9.5a.75.75 0 0 1 1.5 0v1.75A1.75 1.75 0 0 1 11.25 13h-6.5A1.75 1.75 0 0 1 3 11.25v-6.5A1.75 1.75 0 0 1 4.75 3H6.5Z"/><path d="M9.75 3a.75.75 0 0 0 0 1.5h1.69L7.22 8.72a.75.75 0 1 0 1.06 1.06L12.5 5.56v1.69a.75.75 0 0 0 1.5 0V3.75A.75.75 0 0 0 13.25 3H9.75Z"/></svg>
+        Visit Website
+      </a>
+    </div>
+    <div class="desktop-feature-text">
+      <h2>Website</h2>
+      <p>With the company now operating as Adarna Inc., our website has moved with it, from ibtaura.com to its new address at adarna.us. Everything that lived on the old site has come across, from the Aura Clarus app and desktop pages to the articles, the newsroom, the data room and our policies, so visitors, investors and early users will find the same content under a name that now matches the company behind it. Bringing the domain in line with the company name makes Adarna simpler to find, easier to remember and more credible to anyone meeting us for the first time, whether they arrive from a search, a link or a conversation. From here on, adarna.us is the single official home for Adarna and Aura Clarus, and every future update, launch and announcement will be published there first.</p>
+    </div>
+  </div>
+
+  <!-- Section 5 — Kickstarter -->
+  <div class="desktop-feature">
+    <div class="update-card">
+      <img src="assets/images/safari-icon.png" alt="Kickstarter campaign documents" class="update-icon" />
+      <h2 class="update-heading">Kickstarter</h2>
+      <p class="update-desc">Kickstarter campaign documents are now on our website, with the campaign planned for early December.</p>
+      <a href="https://adarna.us/kickstarter" target="_blank" rel="noopener" class="update-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5 3a.75.75 0 0 1 0 1.5H4.75a.25.25 0 0 0-.25.25v6.5c0 .138.112.25.25.25h6.5a.25.25 0 0 0 .25-.25V9.5a.75.75 0 0 1 1.5 0v1.75A1.75 1.75 0 0 1 11.25 13h-6.5A1.75 1.75 0 0 1 3 11.25v-6.5A1.75 1.75 0 0 1 4.75 3H6.5Z"/><path d="M9.75 3a.75.75 0 0 0 0 1.5h1.69L7.22 8.72a.75.75 0 1 0 1.06 1.06L12.5 5.56v1.69a.75.75 0 0 0 1.5 0V3.75A.75.75 0 0 0 13.25 3H9.75Z"/></svg>
+        View Campaign Docs
+      </a>
+    </div>
+    <div class="desktop-feature-text">
+      <h2>Kickstarter</h2>
+      <p>Our plans for bringing Aura Clarus to its first customers took a concrete step forward this month, as the Kickstarter campaign documents were published on our website. Putting them online in advance means anyone interested in backing the product can read about the campaign, understand what we are building and see how the launch is planned before it opens, rather than meeting all of it for the first time on launch day. Kickstarter is a natural first stage for a product like Aura Clarus, letting the people who believe in it earliest support it directly while giving us real demand to plan manufacturing around. The campaign itself is planned for early December, and until then the documents on our Kickstarter page are the best place to follow what is coming and how to take part.</p>
+    </div>
+  </div>
+
+  <!-- Section 6 — Aura Clarus 3D Model -->
+  <div class="desktop-feature">
+    <div class="desktop-feature-card img-contain">
+      <img src="assets/images/Sep 3D model.png" alt="Aura Clarus 3D model" />
+    </div>
+    <div class="desktop-feature-text">
+      <h2>Aura Clarus 3D Model</h2>
+      <p>The complete 3D model of Aura Clarus is now ready, bringing every part of the product together into a single, detailed digital design for the first time. The model captures the device as a whole, from the outer form a person will see and hold to the way the internal parts sit and fit together, giving us one accurate reference for how Aura Clarus looks and how it is built. Having that unified model matters well beyond the visuals, because manufacturing, assembly and the product imagery on our website and campaign materials are all drawn from it, so everyone working on the product is building from the same picture. With the 3D model finished and the aluminium and glass frames already in production, the design of Aura Clarus is settled and the work is now firmly focused on turning it into real, finished devices.</p>
+    </div>
+  </div>
+
+  <!-- September Report Card -->
+  <div class="desktop-beta-card">
+    <h3>September Report</h3>
+    <p>Download the detailed report.</p>
+    <a href="assets/docs/adarna-september-2026-monthly-update.pdf" download class="desktop-notify-btn">Download Report</a>
   </div>
 
   <!-- Footer -->
@@ -406,22 +549,11 @@
   </nav>
 
 
-  <!-- Lenis smooth scroll -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    var lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
   <!-- Cookie consent + analytics -->
