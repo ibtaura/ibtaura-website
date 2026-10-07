@@ -66,6 +66,50 @@
       display: block;
     }
 
+    /* ─── Animated gradient header (replaces the hero photo) ─── */
+    .policy-gradient {
+      position: relative;
+      overflow: hidden;
+      background: var(--pg-base);
+    }
+    .policy-gradient::before,
+    .policy-gradient::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      will-change: transform;
+      pointer-events: none;
+    }
+    .policy-gradient::before {
+      background:
+        radial-gradient(38% 48% at 28% 32%, var(--pg-1) 0%, transparent 70%),
+        radial-gradient(42% 52% at 74% 30%, var(--pg-2) 0%, transparent 70%),
+        radial-gradient(48% 58% at 52% 78%, var(--pg-3) 0%, transparent 72%);
+      animation: pg-drift-a 26s ease-in-out infinite alternate;
+    }
+    .policy-gradient::after {
+      background:
+        radial-gradient(34% 44% at 70% 72%, var(--pg-4) 0%, transparent 70%),
+        radial-gradient(36% 46% at 24% 70%, var(--pg-2) 0%, transparent 70%);
+      opacity: 0.8;
+      animation: pg-drift-b 34s ease-in-out infinite alternate;
+    }
+    @keyframes pg-drift-a {
+      0%   { transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1); }
+      100% { transform: translate3d(6%, 5%, 0) rotate(22deg) scale(1.08); }
+    }
+    @keyframes pg-drift-b {
+      0%   { transform: translate3d(5%, 4%, 0) rotate(0deg) scale(1.04); }
+      100% { transform: translate3d(-6%, -5%, 0) rotate(-18deg) scale(0.96); }
+    }
+    .policy-gradient--orders    { --pg-base:#fff3ec; --pg-1:#ffb48c; --pg-2:#ff86b1; --pg-3:#ffd486; --pg-4:#ff9d8a; }
+    .policy-gradient--legal     { --pg-base:#ecf2ff; --pg-1:#7db7ff; --pg-2:#9d8dff; --pg-3:#62d2e8; --pg-4:#4f8cff; }
+    .policy-gradient--standards { --pg-base:#edfaf3; --pg-1:#7fdfb6; --pg-2:#72c7ff; --pg-3:#c6ee8e; --pg-4:#3fc8a8; }
+    .policy-gradient--security  { --pg-base:#f0edff; --pg-1:#917dff; --pg-2:#5470ff; --pg-3:#c28dff; --pg-4:#5dd2e6; }
+    @media (prefers-reduced-motion: reduce) {
+      .policy-gradient::before, .policy-gradient::after { animation: none; }
+    }
+
     .article-hero-body {
       max-width: 780px;
       margin: 0 auto;
@@ -246,7 +290,7 @@
   </header>
 
   <div class="article-hero">
-    <img src="assets/images/articles/terms-hero.jpg" alt="Acceptable use policy" class="article-hero-img" />
+    <div class="article-hero-img policy-gradient policy-gradient--legal" role="img" aria-label="Acceptable use policy"></div>
     <div class="article-hero-body">
       <div class="article-meta">
         <span class="article-date">Last updated: 23 September 2026</span>
