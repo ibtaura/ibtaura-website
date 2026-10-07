@@ -1168,3 +1168,54 @@ body {
 @media (prefers-reduced-motion: reduce) {
   #aura-cookie-banner, .acm-overlay, .acm-dialog, .acm-slider, .acm-slider::after { transition: none; }
 }
+
+/* ─── Health Library: animated gradient art (replaces article photos) ─── */
+.art-gradient {
+  position: relative;
+  overflow: hidden;
+  background: var(--art-base);
+}
+.art-gradient::before,
+.art-gradient::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+}
+.art-gradient::before {
+  background:
+    radial-gradient(38% 48% at 28% 32%, var(--art-1) 0%, transparent 70%),
+    radial-gradient(42% 52% at 74% 30%, var(--art-2) 0%, transparent 70%),
+    radial-gradient(48% 58% at 52% 78%, var(--art-3) 0%, transparent 72%);
+  animation: art-drift-a 26s ease-in-out infinite alternate;
+  animation-delay: var(--art-delay, 0s);
+}
+.art-gradient::after {
+  background:
+    radial-gradient(34% 44% at 70% 72%, var(--art-4) 0%, transparent 70%),
+    radial-gradient(36% 46% at 24% 70%, var(--art-2) 0%, transparent 70%);
+  opacity: 0.8;
+  animation: art-drift-b 34s ease-in-out infinite alternate;
+  animation-delay: var(--art-delay, 0s);
+}
+.art-gradient.is-off::before,
+.art-gradient.is-off::after { animation-play-state: paused; }
+@keyframes art-drift-a {
+  0%   { transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(6%, 5%, 0) rotate(22deg) scale(1.08); }
+}
+@keyframes art-drift-b {
+  0%   { transform: translate3d(5%, 4%, 0) rotate(0deg) scale(1.04); }
+  100% { transform: translate3d(-6%, -5%, 0) rotate(-18deg) scale(0.96); }
+}
+.art-gradient--p0 { --art-base:#ecf2ff; --art-1:#7db7ff; --art-2:#9d8dff; --art-3:#62d2e8; --art-4:#4f8cff; }
+.art-gradient--p1 { --art-base:#fff3ec; --art-1:#ffb48c; --art-2:#ff86b1; --art-3:#ffd486; --art-4:#ff9d8a; }
+.art-gradient--p2 { --art-base:#edfaf3; --art-1:#7fdfb6; --art-2:#72c7ff; --art-3:#c6ee8e; --art-4:#3fc8a8; }
+.art-gradient--p3 { --art-base:#f0edff; --art-1:#917dff; --art-2:#5470ff; --art-3:#c28dff; --art-4:#5dd2e6; }
+.art-gradient--p4 { --art-base:#fff0f5; --art-1:#ff8fb8; --art-2:#c79bff; --art-3:#ffb3c7; --art-4:#ff6f9f; }
+.art-gradient--p5 { --art-base:#e9fbfb; --art-1:#5fd6d6; --art-2:#6fb3ff; --art-3:#a6f0d8; --art-4:#2bb8c8; }
+.art-gradient--p6 { --art-base:#fff8e8; --art-1:#ffc65c; --art-2:#ff9f6e; --art-3:#ffe08a; --art-4:#f4a83a; }
+.art-gradient--p7 { --art-base:#f2f0ff; --art-1:#a99bff; --art-2:#8fd3ff; --art-3:#d7b8ff; --art-4:#7aa7ff; }
+@media (prefers-reduced-motion: reduce) {
+  .art-gradient::before, .art-gradient::after { animation: none; }
+}
