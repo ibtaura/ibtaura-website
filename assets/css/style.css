@@ -1219,3 +1219,33 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .art-gradient::before, .art-gradient::after { animation: none; }
 }
+
+/* ─── Mobile spacing: roomier side margins on tablets and phones ───
+   Each page sets its card widths inline (100% minus 12-24px); these
+   overrides give every card, banner and the nav one shared gutter:
+   20px a side on tablets, 16px a side on phones (matches the footer). */
+@media (max-width: 768px) {
+  .navbar, .article-hero, .desktop-feature, .desktop-beta-card, .dataroom-container, .newsroom-container, .app-hero-card, .mode-card, .beta-card, .feature-section, .home-card, .raise-card, .team-section, .culture-section, .onb-container, .admin-container {
+    width: calc(100% - 40px) !important;
+  }
+  .month-heading, .month-scroll { padding-left: 20px !important; }
+  .values-grid { padding-left: 20px; padding-right: 20px; }
+  /* the nav scrolls sideways on small screens; fade the right edge so it reads as scrollable */
+  .navbar-inner {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+            mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+}
+@media (max-width: 480px) {
+  .navbar, .article-hero, .desktop-feature, .desktop-beta-card, .dataroom-container, .newsroom-container, .app-hero-card, .mode-card, .beta-card, .feature-section, .home-card, .raise-card, .team-section, .culture-section, .onb-container, .admin-container {
+    width: calc(100% - 32px) !important;
+  }
+  .month-heading, .month-scroll { padding-left: 16px !important; }
+  .values-grid { padding-left: 16px; padding-right: 16px; }
+  .announcement-bar { padding: 8px 16px; }
+  .announcement-bar p { font-size: 11px; }
+}
+
+/* About: the culture grid sits inside .team-section, so it should fill it
+   rather than take a second gutter (keeps one shared edge at every size). */
+.team-section .culture-section { width: 100% !important; }
