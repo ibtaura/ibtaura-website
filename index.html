@@ -120,7 +120,7 @@
 
   <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
   <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/css/style.css?v=32" />
+  <link rel="stylesheet" href="assets/css/style.css?v=33" />
   <style>
     /* ─── Lenis smooth scroll ────────────────────────────────── */
     html.lenis, html.lenis body {
@@ -145,16 +145,11 @@
     .nav-link.active { color: #1d1d1f; }
 
     /* Dark background — white nav text */
-    .navbar.navbar-dark { background: rgba(0,0,0,0.6); }
-    .navbar.navbar-dark.scrolled { background: rgba(0,0,0,0.35); }
-    .navbar.navbar-dark .nav-link { color: rgba(255,255,255,0.7); }
-    .navbar.navbar-dark .nav-link:hover { color: #ffffff; }
-    .navbar.navbar-dark .nav-link.active { color: #ffffff; }
 
     /* ─── Card stack — scroll container ─────────────────────── */
     .card-stack {
       position: relative;
-      height: 310vh; /* scroll room: numCards × 100vh + 10vh for last card exit */
+      height: 210vh; /* scroll room: numCards × 100vh + 10vh for last card exit */
     }
 
     /* ─── Cards — all fixed in same position, stacked by z-index */
@@ -172,12 +167,21 @@
 
     /* Z-index: front card highest, back card lowest */
     /* Each card offset slightly lower to peek behind the one in front */
-    .home-card[data-card="1"] { z-index: 3; top: 110px; background: #F4F5F5; }
-    .home-card[data-card="2"] { z-index: 2; top: 128px; background: #000000; }
-    .home-card[data-card="3"] { z-index: 1; top: 146px; background: #F4F5F5; }
+    .home-card[data-card="1"] { z-index: 2; top: 110px; background: #F4F5F5; }
+    .home-card[data-card="2"] { z-index: 1; top: 128px; background: #F4F5F5; }
 
-    /* ─── Card 3 — light card with centred Kickstarter logo ─────── */
-    .home-card[data-card="3"] .card-kickstarter-logo {
+    /* ─── Card 1 — the desktop app on a display and a MacBook ───── */
+    .card-devices {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 56px 96px 112px;
+      box-sizing: border-box;
+      object-fit: contain;
+    }
+
+    /* ─── Card 2 — light card with centred Kickstarter logo ─────── */
+    .home-card[data-card="2"] .card-kickstarter-logo {
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -187,7 +191,7 @@
       z-index: 1;
     }
     @media (max-width: 480px) {
-      .home-card[data-card="3"] .card-kickstarter-logo { width: 132px; height: 132px; }
+      .home-card[data-card="2"] .card-kickstarter-logo { width: 132px; height: 132px; }
     }
 
     /* ─── Card buttons — bottom right ──────────────────────────── */
@@ -299,9 +303,24 @@
       .home-card {
         width: calc(100% - 16px);
         border-radius: 18px;
-        top: 60px;
-        height: calc(100vh - 100px);
+        height: calc(100vh - 108px);
+        height: calc(100svh - 108px);
       }
+      /* The stack becomes two cards in the page's flow that share the first screen under the bar */
+      .card-stack { display: flex; flex-direction: column; gap: 20px; height: auto; padding: 68px 32px 20px; }
+      .card-stack .home-card {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100% !important;
+        max-width: none;
+        height: max(calc((100vw - 112px) * 0.55 + 88px), calc((100vh - 108px) / 2));
+        height: max(calc((100vw - 112px) * 0.55 + 88px), calc((100svh - 108px) / 2));
+      }
+      .card-devices { height: calc(100% - 64px); padding: 24px 24px 0; }
+      .home-card[data-card="2"] .card-kickstarter-logo { top: calc(50% - 20px); }
+      .card-btn-group { flex-direction: row; right: 24px; bottom: 20px; }
       .home-hero {
         padding: 36px 24px 44px;
       }
@@ -317,9 +336,16 @@
       .home-card {
         width: calc(100% - 12px);
         border-radius: 16px;
-        top: 50px;
-        height: calc(100vh - 80px);
+        height: calc(100vh - 100px);
+        height: calc(100svh - 100px);
       }
+      .card-stack { gap: 16px; padding: 64px 24px 16px; }
+      .card-stack .home-card {
+        height: max(calc((100vw - 88px) * 0.55 + 80px), calc((100vh - 96px) / 2));
+        height: max(calc((100vw - 88px) * 0.55 + 80px), calc((100svh - 96px) / 2));
+      }
+      .card-devices { height: calc(100% - 60px); padding: 20px 20px 0; }
+      .card-btn-group { right: 20px; bottom: 16px; }
       .home-hero {
         padding: 28px 16px 36px;
       }
@@ -337,15 +363,6 @@
     }
 
     /* ─── Card 2 dark buttons ─────────────────────────────── */
-    .card-btn-outline-dark {
-      background: transparent;
-      color: rgba(255,255,255,0.9);
-      border: 1px solid rgba(255,255,255,0.35);
-    }
-    .card-btn-outline-dark:hover {
-      background: rgba(255,255,255,0.08);
-      color: #ffffff;
-    }
   </style>
 </head>
 <body>
@@ -360,14 +377,15 @@
     <div class="navbar-inner">
       <nav class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
-        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
-        <a href="aura-clarus-desktop.html" class="nav-link">Aura Clarus Desktop</a>
+        <a href="aura-clarus-app.html" class="nav-link">Clarus App</a>
+        <a href="aura-clarus-desktop.html" class="nav-link">Clarus Desktop</a>
         <a href="newsroom.html" class="nav-link">Newsroom</a>
         <a href="data-room.html" class="nav-link">Data Room</a>
         <a href="kickstarter.html" class="nav-link">Kickstarter</a>
       </nav>
     </div>
   </header>
+  <script src="assets/js/mobile-nav.js"></script>
 
   <!-- Card Stack -->
   <div class="card-stack">
@@ -375,30 +393,21 @@
     <!-- SEO heading -->
     <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adarna — Aura Clarus Wearable, iPhone &amp; Mac Apps</h1>
 
-    <!-- Card 1 (front — white with SVG) -->
+    <!-- Card 1 (front — desktop app) -->
     <div class="home-card" data-card="1">
-      <img src="assets/images/app.svg" alt="Aura Clarus" style="width:100%;height:100%;object-fit:contain;padding:40px;box-sizing:border-box;" />
+      <img src="assets/images/desktop/desktop-devices.webp" alt="Aura Clarus Desktop app for Mac by Adarna" class="card-devices" width="2000" height="1100" />
       <div class="card-btn-group">
-        <a href="aura-clarus-app.html" class="card-btn card-btn-outline">Learn More</a>
-        <a href="https://testflight.apple.com/join/z2vp8qXW" class="card-btn card-btn-filled" target="_blank" rel="noopener noreferrer">Access Now</a>
-      </div>
-    </div>
-
-    <!-- Card 2 (middle — black, beta app) -->
-    <div class="home-card" data-card="2">
-      <img src="assets/images/Space Black.png" alt="Aura Clarus Desktop app for Mac by Adarna" style="max-width:73%;height:auto;object-fit:contain;display:block;margin:auto;padding-top:80px;box-sizing:border-box;" />
-      <div class="card-btn-group">
-        <a href="aura-clarus-desktop.html" class="card-btn card-btn-outline-dark">Learn More</a>
+        <a href="aura-clarus-desktop.html" class="card-btn card-btn-outline">Learn More</a>
         <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('Beta is not live yet. Dates will be announced soon.');">Access Now</a>
       </div>
     </div>
 
-    <!-- Card 3 (back — Kickstarter campaign) -->
-    <div class="home-card" data-card="3">
+    <!-- Card 2 (back — Kickstarter campaign) -->
+    <div class="home-card" data-card="2">
       <img src="assets/images/kickstarter-logo.webp" alt="Kickstarter" class="card-kickstarter-logo" />
       <div class="card-btn-group">
-        <a href="#" class="card-btn card-btn-outline" onclick="event.preventDefault();alert('This page is under construction.');">Learn More</a>
-        <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('The Aura Clarus Kickstarter campaign is launching soon. Notifications coming soon.');">Back Now</a>
+        <a href="kickstarter.html" class="card-btn card-btn-outline">Learn More</a>
+        <a href="kickstarter.html" class="card-btn card-btn-filled">Back Now</a>
       </div>
     </div>
 
@@ -431,8 +440,8 @@
           <h3 class="af-head">Explore</h3>
           <ul class="af-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="aura-clarus-app.html">Aura Clarus App</a></li>
-            <li><a href="aura-clarus-desktop.html">Aura Clarus Desktop</a></li>
+            <li><a href="aura-clarus-app.html">Clarus App</a></li>
+            <li><a href="aura-clarus-desktop.html">Clarus Desktop</a></li>
             <li><a href="articles.html">Health Library</a></li>
             <li><a href="newsroom.html">Newsroom</a></li>
           </ul>
@@ -570,22 +579,17 @@
         updateCards();
       }
 
-      var navbar = document.querySelector('.navbar');
-
       function updateCards() {
+        /* Phones and tablets show the cards in the page's flow (see the CSS) */
+        if (window.innerWidth <= 768) {
+          cards.forEach(function(card) { card.removeAttribute('style'); });
+          return;
+        }
+
         var stackTop = stack.getBoundingClientRect().top;
         var scrollInto = Math.max(0, -stackTop);
         var scrollPerCard = window.innerHeight;
         var scrollProgress = scrollInto / scrollPerCard;
-
-        /* Toggle dark navbar when black card (card 2) is dominant */
-        if (navbar) {
-          if (scrollProgress >= 0.7 && scrollProgress < 1.7) {
-            navbar.classList.add('navbar-dark');
-          } else {
-            navbar.classList.remove('navbar-dark');
-          }
-        }
 
         for (var i = 0; i < numCards; i++) {
           var card = cards[i];
@@ -654,6 +658,7 @@
         requestAnimationFrame(pollScroll);
       }
       requestAnimationFrame(pollScroll);
+      window.addEventListener('resize', updateCards);
       updateCards();
     })();
 

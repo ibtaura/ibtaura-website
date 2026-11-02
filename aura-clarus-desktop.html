@@ -8,7 +8,7 @@
   <meta name="supported-color-schemes" content="light only" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aura Clarus Desktop for Mac — Adarna</title>
-  <meta name="description" content="Explore Adarna&#x27;s Aura Clarus Mac desktop app: health Dashboard, Focus, Trends, Calendar, Tasks, Habits, and Eva Assistant. Currently in development." />
+  <meta name="description" content="Explore Adarna&#x27;s Aura Clarus Mac desktop app: Today, Work, Categories, Calendar, Task and an always-within-reach mini window. Currently in development." />
   <meta name="author" content="Adarna Inc." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://adarna.us/aura-clarus-desktop" />
@@ -16,17 +16,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="Aura Clarus Desktop for Mac — Adarna" />
-  <meta property="og:description" content="Explore Adarna&#x27;s Aura Clarus Mac desktop app: health Dashboard, Focus, Trends, Calendar, Tasks, Habits, and Eva Assistant. Currently in development." />
+  <meta property="og:description" content="Explore Adarna&#x27;s Aura Clarus Mac desktop app: Today, Work, Categories, Calendar, Task and an always-within-reach mini window. Currently in development." />
   <meta property="og:url" content="https://adarna.us/aura-clarus-desktop" />
   <meta property="og:site_name" content="Adarna" />
-  <meta property="og:image" content="https://adarna.us/assets/images/Dashboard.png" />
+  <meta property="og:image" content="https://adarna.us/assets/images/desktop/today/today-share.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Aura Clarus Desktop for Mac — Adarna" />
-  <meta name="twitter:description" content="Explore Adarna&#x27;s Aura Clarus Mac desktop app: health Dashboard, Focus, Trends, Calendar, Tasks, Habits, and Eva Assistant. Currently in development." />
-  <meta name="twitter:image" content="https://adarna.us/assets/images/Dashboard.png" />
+  <meta name="twitter:description" content="Explore Adarna&#x27;s Aura Clarus Mac desktop app: Today, Work, Categories, Calendar, Task and an always-within-reach mini window. Currently in development." />
+  <meta name="twitter:image" content="https://adarna.us/assets/images/desktop/today/today-share.jpg" />
 
   <script type="application/ld+json">
   [
@@ -88,7 +88,7 @@
       "@id": "https://adarna.us/aura-clarus-desktop#webpage",
       "url": "https://adarna.us/aura-clarus-desktop",
       "name": "Aura Clarus Desktop for Mac — Adarna",
-      "description": "Explore Adarna's Aura Clarus Mac desktop app: health Dashboard, Focus, Trends, Calendar, Tasks, Habits, and Eva Assistant. Currently in development.",
+      "description": "Explore Adarna's Aura Clarus Mac desktop app: Today, Work, Categories, Calendar, Task and an always-within-reach mini window. Currently in development.",
       "isPartOf": {
         "@id": "https://adarna.us/#website"
       },
@@ -105,7 +105,7 @@
 
   <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
   <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/css/style.css?v=32" />
+  <link rel="stylesheet" href="assets/css/style.css?v=33" />
   <style>
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -136,26 +136,51 @@
       display: block;
     }
 
-    .desktop-feature-text {
-      padding: 10px 8px 14px;
-    }
+    /* ─── One gap between everything on this page ─
+       The strip scrolls like the Health Library rows and runs to the screen edge;
+       percent padding lines its first card up with the big image above. */
+    :root { --page-gap: 24px; }
 
-    .desktop-feature-text h2 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: #1d1d1f;
-      margin: 0 0 4px;
-    }
+    .desktop-feature { margin-top: var(--page-gap); }
+    .desktop-top { margin-top: 63px; }
+    /* The same shape as the big images below, with the picture sized like their app window */
+    .desktop-devices { display: flex; align-items: center; justify-content: center; aspect-ratio: 2400 / 1576; }
+    .desktop-devices img { width: 70%; }
+    .desktop-row .desktop-feature { margin-top: 0; }
+    .desktop-row { margin-top: var(--page-gap); }
 
-    .desktop-feature-text p {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: #86868b;
-      line-height: 1.4;
+    .feature-scroll {
+      display: flex;
+      gap: var(--page-gap);
+      margin-top: var(--page-gap);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-left: max(12px, calc((100% - 1100px) / 2));
+      padding-right: max(12px, calc((100% - 1100px) / 2));
+      scroll-snap-type: none;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .feature-scroll::-webkit-scrollbar { display: none; }
+    .feature-scroll:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+
+    .feature-item {
+      flex: 0 0 calc((100% - 2 * var(--page-gap)) / 3);
+      min-width: 0;
       margin: 0;
     }
+
+    .feature-item figcaption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #6e6e73;
+      margin-top: 12px;
+      padding-right: 8px;
+    }
+    .feature-item figcaption b { color: #1d1d1f; font-weight: 600; }
+
+    .desktop-beta-card.after-rows { margin-top: var(--page-gap); }
 
     /* ─── Coming Soon card ───────────────────────────────── */
     .desktop-beta-card {
@@ -219,9 +244,9 @@
       z-index: 10;
       background: #ffffff;
       border-top: none;
-      padding: 20px 40px 48px;
+      padding: var(--page-gap) 40px 48px;
       max-width: 1100px;
-      margin: 40px auto 0;
+      margin: 0 auto;
     }
     .legal-block p { color: #a1a1a6; font-size: 12px; }
 
@@ -229,20 +254,33 @@
     @media (max-width: 768px) {
       .desktop-feature { width: calc(100% - 16px); }
       .desktop-feature-card { border-radius: 18px; }
-      .desktop-feature-text h2 { font-size: 24px; }
-      .desktop-beta-card { width: calc(100% - 16px); border-radius: 18px; padding: 40px 24px; margin-top: 36px; }
+      :root { --page-gap: 20px; }
+      .desktop-top { margin-top: 68px; }
+      .desktop-devices img { width: 80%; }
+      .feature-scroll { padding-left: 32px; padding-right: 32px; }
+      .desktop-beta-card { width: calc(100% - 16px); border-radius: 18px; padding: 40px 24px; }
       .desktop-beta-card h3 { font-size: 26px; }
-      .footer-legal-section { padding: 36px 24px 32px; }
+      .footer-legal-section { padding: var(--page-gap) 24px 32px; }
+    }
+
+    @media (max-width: 760px) {
+      .feature-item { flex-basis: 44%; }
     }
 
     @media (max-width: 480px) {
       .desktop-feature { width: calc(100% - 12px); }
       .desktop-feature-card { border-radius: 16px; }
-      .desktop-feature-text h2 { font-size: 22px; }
-      .desktop-feature-text p { font-size: 14px; }
-      .desktop-beta-card { width: calc(100% - 12px); border-radius: 16px; padding: 32px 16px; margin-top: 28px; }
+      :root { --page-gap: 16px; }
+      .desktop-top { margin-top: 64px; }
+      .desktop-devices img { width: 88%; }
+      .feature-scroll { padding-left: 24px; padding-right: 24px; }
+      /* The big image leads, as on desktop: the app fills more of it and the cards step back */
+      .feature-item { flex-basis: 56%; }
+      .feature-item figcaption { font-size: 13px; padding-right: 0; }
+      .desktop-row > .desktop-feature .desktop-feature-card img { transform: scale(1.3); }
+      .desktop-beta-card { width: calc(100% - 12px); border-radius: 16px; padding: 32px 16px; }
       .desktop-beta-card h3 { font-size: 22px; }
-      .footer-legal-section { padding: 28px 16px 24px; }
+      .footer-legal-section { padding: var(--page-gap) 16px 24px; }
     }
   </style>
 </head>
@@ -256,103 +294,239 @@
     <div class="navbar-inner">
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="aura-clarus-app.html" class="nav-link">Aura Clarus App</a>
-        <a href="aura-clarus-desktop.html" class="nav-link active">Aura Clarus Desktop</a>
+        <a href="aura-clarus-app.html" class="nav-link">Clarus App</a>
+        <a href="aura-clarus-desktop.html" class="nav-link active">Clarus Desktop</a>
         <a href="newsroom.html" class="nav-link">Newsroom</a>
         <a href="data-room.html" class="nav-link">Data Room</a>
         <a href="kickstarter.html" class="nav-link">Kickstarter</a>
       </nav>
     </div>
   </header>
+  <script src="assets/js/mobile-nav.js"></script>
 
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Aura Clarus Desktop for Mac — Adarna</h1>
 
   <!-- Hero Card -->
-  <div class="desktop-feature" style="margin-top:66px;">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Aura Clarus Desktop.png" alt="Aura Clarus Desktop" />
+  <div class="desktop-feature desktop-top">
+    <div class="desktop-feature-card desktop-devices">
+      <img src="assets/images/desktop/desktop-devices.webp" alt="Aura Clarus Desktop on a large display and a MacBook" width="2000" height="1100" fetchpriority="high" />
     </div>
   </div>
 
-  <!-- Dashboard -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Dashboard.png" alt="Aura Clarus Desktop — Dashboard" />
+  <!-- ROWS:START -->
+  <!-- Today -->
+  <section class="desktop-row" aria-label="Today">
+    <div class="desktop-feature">
+      <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-hero.jpg" alt="Aura Clarus Desktop on a Mac desktop: Today" width="2400" height="1576" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="desktop-feature-text">
-      <h2>Dashboard</h2>
-      <p>Your morning command center. One screen shows your body's readiness badge, today's AI-generated health alerts pulled from your wearable data, live vitals including recovery, HRV, and sleep, plus your priority tasks for the day. This is the only screen that shows your health and your work side by side — because your energy level determines what kind of work you should do today.</p>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Today features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-1-capacity-score.jpg" alt="Aura Clarus Desktop: Capacity Score" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Capacity Score</b> Start each morning with one score from your sleep, band and quick check, updated live all day, so you always know what you have left.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-2-live-capacity-chart.jpg" alt="Aura Clarus Desktop: Live Capacity Chart" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Live Capacity Chart</b> Watch your capacity rise and fall across the day, with a live dot for right now and a gentle line showing where you're heading.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-3-day-at-a-glance.jpg" alt="Aura Clarus Desktop: Day at a Glance" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Day at a Glance</b> See your day type, morning score, confidence and deep-work runway at a glance, so you know how much hard thinking today can hold.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-4-thinking-scores.jpg" alt="Aura Clarus Desktop: Thinking Scores" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Thinking Scores</b> Focus, attention, memory and thinking, each measured against your own normal, with what raised or lowered every score shown right beside it.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-5-quick-check-in.jpg" alt="Aura Clarus Desktop: Quick Check-In" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Quick Check-In</b> A short check on your Mac before deep work: tap when the dot appears, and get a measured read of your sharpness, not a guess.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-6-calendar-review.jpg" alt="Aura Clarus Desktop: Calendar Review" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Calendar Review</b> When a calendar event ends unrecorded, Aura asks what happened in one quick pop-up, so your capacity stays true to your real day.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-7-end-day.jpg" alt="Aura Clarus Desktop: End Day" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>End Day</b> Tick off a short checklist, park open loops, set tomorrow's top tasks and rate your day, so you switch off and your evening is yours.</figcaption>
+      </figure>
     </div>
-  </div>
+  </section>
 
-  <!-- Focus -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Focus.png" alt="Aura Clarus Desktop — Focus Mode" />
+  <!-- Work -->
+  <section class="desktop-row" aria-label="Work">
+    <div class="desktop-feature">
+      <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-hero.jpg" alt="Aura Clarus Desktop on a Mac desktop: Work" width="2400" height="1576" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="desktop-feature-text">
-      <h2>Focus</h2>
-      <p>A complete deep work environment built for founders who know willpower alone isn't enough. One tap starts your timer, blocks distracting websites at the OS level across every browser, plays focus music, and silences all notifications. When you're done, you see exactly how focused you actually were — context switches, refocus time, and minutes in true flow state.</p>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Work features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-1-focus-mode.jpg" alt="Aura Clarus Desktop: Focus Mode" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Focus Mode</b> Choose Flowtime or a timer, a soundscape and breaks, and let Aura guide the block, so every focused minute counts toward your day.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-2-distraction-shield.jpg" alt="Aura Clarus Desktop: Distraction Shield" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Distraction Shield</b> Block distracting apps and sites, hold notifications in a few batches and quiet Slack, while the people you choose can still reach you.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-3-interruptions-park-it.jpg" alt="Aura Clarus Desktop: Interruptions &amp; Park It" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Interruptions &amp; Park It</b> Aura counts every interruption on its own, and one click parks a stray thought for later, so you get straight back to work.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-4-breaks-for-energy.jpg" alt="Aura Clarus Desktop: Breaks for Energy" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Breaks for Energy</b> After about 45 minutes of steady work, Aura suggests a short stand or stretch, so you keep your energy up through long days.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-5-completed-or-reschedule.jpg" alt="Aura Clarus Desktop: Completed or Reschedule" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Completed or Reschedule</b> When a block ends, mark it done or reschedule it in one tap, and Aura finds the next free slot that still fits your day.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-6-session-review.jpg" alt="Aura Clarus Desktop: Session Review" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Session Review</b> After every session, see your focus score, protected time and interruptions, plus a break that fits, so each block teaches you how you work.</figcaption>
+      </figure>
     </div>
-  </div>
+  </section>
 
-  <!-- Trends -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Trends.png" alt="Aura Clarus Desktop — Trends" />
+  <!-- Categories -->
+  <section class="desktop-row" aria-label="Categories">
+    <div class="desktop-feature">
+      <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-hero.jpg" alt="Aura Clarus Desktop on a Mac desktop: Categories" width="2400" height="1576" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="desktop-feature-text">
-      <h2>Trends</h2>
-      <p>Your personal health analytics over 30, 45, and 60 days. See patterns in steps, deep sleep, HRV, stress, and recovery with detailed bar charts that reveal which weeks were strong and which weren't. AI-generated insights tell you what the trend actually means — "Your HRV has been declining for 3 weeks" is more useful than just showing today's number.</p>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Categories features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-1-capacity-history.jpg" alt="Aura Clarus Desktop: Capacity History" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Capacity History</b> See your opening capacity for the last 14 days beside attention, memory, thinking and focus, so good and bad stretches stand out.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-2-health-categories.jpg" alt="Aura Clarus Desktop: Health Categories" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Health Categories</b> Over 340 health signals from your band, grouped by category, each with its own chart, so nothing about your body stays hidden.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-3-category-pages.jpg" alt="Aura Clarus Desktop: Category Pages" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Category Pages</b> Open any category to see every measure from your band and iPhone, what's tracked today and what isn't yet, all in one place.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-4-trends.jpg" alt="Aura Clarus Desktop: Trends" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Trends</b> Every measure gets its own chart, average and monthly trend, compared with your own baseline rather than with other people.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-5-all-your-data.jpg" alt="Aura Clarus Desktop: All Your Data" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>All Your Data</b> Every reading you've recorded, newest first, with its source and the units you prefer, so your data is always yours to check.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-6-stress-app-finder.jpg" alt="Aura Clarus Desktop: Stress-App Finder" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Stress-App Finder</b> Aura links your band's stress readings to the apps you use, so you know which ones to limit and which ones to keep.</figcaption>
+      </figure>
     </div>
-  </div>
+  </section>
 
   <!-- Calendar -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Calender.png" alt="Aura Clarus Desktop — Calendar" />
+  <section class="desktop-row" aria-label="Calendar">
+    <div class="desktop-feature">
+      <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-hero.jpg" alt="Aura Clarus Desktop on a Mac desktop: Calendar" width="2400" height="1576" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="desktop-feature-text">
-      <h2>Calendar</h2>
-      <p>Your entire week, colour-coded by energy type. Meetings in green, deep work in orange, wellness in purple, fitness in red, and personal time in teal — all visible at a glance across day, week, and month views. The colour coding isn't cosmetic — a week full of green with no orange tells you immediately that you have no time for actual work, changing how you plan before the week even starts.</p>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Calendar features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-1-smart-calendar.jpg" alt="Aura Clarus Desktop: Smart Calendar" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Smart Calendar</b> Your Apple Calendar syncs in and every event is sorted as a meeting, desk work or recovery, so you see how heavy your week really is.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-2-do-this-now.jpg" alt="Aura Clarus Desktop: Do This Now" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Do This Now</b> One sentence at the top of your calendar with the single most useful step and one button to take it, so you always know what's next.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-3-auto-allocation.jpg" alt="Aura Clarus Desktop: Auto Allocation" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Auto Allocation</b> After your morning check, Aura fits tasks into your calendar by capacity, and explains, in plain words, anything that doesn't fit.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-4-work-types.jpg" alt="Aura Clarus Desktop: Work Types" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Work Types</b> Tag blocks as deep focus, detail-heavy, ideas, routine or learning, so Aura can match each one to the state you're in.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-5-one-tap-reschedule.jpg" alt="Aura Clarus Desktop: One-Tap Reschedule" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>One-Tap Reschedule</b> Move any block in a single tap when plans change, and Aura finds a slot that still fits the energy you have left.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-6-tired-day-protection.jpg" alt="Aura Clarus Desktop: Tired-Day Protection" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Tired-Day Protection</b> After a short night, a long day or a heavy week, Aura shortens focus blocks and offers to move demanding work, so you don't run on empty.</figcaption>
+      </figure>
     </div>
-  </div>
+  </section>
 
   <!-- Task -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Task.png" alt="Aura Clarus Desktop — Task Management" />
+  <section class="desktop-row" aria-label="Task">
+    <div class="desktop-feature">
+      <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-hero.jpg" alt="Aura Clarus Desktop on a Mac desktop: Task" width="2400" height="1576" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="desktop-feature-text">
-      <h2>Work</h2>
-      <p>A Kanban board that lives alongside your health data. Three columns — Pending, Currently Working, and Completed — with colour-coded priority badges: red for urgent, orange for high, blue for medium, gray for low. This isn't competing with Linear or Jira. It's the personal task board where health data and work talk to each other — when your Dashboard says recovery is low, this is where you decide which tasks to defer.</p>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Task features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-1-task-cost.jpg" alt="Aura Clarus Desktop: Task Cost" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Task Cost</b> Every task shows what it will cost you, so you stop overloading your day and pick work that matches the energy you have left.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-2-where-i-stopped.jpg" alt="Aura Clarus Desktop: Where I Stopped" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Where I Stopped</b> Leave a one-line note when you pause a task, and it greets you with your next step the moment you come back.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-3-plan-for-me.jpg" alt="Aura Clarus Desktop: Plan for Me" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Plan for Me</b> Add a task with its length and how demanding it is, tap Plan for Me, and Aura finds a slot in your calendar that fits your energy.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-4-meetings.jpg" alt="Aura Clarus Desktop: Meetings" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Meetings</b> Plan meetings beside your tasks and mark how draining each one is, so Aura counts their real cost before your day fills up.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-5-one-clear-list.jpg" alt="Aura Clarus Desktop: One Clear List" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>One Clear List</b> Desk work and meetings live in one list with their length, energy and cost, flagged and sorted so what matters most stays on top.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-6-batch-actions.jpg" alt="Aura Clarus Desktop: Batch Actions" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Batch Actions</b> Select several tasks at once and move, flag or clear them together, so reshaping a busy week takes a few clicks, not an afternoon.</figcaption>
+      </figure>
     </div>
-  </div>
+  </section>
 
-  <!-- Habits -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Habits.png" alt="Aura Clarus Desktop — Habits" />
+  <!-- Always within reach -->
+  <section class="desktop-row" aria-label="Always within reach">
+    <div class="desktop-feature">
+      <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-hero.jpg" alt="Aura Clarus Desktop on a Mac desktop: Always within reach" width="2400" height="1576" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="desktop-feature-text">
-      <h2>Habits</h2>
-      <p>Daily habit tracking deeply integrated with your health wearable. Build streaks with recovery-aware grace days that don't break your chain when your body genuinely needs rest. Over time, see which habits actually move the needle on your HRV and sleep quality — turning guesswork into evidence-backed routines that compound into lasting change.</p>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Always within reach features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-1-mini-window.jpg" alt="Aura Clarus Desktop: Mini Window" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Mini Window</b> A small floating window keeps your capacity ring, your next blocks and your tools one glance away, without opening the full app.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-2-start-focus.jpg" alt="Aura Clarus Desktop: Start Focus" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Start Focus</b> Pick focus or meeting, timer or flow state, your task, a soundscape and breaks, then press Start, all from the mini window.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-3-quick-add.jpg" alt="Aura Clarus Desktop: Quick Add" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Quick Add</b> Add a task, meeting or habit from anywhere, set how demanding it is, and see where it sits on your day beside it.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-4-stand-breaks.jpg" alt="Aura Clarus Desktop: Stand Breaks" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Stand Breaks</b> After a long stretch without a pause, the mini window suggests a quick stand, so you keep your energy up through the day.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-5-completed-or-reschedule.jpg" alt="Aura Clarus Desktop: Completed or Reschedule" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Completed or Reschedule</b> When you end a block, mark it completed or reschedule it for a new time in your calendar, right from the mini window.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-6-whats-next.jpg" alt="Aura Clarus Desktop: What&#x27;s Next" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>What's Next</b> A finished block offers a nap or an outside walk before your next task, so you choose whether to take a break or start.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-7-menu-bar.jpg" alt="Aura Clarus Desktop: Menu Bar" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Menu Bar</b> Start, pause or end a focus session, block distractions and end your work day right from the menu bar, without opening Aura.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-8-one-shortcut.jpg" alt="Aura Clarus Desktop: One Shortcut" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>One Shortcut</b> Press Control-Option-Command-M from any app to show or hide the mini window, so your plan is never more than a keystroke away.</figcaption>
+      </figure>
     </div>
-  </div>
-
-  <!-- Eva Assistant -->
-  <div class="desktop-feature">
-    <div class="desktop-feature-card">
-      <img src="assets/images/Eva assistant.png" alt="Aura Clarus Desktop — Eva AI Assistant" />
-    </div>
-    <div class="desktop-feature-text">
-      <h2>Eva Assistant</h2>
-      <p>Your AI health companion with an iMessage-style interface. Ask "How's my stress?" and get a real answer backed by your actual wearable data, complete with mini health cards showing sparklines and trends. Not a generic chatbot regurgitating wellness tips — Eva is an assistant that genuinely knows your body, your patterns, and your history, giving answers no other AI can.</p>
-    </div>
-  </div>
+  </section>
+  <!-- ROWS:END -->
 
   <!-- Coming Soon Card -->
-  <div class="desktop-beta-card">
+  <div class="desktop-beta-card after-rows">
     <h3>Coming Soon to macOS</h3>
     <p>Aura Clarus Desktop is currently in development.</p>
     <a href="#" class="desktop-notify-btn" onclick="event.preventDefault();alert('You will be notified when Aura Clarus Desktop launches.');">Notify Me</a>
@@ -385,8 +559,8 @@
           <h3 class="af-head">Explore</h3>
           <ul class="af-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="aura-clarus-app.html">Aura Clarus App</a></li>
-            <li><a href="aura-clarus-desktop.html">Aura Clarus Desktop</a></li>
+            <li><a href="aura-clarus-app.html">Clarus App</a></li>
+            <li><a href="aura-clarus-desktop.html">Clarus Desktop</a></li>
             <li><a href="articles.html">Health Library</a></li>
             <li><a href="newsroom.html">Newsroom</a></li>
           </ul>
@@ -479,6 +653,65 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
+  <script>
+    /* Feature rows: the Health Library's eased sideways scroll */
+    document.querySelectorAll('.feature-scroll').forEach(function(row) {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      row.scrollLeft = 0;
+      var target = 0;
+      var current = 0;
+      var animating = false;
+      var ease = 0.08;
+
+      function limit() { return row.scrollWidth - row.clientWidth; }
+
+      function animate() {
+        if (!animating) return;
+        current += (target - current) * ease;
+        if (Math.abs(target - current) < 0.5) {
+          current = target;
+          row.scrollLeft = current;
+          animating = false;
+          return;
+        }
+        row.scrollLeft = current;
+        requestAnimationFrame(animate);
+      }
+
+      function glide() {
+        if (reduceMotion) {
+          row.scrollLeft = target;
+          current = target;
+          return;
+        }
+        if (!animating) {
+          current = row.scrollLeft;
+          animating = true;
+          requestAnimationFrame(animate);
+        }
+      }
+
+      row.addEventListener('wheel', function(e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        var delta = e.deltaX;
+        if (delta === 0) return;
+        e.preventDefault();
+        e.stopPropagation();
+        target = Math.max(0, Math.min(limit(), target + delta * 1.5));
+        glide();
+      }, { passive: false });
+
+      row.addEventListener('touchstart', function() { animating = false; }, { passive: true });
+
+      row.addEventListener('scroll', function() {
+        if (!animating) {
+          target = row.scrollLeft;
+          current = row.scrollLeft;
+        }
+      }, { passive: true });
+    });
+  </script>
+
   <!-- Cookie consent + analytics -->
   <script src="assets/js/analytics-config.js"></script>
   <script src="assets/js/consent.js" defer></script>
