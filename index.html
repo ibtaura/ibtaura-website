@@ -110,7 +110,7 @@
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "SiteNavigationElement", "name": "Home", "url": "https://adarna.us/" },
-      { "@type": "SiteNavigationElement", "name": "Aura Clarus App", "url": "https://adarna.us/aura-clarus-app" },
+      { "@type": "SiteNavigationElement", "name": "Aura Clarus", "url": "https://adarna.us/aura-clarus-features" },
       { "@type": "SiteNavigationElement", "name": "Aura Clarus Desktop", "url": "https://adarna.us/aura-clarus-desktop" },
       { "@type": "SiteNavigationElement", "name": "Articles", "url": "https://adarna.us/articles" },
       { "@type": "SiteNavigationElement", "name": "About", "url": "https://adarna.us/about" }
@@ -149,7 +149,7 @@
     /* ─── Card stack — scroll container ─────────────────────── */
     .card-stack {
       position: relative;
-      height: 210vh; /* scroll room: numCards × 100vh + 10vh for last card exit */
+      height: 310vh; /* scroll room: numCards × 100vh + 10vh for last card exit */
     }
 
     /* ─── Cards — all fixed in same position, stacked by z-index */
@@ -167,10 +167,11 @@
 
     /* Z-index: front card highest, back card lowest */
     /* Each card offset slightly lower to peek behind the one in front */
-    .home-card[data-card="1"] { z-index: 2; top: 110px; background: #F4F5F5; }
-    .home-card[data-card="2"] { z-index: 1; top: 128px; background: #F4F5F5; }
+    .home-card[data-card="1"] { z-index: 3; top: 110px; background: #F4F5F5; }
+    .home-card[data-card="2"] { z-index: 2; top: 128px; background: #F4F5F5; }
+    .home-card[data-card="3"] { z-index: 1; top: 146px; background: #F4F5F5; }
 
-    /* ─── Card 1 — the desktop app on a display and a MacBook ───── */
+    /* ─── Card 2 — the desktop app on a display and a MacBook ───── */
     .card-devices {
       display: block;
       width: 100%;
@@ -180,8 +181,16 @@
       object-fit: contain;
     }
 
-    /* ─── Card 2 — light card with centred Kickstarter logo ─────── */
-    .home-card[data-card="2"] .card-kickstarter-logo {
+    /* ─── Card 1 — the band and its power bank, on the same grey as the other cards ─── */
+    .card-hardware {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* ─── Card 3 — light card with centred Kickstarter logo ─────── */
+    .home-card[data-card="3"] .card-kickstarter-logo {
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -191,7 +200,7 @@
       z-index: 1;
     }
     @media (max-width: 480px) {
-      .home-card[data-card="2"] .card-kickstarter-logo { width: 132px; height: 132px; }
+      .home-card[data-card="3"] .card-kickstarter-logo { width: 132px; height: 132px; }
     }
 
     /* ─── Card buttons — bottom right ──────────────────────────── */
@@ -306,7 +315,7 @@
         height: calc(100vh - 108px);
         height: calc(100svh - 108px);
       }
-      /* The stack becomes two cards in the page's flow that share the first screen under the bar */
+      /* The stack becomes cards in the page's flow; the first two share the first screen under the bar */
       .card-stack { display: flex; flex-direction: column; gap: 20px; height: auto; padding: 68px 32px 20px; }
       .card-stack .home-card {
         position: relative;
@@ -319,7 +328,7 @@
         height: max(calc((100vw - 112px) * 0.55 + 88px), calc((100svh - 108px) / 2));
       }
       .card-devices { height: calc(100% - 64px); padding: 24px 24px 0; }
-      .home-card[data-card="2"] .card-kickstarter-logo { top: calc(50% - 20px); }
+      .home-card[data-card="3"] .card-kickstarter-logo { top: calc(50% - 20px); }
       .card-btn-group { flex-direction: row; right: 24px; bottom: 20px; }
       .home-hero {
         padding: 36px 24px 44px;
@@ -369,7 +378,7 @@
 
   <!-- Announcement Bar -->
   <div class="announcement-bar">
-    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-app.html" class="announcement-cta">Get now &rsaquo;</a></p>
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-features.html" class="announcement-cta">Get now &rsaquo;</a></p>
   </div>
 
   <!-- Glass Navigation — outside card -->
@@ -377,7 +386,7 @@
     <div class="navbar-inner">
       <nav class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
-        <a href="aura-clarus-app.html" class="nav-link">Clarus App</a>
+        <a href="aura-clarus-features.html" class="nav-link">Clarus</a>
         <a href="aura-clarus-desktop.html" class="nav-link">Clarus Desktop</a>
         <a href="newsroom.html" class="nav-link">Newsroom</a>
         <a href="data-room.html" class="nav-link">Data Room</a>
@@ -393,8 +402,17 @@
     <!-- SEO heading -->
     <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adarna — Aura Clarus Wearable, iPhone &amp; Mac Apps</h1>
 
-    <!-- Card 1 (front — desktop app) -->
+    <!-- Card 1 (front — the band and its power bank) -->
     <div class="home-card" data-card="1">
+      <img src="assets/images/hardware/hardware-device.jpg" alt="The Aura Clarus band beside its snap-on power bank" class="card-hardware" width="2400" height="1576" fetchpriority="high" />
+      <div class="card-btn-group">
+        <a href="aura-clarus-features.html" class="card-btn card-btn-outline">Learn More</a>
+        <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('Aura Clarus launches in July 2027.');">Access Now</a>
+      </div>
+    </div>
+
+    <!-- Card 2 (middle — desktop app) -->
+    <div class="home-card" data-card="2">
       <img src="assets/images/desktop/desktop-devices.webp" alt="Aura Clarus Desktop app for Mac by Adarna" class="card-devices" width="2000" height="1100" />
       <div class="card-btn-group">
         <a href="aura-clarus-desktop.html" class="card-btn card-btn-outline">Learn More</a>
@@ -402,8 +420,8 @@
       </div>
     </div>
 
-    <!-- Card 2 (back — Kickstarter campaign) -->
-    <div class="home-card" data-card="2">
+    <!-- Card 3 (back — Kickstarter campaign) -->
+    <div class="home-card" data-card="3">
       <img src="assets/images/kickstarter-logo.webp" alt="Kickstarter" class="card-kickstarter-logo" />
       <div class="card-btn-group">
         <a href="kickstarter.html" class="card-btn card-btn-outline">Learn More</a>
@@ -440,7 +458,7 @@
           <h3 class="af-head">Explore</h3>
           <ul class="af-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="aura-clarus-app.html">Clarus App</a></li>
+            <li><a href="aura-clarus-features.html">Aura Clarus</a></li>
             <li><a href="aura-clarus-desktop.html">Clarus Desktop</a></li>
             <li><a href="articles.html">Health Library</a></li>
             <li><a href="newsroom.html">Newsroom</a></li>

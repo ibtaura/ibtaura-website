@@ -6,7 +6,7 @@
   if (!inner) return;
 
   var MORE = [['articles.html', 'Health Library'], ['about.html', 'About Adarna'], ['careers.html', 'Careers'], ['contact.html', 'Contact Us']];
-  var QUICK = [['/aura-clarus-app', 'Clarus App'], ['/aura-clarus-desktop', 'Clarus Desktop'], ['/articles', 'Health Library'], ['/kickstarter', 'Kickstarter']];
+  var QUICK = [['/aura-clarus-features', 'Clarus'], ['/aura-clarus-desktop', 'Clarus Desktop'], ['/articles', 'Health Library'], ['/kickstarter', 'Kickstarter']];
   var ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4"/></svg>';
 
   function el(tag, cls, text) {

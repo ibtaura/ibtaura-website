@@ -2,11 +2,13 @@
 # Resolves "Redirect error" and "Not found (404)" reports in Google Search Console.
 # Format: <old-path>  <new-path>  <status>   (Cloudflare Pages / Workers Static Assets)
 
-# Old product / vision pages → Aura Clarus App page
-/product                    /aura-clarus-app.html   301
-/product.html               /aura-clarus-app.html   301
-/era                        /aura-clarus-app.html   301
-/era.html                   /aura-clarus-app.html   301
+# Old product / vision pages, and the retired Clarus App page → Aura Clarus page
+/product                    /aura-clarus-features   301
+/product.html               /aura-clarus-features   301
+/era                        /aura-clarus-features   301
+/era.html                   /aura-clarus-features   301
+/aura-clarus-app            /aura-clarus-features   301
+/aura-clarus-app.html       /aura-clarus-features   301
 
 # Old updates / news → Articles
 /updates                    /articles.html          301

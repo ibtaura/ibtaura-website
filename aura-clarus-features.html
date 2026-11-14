@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Clarus — Adarna</title>
+  <meta name="description" content="Aura Clarus by Adarna: the band, the Mac desktop app and the iPhone app, and the main things each one does." />
+  <meta name="author" content="Adarna Inc." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://adarna.us/aura-clarus-features" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Aura Clarus — Adarna" />
+  <meta property="og:description" content="Aura Clarus by Adarna: the band, the Mac desktop app and the iPhone app, and the main things each one does." />
+  <meta property="og:url" content="https://adarna.us/aura-clarus-features" />
+  <meta property="og:site_name" content="Adarna" />
+  <meta property="og:image" content="https://adarna.us/assets/images/desktop/today/today-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aura Clarus — Adarna" />
+  <meta name="twitter:description" content="Aura Clarus by Adarna: the band, the Mac desktop app and the iPhone app, and the main things each one does." />
+  <meta name="twitter:image" content="https://adarna.us/assets/images/desktop/today/today-share.jpg" />
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://adarna.us/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Aura Clarus",
+          "item": "https://adarna.us/aura-clarus-features"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://adarna.us/#organization",
+      "name": "Adarna",
+      "legalName": "Adarna Inc.",
+      "alternateName": [
+        "Adarna Inc."
+      ],
+      "url": "https://adarna.us/",
+      "description": "Adarna Inc. is a Delaware corporation behind Aura Clarus, a wearable health device with an iPhone app and a Mac desktop app.",
+      "logo": "https://adarna.us/assets/images/aura-favicon.svg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "28 Geary Street, Suite 650 #366",
+        "addressLocality": "San Francisco",
+        "addressRegion": "CA",
+        "postalCode": "94108",
+        "addressCountry": "US"
+      },
+      "email": "contact@adarna.us",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "general inquiries",
+          "email": "contact@adarna.us"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "support@adarna.us"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://adarna.us/aura-clarus-features#webpage",
+      "url": "https://adarna.us/aura-clarus-features",
+      "name": "Aura Clarus — Adarna",
+      "description": "Aura Clarus by Adarna: the band, the Mac desktop app and the iPhone app, and the main things each one does.",
+      "isPartOf": {
+        "@id": "https://adarna.us/#website"
+      },
+      "publisher": {
+        "@id": "https://adarna.us/#organization"
+      },
+      "about": {
+        "@id": "https://adarna.us/#organization"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+  </script>
+
+  <link rel="apple-touch-icon" href="assets/images/aura-favicon.svg" />
+  <link rel="icon" href="assets/images/aura-favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/style.css?v=33" />
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+
+    body { background: #ffffff; }
+    .navbar { background: rgba(244,245,245,1); }
+    .navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+    /* ─── Feature sections — full-width image + text below ── */
+    .desktop-feature {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+    }
+
+
+    .desktop-feature-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+    }
+
+    .desktop-feature-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ─── One gap between everything on this page ─
+       The strip scrolls like the Health Library rows and runs to the screen edge;
+       percent padding lines its first card up with the big image above. */
+    :root { --page-gap: 24px; }
+
+    .desktop-feature { margin-top: var(--page-gap); }
+    .desktop-top { margin-top: 63px; }
+    /* The same shape as the big images below, with the picture sized like their app window */
+    .desktop-devices { display: flex; align-items: center; justify-content: center; aspect-ratio: 2400 / 1576; }
+    .desktop-devices img { width: 70%; }
+    .desktop-row .desktop-feature { margin-top: 0; }
+    .desktop-row { margin-top: var(--page-gap); }
+
+    .feature-scroll {
+      display: flex;
+      gap: var(--page-gap);
+      margin-top: var(--page-gap);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-left: max(12px, calc((100% - 1100px) / 2));
+      padding-right: max(12px, calc((100% - 1100px) / 2));
+      scroll-snap-type: none;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .feature-scroll::-webkit-scrollbar { display: none; }
+    .feature-scroll:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+
+    .feature-item {
+      flex: 0 0 calc((100% - 2 * var(--page-gap)) / 3);
+      min-width: 0;
+      margin: 0;
+    }
+
+    .feature-item figcaption {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #6e6e73;
+      margin-top: 12px;
+      padding-right: 8px;
+    }
+    .feature-item figcaption b { color: #1d1d1f; font-weight: 600; }
+
+    .desktop-beta-card.after-rows { margin-top: var(--page-gap); }
+
+    /* ─── Product sections (hardware, desktop app, mobile app) ─── */
+    .clarus-section { margin-bottom: var(--page-gap); }
+    .desktop-feature-card.desktop-devices.mobile-device img { width: auto; height: 84%; max-width: 90%; object-fit: contain; }
+    .clarus-section + .clarus-section { margin-top: var(--page-gap); }
+    /* Hardware hero: the banner fills the card edge to edge */
+    .desktop-feature-card.desktop-devices.hw-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── Coming Soon card ───────────────────────────────── */
+    .desktop-beta-card {
+      max-width: 1100px;
+      width: calc(100% - 24px);
+      margin: 12px auto 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #F4F5F5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 56px 40px;
+      gap: 12px;
+    }
+
+    .desktop-beta-card h3 {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .desktop-beta-card p {
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0 0 12px;
+      max-width: 480px;
+    }
+
+    .desktop-notify-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 28px;
+      border-radius: 980px;
+      background: #007AFF;
+      color: #fff;
+      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .desktop-notify-btn:hover {
+      background: #0064CC;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer-legal-section {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      border-top: none;
+      padding: var(--page-gap) 40px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .legal-block p { color: #a1a1a6; font-size: 12px; }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .desktop-feature { width: calc(100% - 16px); }
+      .desktop-feature-card { border-radius: 18px; }
+      :root { --page-gap: 20px; }
+      .desktop-top { margin-top: 68px; }
+      .desktop-devices img { width: 80%; }
+      .feature-scroll { padding-left: 32px; padding-right: 32px; }
+      .desktop-beta-card { width: calc(100% - 16px); border-radius: 18px; padding: 40px 24px; }
+      .desktop-beta-card h3 { font-size: 26px; }
+      .footer-legal-section { padding: var(--page-gap) 24px 32px; }
+    }
+
+    @media (max-width: 760px) {
+      .feature-item { flex-basis: 44%; }
+    }
+
+    @media (max-width: 480px) {
+      .desktop-feature { width: calc(100% - 12px); }
+      .desktop-feature-card { border-radius: 16px; }
+      :root { --page-gap: 16px; }
+      .desktop-top { margin-top: 64px; }
+      .desktop-devices img { width: 88%; }
+      .feature-scroll { padding-left: 24px; padding-right: 24px; }
+      /* The big image leads, as on desktop: the app fills more of it and the cards step back */
+      .feature-item { flex-basis: 56%; }
+      .feature-item figcaption { font-size: 13px; padding-right: 0; }
+      .desktop-row > .desktop-feature .desktop-feature-card img { transform: scale(1.3); }
+      .desktop-beta-card { width: calc(100% - 12px); border-radius: 16px; padding: 32px 16px; }
+      .desktop-beta-card h3 { font-size: 22px; }
+      .footer-legal-section { padding: var(--page-gap) 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announcement-bar">
+    <p>Beta testing of the app is out. Early users are accepted. All terms and conditions apply. <a href="aura-clarus-features.html" class="announcement-cta">Get now &rsaquo;</a></p>
+  </div>
+
+  <header class="navbar">
+    <div class="navbar-inner">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="aura-clarus-features.html" class="nav-link active">Clarus</a>
+        <a href="aura-clarus-desktop.html" class="nav-link">Clarus Desktop</a>
+        <a href="newsroom.html" class="nav-link">Newsroom</a>
+        <a href="data-room.html" class="nav-link">Data Room</a>
+        <a href="kickstarter.html" class="nav-link">Kickstarter</a>
+      </nav>
+    </div>
+  </header>
+  <script src="assets/js/mobile-nav.js"></script>
+
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Aura Clarus — Adarna</h1>
+
+  <!-- Hardware -->
+  <section class="clarus-section" aria-labelledby="hardware-title">
+    <h2 id="hardware-title" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Hardware</h2>
+    <div class="desktop-feature desktop-top">
+      <div class="desktop-feature-card desktop-devices hw-hero">
+        <img src="assets/images/hardware/hardware-device.jpg" alt="The Aura Clarus band beside its snap-on power bank" width="2400" height="1576" fetchpriority="high" />
+      </div>
+    </div>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Hardware features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-1-upper-arm.jpg" alt="Aura Clarus band: Worn on the Upper Arm" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Worn on the Upper Arm</b> Made for the desk. The band sits on your upper arm, clear of your keyboard and trackpad, so you forget you are wearing it.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-2-heart-rhythm.jpg" alt="Aura Clarus band: Continuous Heart Rhythm" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Continuous Heart Rhythm</b> Three soft electrodes in the band follow your heart's rhythm (Lead I) all through your work, timing every beat for your scores.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-3-auto-switch.jpg" alt="Aura Clarus band: Switches as You Move" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Switches as You Move</b> While you sit, the band reads your heart through its electrodes. When you move, it switches to its optical sensor on its own.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-4-seven-signals.jpg" alt="Aura Clarus band: Seven Signals" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Seven Signals</b> Heart rate, beat-to-beat timing, breathing, skin temperature, blood oxygen, steps and activity, all from one band.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-5-textile-band.jpg" alt="Aura Clarus band: Sized to Your Arm" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Sized to Your Arm</b> A soft knit band with silver electrodes spaced to your arm's size, so it sits flat and reads cleanly on every arm.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-6-machined.jpg" alt="Aura Clarus band: Machined Aluminium" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Machined Aluminium</b> The capsule and its dial are machined from solid aluminium: small, light and made to be worn all day.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/hardware/hw-7-charging.jpg" alt="Aura Clarus band: Snap-On Charging" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Snap-On Charging</b> A small power bank snaps onto the capsule with magnets, so the band keeps going for days without leaving your arm.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- Desktop app -->
+  <section class="clarus-section" aria-labelledby="desktop-app-title">
+    <h2 id="desktop-app-title" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Desktop app</h2>
+    <div class="desktop-feature">
+      <div class="desktop-feature-card desktop-devices">
+        <img src="assets/images/desktop/desktop-devices.webp" alt="Aura Clarus Desktop on a large display and a MacBook" width="2000" height="1100" fetchpriority="high" />
+      </div>
+    </div>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Desktop app features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/today/today-1-capacity-score.jpg" alt="Aura Clarus Desktop: Capacity Score" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Capacity Score</b> Start each morning with one score from your sleep, band and quick check, updated live all day, so you always know what you have left.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/work/work-1-focus-mode.jpg" alt="Aura Clarus Desktop: Focus Mode" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Focus Mode</b> Choose Flowtime or a timer, a soundscape and breaks, and let Aura guide the block, so every focused minute counts toward your day.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/calendar/calendar-3-auto-allocation.jpg" alt="Aura Clarus Desktop: Auto Allocation" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Auto Allocation</b> After your morning check, Aura fits tasks into your calendar by capacity, and explains, in plain words, anything that doesn't fit.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/task/task-3-plan-for-me.jpg" alt="Aura Clarus Desktop: Plan for Me" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Plan for Me</b> Add a task with its length and how demanding it is, tap Plan for Me, and Aura finds a slot in your calendar that fits your energy.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/categories/categories-2-health-categories.jpg" alt="Aura Clarus Desktop: Health Categories" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Health Categories</b> Over 340 health signals from your band, grouped by category, each with its own chart, so nothing about your body stays hidden.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/desktop/mini/mini-1-mini-window.jpg" alt="Aura Clarus Desktop: Mini Window" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Mini Window</b> A small floating window keeps your capacity ring, your next blocks and your tools one glance away, without opening the full app.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- Mobile app -->
+  <section class="clarus-section" aria-labelledby="mobile-app-title">
+    <h2 id="mobile-app-title" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Mobile app</h2>
+    <div class="desktop-feature">
+      <div class="desktop-feature-card desktop-devices mobile-device">
+        <img src="assets/images/mobile/mobile-device.webp" alt="The Aura Clarus app on iPhone: Home" width="1362" height="2724" loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <div class="feature-scroll" tabindex="0" role="group" aria-label="Mobile app features">
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/mobile/mobile-1-scores.jpg" alt="Aura Clarus app: Three Scores" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Three Scores</b> Capacity, focus and recovery, each measured against your own normal over the last 14 days, so you see how your mind is doing at a glance.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/mobile/mobile-2-today.jpg" alt="Aura Clarus app: Today" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Today</b> Clarus notices what you need, like a short nap or a pause after a long stretch of stress, and offers it with one tap.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/mobile/mobile-3-recovery.jpg" alt="Aura Clarus app: Recovery Breaks" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Recovery Breaks</b> A library of breaks that suit the hour, from ten minutes between meetings to a walk, each with its length and what the evidence says.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/mobile/mobile-4-calendar-tasks.jpg" alt="Aura Clarus app: Calendar and Tasks" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Calendar and Tasks</b> Your week's events and today's tasks right on Home, with the full calendar, day zones and Plan It for Me one tap away.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/mobile/mobile-6-charts.jpg" alt="Aura Clarus app: Charts for Everything" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Charts for Everything</b> 25 categories of health and work data, each measure with its own chart by day, week, month or year, and its highlights.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card"><img src="assets/images/mobile/mobile-7-logging.jpg" alt="Aura Clarus app: Logging" width="1200" height="1364" loading="lazy" decoding="async" /></div>
+        <figcaption><b>Logging</b> Log mood, stress, food, focus and more in seconds, so your scores know what the band can't measure.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Call to action -->
+  <div class="desktop-beta-card after-rows">
+    <h3>Launching Soon</h3>
+    <p>Aura Clarus launches in July 2027.</p>
+    <a href="kickstarter.html" class="desktop-notify-btn">Follow the Launch</a>
+  </div>
+
+
+
+
+  <!-- Footer -->
+  <footer class="footer-legal-section" id="contact">
+    <div class="footer-legal-inner">
+      <div class="legal-block">
+        <p>Adarna Inc. is a corporation duly incorporated under the General Corporation Law of the State of Delaware, United States of America. The company maintains its mailing address at 28 Geary Street, Suite 650 #366, San Francisco, California 94108, United States, and operates in full compliance with the applicable provisions of Delaware corporate law and the federal and state laws of the United States governing corporations. Aura Clarus is Adarna's wearable health device, with an iPhone app and a Mac desktop app.</p>
+        <p style="margin-top:12px;">For detailed information about how we handle your data and your rights, please <a href="privacy-policy.html" style="color:#0071e3;text-decoration:none;">visit our Privacy Policy</a>. For the complete terms governing the use of our website and services, please <a href="terms-and-conditions.html" style="color:#0071e3;text-decoration:none;">visit our Terms and Conditions</a>.</p>
+        <p>Adarna Inc. is a validly existing corporation in good standing under the laws of the State of Delaware. The company is in the process of completing its United States federal and state tax and business registrations, and further regulatory and tax details will be published as those registrations are finalized. Adarna Inc. conducts its operations in accordance with applicable United States federal and state laws and the regulations of the jurisdictions in which it offers its products and services.</p>
+        <p>The company maintains its banking and financial operations through established financial institutions in the United States and conducts all commercial transactions with transparency, accountability, and strict adherence to applicable financial-compliance and consumer-protection standards. Adarna Inc. is committed to lawful and ethical conduct across all of its business, payment, and commercial operations.</p>
+        <p>Adarna Inc. is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy-first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
+        <p>Sensitive categories of personal data, including but not limited to health information, biometric data, physiological measurements, and wellness-related information collected through the company's wearable health monitoring systems and associated software applications, are processed with significantly enhanced safeguards, technical protections, and organizational controls. User consent and user control remain central and foundational to all data interactions. Users retain meaningful rights over their personal data, including the right to access, correct, and request deletion of their information in accordance with applicable United States federal and state data-protection laws and other applicable regulations. Adarna Inc. does not sell, rent, trade, or otherwise commercially exploit personal data belonging to its users to any third party under any circumstances. The company maintains ongoing compliance with applicable data-protection standards and frameworks as they evolve across the jurisdictions in which it operates.</p>
+        <p>All content, technology, software, algorithms, product designs, inventions, trademarks, trade names, logos, graphics, visual elements, written materials, and all other intellectual property rights subsisting in or arising from the materials presented on this website and through the company's products and services are the exclusive and proprietary property of Adarna Inc. These intellectual property assets are protected under applicable United States law, including the Patent Act (Title 35 of the United States Code), the Lanham Act, and the Copyright Act (Title 17 of the United States Code), as well as under applicable international intellectual property treaties and conventions to which the United States is a signatory. Any unauthorized access, use, reproduction, duplication, modification, distribution, transmission, publication, or commercial exploitation of any such intellectual property, in whole or in part, without the prior written consent of Adarna Inc., is strictly prohibited and will constitute an infringement of the company's intellectual property rights. The company reserves the right to pursue all available legal remedies, including injunctive relief and claims for damages, against any party found to be in violation of its intellectual property rights.</p>
+        <p>The information, content, and materials provided on this website are made available for general informational purposes only. Nothing contained on this website shall be construed, interpreted, or relied upon as constituting medical advice, clinical guidance, diagnostic opinion, legal counsel, financial advice, or any other form of professional advisory service. Users are strongly encouraged to seek the guidance of qualified medical professionals, legal advisors, financial consultants, or other relevant experts before making any decisions based on information obtained from this website or through the use of the company's products and services. Adarna Inc. expressly disclaims any and all liability arising from reliance on the information provided on this website for any purpose beyond general informational use.</p>
+        <p>Product features, technical specifications, pricing, availability, regulatory status, and all other product-related details presented on this website are subject to change at any time without prior notice, at the sole discretion of Adarna Inc. Certain product features and functionalities may require regulatory approvals, certifications, or clearances from competent authorities in specific jurisdictions prior to being made available to users in those regions. The company makes no representation or warranty that all features and functionalities described on this website are currently available or approved for use in every jurisdiction.</p>
+        <p>By accessing, browsing, or otherwise using this website, you unconditionally agree to use the website and all its contents in full compliance with all applicable laws and regulations, and you agree that these terms are governed by and construed in accordance with the laws of the State of Delaware and the applicable federal laws of the United States, without regard to conflict-of-law principles. Adarna Inc. reserves the absolute right to modify, update, amend, or replace any content, policies, terms of use, or other materials published on this website at any time and without prior notice. Continued use of the website following any such modifications shall constitute your acceptance of the updated terms and conditions. Users are advised to review this legal notice periodically to remain informed of any changes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Site footer links -->
+  <nav class="site-footer" aria-label="Footer">
+    <div class="af-cols">
+
+      <div class="af-col">
+        <div class="af-group">
+          <h3 class="af-head">Explore</h3>
+          <ul class="af-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aura-clarus-features.html">Aura Clarus</a></li>
+            <li><a href="aura-clarus-desktop.html">Clarus Desktop</a></li>
+            <li><a href="articles.html">Health Library</a></li>
+            <li><a href="newsroom.html">Newsroom</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="af-col">
+        <div class="af-group">
+          <h3 class="af-head">Company</h3>
+          <ul class="af-list">
+            <li><a href="about.html">About Adarna</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="af-group">
+          <h3 class="af-head">Investors</h3>
+          <ul class="af-list">
+            <li><a href="data-room.html">Data Room</a></li>
+            <li><a href="kickstarter.html">Kickstarter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="af-col">
+        <div class="af-group">
+          <h3 class="af-head">Orders and Support</h3>
+          <ul class="af-list">
+            <li><a href="shipping-policy.html">Shipping and Delivery</a></li>
+            <li><a href="refund-policy.html">Refund and Cancellation</a></li>
+            <li><a href="warranty-policy.html">Warranty</a></li>
+            <li><a href="grievance-redressal.html">Grievance Redressal</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="af-col">
+        <div class="af-group">
+          <h3 class="af-head">Legal</h3>
+          <ul class="af-list">
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="acceptable-use-policy.html">Acceptable Use</a></li>
+            <li><a href="eula.html">End User Licence</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="af-col">
+        <div class="af-group">
+          <h3 class="af-head">Our Standards</h3>
+          <ul class="af-list">
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="code-of-conduct.html">Code of Conduct</a></li>
+            <li><a href="anti-harassment-policy.html">Anti-Harassment</a></li>
+            <li><a href="vaccination-policy.html">Vaccination Policy</a></li>
+          </ul>
+        </div>
+        <div class="af-group">
+          <h3 class="af-head">Security</h3>
+          <ul class="af-list">
+            <li><a href="security-policy.html">Responsible Disclosure</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="af-note">More ways to explore: read the <a href="articles.html">Health Library</a>, follow progress in the <a href="newsroom.html">Newsroom</a>, or write to us at <a href="mailto:contact@adarna.us">contact@adarna.us</a>.</p>
+
+    <div class="af-bottom">
+      <span class="af-copy">Copyright &copy; 2026 Adarna Inc. All rights reserved.</span>
+      <span class="af-bottom-nav sfl-legal">
+        <a href="privacy-policy.html" class="af-bottom-link">Privacy Policy</a>
+        <span class="af-sep">|</span>
+        <a href="terms-and-conditions.html" class="af-bottom-link">Terms and Conditions</a>
+        <span class="af-sep">|</span>
+        <a href="disclaimer.html" class="af-bottom-link">Disclaimer</a>
+      </span>
+      <span class="af-region">United States</span>
+    </div>
+  </nav>
+
+
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 2, infinite: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+  <script>
+    /* Feature rows: the Health Library's eased sideways scroll */
+    document.querySelectorAll('.feature-scroll').forEach(function(row) {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      row.scrollLeft = 0;
+      var target = 0;
+      var current = 0;
+      var animating = false;
+      var ease = 0.08;
+
+      function limit() { return row.scrollWidth - row.clientWidth; }
+
+      function animate() {
+        if (!animating) return;
+        current += (target - current) * ease;
+        if (Math.abs(target - current) < 0.5) {
+          current = target;
+          row.scrollLeft = current;
+          animating = false;
+          return;
+        }
+        row.scrollLeft = current;
+        requestAnimationFrame(animate);
+      }
+
+      function glide() {
+        if (reduceMotion) {
+          row.scrollLeft = target;
+          current = target;
+          return;
+        }
+        if (!animating) {
+          current = row.scrollLeft;
+          animating = true;
+          requestAnimationFrame(animate);
+        }
+      }
+
+      row.addEventListener('wheel', function(e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        var delta = e.deltaX;
+        if (delta === 0) return;
+        e.preventDefault();
+        e.stopPropagation();
+        target = Math.max(0, Math.min(limit(), target + delta * 1.5));
+        glide();
+      }, { passive: false });
+
+      row.addEventListener('touchstart', function() { animating = false; }, { passive: true });
+
+      row.addEventListener('scroll', function() {
+        if (!animating) {
+          target = row.scrollLeft;
+          current = row.scrollLeft;
+        }
+      }, { passive: true });
+    });
+  </script>
+
+  <!-- Cookie consent + analytics -->
+  <script src="assets/js/analytics-config.js"></script>
+  <script src="assets/js/consent.js" defer></script>
+</body>
+</html>
