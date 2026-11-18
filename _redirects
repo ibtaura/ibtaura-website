@@ -1,11 +1,11 @@
 # Redirects for adarna.us (Cloudflare Workers static assets, _redirects syntax: <from> <to> <status>).
 # Every target is a final, clean URL, so no rule chains into another redirect.
 # Paths with spaces or non-ASCII characters are percent-encoded.
+# Dynamic rules go at the END of this file (see the note there).
 
 # Legacy URLs from the old site structure
 /aura-clarus-app       /clarus-health  301
 /aura-clarus-app.html  /clarus-health  301
-/blog/*                /articles              301
 
 # Retired meta-refresh pages (era, product, updates, investor-relations)
 /era                      /clarus-health  301
@@ -262,3 +262,8 @@
 /assets/images/product/aura-clarus-image-02.png      /assets/images/product/clarus-health-image-02.png    301
 /assets/images/brand/aura-favicon.svg                /assets/images/brand/adarna-favicon.svg              301
 /assets/docs/company/aura-clarus-pitch-deck.pdf      /assets/docs/company/clarus-health-pitch-deck.pdf    301
+
+# Dynamic rules (splats or :placeholders) MUST stay at the end of this file. Cloudflare treats every
+# rule after the first dynamic rule as dynamic too, and allows only 100 dynamic rules (build fails).
+# Old blog posts -> Health Library
+/blog/*                /articles              301

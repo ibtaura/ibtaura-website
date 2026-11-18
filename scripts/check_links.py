@@ -88,6 +88,9 @@ class Site:
         path = os.path.join(self.root, '_redirects')
         if not os.path.isfile(path):
             return
+        # Cloudflare limits: 2000 static + 100 dynamic rules. A rule is dynamic when its source has a
+        # splat (*) or a :placeholder, AND every rule after the first dynamic rule counts as dynamic.
+        seen_dynamic, n_dynamic, n_static = False, 0, 0
         for n, line in enumerate(open(path, encoding='utf-8'), 1):
             line = line.strip()
             if not line or line.startswith('#'):
@@ -97,6 +100,17 @@ class Site:
                 self.bad('_redirects', 'line %d' % n, 'malformed rule')
                 continue
             src, dst = parts[0], parts[1]
+            if '*' in src or re.search(r'/:[A-Za-z]', src):
+                seen_dynamic = True
+            if seen_dynamic:
+                n_dynamic += 1
+                if n_dynamic == 101:
+                    self.bad('_redirects', 'line %d' % n,
+                             'over 100 dynamic rules (Cloudflare build fails); move splat/:placeholder rules to the END')
+            else:
+                n_static += 1
+                if n_static == 2001:
+                    self.bad('_redirects', 'line %d' % n, 'over 2000 static rules (Cloudflare limit)')
             if src.endswith('/*'):
                 self.splat.append((src[:-1], dst))
             elif src in self.redir:
