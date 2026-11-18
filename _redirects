@@ -208,57 +208,27 @@
 /onboarding.html    /internal/onboarding    301
 
 # Images renamed and filed into topic folders under /assets/images/
-/assets/images/ACTIONS%20CARD.svg                           /assets/images/app/actions-card.svg                        301
 /assets/images/Adithisri.png                                /assets/images/team/adithisri.png                          301
 /assets/images/Aug%20CAD%20design%20change.png              /assets/images/newsroom/2026-08/cad-design-change.png      301
 /assets/images/Aug%20Desktop%20design%20change.png          /assets/images/newsroom/2026-08/desktop-design-change.png  301
 /assets/images/Aug%20PCB%20update.png                       /assets/images/newsroom/2026-08/pcb-update.png             301
-/assets/images/Aura%20Clarus%20Desktop.png                  /assets/images/product/aura-clarus-desktop.png             301
 /assets/images/BETA%20LAUNCG%2002.png                       /assets/images/newsroom/2026-06/beta-launch-02.png         301
-/assets/images/Beta%20app%20font%20page.png                 /assets/images/app/beta-app-front-page.png                 301
-/assets/images/Calender.png                                 /assets/images/app/calendar.png                            301
-/assets/images/Dashboard.png                                /assets/images/app/dashboard.png                           301
-/assets/images/Eva%20assistant.png                          /assets/images/app/eva-assistant.png                       301
-/assets/images/FITNESS%20CARD.svg                           /assets/images/app/fitness-card.svg                        301
-/assets/images/Focus.png                                    /assets/images/app/focus.png                               301
-/assets/images/GOALS%20CARD.svg                             /assets/images/app/goals-card.svg                          301
-/assets/images/Habits.png                                   /assets/images/app/habits.png                              301
 /assets/images/Hardware.png                                 /assets/images/newsroom/2026-06/hardware.png               301
 /assets/images/Keynote%20icon.png                           /assets/images/icons/keynote-icon-large.png                301
-/assets/images/LOG%20CARD.svg                               /assets/images/app/log-card.svg                            301
-/assets/images/MacBook%20Pro%2014.png                       /assets/images/product/macbook-pro-14.png                  301
-/assets/images/Megavernan.png                               /assets/images/team/megavernan.png                         301
-/assets/images/PARAMTERS%20CARD.svg                         /assets/images/app/parameters-card.svg                     301
 /assets/images/PCB%20Space%20Black.png                      /assets/images/newsroom/2026-07/pcb-space-black.png        301
 /assets/images/Pages.png                                    /assets/images/icons/pages-icon.png                        301
 /assets/images/Product%20%E2%80%94%20App%20&%20Desktop.png  /assets/images/product/product-app-and-desktop.png         301
-/assets/images/SCORES%20CARDS.svg                           /assets/images/app/scores-cards.svg                        301
-/assets/images/SMART%20CALENDER%20CARD.svg                  /assets/images/app/smart-calendar-card.svg                 301
-/assets/images/STORY%20CARD.svg                             /assets/images/app/story-card.svg                          301
-/assets/images/STREAK%20CARD.svg                            /assets/images/app/streak-card.svg                         301
 /assets/images/Sep%203D%20model.png                         /assets/images/newsroom/2026-09/3d-model.png               301
 /assets/images/Sep%20Aluminium%20frame.png                  /assets/images/newsroom/2026-09/aluminium-frame.png        301
 /assets/images/Sep%20Optical%20glass%20frame.png            /assets/images/newsroom/2026-09/optical-glass-frame.png    301
-/assets/images/Smart%20calender%20mode.svg                  /assets/images/app/smart-calendar-mode.svg                 301
-/assets/images/Space%20Black.png                            /assets/images/product/space-black.png                     301
-/assets/images/TRAVEL%20CARD.svg                            /assets/images/app/travel-card.svg                         301
-/assets/images/Task.png                                     /assets/images/app/task.png                                301
-/assets/images/Travel%20mode.svg                            /assets/images/app/travel-mode.svg                         301
-/assets/images/Trends.png                                   /assets/images/app/trends.png                              301
 /assets/images/Vishwanath.png                               /assets/images/team/vishwanath.png                         301
-/assets/images/app%20full.svg                               /assets/images/app/app-full.svg                            301
-/assets/images/app.svg                                      /assets/images/app/app.svg                                 301
-/assets/images/aura-clarus-blck.png                         /assets/images/product/aura-clarus-black.png               301
 /assets/images/aura-clarus-image-02.png                     /assets/images/product/aura-clarus-image-02.png            301
-/assets/images/aura-clarus-render.png                       /assets/images/product/aura-clarus-render.png              301
 /assets/images/aura-favicon.svg                             /assets/images/brand/aura-favicon.svg                      301
-/assets/images/emotion%20dedection%20mode.svg               /assets/images/app/emotion-detection-mode.svg              301
 /assets/images/handshaking.png                              /assets/images/company/handshaking.png                     301
 /assets/images/keynote-icon.png                             /assets/images/icons/keynote-icon.png                      301
 /assets/images/kickstarter-logo.webp                        /assets/images/icons/kickstarter-logo.webp                 301
 /assets/images/numbers%20icon.png                           /assets/images/icons/numbers-icon.png                      301
 /assets/images/safari-icon.png                              /assets/images/icons/safari-icon.png                       301
-/assets/images/testflight-logo.svg                          /assets/images/icons/testflight-logo.svg                   301
 /assets/images/youtube-icon.png                             /assets/images/icons/youtube-icon.png                      301
 
 # Documents sorted into /assets/docs/newsroom, /kickstarter and /company
@@ -270,10 +240,8 @@
 /assets/docs/adarna-update-03-science.pdf                    /assets/docs/newsroom/adarna-update-03-science.pdf                       301
 /assets/docs/adarna-update-04-backend.pdf                    /assets/docs/newsroom/adarna-update-04-backend.pdf                       301
 /assets/docs/aura-clarus-pitch-deck.pdf                      /assets/docs/company/aura-clarus-pitch-deck.pdf                          301
-/assets/docs/gst-ibt-aura.pdf                                /assets/docs/company/gst-ibt-aura.pdf                                    301
 /assets/docs/ibt-aura-august-2026-monthly-update.pdf         /assets/docs/newsroom/ibt-aura-august-2026-monthly-update.pdf            301
 /assets/docs/ibt-aura-corporate-operations-report.pdf        /assets/docs/newsroom/ibt-aura-corporate-operations-report.pdf           301
-/assets/docs/ibt-aura-incorporation.pdf                      /assets/docs/company/ibt-aura-incorporation.pdf                          301
 /assets/docs/ibt-aura-investor-update-july-2026.pdf          /assets/docs/newsroom/ibt-aura-investor-update-july-2026.pdf             301
 /assets/docs/ibt-aura-july-2026-monthly-update.pdf           /assets/docs/newsroom/ibt-aura-july-2026-monthly-update.pdf              301
 /assets/docs/ibt-aura-legal-docs.zip                         /assets/docs/company/ibt-aura-legal-docs.zip                             301
@@ -282,8 +250,6 @@
 /assets/docs/ibt-aura-update-02-new-teammates.pdf            /assets/docs/newsroom/ibt-aura-update-02-new-teammates.pdf               301
 /assets/docs/ibt-aura-update-04-parameter-set-finalized.pdf  /assets/docs/newsroom/ibt-aura-update-04-parameter-set-finalized.pdf     301
 /assets/docs/ibt-aura-update-05-backend-on-aws.pdf           /assets/docs/newsroom/ibt-aura-update-05-backend-on-aws.pdf              301
-/assets/docs/ibt-pitch.pdf                                   /assets/docs/company/ibt-pitch.pdf                                       301
-/assets/docs/iec-code-ibt-aura.pdf                           /assets/docs/company/iec-code-ibt-aura.pdf                               301
 /assets/docs/kickstarter-1-deal-and-money.zip                /assets/docs/kickstarter/kickstarter-1-deal-and-money.zip                301
 /assets/docs/kickstarter-2-delivery-and-after-sale.zip       /assets/docs/kickstarter/kickstarter-2-delivery-and-after-sale.zip       301
 /assets/docs/kickstarter-3-health-safety-regulatory.zip      /assets/docs/kickstarter/kickstarter-3-health-safety-regulatory.zip      301
