@@ -1,5 +1,5 @@
 /**
- * Aura — Analytics configuration
+ * Adarna — Analytics configuration
  * ------------------------------------------------------------------
  * The GA4 Measurement ID lives here and nowhere else.
  *

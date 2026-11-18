@@ -1,20 +1,37 @@
-# Brand and entity: ranking for "Adarna Inc"
+# Brand and entity: ranking for "Adarna Inc" and "Clarus Health"
 
-## The situation (checked 2026-11-18)
-- **Plain "Adarna":** results are dominated by the Philippine legend Ibong Adarna, Wikipedia, the publisher Adarna House and the actress Ellen Adarna. Search intent for the bare word is the legend, so ranking #1 there isn't a realistic near-term goal.
-- **Winnable searches:** **"Adarna Inc"**, **"Aura Clarus"** (a unique name), "Adarna wearable", "Adarna health band" and "Adarna app". In Nov 2026 adarna.us didn't yet show for these either, so there is easy ground to win.
-- **Strategy:** lead with **Aura Clarus** as the searchable product brand, and always pair it with "Adarna Inc." so Google links the company to the product.
+## Names (decided 2026-11-18)
+- **Company:** Adarna Inc.
+- **Product:** **Clarus Health**, renamed from "Aura Clarus". Don't use "Aura" in product naming. The product is a band, plus an iPhone app and the Clarus Health Desktop app for Mac.
+- **Positioning:** a health wearable that helps with productivity and burnout. Health comes first; productivity, focus and burnout are the second message.
+- **Name risk:** "Clarus Health" is also used by a San Francisco ketamine/NAD clinic (clarus-health.com) and by a 2025 "Clarus Health Inc" trademark filing for behavioral-health services. The owner chose the name anyway. So:
+  - always pair it with the company: "Clarus Health by Adarna Inc."
+  - the team should run a trademark check before packaging or the Kickstarter
 
-## To do on the site
-- **Organization JSON-LD:** add `sameAs` (all official profiles), `founder`, `foundingDate`, and a square PNG `logo` (at least 112 px; it currently uses the favicon SVG). Keep `legalName: "Adarna Inc."` and the San Francisco address consistent everywhere.
-- **Titles:** use "Adarna Inc. | Aura Clarus ..." on home, about, product and newsroom pages.
+## The search landscape (checked 2026-11-18)
+- **Plain "Adarna":** dominated by the Philippine legend Ibong Adarna, Wikipedia, the publisher Adarna House and the actress Ellen Adarna. That isn't a realistic near-term #1.
+- **Winnable searches:** "Adarna Inc", "Clarus Health Adarna", "Clarus Health band" or "wearable", "Adarna wearable", "Adarna health band", "Adarna productivity band", and in time "burnout wearable".
+- Targets and timelines are in [seo-ranking-plan.md](seo-ranking-plan.md).
+
+## On the site
+- **Full Organization JSON-LD** (`@id https://adarna.us/#organization`), on home and about only. Every other page references it by `@id`. Fields:
+  - name, alternateName, legalName "Adarna Inc."
+  - sameAs (below)
+  - the San Francisco address
+  - brand "Clarus Health"
+  - founders and foundingDate, once the owner provides them
+  - a square PNG logo
+- **Product JSON-LD:** on `/clarus-health`, with manufacturer set to the organization @id.
+- **Titles:** "... | Adarna Inc."; product pages use "Clarus Health ... | Adarna Inc.".
 
 ## Profile links for `sameAs`
 - LinkedIn: https://www.linkedin.com/company/adarna-inc
+- Crunchbase: https://www.crunchbase.com/organization/adarna-2e71
 - GitHub (organisation): https://github.com/ibtaura
-- To add when available: Crunchbase, X, YouTube, Instagram, App Store, Kickstarter campaign, Product Hunt, Wikidata (once press coverage exists)
+- To add when available: X, Instagram, YouTube, App Store, Kickstarter campaign, Product Hunt, and Wikidata (once press coverage exists)
 
 ## Off-site work (owner)
-- **Consistent profiles:** every profile says "Adarna Inc.", uses the same address and links to adarna.us. Add Google Business Profile if the address qualifies.
-- **Backlinks:** press, incubator and investor listings, podcasts and guest articles that mention "Adarna Inc" or "Aura Clarus".
-- **Tracking:** check Search Console monthly for the impressions and position of "adarna inc" and "aura clarus".
+- **Rename everywhere:** change "Aura Clarus" to "Clarus Health" on LinkedIn, Crunchbase, Kickstarter and the app store and app names. Use the same company name, website and address everywhere.
+- **Google Business Profile:** skip it unless there's a staffed office. The current address looks like a mailbox, which Google doesn't allow.
+- **Backlinks:** press, directories (Wellfound, BetaList, F6S), roundup writers and podcasts that mention "Adarna Inc" or "Clarus Health".
+- **Tracking:** check Search Console monthly for "adarna inc", "clarus health adarna", "clarus health", "adarna productivity band" and "burnout wearable".

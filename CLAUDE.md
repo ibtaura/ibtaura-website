@@ -1,6 +1,6 @@
 # adarna.us website: working notes for Claude
 
-This repo is the public website https://adarna.us (Adarna Inc., maker of the Aura Clarus wearable). It is static HTML served by Cloudflare.
+This repo is the public website https://adarna.us (Adarna Inc., maker of the Clarus Health wearable, renamed from "Aura Clarus" on 2026-11-18; don't use "Aura" in product naming). It is static HTML served by Cloudflare.
 
 Project memory lives in `memory/`. Read it before working:
 

@@ -1,5 +1,5 @@
 /**
- * Aura — Cookie consent + GA4 (Google Consent Mode v2)
+ * Adarna — Cookie consent + GA4 (Google Consent Mode v2)
  * ------------------------------------------------------------------
  * - Essential cookies only, until the visitor opts in.
  * - No Google Analytics script is requested at all until "Analytics"

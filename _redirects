@@ -3,17 +3,17 @@
 # Paths with spaces or non-ASCII characters are percent-encoded.
 
 # Legacy URLs from the old site structure
-/aura-clarus-app       /aura-clarus-features  301
-/aura-clarus-app.html  /aura-clarus-features  301
+/aura-clarus-app       /clarus-health  301
+/aura-clarus-app.html  /clarus-health  301
 /blog/*                /articles              301
 
 # Retired meta-refresh pages (era, product, updates, investor-relations)
-/era                      /aura-clarus-features  301
-/era.html                 /aura-clarus-features  301
+/era                      /clarus-health  301
+/era.html                 /clarus-health  301
 /investor-relations       /about                 301
 /investor-relations.html  /about                 301
-/product                  /aura-clarus-features  301
-/product.html             /aura-clarus-features  301
+/product                  /clarus-health  301
+/product.html             /clarus-health  301
 /updates                  /articles              301
 /updates.html             /articles              301
 
@@ -218,8 +218,8 @@
 /assets/images/Sep%20Aluminium%20frame.png                  /assets/images/newsroom/2026-09/aluminium-frame.png        301
 /assets/images/Sep%20Optical%20glass%20frame.png            /assets/images/newsroom/2026-09/optical-glass-frame.png    301
 /assets/images/Vishwanath.png                               /assets/images/team/vishwanath.png                         301
-/assets/images/aura-clarus-image-02.png                     /assets/images/product/aura-clarus-image-02.png            301
-/assets/images/aura-favicon.svg                             /assets/images/brand/aura-favicon.svg                      301
+/assets/images/aura-clarus-image-02.png                     /assets/images/product/clarus-health-image-02.png            301
+/assets/images/aura-favicon.svg                             /assets/images/brand/adarna-favicon.svg                      301
 /assets/images/handshaking.png                              /assets/images/company/handshaking.png                     301
 /assets/images/keynote-icon.png                             /assets/images/icons/keynote-icon.png                      301
 /assets/images/kickstarter-logo.webp                        /assets/images/icons/kickstarter-logo.webp                 301
@@ -235,7 +235,7 @@
 /assets/docs/adarna-update-02-funding.pdf                    /assets/docs/newsroom/adarna-update-02-funding.pdf                       301
 /assets/docs/adarna-update-03-science.pdf                    /assets/docs/newsroom/adarna-update-03-science.pdf                       301
 /assets/docs/adarna-update-04-backend.pdf                    /assets/docs/newsroom/adarna-update-04-backend.pdf                       301
-/assets/docs/aura-clarus-pitch-deck.pdf                      /assets/docs/company/aura-clarus-pitch-deck.pdf                          301
+/assets/docs/aura-clarus-pitch-deck.pdf                      /assets/docs/company/clarus-health-pitch-deck.pdf                          301
 /assets/docs/ibt-aura-august-2026-monthly-update.pdf         /assets/docs/newsroom/ibt-aura-august-2026-monthly-update.pdf            301
 /assets/docs/ibt-aura-corporate-operations-report.pdf        /assets/docs/newsroom/ibt-aura-corporate-operations-report.pdf           301
 /assets/docs/ibt-aura-investor-update-july-2026.pdf          /assets/docs/newsroom/ibt-aura-investor-update-july-2026.pdf             301
@@ -253,3 +253,12 @@
 /assets/docs/kickstarter-5-company-and-product.zip           /assets/docs/kickstarter/kickstarter-5-company-and-product.zip           301
 /assets/docs/kickstarter-6-community-and-responsibility.zip  /assets/docs/kickstarter/kickstarter-6-community-and-responsibility.zip  301
 /assets/docs/kickstarter-all-documents.zip                   /assets/docs/kickstarter/kickstarter-all-documents.zip                   301
+
+# Product renamed Aura Clarus -> Clarus Health (2026-11-18)
+/aura-clarus-features                                /clarus-health                                       301
+/aura-clarus-features.html                           /clarus-health                                       301
+/aura-clarus-desktop                                 /clarus-health/desktop                               301
+/aura-clarus-desktop.html                            /clarus-health/desktop                               301
+/assets/images/product/aura-clarus-image-02.png      /assets/images/product/clarus-health-image-02.png    301
+/assets/images/brand/aura-favicon.svg                /assets/images/brand/adarna-favicon.svg              301
+/assets/docs/company/aura-clarus-pitch-deck.pdf      /assets/docs/company/clarus-health-pitch-deck.pdf    301

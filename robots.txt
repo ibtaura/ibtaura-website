@@ -1,9 +1,7 @@
-# robots.txt — Adarna Inc. (Aura Clarus)
+# robots.txt — Adarna Inc. (Clarus Health)
 # https://adarna.us
 
 User-agent: *
 Allow: /
-# Keep downloadable documents (PDFs, etc.) out of the index
-Disallow: /assets/docs/
 
 Sitemap: https://adarna.us/sitemap.xml

@@ -19,6 +19,7 @@ PAPERS = [
 ]
 PUBLISHED = "2026-11-14"
 SITE = "https://adarna.us"
+ORG = SITE + "/#organization"  # the full Organization is defined once, on index.html and about.html
 
 # ── LaTeX → HTML ──────────────────────────────────────────────────────────
 
@@ -572,8 +573,8 @@ def build():
         desc_plain = re.sub(r"<[^>]+>", "", conclusions)
         image = f"{SITE}/assets/papers/{p['slug']}/" + sorted(os.listdir(os.path.join(REPO, f"assets/papers/{p['slug']}")))[0]
         ld = {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": plain[:110], "name": plain,
-              "author": {"@type": "Person", "name": re.sub(r"<[^>]+>", "", meta["author"]), "affiliation": {"@type": "Organization", "name": "Adarna Inc."}},
-              "publisher": {"@type": "Organization", "name": "Adarna Inc.", "url": SITE},
+              "author": {"@type": "Person", "name": re.sub(r"<[^>]+>", "", meta["author"]), "affiliation": {"@id": ORG}},
+              "publisher": {"@id": ORG},
               "datePublished": PUBLISHED, "inLanguage": "en", "keywords": ", ".join(meta["keywords"]),
               "abstract": desc_plain, "url": SITE + path, "encoding": {"@type": "MediaObject", "encodingFormat": "application/pdf", "contentUrl": f"{SITE}/{pdf}"},
               "creativeWorkStatus": re.sub(r"<[^>]+>", "", meta["status"])}
@@ -638,7 +639,7 @@ def build():
 
     intro = "Evidence-graded reviews from Adarna on what shapes cognitive performance in working adults. Read each paper in full here, or download the PDF."
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Adarna Papers", "url": SITE + "/papers", "description": intro}
-    page = (head("Papers — Adarna", intro, "/papers", "website", ld, f"{SITE}/assets/papers/{PAPERS[0]['slug']}/paper1_fig1_evidence_map.png")
+    page = (head("Papers | Adarna Inc.", intro, "/papers", "website", ld, f"{SITE}/assets/papers/{PAPERS[0]['slug']}/paper1_fig1_evidence_map.png")
             + PAPERS_CSS_LINK + "  <style>" + INDEX_CSS + "  </style>\n" + BODY_TOP + f"""
 
   <div class="research-intro">

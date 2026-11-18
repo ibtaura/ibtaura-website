@@ -1,0 +1,35 @@
+# Response headers for adarna.us (Cloudflare Workers static assets, _headers syntax).
+# Rules: one path pattern per block, indented "Name: value" lines below it, at most 100 rules,
+# 2000 characters per line. Every matching rule applies, in file order, and a header set by two
+# rules is joined with a comma, so each path below gets Cache-Control from exactly one rule.
+# A header set here replaces Cloudflare's default (Cache-Control: public, max-age=0, must-revalidate).
+# _redirects runs first, so a redirected request never gets these headers.
+# Not set on purpose: Strict-Transport-Security (add once http:// and www. redirect to https://adarna.us)
+# and Content-Security-Policy (it could block the analytics and consent scripts, so test it first).
+
+# Security headers for every response
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+
+# Stylesheets are linked with a ?v=N cache-buster, so a new N fetches a fresh copy.
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Scripts: every <script src="/assets/js/..."> carries ?v=N, so they can be cached for a year.
+# When a script changes, bump its ?v=N on every page that loads it.
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images: 30 days. A changed image should get a new file name.
+/assets/images/*
+  Cache-Control: public, max-age=2592000
+
+# PDFs, zips and paper files stay out of search results. /assets/papers/ also holds figure
+# images used on the paper pages; noindex on an image only removes it from image search.
+/assets/docs/*
+  X-Robots-Tag: noindex
+
+/assets/papers/*
+  X-Robots-Tag: noindex

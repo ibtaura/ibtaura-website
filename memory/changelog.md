@@ -2,6 +2,8 @@
 
 Newest first. One line per notable change or decision; link the commit where there is one.
 
+- **2026-11-18 (Release 1, branch `release1`, not live):** renamed Aura Clarus to Clarus Health across the site (`/clarus-health`, `/clarus-health/desktop`, with 301s from the old URLs and assets). One Organization entity (`#organization`) on home and about, with sameAs for LinkedIn, Crunchbase and GitHub and the founders from the About page; every other page references it. Product schema added; titles now end "| Adarna Inc.". Added `404.html`, `_headers`, `scripts/build-sitemap.py` and `scripts/check_links.py`. All articles now have a datePublished (the 21 that lacked one got the visible 26 May 2026). Scripts carry `?v=1`. The robots.txt docs Disallow was removed.
+- **Open owner items:** foundingDate; the deploy config for the 404 page; About-page claims (launch July 2026 vs 2027, "HIPAA-compliant", "clinical trials"); the old-domain Formspree address in main.js; historical "IBT Aura" doc names.
 - **2026-11-18:** Removed the team onboarding form, its admin viewer and the Apps Script source; `/onboarding` and `/admin` now return 404. The Google Apps Script web app itself must also be shut down in Google: Deploy, then Manage deployments, then Archive.
 - **2026-11-18:** Drafted the keyword ranking plan with timelines (`seo-ranking-plan.md`).
 - **2026-11-18:** Added the project memory (`memory/`, `CLAUDE.md`), both excluded from the site through `.assetsignore`.
