@@ -2,6 +2,7 @@
 
 Newest first. One line per notable change or decision; link the commit where there is one.
 
+- **2026-11-18:** Drafted the keyword ranking plan with timelines (`seo-ranking-plan.md`).
 - **2026-11-18:** Added the project memory (`memory/`, `CLAUDE.md`), both excluded from the site through `.assetsignore`.
 - **2026-11-18:** Shared inline CSS is moving into `assets/css/articles.css`, `legal.css`, `papers.css` and `newsroom.css` (branch `css-extract`).
 - **2026-11-18:** Removed the hardcoded password from the Apps Script source (`3a038fb`). The deployed script's password must be managed in Apps Script only.

@@ -315,8 +315,14 @@ def parse(tex_path, slug):
 # ── Page shell (from an existing article page, so nav, footer and scripts match) ──
 
 shell = open(os.path.join(REPO, "articles", "afib.html"), encoding="utf-8").read()
-SHELL_HEAD_TAIL = shell[shell.index('<link rel="apple-touch-icon"'):shell.index("<style>")]
-SHELL_STYLE = shell[shell.index("<style>") + len("<style>"):shell.index("</style>")]
+# Icons and stylesheet links (style.css, then the shared articles.css) up to </head>.
+# The article styles live in assets/css/articles.css, so nothing is copied from an
+# inline <style>; the paper styles go in assets/css/papers.css (written by build()).
+SHELL_HEAD_TAIL = shell[shell.index('<link rel="apple-touch-icon"'):shell.index("</head>")]
+assert '/assets/css/articles.css' in SHELL_HEAD_TAIL and "<style>" not in SHELL_HEAD_TAIL, \
+    "articles/afib.html should link articles.css and have no inline <style>"
+PAPERS_CSS_VERSION = "1"  # bump when PAPER_CSS changes so browsers refetch papers.css
+PAPERS_CSS_LINK = f'  <link rel="stylesheet" href="/assets/css/papers.css?v={PAPERS_CSS_VERSION}" />\n'
 BODY_TOP = shell[shell.index("</head>"):shell.index('<script src="/assets/js/mobile-nav.js"></script>') + len('<script src="/assets/js/mobile-nav.js"></script>')]
 BODY_END = shell[shell.index("  <!-- Footer -->"):]
 BODY_TOP = BODY_TOP.replace('<a href="/papers" class="nav-link">', '<a href="/papers" class="nav-link active">')
@@ -538,11 +544,21 @@ COPY_JS = """  <script>
   </script>
 """
 
+PAPERS_CSS_HEADER = ("/* Shared styles for the Adarna Papers pages (papers/*.html and papers.html).\n"
+                     "   Loaded after articles.css. Generated from PAPER_CSS in scripts/build-papers.py; keep the two in sync. */\n")
+
+def papers_css():
+    """PAPER_CSS dedented by its 4-space <style> indent, as written to assets/css/papers.css."""
+    lines = [l[4:] if l.strip() else "" for l in PAPER_CSS.lstrip("\n").split("\n")]
+    return PAPERS_CSS_HEADER + "\n".join(lines).rstrip("\n") + "\n"
+
 def body_end():
     return BODY_END.replace("  <!-- Cookie consent", COPY_JS + "  <!-- Cookie consent", 1)
 
 def build():
     os.makedirs(os.path.join(REPO, "assets/papers"), exist_ok=True)
+    with open(os.path.join(REPO, "assets/css/papers.css"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(papers_css())
     cards = []
     for n, p in enumerate(PAPERS, 1):
         num = f"{n:02d}"
@@ -570,7 +586,7 @@ def build():
             {"@type": "ListItem", "position": 2, "name": "Papers", "item": SITE + "/papers"},
             {"@type": "ListItem", "position": 3, "name": plain, "item": SITE + path}]}
         page = (head(f"{plain} — Adarna Papers", desc_plain, path, "article", [ld, crumbs], image)
-                + "<style>" + SHELL_STYLE + PAPER_CSS + "  </style>\n" + BODY_TOP + f"""
+                + PAPERS_CSS_LINK + BODY_TOP + f"""
 
   <article class="paper">
   <div class="article-hero">
@@ -623,7 +639,7 @@ def build():
     intro = "Evidence-graded reviews from Adarna on what shapes cognitive performance in working adults. Read each paper in full here, or download the PDF."
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Adarna Papers", "url": SITE + "/papers", "description": intro}
     page = (head("Papers — Adarna", intro, "/papers", "website", ld, f"{SITE}/assets/papers/{PAPERS[0]['slug']}/paper1_fig1_evidence_map.png")
-            + "<style>" + SHELL_STYLE + PAPER_CSS + INDEX_CSS + "  </style>\n" + BODY_TOP + f"""
+            + PAPERS_CSS_LINK + "  <style>" + INDEX_CSS + "  </style>\n" + BODY_TOP + f"""
 
   <div class="research-intro">
     <p class="paper-kicker">Adarna Papers</p>

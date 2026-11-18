@@ -1,0 +1,177 @@
+/* Shared styles for the Aura Clarus pages (aura-clarus-desktop, aura-clarus-features) */
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body { background: #ffffff; }
+.navbar { background: rgba(244,245,245,1); }
+.navbar.scrolled { background: rgba(244,245,245,0.45); }
+
+/* ─── Feature sections — full-width image + text below ── */
+.desktop-feature {
+  max-width: 1100px;
+  width: calc(100% - 24px);
+  margin: 12px auto 0;
+}
+
+
+.desktop-feature-card {
+  border-radius: 22px;
+  overflow: hidden;
+  background: #F4F5F5;
+}
+
+.desktop-feature-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── One gap between everything on this page ─
+   The strip scrolls like the Health Library rows and runs to the screen edge;
+   percent padding lines its first card up with the big image above. */
+:root { --page-gap: 24px; }
+
+.desktop-feature { margin-top: var(--page-gap); }
+.desktop-top { margin-top: 63px; }
+/* The same shape as the big images below, with the picture sized like their app window */
+.desktop-devices { display: flex; align-items: center; justify-content: center; aspect-ratio: 2400 / 1576; }
+.desktop-devices img { width: 70%; }
+.desktop-row .desktop-feature { margin-top: 0; }
+.desktop-row { margin-top: var(--page-gap); }
+
+.feature-scroll {
+  display: flex;
+  gap: var(--page-gap);
+  margin-top: var(--page-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-left: max(12px, calc((100% - 1100px) / 2));
+  padding-right: max(12px, calc((100% - 1100px) / 2));
+  scroll-snap-type: none;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.feature-scroll::-webkit-scrollbar { display: none; }
+.feature-scroll:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+
+.feature-item {
+  flex: 0 0 calc((100% - 2 * var(--page-gap)) / 3);
+  min-width: 0;
+  margin: 0;
+}
+
+.feature-item figcaption {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #6e6e73;
+  margin-top: 12px;
+  padding-right: 8px;
+}
+.feature-item figcaption b { color: #1d1d1f; font-weight: 600; }
+
+.desktop-beta-card.after-rows { margin-top: var(--page-gap); }
+
+/* ─── Coming Soon card ───────────────────────────────── */
+.desktop-beta-card {
+  max-width: 1100px;
+  width: calc(100% - 24px);
+  margin: 12px auto 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #F4F5F5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 56px 40px;
+  gap: 12px;
+}
+
+.desktop-beta-card h3 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.desktop-beta-card p {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #6e6e73;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  max-width: 480px;
+}
+
+.desktop-notify-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 28px;
+  border-radius: 980px;
+  background: #007AFF;
+  color: #fff;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.desktop-notify-btn:hover {
+  background: #0064CC;
+}
+
+/* ─── Footer ──────────────────────────────────────────── */
+.footer-legal-section {
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  border-top: none;
+  padding: var(--page-gap) 40px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.legal-block p { color: #a1a1a6; font-size: 12px; }
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .desktop-feature { width: calc(100% - 16px); }
+  .desktop-feature-card { border-radius: 18px; }
+  :root { --page-gap: 20px; }
+  .desktop-top { margin-top: 68px; }
+  .desktop-devices img { width: 80%; }
+  .feature-scroll { padding-left: 32px; padding-right: 32px; }
+  .desktop-beta-card { width: calc(100% - 16px); border-radius: 18px; padding: 40px 24px; }
+  .desktop-beta-card h3 { font-size: 26px; }
+  .footer-legal-section { padding: var(--page-gap) 24px 32px; }
+}
+
+@media (max-width: 760px) {
+  .feature-item { flex-basis: 44%; }
+}
+
+@media (max-width: 480px) {
+  .desktop-feature { width: calc(100% - 12px); }
+  .desktop-feature-card { border-radius: 16px; }
+  :root { --page-gap: 16px; }
+  .desktop-top { margin-top: 64px; }
+  .desktop-devices img { width: 88%; }
+  .feature-scroll { padding-left: 24px; padding-right: 24px; }
+  /* The big image leads, as on desktop: the app fills more of it and the cards step back */
+  .feature-item { flex-basis: 56%; }
+  .feature-item figcaption { font-size: 13px; padding-right: 0; }
+  .desktop-row > .desktop-feature .desktop-feature-card img { transform: scale(1.3); }
+  .desktop-beta-card { width: calc(100% - 12px); border-radius: 16px; padding: 32px 16px; }
+  .desktop-beta-card h3 { font-size: 22px; }
+  .footer-legal-section { padding: var(--page-gap) 16px 24px; }
+}
