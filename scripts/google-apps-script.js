@@ -12,7 +12,7 @@
 // 9. Give the URL to update in onboarding.html and admin.html
 // ============================================================
 
-var ADMIN_PASSWORD = 'aura2026';
+var ADMIN_PASSWORD = 'SET_IN_APPS_SCRIPT_ONLY'; // never commit the real password
 var SHEET_NAME = 'Submissions';
 
 function doPost(e) {
