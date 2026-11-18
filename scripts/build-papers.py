@@ -3,7 +3,7 @@
 
     python3 build_papers.py <latex-dir> <repo>
 
-Writes papers.html, one paper-<slug>.html per paper, and copies each PDF and
+Writes papers.html, one papers/<slug>.html per paper, and copies each PDF and
 figure into assets/papers/. The LaTeX is the subset these three papers use."""
 import html, json, os, re, shutil, sys
 
@@ -258,8 +258,8 @@ def parse(tex_path, slug):
             shutil.copy2(os.path.join(SRC, img), os.path.join(REPO, dest))
             from PIL import Image
             w, h = Image.open(os.path.join(REPO, dest)).size
-            out.append(f'<figure class="paper-figure" id="fig-{fig_n}"><a href="{dest}" target="_blank" rel="noopener">'
-                       f'<img src="{dest}" alt="Fig. {fig_n}. {html.escape(re.sub(r"<[^>]+>", "", inline(cap)).split(". ")[0])}" width="{w}" height="{h}" loading="lazy" decoding="async"></a>'
+            out.append(f'<figure class="paper-figure" id="fig-{fig_n}"><a href="/{dest}" target="_blank" rel="noopener">'
+                       f'<img src="/{dest}" alt="Fig. {fig_n}. {html.escape(re.sub(r"<[^>]+>", "", inline(cap)).split(". ")[0])}" width="{w}" height="{h}" loading="lazy" decoding="async"></a>'
                        f"<figcaption><b>Fig. {fig_n}.</b> {cite_links(inline(cap))}</figcaption></figure>")
             i = j + 1
             continue
@@ -314,12 +314,12 @@ def parse(tex_path, slug):
 
 # ── Page shell (from an existing article page, so nav, footer and scripts match) ──
 
-shell = open(os.path.join(REPO, "article-afib.html"), encoding="utf-8").read()
+shell = open(os.path.join(REPO, "articles", "afib.html"), encoding="utf-8").read()
 SHELL_HEAD_TAIL = shell[shell.index('<link rel="apple-touch-icon"'):shell.index("<style>")]
 SHELL_STYLE = shell[shell.index("<style>") + len("<style>"):shell.index("</style>")]
-BODY_TOP = shell[shell.index("</head>"):shell.index('<script src="assets/js/mobile-nav.js"></script>') + len('<script src="assets/js/mobile-nav.js"></script>')]
+BODY_TOP = shell[shell.index("</head>"):shell.index('<script src="/assets/js/mobile-nav.js"></script>') + len('<script src="/assets/js/mobile-nav.js"></script>')]
 BODY_END = shell[shell.index("  <!-- Footer -->"):]
-BODY_TOP = BODY_TOP.replace('<a href="papers.html" class="nav-link">', '<a href="papers.html" class="nav-link active">')
+BODY_TOP = BODY_TOP.replace('<a href="/papers" class="nav-link">', '<a href="/papers" class="nav-link active">')
 FIXED_META = shell[:shell.index("<title>")]
 
 def head(title, desc, path, og_type, ld, image):
@@ -549,7 +549,7 @@ def build():
         meta = parse(os.path.join(SRC, p["tex"] + ".tex"), p["slug"])
         pdf = f"assets/papers/adarna-{p['slug']}.pdf"
         shutil.copy2(os.path.join(DOWNLOADS, p["tex"] + ".pdf"), os.path.join(REPO, pdf))
-        path = f"/paper-{p['slug']}"
+        path = f"/papers/{p['slug']}"
         title = meta["title"]
         plain = re.sub(r"<[^>]+>", "", title)
         conclusions = next(t for k, t in meta["abstract"] if k == "Conclusions")
@@ -565,7 +565,11 @@ def build():
         abstract = "".join(f"<p><strong>{k}:</strong> {t}</p>" for k, t in meta["abstract"])
         toc = "".join(f'<li><a href="#{sid}">{t}</a></li>' for sid, t in meta["toc"])
         kws = "".join(f"<li>{k}</li>" for k in meta["keywords"])
-        page = (head(f"{plain} — Adarna Papers", desc_plain, path, "article", ld, image)
+        crumbs = {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Papers", "item": SITE + "/papers"},
+            {"@type": "ListItem", "position": 3, "name": plain, "item": SITE + path}]}
+        page = (head(f"{plain} — Adarna Papers", desc_plain, path, "article", [ld, crumbs], image)
                 + "<style>" + SHELL_STYLE + PAPER_CSS + "  </style>\n" + BODY_TOP + f"""
 
   <article class="paper">
@@ -577,8 +581,8 @@ def build():
       <h1 class="article-hero-title paper-title">{title}</h1>
       <p class="paper-byline">{meta['author']} <span>· {meta['affiliation']}</span></p>
       <div class="paper-actions">
-        <a class="paper-btn" href="{pdf}" download>{DOWNLOAD_SVG} Download PDF</a>
-        <a class="paper-btn paper-btn-outline" href="{pdf}" target="_blank" rel="noopener">Open PDF</a>
+        <a class="paper-btn" href="/{pdf}" download>{DOWNLOAD_SVG} Download PDF</a>
+        <a class="paper-btn paper-btn-outline" href="/{pdf}" target="_blank" rel="noopener">Open PDF</a>
         <button type="button" class="paper-btn paper-btn-outline" data-copy-link>Copy link</button>
         <span class="paper-copied" aria-live="polite">Link copied</span>
       </div>
@@ -595,19 +599,20 @@ def build():
   </article>
 
 """ + body_end())
-        open(os.path.join(REPO, f"paper-{p['slug']}.html"), "w", encoding="utf-8").write(page)
+        os.makedirs(os.path.join(REPO, "papers"), exist_ok=True)
+        open(os.path.join(REPO, "papers", f"{p['slug']}.html"), "w", encoding="utf-8").write(page)
         cards.append(f"""
     <article class="research-card">
       <div class="research-card-body">
         <div class="paper-mast"><span>Adarna Papers</span><em>No. {num} · November 2026</em></div>
       <p class="paper-num" aria-hidden="true">{num}</p>
         <p class="paper-kicker">Review article · Preprint · November 2026</p>
-        <h2><a href="paper-{p['slug']}.html">{title}</a></h2>
+        <h2><a href="/papers/{p['slug']}">{title}</a></h2>
         <p class="paper-byline">{meta['author']} <span>· {meta['affiliation']}</span></p>
         <p class="summary">{conclusions}</p>
         <div class="paper-actions">
-          <a class="paper-btn" href="paper-{p['slug']}.html">Read paper</a>
-          <a class="paper-btn paper-btn-outline" href="{pdf}" download>{DOWNLOAD_SVG} Download PDF</a>
+          <a class="paper-btn" href="/papers/{p['slug']}">Read paper</a>
+          <a class="paper-btn paper-btn-outline" href="/{pdf}" download>{DOWNLOAD_SVG} Download PDF</a>
         </div>
       </div>
     </article>""")

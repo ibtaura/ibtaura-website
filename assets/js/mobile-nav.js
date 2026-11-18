@@ -5,7 +5,7 @@
   var inner = navbar && navbar.querySelector('.navbar-inner');
   if (!inner) return;
 
-  var MORE = [['articles.html', 'Health Library'], ['about.html', 'About Adarna'], ['careers.html', 'Careers'], ['contact.html', 'Contact Us']];
+  var MORE = [['/articles', 'Health Library'], ['/about', 'About Adarna'], ['/careers', 'Careers'], ['/contact', 'Contact Us']];
   var QUICK = [['/aura-clarus-features', 'Clarus'], ['/aura-clarus-desktop', 'Clarus Desktop'], ['/articles', 'Health Library'], ['/kickstarter', 'Kickstarter']];
   var ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4"/></svg>';
 
@@ -17,7 +17,7 @@
   }
 
   var logo = el('a', 'm-logo');
-  logo.href = 'index.html';
+  logo.href = '/';
   logo.setAttribute('aria-label', 'Adarna home');
   logo.innerHTML = '<svg viewBox="44 42 93 93" aria-hidden="true"><path fill="currentColor" d="M74.3215 57.8194C79.7457 49.9834 91.2956 50.0805 96.6086 57.9923C96.7379 58.1847 96.8651 58.3778 96.9934 58.5694C90.8836 63.3269 86.9534 70.7524 86.9534 79.0958C86.9536 93.455 98.5941 105.096 112.953 105.096C116.416 105.096 119.72 104.415 122.741 103.187C123.181 104.101 123.621 105.022 124.059 105.951C129.017 116.474 119.186 127.62 107.969 124.538L105.909 123.973C104.067 123.466 102.356 122.576 100.731 121.571C97.5576 119.611 91.5232 116.575 84.4924 116.506C80.2583 116.464 77.0876 117.632 74.8323 119.004C71.4567 121.058 68.126 123.652 64.2532 124.435L61.5061 124.99C50.564 127.203 41.5692 116.342 46.2835 106.223C54.2376 89.149 62.423 75.0088 74.3215 57.8194Z"/><ellipse fill="currentColor" cx="112.453" cy="79.0953" rx="23.5" ry="24"/></svg>';
 
@@ -99,7 +99,7 @@
 
   function loadIndex() {
     if (loading) return loading;
-    loading = fetch('assets/search-index.json').then(function (r) { return r.json(); })
+    loading = fetch('/assets/search-index.json').then(function (r) { return r.json(); })
       .then(function (items) { index = items; find(); })
       .catch(function () { loading = null; });
     return loading;

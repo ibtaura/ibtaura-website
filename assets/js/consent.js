@@ -194,7 +194,7 @@
       '<button type="button" class="announcement-cta acw-trigger" aria-expanded="false" aria-controls="acw-panel">Manage cookies &rsaquo;</button>' +
       '<div class="acw-panel" id="acw-panel" role="dialog" aria-label="Cookie consent">' +
         '<p class="acw-text">We use cookies to keep the site working and, with your permission, to understand how visitors use it. ' +
-        '<a href="privacy-policy.html#cookies" class="acw-link">Cookie policy</a></p>' +
+        '<a href="/legal/privacy-policy#cookies" class="acw-link">Cookie policy</a></p>' +
         '<div class="acw-actions">' +
           '<button type="button" class="acb-btn acb-btn-primary" data-act="accept">Accept all</button>' +
           '<button type="button" class="acb-btn acb-btn-outline" data-act="manage">Manage preferences</button>' +
