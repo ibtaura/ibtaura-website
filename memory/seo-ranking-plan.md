@@ -24,4 +24,4 @@ The clock starts when the site fixes go live (planned Dec 2026). These are estim
 
 **KPIs (Search Console, monthly):** position for each keyword, branded vs non-branded impressions and clicks, referring domains (goal 15–30 by mid-2027), all 98 public pages indexed.
 
-Visual version: the "Adarna Search Roadmap" page shared with the team.
+Visual version: [seo-ranking-roadmap.html](seo-ranking-roadmap.html) in this folder (open it in a browser). Keep both files in sync when the plan changes.

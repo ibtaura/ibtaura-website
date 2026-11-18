@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<!-- Team copy of the SEO ranking timeline. Open in a browser. Text version: seo-ranking-plan.md -->
+<style>body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Adarna Search Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one reading column; a month-scale chart; tiered keyword cards; phased roadmap */
+:root {
+  --bg: #f6f7f5; --surface: #ffffff; --fg: #17201d; --muted: #5b6662; --line: #dfe4e1;
+  --accent: #1f7a5c; --accent-soft: #cfe8dd; --warn: #b7791f; --warn-soft: #f4e3c4; --hard: #a33b3b; --hard-soft: #f2d6d6;
+  --display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111614; --surface: #19201d; --fg: #e6ece9; --muted: #9aa7a2; --line: #2b3531;
+  --accent: #4fc39a; --accent-soft: #1f3d32; --warn: #e3ac55; --warn-soft: #3d311c; --hard: #e27b7b; --hard-soft: #3e2323; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111614; --surface: #19201d; --fg: #e6ece9; --muted: #9aa7a2; --line: #2b3531;
+  --accent: #4fc39a; --accent-soft: #1f3d32; --warn: #e3ac55; --warn-soft: #3d311c; --hard: #e27b7b; --hard-soft: #3e2323; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(28px, 5vw, 40px); letter-spacing: -0.01em; }
+h2 { font-size: 22px; }
+h3 { font-size: 16px; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600; }
+.lede { color: var(--muted); font-size: 17px; }
+header { display: grid; gap: 12px; }
+section { display: grid; gap: 18px; }
+.note { font-size: 13px; color: var(--muted); }
+/* verdict strip */
+.verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.verdict { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.verdict b { font-family: var(--display); font-size: 15px; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px; width: fit-content; }
+.pill.ok { background: var(--accent-soft); color: var(--accent); }
+.pill.mid { background: var(--warn-soft); color: var(--warn); }
+.pill.hard { background: var(--hard-soft); color: var(--hard); }
+/* chart */
+.chart-box { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.chart { min-width: 760px; display: grid; gap: 6px; font-variant-numeric: tabular-nums; }
+.row { display: grid; grid-template-columns: 230px 1fr; align-items: center; gap: 12px; }
+.row .kw { font-size: 13px; font-weight: 500; }
+.row .kw small { display: block; color: var(--muted); font-weight: 400; font-size: 12px; }
+.track { position: relative; height: 26px; background-image: repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px calc(100% / 26)); border-radius: 4px; }
+.bar { position: absolute; top: 4px; height: 18px; border-radius: 4px; }
+.bar.work { background: var(--line); }
+.bar.rank { background: var(--accent); }
+.bar.rank.mid { background: var(--warn); }
+.bar.rank.hard { background: var(--hard); }
+.bar.fade { background: linear-gradient(to right, var(--hard), transparent); }
+.axis .track { background: none; height: 20px; }
+.axis span { position: absolute; font-size: 11px; color: var(--muted); transform: translateX(-2px); white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+/* keyword table */
+.table-box { overflow-x: auto; }
+table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.kw { font-weight: 600; white-space: nowrap; }
+tr.tier td { background: var(--accent-soft); color: var(--fg); font-family: var(--display); font-weight: 600; font-size: 13px; padding: 8px 12px; }
+/* phases */
+.phases { display: grid; gap: 14px; }
+.phase { display: grid; grid-template-columns: 150px 1fr; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+.phase .when { font-family: var(--display); font-weight: 600; color: var(--accent); }
+.phase .when small { display: block; color: var(--muted); font-family: var(--body); font-weight: 400; font-size: 12px; }
+.phase ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.phase .who { font-size: 12px; color: var(--muted); margin-top: 10px; }
+@media (max-width: 640px) { .phase { grid-template-columns: 1fr; gap: 6px; } }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.kpi { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; display: grid; gap: 2px; }
+.kpi b { font-family: var(--display); }
+ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 72ch; }
+a { color: var(--accent); }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">adarna.us · SEO plan · drafted 18 Nov 2026</div>
+    <h1>When can Adarna rank, and for what</h1>
+    <p class="lede">Keyword targets for Adarna Inc. and Aura Clarus, sorted from easy to hard, with the time each one realistically takes and the work that gets it there. The clock starts when the site fixes go live (planned December 2026).</p>
+  </header>
+
+  <section>
+    <h2>The short answer</h2>
+    <div class="verdicts">
+      <div class="verdict"><span class="pill ok">1–3 months</span><b>"Adarna Inc", "Aura Clarus"</b><p class="note">#1 is realistic. The names are distinctive and almost nobody else competes for them.</p></div>
+      <div class="verdict"><span class="pill ok">2–5 months</span><b>"Adarna productivity band", "Adarna wearable"</b><p class="note">Top 3 is realistic, but only once the site actually uses these words. Today no page says "productivity".</p></div>
+      <div class="verdict"><span class="pill mid">6–15 months</span><b>"productivity band", "focus wearable"</b><p class="note">A small niche (Pylot, FOCI, Neurable), so page 1 is reachable with good pages plus backlinks.</p></div>
+      <div class="verdict"><span class="pill hard">2+ years</span><b>"Adarna", "wearables"</b><p class="note">Plain "Adarna" belongs to the Ibong Adarna legend and Adarna House. "Wearables" belongs to Oura, WHOOP, Garmin and big review sites.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Timeline by keyword</h2>
+    <p class="note">One column per month, from Nov 2026 to Dec 2028. The grey bar is the work that has to happen first. The coloured bar is when the ranking target is expected.</p>
+    <div class="chart-box">
+      <div class="chart" id="chart"></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--line)"></i>Work and indexing</span>
+      <span><i style="background:var(--accent)"></i>Expected #1 or top 3</span>
+      <span><i style="background:var(--warn)"></i>Expected page 1</span>
+      <span><i style="background:var(--hard)"></i>Long shot</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Keyword targets</h2>
+    <div class="table-box">
+      <table>
+        <thead><tr><th>Keyword</th><th>Target</th><th>Time</th><th>Difficulty</th><th>What unlocks it</th></tr></thead>
+        <tbody>
+          <tr class="tier"><td colspan="5">Tier 1 · Brand names</td></tr>
+          <tr><td class="kw">adarna inc</td><td>#1</td><td>2–8 weeks</td><td><span class="pill ok">Low</span></td><td>Organization schema with sameAs profile links, "Adarna Inc." in titles, LinkedIn and Crunchbase profiles, resubmit the sitemap</td></tr>
+          <tr><td class="kw">aura clarus</td><td>#1</td><td>1–3 months</td><td><span class="pill ok">Low</span></td><td>Product schema, a clear product page, the Kickstarter page linking back, first press mentions</td></tr>
+          <tr><td class="kw">aura clarus band / app / desktop / kickstarter</td><td>Top 3</td><td>1–3 months</td><td><span class="pill ok">Low</span></td><td>A dedicated page per product with matching titles (pages already exist; the titles need the keywords)</td></tr>
+          <tr class="tier"><td colspan="5">Tier 2 · Brand plus category</td></tr>
+          <tr><td class="kw">adarna wearable / adarna band / adarna app</td><td>Top 3</td><td>2–4 months</td><td><span class="pill ok">Low</span></td><td>Use these exact phrases in titles, H1s and descriptions on the home and product pages</td></tr>
+          <tr><td class="kw">adarna productivity band</td><td>Top 3</td><td>2–5 months</td><td><span class="pill ok">Low</span></td><td>Position Aura Clarus as a productivity and focus band on the site. Today the site calls it a "wearable health device" and never says "productivity"</td></tr>
+          <tr class="tier"><td colspan="5">Tier 3 · Category niche (no brand name)</td></tr>
+          <tr><td class="kw">productivity band · focus band · productivity wearable</td><td>Page 1 → top 3</td><td>6–10 → 12–16 months</td><td><span class="pill mid">Medium</span></td><td>A landing page per term, comparison pages (Aura Clarus vs Pylot, FOCI, Oura for focus), 15–30 quality backlinks, and appearing in "best focus wearable" roundups</td></tr>
+          <tr><td class="kw">wearable for deep work · burnout tracker · focus tracking</td><td>Page 1</td><td>6–13 months</td><td><span class="pill mid">Medium</span></td><td>Use-case pages (students, founders, remote workers) and Health Library articles that link to the product</td></tr>
+          <tr><td class="kw">Health Library long-tail (e.g. "orthostatic heart rate", "heart rate recovery", "post-meal walk glucose")</td><td>Page 1 for some</td><td>3–10 months</td><td><span class="pill mid">Medium</span></td><td>Named authors and a medical reviewer (health pages are judged strictly), publish dates, related-article links, 2–4 new articles a month</td></tr>
+          <tr class="tier"><td colspan="5">Tier 4 · Hard</td></tr>
+          <tr><td class="kw">adarna</td><td>Page 1 (US) → #1</td><td>9–16 months → 2–3+ years</td><td><span class="pill hard">Very hard</span></td><td>A Knowledge Panel (Wikidata, consistent profiles), steady press coverage, and brand searches growing over time. In the Philippines the legend and Adarna House will likely always win</td></tr>
+          <tr><td class="kw">wearables · health wearable · stress tracker · fitness band</td><td>Page 1</td><td>2–3+ years</td><td><span class="pill hard">Very hard</span></td><td>Don't chase these directly. Get Aura Clarus listed inside the articles that already rank (Wareable, Digital Trends, Tom's Guide roundups); that's possible 3–9 months after launch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Roadmap</h2>
+    <div class="phases">
+      <div class="phase"><div class="when">Phase 1<small>Nov – Dec 2026</small></div><div><h3>Foundation</h3>
+        <ul>
+          <li>Ship the restructure, the CSS cleanup, a 404 page and caching headers (branch already pushed)</li>
+          <li>Organization schema with sameAs, founders and logo; "Adarna Inc. | Aura Clarus" titles</li>
+          <li>Cloudflare: force HTTPS and redirect www to the apex domain</li>
+          <li>Search Console and Bing: submit the sitemap, request indexing of key pages</li>
+        </ul><div class="who">Site work: Claude · dashboard and accounts: Adarna team</div></div></div>
+      <div class="phase"><div class="when">Phase 2<small>Dec 2026 – Feb 2027</small></div><div><h3>Positioning and pages</h3>
+        <ul>
+          <li>Decide the product wording: productivity band, focus band, health band, or a mix</li>
+          <li>Landing pages for "productivity band" and "focus wearable", plus comparison and use-case pages</li>
+          <li>Product and FAQ schema; compress images and speed up pages</li>
+          <li>Named authors and reviewers, and publish dates on all 65 articles</li>
+        </ul><div class="who">Site work: Claude · product claims sign-off: Adarna team</div></div></div>
+      <div class="phase"><div class="when">Phase 3<small>Feb – May 2027</small></div><div><h3>Authority</h3>
+        <ul>
+          <li>Profiles everywhere with the same name and address: Crunchbase, X, YouTube, Product Hunt, Google Business Profile</li>
+          <li>Press release for the Kickstarter or launch; startup and wearable directories</li>
+          <li>Pitch roundup writers and podcasts; guest articles on focus and burnout</li>
+          <li>Wikidata entry once there are independent press sources to cite</li>
+        </ul><div class="who">Mostly the Adarna team; Claude drafts pitches and pages</div></div></div>
+      <div class="phase"><div class="when">Phase 4<small>Jun – Nov 2027</small></div><div><h3>Scale</h3>
+        <ul>
+          <li>2–4 Health Library articles a month on focus, sleep and productivity, each linking to the product</li>
+          <li>Creator reviews on YouTube; customer stories once units ship</li>
+          <li>Refresh pages that sit in positions 5–20 in Search Console</li>
+        </ul><div class="who">Shared</div></div></div>
+      <div class="phase"><div class="when">Phase 5<small>2028</small></div><div><h3>Head terms</h3>
+        <ul>
+          <li>Push for page 1 on plain "Adarna" in the US and on broader wearable terms, built on the authority from phases 3–4</li>
+        </ul><div class="who">Shared</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How we'll know it's working</h2>
+    <div class="kpis">
+      <div class="kpi"><b>Search Console position</b><span class="note">Monthly position for each keyword above</span></div>
+      <div class="kpi"><b>Impressions and clicks</b><span class="note">Branded vs non-branded, tracked separately</span></div>
+      <div class="kpi"><b>Referring domains</b><span class="note">Goal: 15–30 quality sites by mid-2027</span></div>
+      <div class="kpi"><b>Indexed pages</b><span class="note">All 98 public pages indexed, with no errors</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What the timeline depends on</h2>
+    <ul class="plain">
+      <li>These are estimates from typical results for a new, low-authority domain. Google publishes no timelines, and no one can guarantee a position.</li>
+      <li>Backlinks and press move rankings more than anything on the site. A launch or Kickstarter with coverage can shorten every timeline here.</li>
+      <li>Health and medical content is held to a high standard (Google's "Your Money or Your Life" category), so named experts matter for the Health Library.</li>
+      <li>The product wording has to be true to what Aura Clarus does. Claims about focus or productivity need the team's sign-off.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+const months = ["Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const years = {0:"2026",2:"2027",14:"2028"};
+const N = months.length;
+const rows = [
+  {kw:"adarna inc", sub:"#1", work:[0,1], rank:[1,2.5], c:""},
+  {kw:"aura clarus", sub:"#1", work:[0,1], rank:[1,3], c:""},
+  {kw:"aura clarus band / app", sub:"Top 3", work:[0,2], rank:[2,4], c:""},
+  {kw:"adarna wearable / band", sub:"Top 3", work:[0,2], rank:[2,5], c:""},
+  {kw:"adarna productivity band", sub:"Top 3", work:[1,3], rank:[3,6], c:""},
+  {kw:"Health Library long-tail", sub:"Page 1 for some", work:[1,3], rank:[3,10], c:"mid"},
+  {kw:"productivity / focus band", sub:"Page 1", work:[1,6], rank:[6,10], c:"mid"},
+  {kw:"productivity / focus band", sub:"Top 3", work:[6,12], rank:[12,16], c:""},
+  {kw:"deep work · burnout wearable", sub:"Page 1", work:[2,6], rank:[6,13], c:"mid"},
+  {kw:"adarna", sub:"Page 1 (US)", work:[1,9], rank:[9,16], c:"hard"},
+  {kw:"adarna", sub:"#1", work:[9,24], rank:[24,26], c:"fade"},
+  {kw:"wearables · stress tracker", sub:"Page 1", work:[3,24], rank:[24,26], c:"fade"}
+];
+const pct = v => (v / N * 100) + "%";
+const chart = document.getElementById("chart");
+let axis = '<div class="row axis"><div></div><div class="track">';
+months.forEach((m, i) => { if (i % 3 === 0 || years[i]) axis += `<span style="left:${pct(i)}">${m}${years[i] ? " " + years[i].slice(2) : ""}</span>`; });
+chart.insertAdjacentHTML("beforeend", axis + "</div></div>");
+rows.forEach(r => {
+  const rankCls = r.c === "fade" ? "bar fade" : `bar rank ${r.c}`;
+  chart.insertAdjacentHTML("beforeend",
+    `<div class="row"><div class="kw">${r.kw}<small>${r.sub}</small></div><div class="track">
+      <div class="bar work" style="left:${pct(r.work[0])};width:${pct(r.work[1]-r.work[0])}"></div>
+      <div class="${rankCls}" style="left:${pct(r.rank[0])};width:${pct(r.rank[1]-r.rank[0])}" title="${r.kw}: ${r.sub}"></div>
+    </div></div>`);
+});
+</script>
+
+</html>

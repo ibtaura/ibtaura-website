@@ -8,6 +8,7 @@ Committed, shared notes for anyone (human or AI) working on this repo. They are 
 | [site-overview.md](site-overview.md) | Hosting, folder layout, URL scheme, redirects, build scripts |
 | [seo-plan.md](seo-plan.md) | SEO audit baseline, the phased plan and its status |
 | [seo-ranking-plan.md](seo-ranking-plan.md) | Keyword targets with ranking timelines and the phased roadmap |
+| [seo-ranking-roadmap.html](seo-ranking-roadmap.html) | The same timeline as a visual page with a chart; open it in a browser |
 | [brand-entity.md](brand-entity.md) | How "Adarna Inc" can win search against other uses of "Adarna"; profile links for the schema |
 | [changelog.md](changelog.md) | Dated log of notable changes and decisions |
 
