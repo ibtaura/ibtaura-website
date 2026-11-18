@@ -200,12 +200,8 @@
 /warranty-policy.html         /legal/warranty-policy         301
 
 # Internal pages -> /internal/
-/admin              /internal/admin         301
-/admin.html         /internal/admin         301
 /internal-app       /internal/internal-app  301
 /internal-app.html  /internal/internal-app  301
-/onboarding         /internal/onboarding    301
-/onboarding.html    /internal/onboarding    301
 
 # Images renamed and filed into topic folders under /assets/images/
 /assets/images/Adithisri.png                                /assets/images/team/adithisri.png                          301

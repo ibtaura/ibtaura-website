@@ -2,6 +2,7 @@
 
 Newest first. One line per notable change or decision; link the commit where there is one.
 
+- **2026-11-18:** Removed the team onboarding form, its admin viewer and the Apps Script source; `/onboarding` and `/admin` now return 404. The Google Apps Script web app itself must also be shut down in Google: Deploy, then Manage deployments, then Archive.
 - **2026-11-18:** Drafted the keyword ranking plan with timelines (`seo-ranking-plan.md`).
 - **2026-11-18:** Added the project memory (`memory/`, `CLAUDE.md`), both excluded from the site through `.assetsignore`.
 - **2026-11-18:** Moved duplicated inline CSS into shared stylesheets (`articles`, `legal`, `papers`, `newsroom`, `dataroom`, `clarus`, `careers-contact`.css); inline `<style>` went from 840 KB to 38 KB, and screenshots match before and after (`4a0f3a9`). The remaining inline blocks (index, about, articles hub, newsroom hub, papers index, internal admin and onboarding) are unique per page. To check: in 390-px headless screenshots, article text ran past the right edge both before and after the change; confirm on a real phone.

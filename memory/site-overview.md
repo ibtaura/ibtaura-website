@@ -16,13 +16,13 @@
 | `newsroom/2026-MM.html` | `/newsroom/2026-MM` | Monthly company updates |
 | `papers/<slug>.html` | `/papers/<slug>` | Evidence-graded research reviews (generated) |
 | `legal/<name>.html` | `/legal/<name>` | 14 policies |
-| `internal/*.html` | `/internal/...` | Unlisted team tools (noindex, not in the sitemap): onboarding form, onboarding admin viewer, internal desktop app downloads. They are in use; don't delete them. |
+| `internal/internal-app.html` | `/internal/internal-app` | Unlisted download page for the team's desktop app (noindex, not in the sitemap). The onboarding form and its admin viewer were removed on 2026-11-18 because the admin password leaked. |
 | `assets/css/` | | `style.css` (global), plus page-group sheets (`articles.css`, `legal.css`, `papers.css`, `newsroom.css`, `about.css`) |
 | `assets/js/` | | `main.js`, `mobile-nav.js` (holds the nav links), `consent.js`, `analytics-config.js` |
 | `assets/images/<topic>/` | | Lowercase-kebab file names: articles, brand, company, desktop, hardware, icons, internal, mobile, newsroom/2026-MM, product, team |
 | `assets/docs/{newsroom,kickstarter,company}/` | | PDFs and zips (blocked in robots.txt) |
 | `assets/papers/<slug>/` | | Paper PDFs and figures |
-| `scripts/` | | `build-papers.py` (LaTeX to paper pages; its sources live off-repo), `build-search-index.py`, `seo_audit.py`, and the Apps Script source for the onboarding backend |
+| `scripts/` | | `build-papers.py` (LaTeX to paper pages; its sources live off-repo), `build-search-index.py`, `seo_audit.py` |
 
 ## Conventions
 - **Every page has:** a canonical tag (`https://adarna.us/<clean-path>`), a meta description, OG and Twitter tags, and JSON-LD (Organization, BreadcrumbList; Article or ScholarlyArticle where relevant).
