@@ -14,3 +14,5 @@ node_modules/
 .env.local
 wrangler.jsonc
 scripts/
+memory/
+CLAUDE.md
