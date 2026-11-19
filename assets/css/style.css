@@ -877,13 +877,18 @@ body {
   border-top: 1px solid #d2d2d7;
 }
 .af-group + .af-group { margin-top: 26px; }
+/* .af-head is an <h2>: every heading property is set here so it never
+   picks up browser heading defaults */
 .af-head {
   font-family: -apple-system, system-ui, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
   font-size: 12px;
   font-weight: 600;
+  font-style: normal;
   line-height: 1.5;
+  letter-spacing: normal;
   color: #424245;
   margin: 0 0 9px;
+  padding: 0;
 }
 .af-list { list-style: none; margin: 0; padding: 0; }
 .af-list li { margin: 0 0 8px; }
@@ -891,20 +896,20 @@ body {
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #707076;            /* was #a1a1a6 (2.57:1); now 4.92:1 on white */
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.af-list a:hover { color: #6e6e73; text-decoration: underline; }
+.af-list a:hover { color: #1d1d1f; text-decoration: underline; }
 
 .af-note {
   font-size: 12px;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #707076;            /* was #a1a1a6 (2.57:1); now 4.92:1 on white */
   margin: 30px 0 0;
 }
-.af-note a { color: #0071e3; text-decoration: none; }
-.af-note a:hover { text-decoration: underline; }
+.af-note a { color: #0071e3; text-decoration: underline; text-underline-offset: 2px; }
+.af-note a:hover { color: #005fcc; }
 
 .af-bottom {
   display: flex;
@@ -916,11 +921,14 @@ body {
   border-top: 1px solid #d2d2d7;
 }
 .af-copy { font-size: 12px; line-height: 1.5; color: #424245; margin-right: 24px; }
-.af-bottom-nav { display: inline-flex; align-items: center; flex-wrap: wrap; }
+.af-bottom-nav { display: inline-flex; align-items: center; flex-wrap: wrap; row-gap: 6px; }  /* wrapped rows: tap areas must not overlap */
 .af-bottom-link {
   font-size: 12px; line-height: 1.5; color: #424245; text-decoration: none;
-  background: none; border: none; padding: 0; cursor: pointer;
+  background: none; border: none; cursor: pointer;
   font-family: inherit; -webkit-appearance: none; appearance: none;
+  /* 24px tap area (18px text + 3px above and below); the negative margin
+     keeps the row exactly as tall as before */
+  padding: 3px 0; margin: -3px 0;
 }
 .af-bottom-link:hover { color: #1d1d1f; text-decoration: underline; }
 .af-bottom-link:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
@@ -1358,4 +1366,141 @@ body {
 
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .m-sheet, .m-sheet.is-open, .m-menu-btn span, .m-logo, .m-search-btn { transition: none; }
+}
+
+/* ─── Accessibility: text contrast and link underlines ───────
+   Several pages colour these in their own <style> block or page CSS,
+   which loads after this file, so each selector here carries one more
+   class than the page rule it corrects. Colours are the nearest shade
+   of the original that reaches WCAG AA (4.5:1). */
+
+/* Footer legal text: #a1a1a6 (2.57:1 on white) -> #707076
+   (4.92:1 on white, 4.52:1 on #f5f5f7) */
+.footer-legal-inner .legal-block p { color: #707076; }
+
+/* Links inside running text are underlined, so they are not told apart
+   by colour alone. Buttons and cards carry a class, so they are skipped. */
+.legal-block p a,
+p a:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Home cards, "Learn More": #0071e3 on #f4f5f5 (4.29:1) -> #006ddb (4.57:1) */
+.card-btn-group .card-btn-outline { color: #006ddb; border-color: #006ddb; }
+
+/* About, team and culture captions: #86868b (3.62:1 on white) -> #707075 (4.93:1) */
+.team-grid .team-desc p,
+.culture-grid .culture-desc p { color: #707075; }
+
+/* About, pitch deck button: white on #007aff (4.01:1) -> #0071e3 (4.70:1).
+   The page's own :hover rule still wins on hover. */
+.raise-card .raise-btn { background: #0071e3; }
+
+/* ─── App screens section (home and Clarus Health pages) ─────
+   <section class="home-about [app-section]"> holding an intro, three
+   iPhone screenshots with captions, a note and (home only) a button. */
+.home-about {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px 72px;
+  text-align: center;
+}
+.home-about-intro { margin: 0 auto 56px; }
+.home-about-intro h1,
+.home-about-intro h2 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(26px, 2.6vw + 16px, 38px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+  margin: 0 0 16px;
+}
+.home-about-intro p {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #6e6e73;            /* 5.07:1 on white, 4.64:1 on #f4f5f5 */
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.app-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px 32px;
+  align-items: start;
+}
+.app-feature { margin: 0; }
+.app-shot {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto 28px;
+  border-radius: 28px;
+  background: #f4f5f5;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 14px 36px rgba(0,0,0,0.08);
+}
+.app-feature-text {
+  max-width: 280px;
+  margin: 0 auto;
+  text-align: left;
+}
+.app-feature-text h2,
+.app-feature-text h3 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+  color: #1d1d1f;
+  margin: 0 0 8px;
+}
+.app-feature-text p {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #6e6e73;            /* 5.07:1 on white */
+  margin: 0;
+}
+
+.app-note {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6e6e73;            /* 5.07:1 on white */
+  text-align: center;
+  margin: 48px 0 0;
+}
+
+/* Same look as the home cards' filled "Access Now" button, at button size */
+.home-about-link {
+  display: table;
+  margin: 28px auto 0;
+  padding: 11px 26px;
+  border-radius: 980px;
+  background: #0071e3;       /* white text: 4.70:1 */
+  border: 1.5px solid #0071e3;
+  color: #fff;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.home-about-link:hover { background: #0064cc; border-color: #0064cc; }
+.home-about-link:focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .home-about { padding: 56px 32px 56px; }
+  .home-about-intro { margin-bottom: 44px; }
+  .home-about-intro p { font-size: 16px; }
+  .app-features { grid-template-columns: 1fr; gap: 56px; }
+  .app-feature-text { max-width: 420px; }
+}
+@media (max-width: 480px) {
+  .home-about { padding: 48px 24px; }
 }

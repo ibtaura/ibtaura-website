@@ -148,7 +148,8 @@
 
   <link rel="apple-touch-icon" href="/assets/images/brand/adarna-favicon.svg" />
   <link rel="icon" href="/assets/images/brand/adarna-favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=33" />
+  <link rel="preload" as="image" type="image/webp" imagesrcset="/assets/images/hardware/hardware-device-800.webp 800w, /assets/images/hardware/hardware-device-1200.webp 1200w, /assets/images/hardware/hardware-device-1600.webp 1600w" imagesizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(100vw - 64px), (max-width: 1124px) calc(100vw - 24px), 1100px" fetchpriority="high" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=34" />
   <style>
     /* ─── Lenis smooth scroll ────────────────────────────────── */
     html.lenis, html.lenis body {
@@ -320,6 +321,9 @@
       to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
+    /* ─── About section — sits above the fixed cards, like the footer (visual styling lives in style.css) ─── */
+    .home-about { position: relative; z-index: 10; background: #ffffff; }
+
     /* ─── Footer — on grey bg, after card stack ────────────────── */
     .footer-legal-section {
       position: relative;
@@ -428,14 +432,14 @@
   <!-- Card Stack -->
   <div class="card-stack">
 
-    <!-- SEO heading -->
-    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adarna Inc. &mdash; Clarus Health, a Health Wearable for Productivity and Burnout</h1>
-
     <!-- Card 1 (front — the band and its power bank) -->
     <div class="home-card" data-card="1">
-      <img src="/assets/images/hardware/hardware-device.jpg" alt="The Clarus Health band beside its snap-on power bank" class="card-hardware" width="2400" height="1576" fetchpriority="high" />
+      <picture>
+        <source type="image/webp" srcset="/assets/images/hardware/hardware-device-800.webp 800w, /assets/images/hardware/hardware-device-1200.webp 1200w, /assets/images/hardware/hardware-device-1600.webp 1600w" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 768px) calc(100vw - 64px), (max-width: 1124px) calc(100vw - 24px), 1100px" />
+        <img src="/assets/images/hardware/hardware-device.jpg" alt="The Clarus Health band beside its snap-on power bank" class="card-hardware" width="2400" height="1576" fetchpriority="high" decoding="async" />
+      </picture>
       <div class="card-btn-group">
-        <a href="/clarus-health" class="card-btn card-btn-outline">Learn More</a>
+        <a href="/clarus-health" class="card-btn card-btn-outline">Explore Clarus Health</a>
         <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('Clarus Health launches in July 2027.');">Access Now</a>
       </div>
     </div>
@@ -444,7 +448,7 @@
     <div class="home-card" data-card="2">
       <img src="/assets/images/desktop/desktop-devices.webp" alt="Clarus Health Desktop app for Mac by Adarna" class="card-devices" width="2000" height="1100" />
       <div class="card-btn-group">
-        <a href="/clarus-health/desktop" class="card-btn card-btn-outline">Learn More</a>
+        <a href="/clarus-health/desktop" class="card-btn card-btn-outline">See Clarus Health Desktop</a>
         <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('Beta is not live yet. Dates will be announced soon.');">Access Now</a>
       </div>
     </div>
@@ -453,19 +457,43 @@
     <div class="home-card" data-card="3">
       <img src="/assets/images/icons/kickstarter-logo.webp" alt="Kickstarter" class="card-kickstarter-logo" />
       <div class="card-btn-group">
-        <a href="/kickstarter" class="card-btn card-btn-outline">Learn More</a>
+        <a href="/kickstarter" class="card-btn card-btn-outline">Kickstarter documents</a>
         <a href="/kickstarter" class="card-btn card-btn-filled">Back Now</a>
       </div>
     </div>
 
   </div>
 
+  <!-- About Clarus Health: visible intro and iPhone app screens -->
+  <section class="home-about" aria-labelledby="home-about-title">
+    <div class="home-about-intro">
+      <h1 id="home-about-title">Clarus Health by Adarna Inc.</h1>
+      <p>Adarna Inc. is building Clarus Health, a health wearable that helps with productivity and burnout. The band sits on your upper arm, clear of your keyboard and trackpad, and reads your heart rhythm and six more signals through the working day. The Clarus Health iPhone app turns those readings into a clear picture of your day: how your focus is holding up, when a recovery break would help, and whether your burnout risk is rising compared with your own normal. The Clarus Health Desktop app for Mac brings your capacity score, calendar and focus sessions to the computer where you work, so you can plan deep work and breaks without reaching for your phone. Health comes first, and steadier focus and productivity follow from it. Clarus Health launches in July 2027.</p>
+    </div>
+    <div class="app-features">
+      <article class="app-feature">
+      <img class="app-shot" src="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp" srcset="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp 480w, /assets/images/mobile/clarus-health-app-burnout-risk-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="724" alt="Clarus Health iPhone app showing an estimated burnout risk on the Home screen" loading="lazy" decoding="async">
+        <div class="app-feature-text"><h2>Spot burnout risk early</h2><p>The Home screen includes a Burnout Risk card that compares recent readings from the band with your own normal over the last 14 days. When the estimate climbs, you see it early and can plan a lighter day or more breaks. It is an estimate to guide your routine, not a diagnosis.</p></div>
+      </article>
+      <article class="app-feature">
+      <img class="app-shot" src="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp" srcset="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp 480w, /assets/images/mobile/clarus-health-app-focus-recovery-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="706" alt="Clarus Health iPhone app showing recovery break suggestions and a 25-minute Focus timer" loading="lazy" decoding="async">
+        <div class="app-feature-text"><h2>Focus and recovery breaks</h2><p>The Recovery tab gathers short breaks that fit a working day, such as getting outside early or ten minutes between meetings. A Focus timer runs 25-minute sessions, Flow keeps an open-ended session going, and Sleep offers a short nap when you need to reset. You can log a break you already took, too.</p></div>
+      </article>
+      <article class="app-feature">
+      <img class="app-shot" src="/assets/images/mobile/clarus-health-app-movement-trends-480.webp" srcset="/assets/images/mobile/clarus-health-app-movement-trends-480.webp 480w, /assets/images/mobile/clarus-health-app-movement-trends-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="774" alt="Clarus Health iPhone app showing a two-week walk distance chart and a weekly trend" loading="lazy" decoding="async">
+        <div class="app-feature-text"><h2>See your health trends</h2><p>Each signal has its own trend view. Movement, for example, charts your walk distance over two weeks, one month or two months against your average, and calls out changes such as walking 23% more than the week before. Trends show how your habits shape your energy and focus over time.</p></div>
+      </article>
+    </div>
+    <p class="app-note">iPhone app screens. Sample data shown.</p>
+    <a class="home-about-link" href="/clarus-health">Explore Clarus Health</a>
+  </section>
+
   <!-- Footer -->
   <footer class="footer-legal-section" id="contact">
     <div class="footer-legal-inner">
       <div class="legal-block">
         <p>Adarna Inc. is a corporation duly incorporated under the General Corporation Law of the State of Delaware, United States of America. The company maintains its mailing address at 28 Geary Street, Suite 650 #366, San Francisco, California 94108, United States, and operates in full compliance with the applicable provisions of Delaware corporate law and the federal and state laws of the United States governing corporations. Clarus Health is Adarna's health wearable for productivity and burnout, with an iPhone app and a Mac desktop app.</p>
-        <p style="margin-top:12px;">For detailed information about how we handle your data and your rights, please <a href="/legal/privacy-policy" style="color:#0071e3;text-decoration:none;">visit our Privacy Policy</a>. For the complete terms governing the use of our website and services, please <a href="/legal/terms-and-conditions" style="color:#0071e3;text-decoration:none;">visit our Terms and Conditions</a>.</p>
+        <p style="margin-top:12px;">For detailed information about how we handle your data and your rights, please <a href="/legal/privacy-policy" style="color:#0071e3;">visit our Privacy Policy</a>. For the complete terms governing the use of our website and services, please <a href="/legal/terms-and-conditions" style="color:#0071e3;">visit our Terms and Conditions</a>.</p>
         <p>Adarna Inc. is a validly existing corporation in good standing under the laws of the State of Delaware. The company is in the process of completing its United States federal and state tax and business registrations, and further regulatory and tax details will be published as those registrations are finalized. Adarna Inc. conducts its operations in accordance with applicable United States federal and state laws and the regulations of the jurisdictions in which it offers its products and services.</p>
         <p>The company maintains its banking and financial operations through established financial institutions in the United States and conducts all commercial transactions with transparency, accountability, and strict adherence to applicable financial-compliance and consumer-protection standards. Adarna Inc. is committed to lawful and ethical conduct across all of its business, payment, and commercial operations.</p>
         <p>Adarna Inc. is deeply committed to safeguarding the privacy, confidentiality, and security of all personal information collected from users through its products, services, platforms, and digital touchpoints. All information collected is handled with the highest standards of data security and is used strictly and exclusively for the purposes of delivering, maintaining, and continuously improving the company's offerings and user experience. The company adopts a privacy-first approach in the design and operation of all its products and services, ensuring that data collection is limited to what is necessary, proportionate, and relevant to the services being provided.</p>
@@ -484,7 +512,7 @@
 
       <div class="af-col">
         <div class="af-group">
-          <h3 class="af-head">Explore</h3>
+          <h2 class="af-head">Explore</h2>
           <ul class="af-list">
             <li><a href="/">Home</a></li>
             <li><a href="/clarus-health">Clarus Health</a></li>
@@ -498,7 +526,7 @@
 
       <div class="af-col">
         <div class="af-group">
-          <h3 class="af-head">Company</h3>
+          <h2 class="af-head">Company</h2>
           <ul class="af-list">
             <li><a href="/about">About Adarna</a></li>
             <li><a href="/careers">Careers</a></li>
@@ -506,7 +534,7 @@
           </ul>
         </div>
         <div class="af-group">
-          <h3 class="af-head">Investors</h3>
+          <h2 class="af-head">Investors</h2>
           <ul class="af-list">
             <li><a href="/data-room">Data Room</a></li>
             <li><a href="/kickstarter">Kickstarter</a></li>
@@ -516,7 +544,7 @@
 
       <div class="af-col">
         <div class="af-group">
-          <h3 class="af-head">Orders and Support</h3>
+          <h2 class="af-head">Orders and Support</h2>
           <ul class="af-list">
             <li><a href="/legal/shipping-policy">Shipping and Delivery</a></li>
             <li><a href="/legal/refund-policy">Refund and Cancellation</a></li>
@@ -528,7 +556,7 @@
 
       <div class="af-col">
         <div class="af-group">
-          <h3 class="af-head">Legal</h3>
+          <h2 class="af-head">Legal</h2>
           <ul class="af-list">
             <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
             <li><a href="/legal/terms-and-conditions">Terms and Conditions</a></li>
@@ -541,7 +569,7 @@
 
       <div class="af-col">
         <div class="af-group">
-          <h3 class="af-head">Our Standards</h3>
+          <h2 class="af-head">Our Standards</h2>
           <ul class="af-list">
             <li><a href="/legal/accessibility">Accessibility</a></li>
             <li><a href="/legal/code-of-conduct">Code of Conduct</a></li>
@@ -550,7 +578,7 @@
           </ul>
         </div>
         <div class="af-group">
-          <h3 class="af-head">Security</h3>
+          <h2 class="af-head">Security</h2>
           <ul class="af-list">
             <li><a href="/legal/security-policy">Responsible Disclosure</a></li>
           </ul>
