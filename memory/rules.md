@@ -9,3 +9,4 @@
 7. **Links:** use root-absolute, extensionless URLs (`/articles/hrv`, `/assets/...`). Never use relative paths or `.html` links, because pages live in subfolders.
 8. **Verify before committing:** run a link check (every internal href, src and srcset resolves), make sure every old URL still redirects, take before and after screenshots for visual changes, and re-run `scripts/seo_audit.py`.
 9. **Search index:** after adding or renaming pages, regenerate it with `scripts/build-search-index.py`, and update `sitemap.xml`.
+10. **After each deploy to `main` goes live:** run `python scripts/indexnow.py` (`--check-key` first, `--dry-run` to preview). It tells Bing and others about changed URLs. Google doesn't use it; ask the Search Console owner to request indexing for important new pages.
