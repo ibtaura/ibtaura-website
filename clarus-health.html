@@ -104,6 +104,13 @@
     .clarus-section + .clarus-section { margin-top: var(--page-gap); }
     /* Hardware hero: the banner fills the card edge to edge */
     .desktop-feature-card.desktop-devices.hw-hero img { width: 100%; height: 100%; object-fit: cover; }
+    /* iPhone app screens as strip cards of the same shape as the others */
+    .desktop-feature-card.app-screen { aspect-ratio: 1200 / 1364; display: flex; align-items: center; justify-content: center; }
+    .desktop-feature-card.app-screen img { width: auto; height: 84%; max-width: 86%; object-fit: contain; }
+    .feature-item figcaption .feature-title { display: inline; font: inherit; font-weight: 600; color: #1d1d1f; margin: 0; }
+    .feature-item figcaption a { color: #0071e3; text-decoration: none; }
+    .feature-item figcaption a:hover { text-decoration: underline; }
+    .sample-note { max-width: 1100px; width: calc(100% - 48px); margin: 16px auto 0; font-size: 13px; color: #86868b; text-align: center; }
 
   </style>
 </head>
@@ -205,12 +212,13 @@
         <figcaption><b>Mini Window</b> A small floating window keeps your capacity ring, your next blocks and your tools one glance away, without opening the full app.</figcaption>
       </figure>
     </div>
+    <p class="sample-note">Desktop app screens. Sample data shown.</p>
   </section>
 
 
   <!-- Mobile app -->
   <section class="clarus-section" aria-labelledby="mobile-app-title">
-    <h2 id="mobile-app-title" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Mobile app</h2>
+    <h2 id="mobile-app-title" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Clarus Health iPhone app</h2>
     <div class="desktop-feature">
       <div class="desktop-feature-card desktop-devices mobile-device">
         <img src="/assets/images/mobile/mobile-device.webp" alt="The Clarus Health app on iPhone: Home" width="1362" height="2724" loading="lazy" decoding="async" />
@@ -222,12 +230,20 @@
         <figcaption><b>Three Scores</b> Capacity, focus and recovery, each measured against your own normal over the last 14 days, so you see how your mind is doing at a glance.</figcaption>
       </figure>
       <figure class="feature-item">
+        <div class="desktop-feature-card app-screen"><img src="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp" srcset="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp 480w, /assets/images/mobile/clarus-health-app-burnout-risk-960.webp 960w" sizes="(max-width: 760px) 40vw, 260px" width="480" height="724" alt="Burnout Risk screen in the Clarus Health iPhone app, with a higher possibility estimated" loading="lazy" decoding="async"></div>
+        <figcaption><h3 class="feature-title">Burnout Risk Estimate</h3> How likely burnout looks right now against your own last 14 days. An estimate, not a diagnosis. <a href="/burnout">More on burnout</a></figcaption>
+      </figure>
+      <figure class="feature-item">
         <div class="desktop-feature-card"><img src="/assets/images/mobile/mobile-2-today.jpg" alt="Clarus Health app: Today" width="1200" height="1364" loading="lazy" decoding="async" /></div>
         <figcaption><b>Today</b> Clarus notices what you need, like a short nap or a pause after a long stretch of stress, and offers it with one tap.</figcaption>
       </figure>
       <figure class="feature-item">
         <div class="desktop-feature-card"><img src="/assets/images/mobile/mobile-3-recovery.jpg" alt="Clarus Health app: Recovery Breaks" width="1200" height="1364" loading="lazy" decoding="async" /></div>
         <figcaption><b>Recovery Breaks</b> A library of breaks that suit the hour, from ten minutes between meetings to a walk, each with its length and what the evidence says.</figcaption>
+      </figure>
+      <figure class="feature-item">
+        <div class="desktop-feature-card app-screen"><img src="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp" srcset="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp 480w, /assets/images/mobile/clarus-health-app-focus-recovery-960.webp 960w" sizes="(max-width: 760px) 40vw, 260px" width="480" height="706" alt="Now and Focus screens in the Clarus Health iPhone app: break ideas, a 25-minute timer and Flow" loading="lazy" decoding="async"></div>
+        <figcaption><h3 class="feature-title">Focus Timer and Recovery Breaks</h3> A 25-minute timer or open-ended Flow with one tap, and breaks that fit the moment. <a href="/focus">More on focus</a></figcaption>
       </figure>
       <figure class="feature-item">
         <div class="desktop-feature-card"><img src="/assets/images/mobile/mobile-4-calendar-tasks.jpg" alt="Clarus Health app: Calendar and Tasks" width="1200" height="1364" loading="lazy" decoding="async" /></div>
@@ -238,33 +254,15 @@
         <figcaption><b>Charts for Everything</b> 25 categories of health and work data, each measure with its own chart by day, week, month or year, and its highlights.</figcaption>
       </figure>
       <figure class="feature-item">
+        <div class="desktop-feature-card app-screen"><img src="/assets/images/mobile/clarus-health-app-movement-trends-480.webp" srcset="/assets/images/mobile/clarus-health-app-movement-trends-480.webp 480w, /assets/images/mobile/clarus-health-app-movement-trends-960.webp 960w" sizes="(max-width: 760px) 40vw, 260px" width="480" height="774" alt="Walk Distance screen in the Clarus Health iPhone app, with two weeks of bars and a 23 percent rise" loading="lazy" decoding="async"></div>
+        <figcaption><h3 class="feature-title">Health Trends Over Time</h3> Walk distance, sleep and more over two weeks to two months, with highlights like walking 23% more.</figcaption>
+      </figure>
+      <figure class="feature-item">
         <div class="desktop-feature-card"><img src="/assets/images/mobile/mobile-7-logging.jpg" alt="Clarus Health app: Logging" width="1200" height="1364" loading="lazy" decoding="async" /></div>
         <figcaption><b>Logging</b> Log mood, stress, food, focus and more in seconds, so your scores know what the band can't measure.</figcaption>
       </figure>
     </div>
-  </section>
-
-  <!-- iPhone app -->
-  <section class="home-about app-section" aria-labelledby="app-section-title">
-    <div class="home-about-intro">
-      <h2 id="app-section-title">Clarus Health iPhone app</h2>
-      <p>The Clarus Health iPhone app turns what the band reads into a few plain answers for your day. It estimates your burnout risk, offers focus blocks and recovery breaks when you need them, and charts your health trends against your own normal over the last 14 days, so you can spot a hard week early and ease your workload before it builds up.</p>
-    </div>
-    <div class="app-features">
-      <article class="app-feature">
-        <img class="app-shot" src="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp" srcset="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp 480w, /assets/images/mobile/clarus-health-app-burnout-risk-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="724" alt="Burnout Risk screen in the Clarus Health iPhone app, with a higher possibility estimated" loading="lazy" decoding="async">
-        <div class="app-feature-text"><h3>Burnout risk estimate</h3><p>One card shows how likely burnout looks right now, compared with your own baseline from the last 14 days rather than an average of other people. It is an estimate to help you pace your work, not a diagnosis. <a href="/burnout">Read more about burnout risk</a></p></div>
-      </article>
-      <article class="app-feature">
-        <img class="app-shot" src="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp" srcset="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp 480w, /assets/images/mobile/clarus-health-app-focus-recovery-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="706" alt="Now and Focus screens in the Clarus Health iPhone app: break ideas, a 25-minute timer and Flow" loading="lazy" decoding="async">
-        <div class="app-feature-text"><h3>Focus timer and recovery breaks</h3><p>Start a 25-minute focus timer or an open-ended Flow session with one tap. Between blocks, the app suggests breaks that fit the moment, such as ten minutes between meetings, getting outside early or a short nap, and you can log breaks you took on your own. <a href="/focus">Read more about focus and recovery</a></p></div>
-      </article>
-      <article class="app-feature">
-        <img class="app-shot" src="/assets/images/mobile/clarus-health-app-movement-trends-480.webp" srcset="/assets/images/mobile/clarus-health-app-movement-trends-480.webp 480w, /assets/images/mobile/clarus-health-app-movement-trends-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="774" alt="Walk Distance screen in the Clarus Health iPhone app, with two weeks of bars and a 23 percent rise" loading="lazy" decoding="async">
-        <div class="app-feature-text"><h3>Health trends over time</h3><p>Follow walk distance, sleep and other measures over two weeks, one month or two months. Highlights point out what changed, such as walking 23% more than last week, so small shifts in your routine are easy to notice and keep.</p></div>
-      </article>
-    </div>
-    <p class="app-note">iPhone app screens. Sample data shown.</p>
+    <p class="sample-note">iPhone app screens. Sample data shown.</p>
   </section>
 
   <!-- Call to action -->

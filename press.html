@@ -85,74 +85,82 @@
   <link rel="stylesheet" href="/assets/css/style.css?v=35" />
   <link rel="stylesheet" href="/assets/css/clarus.css?v=2" />
   <style>
-    /* ─── Press kit (this page only) ─── */
-    .press-main { max-width: 1100px; width: calc(100% - 24px); margin: 66px auto var(--page-gap, 24px); color: #1d1d1f; }
-    .press-hero { background: #ffffff; border: 1px solid #d2d2d7; border-radius: 22px; padding: 56px 40px; text-align: center; }
-    .press-hero h1 { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: clamp(32px, 3vw + 18px, 48px); font-weight: 600; letter-spacing: -0.5px; line-height: 1.1; margin: 0 0 14px; color: #1d1d1f; }
-    .press-hero p { font-size: 17px; line-height: 1.5; color: #6e6e73; max-width: 62ch; margin: 0 auto; }
-    .press-toc { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 24px 0 0; padding: 0; font-size: 15px; }
-    .press-section { background: #ffffff; border: 1px solid #d2d2d7; border-radius: 22px; padding: 40px; margin-top: 12px; scroll-margin-top: 80px; }
-    .press-section h2 { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: clamp(24px, 1.6vw + 16px, 32px); font-weight: 600; letter-spacing: -0.3px; line-height: 1.15; margin: 0 0 20px; color: #1d1d1f; }
-    .press-section h3 { font-size: 19px; font-weight: 600; margin: 0 0 8px; color: #1d1d1f; }
-    .press-section p { font-size: 17px; line-height: 1.55; color: #1d1d1f; max-width: 72ch; }
-    .press-section p + p { margin-top: 12px; }
+    /* ─── Press kit (this page only) ───
+       The site's card system: every section is a grey card the width of the content, one gap apart,
+       with the inner tiles in the card's own grey, outlined by a hairline. */
+    .press-main { --press-gap: 24px; max-width: 1100px; width: calc(100% - 24px); margin: 63px auto var(--press-gap); color: #1d1d1f; }
+    .press-hero, .press-section { background: #F4F5F5; border-radius: 22px; box-sizing: border-box; }
+    .press-hero { padding: 72px 56px 56px; text-align: center; }
+    .press-hero h1 { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: clamp(32px, 3.4vw + 18px, 52px); font-weight: 600; letter-spacing: -0.8px; line-height: 1.08; margin: 0 0 18px; color: #1d1d1f; }
+    .press-hero p { font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 19px; line-height: 1.5; color: #6e6e73; max-width: 62ch; margin: 0 auto; }
+    .press-toc { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 32px 0 0; padding: 0; }
+    .press-toc a { display: inline-block; padding: 8px 16px; border-radius: 980px; border: 1px solid #0071e3; font-size: 14px; font-weight: 500; color: #0071e3; text-decoration: none !important; }
+    .press-toc a:hover { background: rgba(0,113,227,0.06); }
+    .press-section { padding: 56px 56px 48px; margin-top: var(--press-gap); scroll-margin-top: 80px; }
+    .press-section h2 { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: clamp(26px, 2.2vw + 16px, 34px); font-weight: 600; letter-spacing: -0.5px; line-height: 1.15; margin: 0 0 24px; color: #1d1d1f; }
+    .press-section h3 { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 19px; font-weight: 600; margin: 0 0 8px; color: #1d1d1f; }
+    .press-section p { font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: #1d1d1f; max-width: 760px; }
+    .press-section p + p { margin-top: 16px; }
     .press-main a { color: #0071e3; }
-    .press-section p a, .press-section dd a, .press-hero a, .press-toc a { text-decoration: underline; text-underline-offset: 2px; }
+    .press-section p a, .press-section dd a, .press-hero p a { text-decoration: underline; text-underline-offset: 2px; }
     .press-muted { color: #6e6e73 !important; font-size: 15px !important; }
 
-    /* Company facts */
-    .press-facts { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; margin: 0; border-top: 1px solid #e8e8ed; }
-    .press-facts dt, .press-facts dd { padding: 14px 0; border-bottom: 1px solid #e8e8ed; font-size: 16px; line-height: 1.5; }
+    /* Company facts: hairline rows on the card */
+    .press-facts { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; margin: 0; border-top: 1px solid #dcdce1; }
+    .press-facts dt, .press-facts dd { padding: 16px 0; border-bottom: 1px solid #dcdce1; font-size: 16px; line-height: 1.5; }
     .press-facts dt { font-weight: 600; color: #1d1d1f; padding-right: 16px; }
     .press-facts dd { color: #1d1d1f; margin: 0; }
 
     /* Boilerplates */
     .press-boiler { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .press-boiler-card { border: 1px solid #e8e8ed; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; }
-    .press-boiler-card p { flex: 1; }
-    .press-copy-row { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .press-boiler-card { border: 1px solid #dcdce1; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; }
+    .press-boiler-card p { flex: 1; font-size: 16px; }
+    .press-copy-row { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
     .press-copy-btn { display: inline-flex; align-items: center; padding: 10px 22px; border-radius: 980px; background: #0071e3; color: #ffffff; border: none; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; }
     .press-copy-btn:hover { background: #0064cc; }
     .press-copy-btn:focus-visible, .press-main a:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }
     .press-copy-status { font-size: 14px; color: #1d1d1f; min-height: 1em; }
 
     /* Media assets */
-    .press-assets { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
-    .press-asset { border: 1px solid #e8e8ed; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
-    .press-asset-preview { background: #f5f5f7; height: 240px; display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .press-assets { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+    .press-asset { border: 1px solid #dcdce1; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+    .press-asset-preview { height: 220px; display: flex; align-items: center; justify-content: center; padding: 20px; border-bottom: 1px solid #dcdce1; }
     .press-asset-preview img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-    .press-asset-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .press-asset-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .press-asset-body h3 { font-size: 17px; margin: 0; }
     .press-asset-body p { font-size: 14px; color: #6e6e73; line-height: 1.45; }
-    .press-asset-body a { margin-top: auto; padding-top: 8px; font-size: 15px; font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+    .press-asset-body a { margin-top: auto; padding-top: 10px; font-size: 15px; font-weight: 500; text-decoration: none; }
+    .press-asset-body a:hover { text-decoration: underline; }
 
     /* Founders */
     .press-founders { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
-    .press-founder { display: flex; align-items: center; gap: 16px; border: 1px solid #e8e8ed; border-radius: 16px; padding: 16px; }
-    .press-founder img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; background: #f5f5f7; flex-shrink: 0; }
+    .press-founder { display: flex; align-items: center; gap: 18px; border: 1px solid #dcdce1; border-radius: 16px; padding: 18px; }
+    .press-founder img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
     .press-founder h3 { font-size: 17px; margin: 0 0 4px; }
     .press-founder p { font-size: 15px; color: #6e6e73; }
 
-    /* Contact and follow */
-    .press-email { font-size: 22px; font-weight: 600; user-select: all; -webkit-user-select: all; color: #1d1d1f; margin: 4px 0 12px; word-break: break-all; }
+    /* Contact and follow: the site's outline buttons */
+    .press-email { font-size: 22px; font-weight: 600; user-select: all; -webkit-user-select: all; color: #1d1d1f; margin: 4px 0 16px; word-break: break-all; }
     .press-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
-    .press-links a { display: inline-block; padding: 10px 20px; border: 1px solid #d2d2d7; border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; }
-    .press-links a:hover { border-color: #0071e3; }
+    .press-links a { display: inline-block; padding: 10px 22px; border: 1px solid #0071e3; border-radius: 980px; font-size: 15px; font-weight: 500; color: #0071e3; text-decoration: none; }
+    .press-links a:hover { background: rgba(0,113,227,0.06); }
 
     @media (max-width: 768px) {
-      .press-main { width: calc(100% - 16px); margin-top: 68px; }
-      .press-hero { padding: 40px 24px; border-radius: 18px; }
-      .press-section { padding: 28px 24px; border-radius: 18px; }
+      .press-main { --press-gap: 20px; width: calc(100% - 64px); margin-top: 68px; }
+      .press-hero { padding: 48px 28px 40px; border-radius: 18px; }
+      .press-hero p { font-size: 17px; }
+      .press-section { padding: 40px 28px 32px; border-radius: 18px; }
       .press-boiler { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
-      .press-main { width: calc(100% - 12px); margin-top: 64px; }
-      .press-hero { padding: 32px 16px; border-radius: 16px; }
-      .press-section { padding: 24px 16px; border-radius: 16px; }
+      .press-main { --press-gap: 16px; width: calc(100% - 48px); margin-top: 64px; }
+      .press-hero { padding: 40px 20px 32px; border-radius: 16px; }
+      .press-section { padding: 32px 20px 24px; border-radius: 16px; }
+      .press-section p { font-size: 16px; }
       .press-facts { grid-template-columns: 1fr; }
       .press-facts dt { border-bottom: none; padding-bottom: 2px; }
       .press-facts dd { padding-top: 0; }
-      .press-boiler-card { padding: 18px; }
+      .press-boiler-card { padding: 20px; }
     }
   </style>
 </head>

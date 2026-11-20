@@ -126,68 +126,7 @@
   <link rel="icon" href="/assets/images/brand/adarna-favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/assets/css/style.css?v=35" />
   <link rel="stylesheet" href="/assets/css/clarus.css?v=2" />
-  <style>
-    /* ─── Burnout landing page (this page only) ─── */
-    .bw-page { background: #fff; }
-    .bw-hero { max-width: 820px; margin: 0 auto; padding: 72px 40px 24px; text-align: center; }
-    .bw-hero h1 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: clamp(32px, 3.4vw + 18px, 52px); font-weight: 600; line-height: 1.08;
-      letter-spacing: -0.8px; color: #1d1d1f; margin: 0 0 20px;
-    }
-    .bw-lead {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 19px; line-height: 1.5; color: #6e6e73; max-width: 65ch; margin: 0 auto;
-    }
-    .bw-prose { max-width: 720px; margin: 0 auto; padding: 48px 40px 8px; }
-    .bw-prose h2 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: clamp(26px, 2.2vw + 16px, 34px); font-weight: 600; line-height: 1.15;
-      letter-spacing: -0.5px; color: #1d1d1f; margin: 0 0 16px;
-    }
-    .bw-prose h3 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 19px; font-weight: 600; line-height: 1.3; color: #1d1d1f; margin: 28px 0 8px;
-    }
-    .bw-prose p, .bw-prose li {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 17px; line-height: 1.6; color: #1d1d1f;
-    }
-    .bw-prose p { margin: 0 0 16px; }
-    .bw-prose ul { margin: 0 0 16px; padding-left: 22px; }
-    .bw-prose li { margin: 0 0 10px; }
-    .bw-prose a { color: #0071e3; text-decoration: underline; text-underline-offset: 2px; }
-    .bw-prose a:hover { color: #0064cc; }
-    .bw-prose a:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; border-radius: 2px; }
-    .bw-prose + .bw-prose { padding-top: 40px; }
-    .bw-faq h3 { margin-top: 32px; }
-    /* One app screen beside its text instead of the three-column grid */
-    .home-about.bw-single { padding: 64px 40px 16px; }
-    .bw-single .app-features { grid-template-columns: minmax(0, 1fr); max-width: 760px; margin: 0 auto; }
-    .bw-single .app-feature { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 48px; align-items: center; }
-    .bw-single .app-shot { margin: 0; }
-    .bw-single .app-feature-text { max-width: none; }
-    .bw-single .app-feature-text p { font-size: 17px; }
-    .bw-single .app-note { margin-top: 32px; }
-    .bw-cta h2 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 34px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.5px; line-height: 1.15; margin: 0;
-    }
-    .bw-cta-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    .bw-cta-links .bw-secondary { background: #fff; color: #0071e3; box-shadow: inset 0 0 0 1.5px #0071e3; }
-    .bw-cta-links .bw-secondary:hover { background: #fff; color: #0064cc; }
-    .bw-note { max-width: 720px; margin: 32px auto 0; padding: 0 40px; font-size: 14px; line-height: 1.5; color: #6e6e73; text-align: center; }
-    @media (max-width: 760px) {
-      .bw-hero { padding: 48px 24px 8px; }
-      .bw-lead { font-size: 17px; }
-      .bw-prose { padding: 36px 24px 0; }
-      .home-about.bw-single { padding: 48px 24px 8px; }
-      .bw-single .app-feature { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-      .bw-single .app-shot { margin: 0 auto; }
-      .bw-cta h2 { font-size: 28px; }
-      .bw-note { padding: 0 24px; }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/landing.css?v=1" />
 </head>
 <body>
 
@@ -210,17 +149,17 @@
   </header>
   <script src="/assets/js/mobile-nav.js?v=1"></script>
 
-  <main class="bw-page">
+  <main class="lp-page">
 
-    <header class="bw-hero">
+    <header class="lp-card lp-hero">
       <h1>Clarus Health: a burnout wearable that spots risk early</h1>
-      <p class="bw-lead">Burnout builds over months, and the body often carries the load before anyone names it. Clarus Health by Adarna Inc. is a health wearable for productivity and burnout: a band on your upper arm that reads your heart rhythm and six more signals, and an iPhone app that estimates when your burnout risk is rising compared with your own normal.</p>
+      <p class="lp-lead">Burnout builds over months, and the body often carries the load before anyone names it. Clarus Health by Adarna Inc. is a health wearable for productivity and burnout: a band on your upper arm that reads your heart rhythm and six more signals, and an iPhone app that estimates when your burnout risk is rising compared with your own normal.</p>
     </header>
 
-    <section class="bw-prose" aria-labelledby="body-title">
+    <section class="lp-card lp-prose" aria-labelledby="body-title">
       <h2 id="body-title">What burnout looks like in your body</h2>
       <p>Burnout is often described as a state of mind, but it develops when demands exceed resources for so long that the body's stress systems rarely get to switch off. None of the signs below is specific to burnout, and each can have other causes. Together, and over weeks, they form a recognisable pattern. Our article on <a href="/articles/burnout">burnout and the body</a> covers this in more depth.</p>
-      <ul>
+      <ul class="lp-tiles lp-tiles-2">
         <li><strong>Heart rate variability trends.</strong> HRV, the natural variation in time between heartbeats, tends to fall as stress builds. A sustained decline against your own normal is commonly associated with accumulated stress, poor sleep, illness or overtraining. Learn more about <a href="/articles/hrv">heart rate variability</a>.</li>
         <li><strong>Resting heart rate.</strong> When the nervous system stays on alert, resting heart rate can drift upward by a few beats per minute and stay there.</li>
         <li><strong>Sleep and recovery.</strong> Sleep is often the first casualty. It can become lighter and more broken even when the hours look adequate, and recovery may no longer rebound after a weekend.</li>
@@ -229,24 +168,16 @@
       <p>The key word is relative. HRV and resting heart rate vary widely between people, with age and with fitness, so a single number says very little. What matters is how your values move compared with your own typical range.</p>
     </section>
 
-    <section class="home-about bw-single" aria-labelledby="estimate-title">
-      <div class="home-about-intro">
-        <h2 id="estimate-title">How Clarus Health estimates burnout risk</h2>
-        <p>The band reads seven signals: heart rate, beat-to-beat timing, breathing, skin temperature, blood oxygen, steps and activity. While you sit, three soft electrodes follow your heart's rhythm, and when you move, the band switches to its optical sensor on its own. The iPhone app then compares your recent readings with your own normal over the last 14 days, rather than with an average of other people.</p>
-      </div>
-      <div class="app-features">
-        <article class="app-feature">
-          <img class="app-shot" src="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp" srcset="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp 480w, /assets/images/mobile/clarus-health-app-burnout-risk-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="724" alt="Burnout Risk card in the Clarus Health iPhone app, showing a higher possibility estimated against the user's own normal over the last 14 days" loading="lazy" decoding="async">
-          <div class="app-feature-text"><h3>The Burnout Risk card</h3><p>The Home screen includes a Burnout Risk card that shows how likely burnout looks right now, measured against your own baseline from the last 14 days. When the estimate climbs, you see it early and can plan a lighter day or more breaks. It is an estimate to guide your routine, not a diagnosis.</p></div>
-        </article>
-      </div>
-      <p class="app-note">iPhone app screen. Sample data shown.</p>
+    <section class="lp-card lp-prose" aria-labelledby="estimate-title">
+      <h2 id="estimate-title">How Clarus Health estimates burnout risk</h2>
+      <p>The band reads seven signals: heart rate, beat-to-beat timing, breathing, skin temperature, blood oxygen, steps and activity. While you sit, three soft electrodes follow your heart's rhythm, and when you move, the band switches to its optical sensor on its own. The iPhone app then compares your recent readings with your own normal over the last 14 days, rather than with an average of other people.</p>
+      <div class="lp-tile"><h3>The Burnout Risk card</h3><p>The Home screen includes a Burnout Risk card that shows how likely burnout looks right now, measured against your own baseline from the last 14 days. When the estimate climbs, you see it early and can plan a lighter day or more breaks. It is an estimate to guide your routine, not a diagnosis.</p></div>
     </section>
 
-    <section class="bw-prose" aria-labelledby="breaks-title">
+    <section class="lp-card lp-prose" aria-labelledby="breaks-title">
       <h2 id="breaks-title">Recovery breaks that fit a working day</h2>
       <p>Spotting rising risk helps only if you can act on it. The Recovery tab in the iPhone app gathers short breaks that suit the hour, each with its length and what the evidence says:</p>
-      <ul>
+      <ul class="lp-tiles lp-tiles-3">
         <li>Ten minutes between meetings, so stress does not pile up from one call to the next.</li>
         <li>Getting outside early in the day.</li>
         <li>A short nap from the Sleep option when you need to reset.</li>
@@ -255,17 +186,17 @@
       <p>Short breaks are one part of recovery, and sleep is the other. Read why <a href="/articles/recovery">recovery is the missing piece in performance</a>, and how <a href="/articles/sleep-debt">sleep debt</a> builds up over a busy week.</p>
     </section>
 
-    <section class="bw-prose" aria-labelledby="who-title">
+    <section class="lp-card lp-prose" aria-labelledby="who-title">
       <h2 id="who-title">Who Clarus Health is for</h2>
       <p>Clarus Health is made for the desk. The band sits on your upper arm, clear of your keyboard and trackpad, so you can forget you are wearing it through long stretches of work. It suits people whose work combines high, sustained demand with little time to recover:</p>
-      <ul>
+      <ul class="lp-tiles lp-tiles-3">
         <li>Knowledge workers with demanding days of meetings, deep work and deadlines.</li>
         <li>Founders who carry a heavy workload with little natural separation between effort and rest.</li>
         <li>Remote workers, for whom the line between home and work is easy to lose and being always reachable can feel normal.</li>
       </ul>
     </section>
 
-    <section class="bw-prose bw-faq" aria-labelledby="faq-title">
+    <section class="lp-card lp-prose lp-faq" aria-labelledby="faq-title">
       <h2 id="faq-title">Burnout wearable FAQ</h2>
       <h3>Can a wearable detect burnout?</h3>
       <p>Not on its own. A wearable cannot diagnose burnout, whose signs overlap with depression, anxiety and several physical conditions. What it can do is show trends that are hard to notice, such as a resting heart rate creeping upward or HRV staying below your usual range. Clarus Health uses those body signals to estimate your burnout risk, not to diagnose it.</p>
@@ -279,16 +210,16 @@
       <p>Treat it as a reason to look at your sleep, workload and recovery. If exhaustion, low mood or hopelessness persist for more than a couple of weeks, or begin to affect your daily life, speak with a doctor or a qualified mental health professional, whatever any device shows.</p>
     </section>
 
-    <section class="desktop-beta-card after-rows bw-cta" aria-labelledby="cta-title">
+    <section class="desktop-beta-card after-rows lp-cta" aria-labelledby="cta-title">
       <h2 id="cta-title">Spot burnout risk early</h2>
       <p>Clarus Health launches in July 2027. See the band, the iPhone app and the Mac desktop app, or follow the launch on Kickstarter.</p>
-      <div class="bw-cta-links">
+      <div class="lp-cta-links">
         <a href="/clarus-health" class="desktop-notify-btn">Explore Clarus Health</a>
-        <a href="/kickstarter" class="desktop-notify-btn bw-secondary">Follow the launch on Kickstarter</a>
+        <a href="/kickstarter" class="desktop-notify-btn lp-secondary">Follow the launch on Kickstarter</a>
       </div>
     </section>
 
-    <p class="bw-note">This page is for general information only and is not medical advice. Clarus Health estimates burnout risk; it does not diagnose any condition.</p>
+    <p class="lp-note">This page is for general information only and is not medical advice. Clarus Health estimates burnout risk; it does not diagnose any condition.</p>
 
   </main>
 

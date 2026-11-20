@@ -218,18 +218,14 @@
       object-fit: contain;
     }
 
-    /* ─── Card 3 — light card with centred Kickstarter logo ─────── */
-    .home-card[data-card="3"] .card-kickstarter-logo {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 168px;
-      height: 168px;
+    /* ─── Card 3 — the iPhone app, one framed phone on the card's grey ─── */
+    .card-phone {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 48px 96px 112px;
+      box-sizing: border-box;
       object-fit: contain;
-      z-index: 1;
-    }
-    @media (max-width: 480px) {
-      .home-card[data-card="3"] .card-kickstarter-logo { width: 132px; height: 132px; }
     }
 
     /* ─── Card buttons — bottom right ──────────────────────────── */
@@ -360,7 +356,7 @@
         height: max(calc((100vw - 112px) * 0.55 + 88px), calc((100svh - 108px) / 2));
       }
       .card-devices { height: calc(100% - 64px); padding: 24px 24px 0; }
-      .home-card[data-card="3"] .card-kickstarter-logo { top: calc(50% - 20px); }
+      .card-phone { height: calc(100% - 64px); padding: 24px 24px 0; }
       .card-btn-group { flex-direction: row; right: 24px; bottom: 20px; }
       .home-hero {
         padding: 36px 24px 44px;
@@ -386,6 +382,7 @@
         height: max(calc((100vw - 88px) * 0.55 + 80px), calc((100svh - 96px) / 2));
       }
       .card-devices { height: calc(100% - 60px); padding: 20px 20px 0; }
+      .card-phone { height: calc(100% - 60px); padding: 20px 20px 0; }
       .card-btn-group { right: 20px; bottom: 16px; }
       .home-hero {
         padding: 28px 16px 36px;
@@ -453,12 +450,12 @@
       </div>
     </div>
 
-    <!-- Card 3 (back — Kickstarter campaign) -->
+    <!-- Card 3 (back — iPhone app) -->
     <div class="home-card" data-card="3">
-      <img src="/assets/images/icons/kickstarter-logo.webp" alt="Kickstarter" class="card-kickstarter-logo" />
+      <img src="/assets/images/iphone/iphone-device.webp" alt="The Clarus Health app on iPhone: Home, with the capacity, thinking and recovery scores" class="card-phone" width="590" height="1200" loading="lazy" decoding="async" />
       <div class="card-btn-group">
-        <a href="/kickstarter" class="card-btn card-btn-outline">Kickstarter documents</a>
-        <a href="/kickstarter" class="card-btn card-btn-filled">Back Now</a>
+        <a href="/clarus-health/iphone" class="card-btn card-btn-outline">See Clarus Health for iPhone</a>
+        <a href="#" class="card-btn card-btn-filled" onclick="event.preventDefault();alert('Clarus Health launches in July 2027.');">Access Now</a>
       </div>
     </div>
 

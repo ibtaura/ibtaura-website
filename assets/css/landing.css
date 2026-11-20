@@ -1,0 +1,86 @@
+/* Landing pages (/burnout, /focus): every section is a grey card the width of the site's content, one gap apart,
+   like the Clarus Health and Desktop pages. Lists become outlined tiles in the card's grey. */
+.lp-page { --lp-gap: 24px; background: #fff; }
+.lp-card {
+  max-width: 1100px; width: calc(100% - 24px); margin: var(--lp-gap) auto 0;
+  background: #F4F5F5; border-radius: 22px; padding: 56px 56px 48px; box-sizing: border-box;
+}
+.lp-hero { margin-top: 63px; padding: 72px 56px 64px; text-align: center; }
+.lp-eyebrow { font-size: 14px; font-weight: 600; color: #6e6e73; margin: 0 0 12px; letter-spacing: 0.02em; }
+.lp-hero h1 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(32px, 3.4vw + 18px, 52px); font-weight: 600; line-height: 1.08;
+  letter-spacing: -0.8px; color: #1d1d1f; margin: 0 auto 20px; max-width: 820px;
+}
+.lp-lead {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 19px; line-height: 1.5; color: #6e6e73; max-width: 65ch; margin: 0 auto;
+}
+.lp-prose h2 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(26px, 2.2vw + 16px, 34px); font-weight: 600; line-height: 1.15;
+  letter-spacing: -0.5px; color: #1d1d1f; margin: 0 0 16px; max-width: 760px;
+}
+.lp-prose h3 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 19px; font-weight: 600; line-height: 1.3; color: #1d1d1f; margin: 0 0 8px;
+}
+.lp-prose p, .lp-prose li {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 17px; line-height: 1.6; color: #1d1d1f;
+}
+.lp-prose p { margin: 0 0 16px; max-width: 760px; }
+.lp-prose a { color: #0071e3; text-decoration: underline; text-underline-offset: 2px; }
+.lp-prose a:hover { color: #0064cc; }
+.lp-prose a:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; border-radius: 2px; }
+
+/* Lists as tiles in the card's own grey, outlined by a hairline */
+.lp-tiles { display: grid; gap: 16px; list-style: none; margin: 24px 0; padding: 0; }
+.lp-tiles-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lp-tiles-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lp-tiles li, .lp-tile { margin: 0; border: 1px solid #dcdce1; border-radius: 16px; padding: 22px 24px; }
+.lp-tiles li strong { display: block; margin-bottom: 6px; font-weight: 600; }
+/* An odd last tile in a two-column list spans the row */
+.lp-tiles-2 li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.lp-lead + .lp-lead { margin-top: 16px; }
+.lp-tiles + p { margin-bottom: 8px; }
+.lp-tile { max-width: 760px; margin: 24px 0 8px; }
+.lp-tile p { margin: 0; }
+.lp-tile p + p { margin-top: 16px; }
+
+/* FAQ: one question per row, divided by hairlines */
+.lp-faq h3 { border-top: 1px solid #dcdce1; padding-top: 24px; margin-top: 24px; max-width: 760px; }
+.lp-faq h2 + h3 { border-top: 0; padding-top: 8px; margin-top: 8px; }
+.lp-faq p:last-child { margin-bottom: 0; }
+
+.lp-cta { margin-top: var(--lp-gap); }
+.lp-cta h2 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 34px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.5px; line-height: 1.15; margin: 0;
+}
+.lp-cta-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.lp-cta-links .lp-secondary { background: transparent; color: #0071e3; box-shadow: inset 0 0 0 1.5px #0071e3; }
+.lp-cta-links .lp-secondary:hover { background: rgba(0,113,227,0.06); color: #0064cc; }
+.lp-note { max-width: 720px; margin: var(--lp-gap) auto 0; padding: 0 40px; font-size: 14px; line-height: 1.5; color: #6e6e73; text-align: center; }
+
+@media (max-width: 900px) {
+  .lp-tiles-3 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 768px) {
+  .lp-page { --lp-gap: 20px; }
+  .lp-card { width: calc(100% - 64px); border-radius: 18px; padding: 40px 28px 32px; }
+  .lp-hero { margin-top: 68px; padding: 48px 28px 40px; }
+  .lp-lead { font-size: 17px; }
+  .lp-tiles-2 { grid-template-columns: minmax(0, 1fr); }
+  .lp-cta h2 { font-size: 28px; }
+  .lp-note { padding: 0 32px; }
+}
+@media (max-width: 480px) {
+  .lp-page { --lp-gap: 16px; }
+  .lp-card { width: calc(100% - 48px); border-radius: 16px; padding: 32px 20px 24px; }
+  .lp-hero { margin-top: 64px; padding: 40px 20px 32px; }
+  .lp-tiles { gap: 12px; }
+  .lp-tiles li, .lp-tile { padding: 18px 18px; }
+  .lp-prose p, .lp-prose li { font-size: 16px; }
+  .lp-note { padding: 0 24px; }
+}

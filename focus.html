@@ -125,76 +125,7 @@
   <link rel="icon" href="/assets/images/brand/adarna-favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/assets/css/style.css?v=35" />
   <link rel="stylesheet" href="/assets/css/clarus.css?v=2" />
-  <style>
-    /* ─── Focus landing page ─── */
-    .focus-page { max-width: 1100px; width: calc(100% - 24px); margin: 12px auto 0; }
-    .focus-card { background: #ffffff; border-radius: 22px; padding: 64px 40px; }
-    .focus-card + .focus-card { margin-top: 12px; }
-    .focus-prose { max-width: 720px; margin: 0 auto; }
-    .focus-page h1 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: clamp(30px, 3vw + 16px, 48px); font-weight: 600; line-height: 1.08;
-      letter-spacing: -0.6px; color: #1d1d1f; margin: 0 0 20px;
-    }
-    .focus-page h2 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: clamp(24px, 1.6vw + 16px, 32px); font-weight: 600; line-height: 1.15;
-      letter-spacing: -0.4px; color: #1d1d1f; margin: 0 0 16px;
-    }
-    .focus-page h3 {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 19px; font-weight: 600; line-height: 1.3; color: #1d1d1f; margin: 28px 0 8px;
-    }
-    .focus-prose p, .focus-prose li {
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      font-size: 17px; line-height: 1.6; color: #1d1d1f;
-    }
-    .focus-prose p + p { margin-top: 16px; }
-    .focus-prose ul { margin: 16px 0 0 22px; }
-    .focus-prose li + li { margin-top: 8px; }
-    .focus-prose ul + p { margin-top: 16px; }
-    .focus-prose .focus-lede { font-size: 19px; color: #1d1d1f; }
-    .focus-prose a { color: #0071e3; text-decoration: underline; text-underline-offset: 2px; }
-    .focus-prose a:hover { color: #0064cc; }
-    .focus-prose a:focus-visible, .focus-cta a:focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; }
-    .focus-eyebrow { font-size: 14px; font-weight: 600; color: #6e6e73; margin: 0 0 12px; letter-spacing: 0.02em; }
-    /* iPhone screenshot: one shot beside its text, using the shared app-feature styles */
-    .focus-page .home-about { max-width: none; padding: 0; text-align: left; }
-    .focus-page .app-features { display: block; margin-top: 28px; }
-    .focus-page .app-feature { display: grid; grid-template-columns: 280px minmax(0, 1fr); column-gap: 40px; align-items: center; }
-    .focus-page .app-shot { grid-column: 1; grid-row: 1; margin: 0; }
-    .focus-page .app-feature-text { grid-column: 2; grid-row: 1 / span 2; max-width: none; }
-    .focus-page .app-feature-text p { font-size: 17px; line-height: 1.6; color: #1d1d1f; }
-    .focus-page .app-feature-text p + p { margin-top: 16px; }
-    .focus-page .app-note { grid-column: 1; grid-row: 2; align-self: start; margin: 14px 0 0; text-align: center; }
-    .focus-faq h3:first-of-type { margin-top: 8px; }
-    /* Call to action */
-    .focus-cta { text-align: center; background: #F4F5F5; }
-    .focus-cta p { font-size: 17px; line-height: 1.5; color: #1d1d1f; max-width: 520px; margin: 0 auto 24px; }
-    .focus-cta-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    .focus-btn {
-      display: inline-flex; align-items: center; justify-content: center; padding: 11px 26px;
-      border-radius: 980px; border: 1.5px solid #0071e3; font-size: 15px; font-weight: 500;
-      text-decoration: none; transition: background 0.3s;
-    }
-    .focus-btn-primary { background: #0071e3; color: #ffffff; }
-    .focus-btn-primary:hover { background: #0064cc; border-color: #0064cc; }
-    .focus-btn-secondary { background: #ffffff; color: #0066cc; border-color: #0066cc; }
-    .focus-btn-secondary:hover { background: #eef5fd; }
-    @media (max-width: 760px) {
-      .focus-page { width: calc(100% - 16px); }
-      .focus-card { padding: 44px 24px; border-radius: 18px; }
-      .focus-page .app-feature { grid-template-columns: minmax(0, 1fr); }
-      .focus-page .app-shot { margin: 0 auto; max-width: 240px; }
-      .focus-page .app-note { grid-column: 1; grid-row: 2; }
-      .focus-page .app-feature-text { grid-column: 1; grid-row: 3; margin-top: 28px; }
-    }
-    @media (max-width: 480px) {
-      .focus-page { width: calc(100% - 12px); }
-      .focus-card { padding: 36px 16px; border-radius: 16px; }
-      .focus-prose p, .focus-prose li, .focus-page .app-feature-text p { font-size: 16px; }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/landing.css?v=1" />
 </head>
 <body>
 
@@ -217,94 +148,71 @@
   </header>
   <script src="/assets/js/mobile-nav.js?v=1"></script>
 
-  <main class="focus-page" id="main">
+  <main class="lp-page" id="main">
 
-    <section class="focus-card" aria-labelledby="focus-title">
-      <div class="focus-prose">
-        <p class="focus-eyebrow">Clarus Health by Adarna Inc.</p>
-        <h1 id="focus-title">Clarus Health: a productivity wearable for focus and recovery</h1>
-        <p class="focus-lede">Clarus Health is a health wearable that helps with productivity and burnout. The band sits on your upper arm, clear of your keyboard and trackpad, and reads your heart rhythm and six more signals while you work. The iPhone app and the Clarus Health Desktop app for Mac turn those readings into focus blocks, recovery breaks and a plan for your day.</p>
-        <p>It won't do your work for you. It shows you when your energy is high, when it is fading, and when a short break would help more than pushing through.</p>
-      </div>
+    <section class="lp-card lp-hero" aria-labelledby="focus-title">
+      <p class="lp-eyebrow">Clarus Health by Adarna Inc.</p>
+      <h1 id="focus-title">Clarus Health: a productivity wearable for focus and recovery</h1>
+      <p class="lp-lead">Clarus Health is a health wearable that helps with productivity and burnout. The band sits on your upper arm, clear of your keyboard and trackpad, and reads your heart rhythm and six more signals while you work. The iPhone app and the Clarus Health Desktop app for Mac turn those readings into focus blocks, recovery breaks and a plan for your day.</p>
+      <p class="lp-lead">It won't do your work for you. It shows you when your energy is high, when it is fading, and when a short break would help more than pushing through.</p>
     </section>
 
-    <section class="focus-card" aria-labelledby="cycles-title">
-      <div class="focus-prose">
-        <h2 id="cycles-title">Why focus runs in cycles</h2>
-        <p>Nobody concentrates at the same level all day. Your body clock runs on a cycle of roughly a day: cortisol rises in the early morning and alertness follows it with a slight lag, and your chronotype shifts the timing: morning larks tend to peak before noon, while night owls do their best work from late morning into the early afternoon. Bright light within 30 minutes of waking is the strongest daily reset for that clock. Read more in <a href="/articles/circadian">our guide to the circadian rhythm</a>.</p>
-        <p>Most people also feel a dip in alertness between about 1 and 3 PM, whatever they had for lunch. A nap of 10 to 20 minutes eases it, and the lift can last two to three hours. Napping after about 4 PM can push back your sleep that night. See <a href="/articles/napping">how to time a nap for alertness</a>.</p>
-        <p>Caffeine doesn't add energy; it hides building tiredness, and it lingers: about half of a 3 PM coffee is still circulating around 9 PM. Moving your last cup earlier is the simplest change. Learn more about <a href="/articles/caffeine-timing">caffeine timing and sleep</a>.</p>
-        <p>Movement matters too. Ten to fifteen minutes of easy walking after a meal softens the rise in blood sugar that follows it, and steep spikes come with sharper swings in energy and mood. Read about <a href="/articles/post-meal-walks">the post-meal walk</a>.</p>
-        <p>So one long push through the day rarely works. Deep work fits your high points, and short breaks fit the dips. Clarus Health measures your signals against your own normal over the last 14 days, so the pattern it shows is yours.</p>
-      </div>
+    <section class="lp-card lp-prose" aria-labelledby="cycles-title">
+      <h2 id="cycles-title">Why focus runs in cycles</h2>
+      <p>Nobody concentrates at the same level all day. Your body clock runs on a cycle of roughly a day: cortisol rises in the early morning and alertness follows it with a slight lag, and your chronotype shifts the timing: morning larks tend to peak before noon, while night owls do their best work from late morning into the early afternoon. Bright light within 30 minutes of waking is the strongest daily reset for that clock. Read more in <a href="/articles/circadian">our guide to the circadian rhythm</a>.</p>
+      <p>Most people also feel a dip in alertness between about 1 and 3 PM, whatever they had for lunch. A nap of 10 to 20 minutes eases it, and the lift can last two to three hours. Napping after about 4 PM can push back your sleep that night. See <a href="/articles/napping">how to time a nap for alertness</a>.</p>
+      <p>Caffeine doesn't add energy; it hides building tiredness, and it lingers: about half of a 3 PM coffee is still circulating around 9 PM. Moving your last cup earlier is the simplest change. Learn more about <a href="/articles/caffeine-timing">caffeine timing and sleep</a>.</p>
+      <p>Movement matters too. Ten to fifteen minutes of easy walking after a meal softens the rise in blood sugar that follows it, and steep spikes come with sharper swings in energy and mood. Read about <a href="/articles/post-meal-walks">the post-meal walk</a>.</p>
+      <p>So one long push through the day rarely works. Deep work fits your high points, and short breaks fit the dips. Clarus Health measures your signals against your own normal over the last 14 days, so the pattern it shows is yours.</p>
     </section>
 
-    <div class="focus-card">
-      <div class="focus-prose">
-        <section class="home-about" aria-labelledby="timer-title">
-          <h2 id="timer-title">Focus timer and Flow sessions in the iPhone app</h2>
-          <p>The Recovery tab in the Clarus Health iPhone app holds your focus tools. Start the Focus timer for a 25-minute block, or start Flow for an open-ended session when you don't want a clock deciding when you stop.</p>
-          <div class="app-features">
-            <article class="app-feature">
-              <img class="app-shot" src="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp" srcset="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp 480w, /assets/images/mobile/clarus-health-app-focus-recovery-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="706" alt="Now and Focus screens in the Clarus Health iPhone app: break ideas, a 25-minute Focus timer and Flow" loading="lazy" decoding="async">
-              <div class="app-feature-text">
-                <p>Both start with one tap. The Focus timer suits work you can cut into blocks. Flow suits work that takes a while to get into, where a timer would break your train of thought.</p>
-                <p>The app also shows three scores, for capacity, focus and recovery, each measured against your own normal over the last 14 days.</p>
-              </div>
-              <p class="app-note">iPhone app screen. Sample data shown.</p>
-            </article>
-          </div>
-        </section>
-      </div>
-    </div>
-
-    <section class="focus-card" aria-labelledby="breaks-title">
-      <div class="focus-prose">
-        <h2 id="breaks-title">Recovery breaks between meetings</h2>
-        <p>In the Recovery tab, Take a recovery break opens a library of breaks that suit the hour, from ten minutes between meetings to a walk, each with its length and what the evidence says. Getting outside early in the day is one of them, since morning light helps set your body clock.</p>
-        <p>The Sleep section offers a Nap or a Coffee Nap for the afternoon dip. On the Today screen, Clarus notices what you need, like a short nap or a pause after a long stretch of stress, and offers it with one tap.</p>
-        <p>If you took a walk or lunch away from your desk on your own, use Add a break I took to log it, so your record shows the recovery you really had.</p>
-        <p>A break works best away from screens: each glance at your phone leaves some attention behind, which makes it harder to settle back into work. Read more in <a href="/articles/digital-detox">our guide to digital detox</a>.</p>
-      </div>
+    <section class="lp-card lp-prose" aria-labelledby="timer-title">
+      <h2 id="timer-title">Focus timer and Flow sessions in the iPhone app</h2>
+      <p>The Recovery tab in the Clarus Health iPhone app holds your focus tools. Start the Focus timer for a 25-minute block, or start Flow for an open-ended session when you don't want a clock deciding when you stop.</p>
+      <div class="lp-tile"><p>Both start with one tap. The Focus timer suits work you can cut into blocks. Flow suits work that takes a while to get into, where a timer would break your train of thought.</p><p>The app also shows three scores, for capacity, focus and recovery, each measured against your own normal over the last 14 days.</p></div>
     </section>
 
-    <section class="focus-card" aria-labelledby="mac-title">
-      <div class="focus-prose">
-        <h2 id="mac-title">Plan deep work on your Mac</h2>
-        <p>The Clarus Health Desktop app for Mac brings the same signals to your desk.</p>
-        <ul>
-          <li><strong>Capacity score:</strong> start each morning with one score from your sleep, band and a quick check, updated live all day.</li>
-          <li><strong>Calendar:</strong> your Apple Calendar syncs in and every event is sorted as a meeting, desk work or recovery. Clarus fits tasks into it by capacity.</li>
-          <li><strong>Tasks:</strong> add a task with its length and how demanding it is, tap Plan for Me, and Clarus finds a slot that fits your energy.</li>
-          <li><strong>Focus sessions:</strong> choose Flowtime or a timer, a soundscape and breaks. Clarus can block distracting apps and sites, and after every session you see your focus score, protected time and interruptions.</li>
-          <li><strong>Mini window:</strong> a small floating window keeps your capacity ring, your next blocks and your tools one glance away.</li>
-        </ul>
-        <p><a href="/clarus-health/desktop">See Clarus Health Desktop</a> for every feature.</p>
-      </div>
+    <section class="lp-card lp-prose" aria-labelledby="breaks-title">
+      <h2 id="breaks-title">Recovery breaks between meetings</h2>
+      <p>In the Recovery tab, Take a recovery break opens a library of breaks that suit the hour, from ten minutes between meetings to a walk, each with its length and what the evidence says. Getting outside early in the day is one of them, since morning light helps set your body clock.</p>
+      <p>The Sleep section offers a Nap or a Coffee Nap for the afternoon dip. On the Today screen, Clarus notices what you need, like a short nap or a pause after a long stretch of stress, and offers it with one tap.</p>
+      <p>If you took a walk or lunch away from your desk on your own, use Add a break I took to log it, so your record shows the recovery you really had.</p>
+      <p>A break works best away from screens: each glance at your phone leaves some attention behind, which makes it harder to settle back into work. Read more in <a href="/articles/digital-detox">our guide to digital detox</a>.</p>
     </section>
 
-    <section class="focus-card focus-faq" aria-labelledby="faq-title">
-      <div class="focus-prose">
-        <h2 id="faq-title">Frequently asked questions</h2>
-        <h3>Can a wearable improve productivity?</h3>
-        <p>Not by itself. A wearable doesn't do the work for you. Clarus Health helps you notice your energy across the day and plan focus blocks and breaks around it, so hard work lands when you are sharpest.</p>
-        <h3>What is the Focus timer?</h3>
-        <p>The Focus timer is a 25-minute focus block in the Recovery tab of the Clarus Health iPhone app. For open-ended work, Flow runs without a set end time, and you stop when you are ready.</p>
-        <h3>Does Clarus Health work with Mac?</h3>
-        <p>Yes. The Clarus Health Desktop app for Mac shows your capacity score, syncs your Apple Calendar, plans tasks around your energy and runs focus sessions.</p>
-        <h3>Where do you wear the Clarus Health band?</h3>
-        <p>On your upper arm, clear of your keyboard and trackpad. From there it reads your heart rhythm and six more signals.</p>
-        <h3>When does Clarus Health launch?</h3>
-        <p>Clarus Health launches in July 2027. You can follow the launch on the Adarna Kickstarter page.</p>
-      </div>
+    <section class="lp-card lp-prose" aria-labelledby="mac-title">
+      <h2 id="mac-title">Plan deep work on your Mac</h2>
+      <p>The Clarus Health Desktop app for Mac brings the same signals to your desk.</p>
+      <ul class="lp-tiles lp-tiles-2">
+      <li><strong>Capacity score:</strong> start each morning with one score from your sleep, band and a quick check, updated live all day.</li>
+      <li><strong>Calendar:</strong> your Apple Calendar syncs in and every event is sorted as a meeting, desk work or recovery. Clarus fits tasks into it by capacity.</li>
+      <li><strong>Tasks:</strong> add a task with its length and how demanding it is, tap Plan for Me, and Clarus finds a slot that fits your energy.</li>
+      <li><strong>Focus sessions:</strong> choose Flowtime or a timer, a soundscape and breaks. Clarus can block distracting apps and sites, and after every session you see your focus score, protected time and interruptions.</li>
+      <li><strong>Mini window:</strong> a small floating window keeps your capacity ring, your next blocks and your tools one glance away.</li>
+      </ul>
+      <p><a href="/clarus-health/desktop">See Clarus Health Desktop</a> for every feature.</p>
     </section>
 
-    <section class="focus-card focus-cta" aria-labelledby="cta-title">
+    <section class="lp-card lp-prose lp-faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently asked questions</h2>
+      <h3>Can a wearable improve productivity?</h3>
+      <p>Not by itself. A wearable doesn't do the work for you. Clarus Health helps you notice your energy across the day and plan focus blocks and breaks around it, so hard work lands when you are sharpest.</p>
+      <h3>What is the Focus timer?</h3>
+      <p>The Focus timer is a 25-minute focus block in the Recovery tab of the Clarus Health iPhone app. For open-ended work, Flow runs without a set end time, and you stop when you are ready.</p>
+      <h3>Does Clarus Health work with Mac?</h3>
+      <p>Yes. The Clarus Health Desktop app for Mac shows your capacity score, syncs your Apple Calendar, plans tasks around your energy and runs focus sessions.</p>
+      <h3>Where do you wear the Clarus Health band?</h3>
+      <p>On your upper arm, clear of your keyboard and trackpad. From there it reads your heart rhythm and six more signals.</p>
+      <h3>When does Clarus Health launch?</h3>
+      <p>Clarus Health launches in July 2027. You can follow the launch on the Adarna Kickstarter page.</p>
+    </section>
+
+    <section class="desktop-beta-card after-rows lp-cta" aria-labelledby="cta-title">
       <h2 id="cta-title">Focus with your energy, not against it</h2>
       <p>See the band, the iPhone app and the Mac app, or follow the launch in July 2027.</p>
-      <div class="focus-cta-links">
-        <a href="/clarus-health" class="focus-btn focus-btn-primary">Explore Clarus Health</a>
-        <a href="/kickstarter" class="focus-btn focus-btn-secondary">Follow the launch on Kickstarter</a>
+      <div class="lp-cta-links">
+        <a href="/clarus-health" class="desktop-notify-btn">Explore Clarus Health</a>
+        <a href="/kickstarter" class="desktop-notify-btn lp-secondary">Follow the launch on Kickstarter</a>
       </div>
     </section>
 
