@@ -16,6 +16,7 @@
 | `press.html` | `/press` | Press kit: company facts, boilerplates, downloadable logo, photo and screenshots, founders, contact |
 | `d14a90c85744ce4066fb28a6b92a30a6.txt` | root | IndexNow key file (Bing, Yandex, ChatGPT search). Keep it served; `scripts/indexnow.py` uses it |
 | `clarus-health/desktop.html` | `/clarus-health/desktop` | Clarus Health Desktop (Mac app) |
+| `clarus-health/iphone.html` | `/clarus-health/iphone` | Clarus Health for iPhone (rows of framed iPhone screens and designed cards; images in `assets/images/iphone/`) |
 | `articles/<slug>.html` | `/articles/<slug>` | 65 Health Library articles |
 | `newsroom/2026-MM.html` | `/newsroom/2026-MM` | Monthly company updates |
 | `papers/<slug>.html` | `/papers/<slug>` | Evidence-graded research reviews (generated) |

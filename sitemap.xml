@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://adarna.us/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://adarna.us/about</loc>
@@ -274,7 +274,7 @@
   </url>
   <url>
     <loc>https://adarna.us/burnout</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://adarna.us/careers</loc>
@@ -282,11 +282,15 @@
   </url>
   <url>
     <loc>https://adarna.us/clarus-health</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://adarna.us/clarus-health/desktop</loc>
     <lastmod>2026-11-19</lastmod>
+  </url>
+  <url>
+    <loc>https://adarna.us/clarus-health/iphone</loc>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://adarna.us/contact</loc>
@@ -298,7 +302,7 @@
   </url>
   <url>
     <loc>https://adarna.us/focus</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://adarna.us/kickstarter</loc>
@@ -402,6 +406,6 @@
   </url>
   <url>
     <loc>https://adarna.us/press</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
 </urlset>
