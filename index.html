@@ -335,6 +335,29 @@
       font-size: 12px;
     }
 
+    /* ─── "Clarus Health by Adarna Inc.": read as the first paragraphs of the footer ───
+       Same width, type and grey as the legal text below it; each heading runs into its paragraph.
+       The text stays on the page for search engines and screen readers, not hidden (hidden text can be treated as spam). */
+    .home-about--quiet { max-width: 1100px; margin: 48px auto 0; padding: 0 40px; text-align: left; box-sizing: border-box; }
+    .home-about--quiet .home-about-intro, .home-about--quiet .app-features, .home-about--quiet .app-feature-text { max-width: none; margin: 0; padding: 0; display: block; }
+    .home-about--quiet .app-feature { margin: 0; }
+    .home-about--quiet h1, .home-about--quiet h2, .home-about--quiet p {
+      display: inline; font-family: inherit; font-size: 12px; line-height: 18px; font-weight: 400; letter-spacing: 0;
+      color: rgb(112, 112, 118); margin: 0; max-width: none; text-align: left;
+    }
+    .home-about--quiet h1::after { content: " "; }
+    .home-about--quiet h2::after { content: ". "; }
+    .home-about--quiet .home-about-intro, .home-about--quiet .app-feature-text, .home-about--quiet .home-about-more { margin-bottom: 16px; }
+    .home-about--quiet .home-about-more { display: block; margin-bottom: 0; }
+    .home-about--quiet a { color: #0071e3; text-decoration: none; }
+    .home-about--quiet a:hover { text-decoration: underline; }
+    @media (max-width: 768px) {
+      .home-about--quiet { padding: 0 32px; margin-top: 40px; }
+    }
+    @media (max-width: 480px) {
+      .home-about--quiet { padding: 0 24px; }
+    }
+
     /* ─── Responsive (homepage-specific) ────────────────────── */
     @media (max-width: 768px) {
       .home-card {
@@ -417,10 +440,10 @@
         <a href="/" class="nav-link active">Home</a>
         <a href="/clarus-health" class="nav-link">Clarus</a>
         <a href="/clarus-health/desktop" class="nav-link">Clarus Desktop</a>
+        <a href="/clarus-health/iphone" class="nav-link">Clarus Mobile</a>
         <a href="/newsroom" class="nav-link">Newsroom</a>
         <a href="/papers" class="nav-link">Papers</a>
         <a href="/data-room" class="nav-link">Data Room</a>
-        <a href="/kickstarter" class="nav-link">Kickstarter</a>
       </nav>
     </div>
   </header>
@@ -462,27 +485,23 @@
   </div>
 
   <!-- About Clarus Health: visible intro and iPhone app screens -->
-  <section class="home-about" aria-labelledby="home-about-title">
+  <section class="home-about home-about--quiet" aria-labelledby="home-about-title">
     <div class="home-about-intro">
       <h1 id="home-about-title">Clarus Health by Adarna Inc.</h1>
       <p>Adarna Inc. is building Clarus Health, a health wearable that helps with productivity and burnout. The band sits on your upper arm, clear of your keyboard and trackpad, and reads your heart rhythm and six more signals through the working day. The Clarus Health iPhone app turns those readings into a clear picture of your day: how your focus is holding up, when a recovery break would help, and whether your burnout risk is rising compared with your own normal. The Clarus Health Desktop app for Mac brings your capacity score, calendar and focus sessions to the computer where you work, so you can plan deep work and breaks without reaching for your phone. Health comes first, and steadier focus and productivity follow from it. Clarus Health launches in July 2027.</p>
     </div>
     <div class="app-features">
       <article class="app-feature">
-      <img class="app-shot" src="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp" srcset="/assets/images/mobile/clarus-health-app-burnout-risk-480.webp 480w, /assets/images/mobile/clarus-health-app-burnout-risk-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="724" alt="Clarus Health iPhone app showing an estimated burnout risk on the Home screen" loading="lazy" decoding="async">
         <div class="app-feature-text"><h2>Spot burnout risk early</h2><p>The Home screen includes a Burnout Risk card that compares recent readings from the band with your own normal over the last 14 days. When the estimate climbs, you see it early and can plan a lighter day or more breaks. It is an estimate to guide your routine, not a diagnosis. <a href="/burnout">How Clarus Health spots burnout risk</a></p></div>
       </article>
       <article class="app-feature">
-      <img class="app-shot" src="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp" srcset="/assets/images/mobile/clarus-health-app-focus-recovery-480.webp 480w, /assets/images/mobile/clarus-health-app-focus-recovery-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="706" alt="Clarus Health iPhone app showing recovery break suggestions and a 25-minute Focus timer" loading="lazy" decoding="async">
         <div class="app-feature-text"><h2>Focus and recovery breaks</h2><p>The Recovery tab gathers short breaks that fit a working day, such as getting outside early or ten minutes between meetings. A Focus timer runs 25-minute sessions, Flow keeps an open-ended session going, and Sleep offers a short nap when you need to reset. You can log a break you already took, too. <a href="/focus">Focus and productivity with Clarus Health</a></p></div>
       </article>
       <article class="app-feature">
-      <img class="app-shot" src="/assets/images/mobile/clarus-health-app-movement-trends-480.webp" srcset="/assets/images/mobile/clarus-health-app-movement-trends-480.webp 480w, /assets/images/mobile/clarus-health-app-movement-trends-960.webp 960w" sizes="(max-width: 700px) 70vw, 280px" width="480" height="774" alt="Clarus Health iPhone app showing a two-week walk distance chart and a weekly trend" loading="lazy" decoding="async">
         <div class="app-feature-text"><h2>See your health trends</h2><p>Each signal has its own trend view. Movement, for example, charts your walk distance over two weeks, one month or two months against your average, and calls out changes such as walking 23% more than the week before. Trends show how your habits shape your energy and focus over time.</p></div>
       </article>
     </div>
-    <p class="app-note">iPhone app screens. Sample data shown.</p>
-    <a class="home-about-link" href="/clarus-health">Explore Clarus Health</a>
+    <p class="home-about-more"><a href="/clarus-health">Explore Clarus Health</a></p>
   </section>
 
   <!-- Footer -->
