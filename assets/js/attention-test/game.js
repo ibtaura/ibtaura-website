@@ -10,6 +10,7 @@ import { track } from './track.js?v=1';
 import { ReactionRun, dotLayout } from './reaction.js?v=2';
 import { MemoryRun } from './memory.js?v=2';
 import { RulesRun, planSteps, ruleQuestion, ruleLabels } from './rules.js?v=2';
+import { saveRun, loadStored, clearStored, canJoin, agoText } from './stored.js?v=1';
 
 const $ = (id) => document.getElementById(id);
 const game = $('at-game');
@@ -83,6 +84,7 @@ function init() {
   let rafId = 0;
   let inTest = false;
   let board = null;
+  let boardReady = Promise.resolve();
   const challenge = readChallenge();
 
   if (device === 'phone') game.classList.add('at-is-phone');
@@ -334,6 +336,12 @@ function init() {
     announce(`Attention ${result.overall}, ${LEVELS[result.level].label}. ${bandOf(result.overall).label}.`);
     scrollToGame();
     const finished = run;
+    try {
+      saveRun(finished);
+      renderStored();
+    } catch (_) {
+      /* browser memory is optional */
+    }
     import('./share.js?v=3')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
@@ -701,6 +709,105 @@ function init() {
     });
   }
 
+  // ---------- Browser memory: the best and last run on this device ----------
+  // stored.js keeps the raw runs and re-scores them on every load; here they become a small card on the intro
+  // with Share (the share card in a dialog) and, for runs under 7 days old, Put it on the leaderboard.
+
+  const storedEl = $('at-stored');
+
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function actionButton(text, className, onClick) {
+    const b = el('button', className, text);
+    b.type = 'button';
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  const storedScoreText = (entry) => `${entry.result.overall} · ${LEVELS[entry.result.level].label}`;
+  const storedParams = (entry, which) => ({ score: entry.result.overall, level: entry.result.level, which });
+
+  function shareStored(entry, which) {
+    track('stored_share', storedParams(entry, which));
+    import('./share-dialog.js?v=1')
+      .then((m) => m.openShareDialog({ result: entry.result, run: entry.run, title: which === 'best' ? 'Share your best score' : 'Share your last score' }))
+      .catch(() => announce('Sharing is not available right now.'));
+  }
+
+  function scrollToElement(target) {
+    const y = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 96); // the fixed nav bar
+    try {
+      if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+        window.lenis.scrollTo(y, { immediate: reducedMotion });
+        return;
+      }
+    } catch (_) {
+      /* fall through */
+    }
+    window.scrollTo({ top: y, behavior: reducedMotion ? 'auto' : 'smooth' });
+  }
+
+  function joinStored(entry, which) {
+    track('stored_join', storedParams(entry, which));
+    boardReady
+      .then(() => {
+        if (board && typeof board.offerJoin === 'function') board.offerJoin(entry.run, entry.result);
+      })
+      .catch(() => {
+        /* the leaderboard is optional */
+      });
+    const section = $('at-board-section') || boardEl;
+    if (section) scrollToElement(section);
+  }
+
+  function renderStored() {
+    if (!storedEl) return;
+    const { best, last } = loadStored();
+    if (!best) {
+      storedEl.hidden = true;
+      storedEl.replaceChildren();
+      return;
+    }
+    const now = Date.now();
+    const head = el('p', 'at-stored-best');
+    head.append(el('span', 'at-stored-label', 'Your best on this device'), el('strong', 'at-stored-score', storedScoreText(best)));
+    const actions = el('div', 'at-stored-actions');
+    actions.append(actionButton('Share', 'at-btn at-btn-secondary at-btn-small', () => shareStored(best, 'best')));
+    if (canJoin(best, now)) {
+      actions.append(actionButton('Put it on the leaderboard', 'at-btn at-btn-secondary at-btn-small', () => joinStored(best, 'best')));
+    }
+    const nodes = [head, actions];
+    if (last) {
+      const line = el('p', 'at-stored-last', `Last score ${storedScoreText(last)}, ${agoText(last.at, now)} `);
+      const tail = el('span', 'at-nowrap', '· ');
+      tail.append(actionButton('Share', 'at-link-btn', () => shareStored(last, 'last')));
+      line.append(tail);
+      nodes.push(line);
+    }
+    const forget = actionButton('Forget', 'at-link-btn at-stored-forget', () => {
+      clearStored();
+      track('stored_forget');
+      renderStored();
+      announce('Your saved scores on this device were removed.');
+      $('at-start').focus({ preventScroll: true });
+    });
+    forget.setAttribute('aria-label', 'Forget the scores saved on this device');
+    nodes.push(forget);
+    storedEl.replaceChildren(...nodes);
+    storedEl.hidden = false;
+  }
+
+  try {
+    renderStored();
+  } catch (_) {
+    if (storedEl) storedEl.hidden = true;
+  }
+
   // ---------- Global input ----------
 
   document.addEventListener('keydown', (e) => {
@@ -739,7 +846,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    import('./board.js?v=6')
+    boardReady = import('./board.js?v=7')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
       })

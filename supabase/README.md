@@ -11,6 +11,7 @@ What is in here:
 | `migrations/*_attention_test.sql` | Tables `profiles` and `plays`, security rules, the `board()` and `my_rank()` queries |
 | `migrations/*_friends.sql`, `*_no_friend_removal.sql` | Friend codes, `friendships`, `add_friend()` and `friends_board()` (friends can't remove each other) |
 | `migrations/*_levels.sql` | `plays.level` (Easy / Normal / Hard) and the board queries returning each best run's level |
+| `migrations/*_my_best.sql` | `my_best()`: the signed-in player's own best valid run (raw, score, level, date) for "Share my best score" |
 | `functions/submit-score/` | Checks and re-scores a run on the server, then saves it (20 per person per UTC day) |
 | `functions/delete-me/` | "Remove my data": deletes the person's sign-in, which also deletes their profile and plays |
 | `functions/_shared/scoring.js` | An exact copy of `assets/js/attention-test/scoring.js` (keep them identical) |

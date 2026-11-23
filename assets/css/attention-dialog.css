@@ -1,0 +1,160 @@
+/* Clarus Attention Test: the share dialog (assets/js/attention-test/share-dialog.js).
+   Holds the share block (attention-share.css) in a modal card. Light only, like the rest of the site, so it
+   keeps light colours (and light form controls) when the device is in dark mode. Every class starts with atd-. */
+
+.atd {
+  --atd-ink: #1d1d1f;
+  --atd-muted: #6e6e73;
+  --atd-card: #f5f5f7;
+  --atd-focus: #007fff;
+  color-scheme: light;
+  box-sizing: border-box;
+  width: min(520px, calc(100vw - 24px));
+  max-width: none;
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  background: transparent;
+  color: var(--atd-ink);
+  overflow: visible;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  text-align: left;
+}
+.atd *,
+.atd *::before,
+.atd *::after {
+  box-sizing: border-box;
+}
+.atd::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* role="dialog" fallback for browsers without <dialog> */
+.atd-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  height: fit-content;
+}
+.atd-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.atd-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  border-radius: inherit;
+  background: var(--atd-card);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  animation: atd-in 0.18s ease-out;
+}
+
+.atd-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px 10px 22px;
+  flex: 0 0 auto;
+}
+.atd-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--atd-ink);
+}
+.atd-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--atd-ink);
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.atd-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.atd-close:focus-visible {
+  outline: 3px solid var(--atd-focus);
+  outline-offset: 2px;
+}
+
+.atd-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 4px 22px 22px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.atd-status {
+  margin: 24px 0;
+  font-size: 15px;
+  text-align: center;
+  color: var(--atd-muted);
+}
+.atd-status.is-error {
+  color: #c4271c;
+}
+
+/* the share block inside: the dialog's title replaces its own heading, and the card preview is a bit smaller */
+.atd .ats {
+  max-width: none;
+}
+.atd .ats-title {
+  display: none;
+}
+.atd .ats-preview-img {
+  max-height: min(400px, 52vh);
+  max-height: min(400px, 52dvh);
+}
+.atd .ats-preview-img:not([src]) {
+  height: min(400px, 52vh);
+  height: min(400px, 52dvh);
+}
+
+@media (max-width: 420px) {
+  .atd-head {
+    padding: 10px 10px 8px 18px;
+  }
+  .atd-body {
+    padding: 4px 16px 18px;
+  }
+}
+
+@keyframes atd-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atd-panel {
+    animation: none;
+  }
+}

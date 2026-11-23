@@ -506,6 +506,7 @@
   .atb-friends-card { padding: 20px 16px; }
   .atb-friends-card .atb-btn { width: 100%; }
   .atb-friends-foot .atb-btn { width: 100%; }
+  .atb-share-boxes .atb-btn { width: 100%; }
   .atb-name { gap: 6px; }
   .atb-level { padding: 1px 6px; font-size: 11px; }
 }
@@ -521,16 +522,21 @@
 .at-lb-hero .at-btn { text-decoration: none; }
 .at-lb-hero .at-btn:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }
 
-/* Signed-in invite box at the top of the account panel. */
-.atb-invite-box { margin: 0 0 16px; padding: 14px 16px; border-radius: 14px; background: #fff; }
-.atb-invite-box .atb-copy-lead { margin-top: 0; }
+/* Signed-in boxes at the top of the account panel: Share my best score (when there is one) and the invite box,
+   side by side when there's room, stacked on phones. */
+.atb-share-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px; margin: 0 0 4px; }
+.atb-invite-box,
+.atb-best-box { margin: 0; padding: 14px 16px; border-radius: 14px; background: #fff; min-width: 0; }
+.atb-invite-box .atb-copy-lead,
+.atb-best-box .atb-copy-lead { margin-top: 0; }
+.atb-best-box .atb-btn[aria-busy="true"] { opacity: 0.7; cursor: progress; }
 
 /* Small board on the game page: Global | Friends, top 5 this week, and a way to the full page.
    Period and device filters, the friends footer and the profile settings live on the full page only. */
 .atb-compact .atb-controls,
 .atb-compact .atb-friends-foot,
 .atb-compact .atb-signin,
-.atb-compact .atb-account > :not(.atb-invite-box):not(.atb-who) { display: none !important; }
+.atb-compact .atb-account > :not(.atb-share-boxes):not(.atb-who) { display: none !important; }
 .atb-compact .atb-panel { min-height: 0; }
 .atb-compact .atb-more { margin-top: 14px; }
 .atb-more-btn { display: flex; width: 100%; box-sizing: border-box; justify-content: center; text-decoration: none; }

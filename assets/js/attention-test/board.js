@@ -15,6 +15,11 @@
 //     removes it on sign-out and after "Remove my data" (share.js reads it to build links);
 //   - saves an incoming ?f= to localStorage[INVITE_KEY] (kept 7 days) and, once signed in, calls
 //     add_friend(code) so both people become friends.
+//
+// "Share my best score" (supabase/migrations/*_my_best.sql): the account panel offers it while the player has a
+// valid play. A click fetches the raw best run with my_best(), re-scores it with scoreRun() and opens the share
+// dialog (share-dialog.js) with the same story / post cards as a fresh result. When the stored run can't be
+// re-scored (an old v1 run) or my_best() isn't there yet, it shares the challenge link (share.js) instead.
 import { track } from './track.js';
 import { checkRun, scoreRun } from './scoring.js?v=2';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase-config.js?v=1'; // bump ?v= when the values change (/assets/js is cached for a year)
@@ -368,6 +373,9 @@ function createBoard(el, variant) {
   let flashNext = false;
   let retryPending = null;
   let inviteBusy = false;
+  let best = null; // { score, level } of the caller's best valid play (all time), or null
+  let bestSeq = 0;
+  let bestBusy = false;
 
   // Notice slot: the join card, "Saving…", "You're #N today" or an error.
   const notice = h('div', { class: 'atb-notice', hidden: true });
@@ -503,8 +511,17 @@ function createBoard(el, variant) {
     saveName();
   });
   const accountMsg = h('p', { class: 'atb-form-msg', role: 'status' });
+  // "Share my best score", shown once we know the player has a valid play.
+  const bestLead = h('p', { class: 'atb-copy-lead' });
+  const bestBtn = h('button', { type: 'button', class: 'atb-btn atb-btn-primary', text: 'Share my best score', onclick: () => shareBest() });
+  const bestField = h('input', { type: 'text', class: 'atb-input atb-copy-field', readonly: '', 'aria-label': 'Your score link', hidden: true });
+  const bestMsg = h('p', { class: 'atb-form-msg', role: 'status' });
+  const bestBox = h('div', { class: 'atb-best-box', hidden: true }, h('div', { class: 'atb-copy' }, bestLead, bestBtn, bestField, bestMsg));
   const account = h('div', { class: 'atb-account', hidden: true },
-    h('div', { class: 'atb-invite-box' }, copyControls('Invite friends: anyone who opens your link and joins shows up on your Friends board.')),
+    h('div', { class: 'atb-share-boxes' },
+      bestBox,
+      h('div', { class: 'atb-invite-box' }, copyControls('Invite friends: anyone who opens your link and joins shows up on your Friends board.')),
+    ),
     h('p', { class: 'atb-who' }, 'Signed in as ', whoName),
     h('div', { class: 'atb-actions' }, editBtn, signOutBtn), // owner: no Remove my data button; deletion is by email (privacy policy)
     editForm,
@@ -1138,6 +1155,131 @@ function createBoard(el, variant) {
     }
   }
 
+  // ── Share my best score ──
+  /** The caller's best play from my_best(): the row, null when there's none, undefined when the call failed. */
+  async function fetchMyBest() {
+    try {
+      const res = await sb.rpc('my_best');
+      if (res.error) return undefined;
+      const r = Array.isArray(res.data) ? res.data[0] : res.data;
+      return r && r.overall !== null && Number.isFinite(Number(r.overall)) ? r : null;
+    } catch (_) {
+      return undefined;
+    }
+  }
+
+  /** Shows "Share my best score" when the player has a valid play (my_best, or my_rank all time before that migration). */
+  async function refreshBest() {
+    const seq = ++bestSeq;
+    if (!sb || !session) {
+      showBest(null);
+      return;
+    }
+    const userId = session.user.id;
+    let next = null;
+    const row = await fetchMyBest();
+    if (row) {
+      next = { score: Number(row.overall), level: levelOf(row.level) };
+    } else if (row === undefined) {
+      try {
+        const res = await sb.rpc('my_rank', { period: 'all', device: 'all' });
+        const r = !res.error && Array.isArray(res.data) ? res.data[0] : null;
+        if (r && Number.isFinite(Number(r.score))) next = { score: Number(r.score), level: levelOf(r.level) };
+      } catch (_) {
+        /* no button when we can't tell */
+      }
+    }
+    if (seq !== bestSeq || !session || session.user.id !== userId) return;
+    showBest(next);
+  }
+
+  function showBest(next) {
+    best = next;
+    bestBox.hidden = !best;
+    if (!best) {
+      bestMsg.textContent = '';
+      bestField.hidden = true;
+      return;
+    }
+    bestLead.textContent = `Your best score is ${best.score}${onLevel(best.level)}. Share it with friends.`;
+  }
+
+  /** The challenge link for the best score: the share sheet on phones, otherwise copied. */
+  async function shareBestLink(score, level) {
+    const mod = await import('./share.js?v=3');
+    const url = mod.shareUrl(score, profile ? profile.display_name : '', mod.loadFriendCode() || ownCode() || '', level);
+    const text = mod.shareText(score, level);
+    const canShare = typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
+    if (canShare) {
+      try {
+        await navigator.share({ title: 'Clarus Attention Test', text, url });
+        track('share', { channel: 'best', method: 'native', kind: 'link' });
+        bestMsg.textContent = '';
+        return;
+      } catch (err) {
+        if (err && err.name === 'AbortError') return; // closed the share sheet
+      }
+    }
+    if (await copyText(`${text} ${url}`)) {
+      track('share', { channel: 'best', method: 'copy', kind: 'link' });
+      bestField.hidden = true;
+      bestMsg.textContent = 'Link to your best score copied. Paste it anywhere to challenge friends.';
+    } else {
+      bestField.value = url;
+      bestField.hidden = false;
+      bestField.focus();
+      bestField.select();
+      bestMsg.textContent = 'Copy this link to share your best score.';
+    }
+  }
+
+  async function shareBest() {
+    if (!session || bestBusy) return;
+    bestBusy = true;
+    bestBtn.setAttribute('aria-busy', 'true'); // not disabled: it keeps focus, so the dialog can hand it back
+    bestMsg.textContent = '';
+    bestField.hidden = true;
+    try {
+      const row = await fetchMyBest();
+      if (row === null) {
+        showBest(null); // no valid play any more
+        return;
+      }
+      // Only v2 runs re-score (checkRun's 'badVersion' test); older runs stored before scoring v2 share the link.
+      if (row && row.raw && typeof row.raw === 'object' && checkRun(row.raw) !== 'badVersion') {
+        let result = null;
+        try {
+          result = scoreRun(row.raw);
+        } catch (_) {
+          result = null;
+        }
+        if (result && result.valid && Number.isFinite(result.overall)) {
+          showBest({ score: result.overall, level: levelOf(result.level) || levelOf(row.level) });
+          const { openShareDialog } = await import('./share-dialog.js?v=1');
+          track('share_open', { channel: 'best', kind: 'card' });
+          bestBusy = false;
+          bestBtn.removeAttribute('aria-busy');
+          await openShareDialog({ result, run: row.raw, title: 'Share your best score' });
+          return;
+        }
+      }
+      // An old (v1) run that scoring.js can't re-score, or my_best() not deployed yet: share the link.
+      const score = row ? Number(row.overall) : best && best.score;
+      const level = levelOf(row ? row.level : best && best.level) || 'normal';
+      if (!Number.isFinite(score)) {
+        bestMsg.textContent = 'Couldn’t load your best score. Please try again.';
+        return;
+      }
+      await shareBestLink(score, level);
+    } catch (_) {
+      bestMsg.textContent = 'Couldn’t share your best score. Please try again.';
+      track('leaderboard_error', { reason: 'share_best' });
+    } finally {
+      bestBusy = false;
+      bestBtn.removeAttribute('aria-busy');
+    }
+  }
+
   // ── Account ──
   async function loadProfile(userId) {
     // friend_code arrives with the friends migration; until then fall back to the original columns.
@@ -1158,6 +1300,7 @@ function createBoard(el, variant) {
       clearInviteConsent();
       clearOwnCode();
       account.hidden = true;
+      refreshBest();
       updateChrome();
       closeEdit();
       return;
@@ -1175,6 +1318,7 @@ function createBoard(el, variant) {
     mailInput.checked = profile ? profile.launch_emails : false;
     for (const input of [showInput, mailInput]) input.disabled = !profile;
     editBtn.disabled = !profile;
+    refreshBest();
     // Add the friend straight away only when they signed in from "Sign in to add Priya as a friend", and only
     // the invite they agreed to then (the stored code must match the current invite).
     const ss = sess();

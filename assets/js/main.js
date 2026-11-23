@@ -190,7 +190,8 @@ var valueContent = {
 })();
 
 function closeValuePopup() {
-  document.getElementById('valuePopup').classList.remove('active');
+  var popup = document.getElementById('valuePopup');
+  if (popup) popup.classList.remove('active');
   document.body.style.overflow = '';
 }
 

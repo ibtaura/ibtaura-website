@@ -10,6 +10,7 @@ import {
   LEVEL_NORMS, scoreRun, scoreReaction, scoreMemory, scoreRules, checkRun,
 } from '../../assets/js/attention-test/scoring.js';
 import { shareUrl, shareText, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=3';
+import { LAST_KEY, BEST_KEY, MAX_AGE_MS, saveRun, loadStored, readEntry, validEntry, canJoin, clearStored, agoText } from '../../assets/js/attention-test/stored.js';
 
 /** A scripted random source: returns the values in turn, then repeats the last. */
 const scripted = (...values) => {
@@ -755,4 +756,168 @@ test('share text and card data name the level and bonus', () => {
   assert.equal(hard.level, 'hard'); assert.equal(hard.levelLabel, 'Hard'); assert.equal(hard.bonus, 10);
   const plain = cardData({ valid: true, overall: 100 }, 'Priya');
   assert.equal(plain.level, 'normal'); assert.equal(plain.bonus, 0);
+});
+
+// ---------- Browser memory (stored.js) ----------
+
+/** An in-memory stand-in for localStorage. */
+function memoryStorage(initial = {}) {
+  const data = new Map(Object.entries(initial));
+  return {
+    data,
+    getItem: (k) => (data.has(k) ? data.get(k) : null),
+    setItem: (k, v) => void data.set(k, String(v)),
+    removeItem: (k) => void data.delete(k),
+  };
+}
+/** Storage that throws on every call, like a blocked or private-mode localStorage. */
+const throwingStorage = {
+  getItem() { throw new Error('SecurityError'); },
+  setItem() { throw new Error('QuotaExceededError'); },
+  removeItem() { throw new Error('SecurityError'); },
+};
+/** Three valid runs, sorted by overall score, low to high. */
+const storedRuns = () =>
+  ['easy', 'normal', 'hard']
+    .map((level) => playRun(level, 42))
+    .map((run) => ({ run, overall: scoreRun(run).overall }))
+    .sort((a, b) => a.overall - b.overall);
+
+test('stored: saves the raw run as last and best, never a score', () => {
+  const storage = memoryStorage();
+  const [{ run, overall }] = storedRuns();
+  assert.deepEqual(saveRun(run, { storage, now: 1_000_000 }), { last: true, best: true });
+  const last = JSON.parse(storage.getItem(LAST_KEY));
+  assert.deepEqual(Object.keys(last).sort(), ['at', 'run']);
+  assert.equal(last.at, 1_000_000);
+  assert.deepEqual(last.run, run);
+  assert.equal(storage.getItem(BEST_KEY), storage.getItem(LAST_KEY));
+  const shown = loadStored({ storage, now: 1_000_000 + 60_000 });
+  assert.equal(shown.best.result.overall, overall);
+  assert.equal(shown.last, null, 'the last run is not repeated when it is the best');
+});
+
+test('stored: best is replaced only by a higher score; last always moves', () => {
+  const storage = memoryStorage();
+  const [low, mid, high] = storedRuns();
+  assert.ok(low.overall < mid.overall && mid.overall < high.overall);
+  saveRun(mid.run, { storage, now: 1000 });
+  assert.deepEqual(saveRun(low.run, { storage, now: 2000 }), { last: true, best: false });
+  let shown = loadStored({ storage, now: 3000 });
+  assert.equal(shown.best.result.overall, mid.overall);
+  assert.equal(shown.best.at, 1000);
+  assert.equal(shown.last.result.overall, low.overall);
+  assert.equal(shown.last.at, 2000);
+  assert.deepEqual(saveRun(high.run, { storage, now: 4000 }), { last: true, best: true });
+  shown = loadStored({ storage, now: 5000 });
+  assert.equal(shown.best.result.overall, high.overall);
+  assert.equal(shown.last, null);
+  // An equal score does not replace the best (the earlier run stays).
+  assert.deepEqual(saveRun(high.run, { storage, now: 6000 }), { last: true, best: false });
+  assert.equal(loadStored({ storage, now: 7000 }).best.at, 4000);
+});
+
+test('stored: an invalid run is not saved', () => {
+  const storage = memoryStorage();
+  const [{ run }] = storedRuns();
+  assert.deepEqual(saveRun({ ...run, v: 3 }, { storage, now: 1000 }), { last: false, best: false });
+  assert.deepEqual(saveRun({ ...run, reaction: { ...run.reaction, reactionTimesMs: [300, 310] } }, { storage, now: 1000 }), { last: false, best: false });
+  assert.equal(storage.data.size, 0);
+});
+
+test('stored: tampered, broken and other-version entries are dropped and removed', () => {
+  const [low, , high] = storedRuns();
+  const now = 10_000_000;
+  const entry = (run, at = now - 1000) => JSON.stringify({ run, at });
+  // A score written into the entry is ignored: the run is re-scored.
+  const withScore = JSON.stringify({ run: { ...low.run, overall: 160 }, at: now - 1000, overall: 160, score: 160 });
+  let storage = memoryStorage({ [BEST_KEY]: withScore });
+  assert.equal(loadStored({ storage, now }).best.result.overall, low.overall);
+
+  const cases = {
+    'not JSON': '{"run":',
+    'a number': '160',
+    'no run': JSON.stringify({ at: now }),
+    'no time': JSON.stringify({ run: high.run }),
+    'a time in the far future': entry(high.run, now + 3 * 24 * 3600 * 1000),
+    'scoring version 3': entry({ ...high.run, v: 3 }),
+    'an unknown level': entry({ ...high.run, level: 'insane' }),
+    'impossible reaction times': entry({ ...high.run, reaction: { ...high.run.reaction, reactionTimesMs: high.run.reaction.reactionTimesMs.map(() => 120) } }),
+    'too few rule trials': entry({ ...high.run, rules: { trials: high.run.rules.trials.slice(0, 5) } }),
+    'an edited memory row': entry({ ...high.run, memory: { rounds: [{ length: 9, correct: true }] } }),
+  };
+  for (const [name, raw] of Object.entries(cases)) {
+    storage = memoryStorage({ [BEST_KEY]: raw, [LAST_KEY]: raw });
+    assert.deepEqual(loadStored({ storage, now }), { best: null, last: null }, name);
+    assert.equal(storage.data.size, 0, `${name}: removed`);
+  }
+  assert.equal(validEntry(null), null);
+  assert.equal(readEntry(null, BEST_KEY), null);
+});
+
+test('stored: last is hidden after 7 days and joining is offered only before then; best never expires', () => {
+  const storage = memoryStorage();
+  const [low, , high] = storedRuns();
+  saveRun(high.run, { storage, now: 1000 });
+  saveRun(low.run, { storage, now: 2000 });
+  let shown = loadStored({ storage, now: 2000 + MAX_AGE_MS - 1 });
+  assert.ok(shown.last);
+  assert.equal(canJoin(shown.last, 2000 + MAX_AGE_MS - 1), true);
+  shown = loadStored({ storage, now: 2000 + MAX_AGE_MS });
+  assert.equal(shown.last, null);
+  assert.equal(shown.best.result.overall, high.overall);
+  assert.equal(canJoin(shown.best, 2000 + MAX_AGE_MS), false);
+  shown = loadStored({ storage, now: 1000 + 400 * MAX_AGE_MS });
+  assert.equal(shown.best.result.overall, high.overall);
+  assert.equal(canJoin(null), false);
+});
+
+test('stored: a lost or lower best key falls back to the last run', () => {
+  const [low, high] = storedRuns();
+  const now = 50_000;
+  let storage = memoryStorage({ [LAST_KEY]: JSON.stringify({ run: low.run, at: now - 10 }) });
+  let shown = loadStored({ storage, now });
+  assert.equal(shown.best.result.overall, low.overall);
+  assert.equal(shown.last, null);
+  storage = memoryStorage({
+    [BEST_KEY]: JSON.stringify({ run: low.run, at: now - 20 }),
+    [LAST_KEY]: JSON.stringify({ run: high.run, at: now - 10 }),
+  });
+  shown = loadStored({ storage, now });
+  assert.equal(shown.best.result.overall, high.overall);
+  assert.equal(shown.last, null);
+});
+
+test('stored: throwing or missing storage never throws', () => {
+  const [{ run }] = storedRuns();
+  assert.deepEqual(saveRun(run, { storage: throwingStorage, now: 1000 }), { last: false, best: false });
+  assert.deepEqual(loadStored({ storage: throwingStorage, now: 1000 }), { best: null, last: null });
+  assert.doesNotThrow(() => clearStored(throwingStorage));
+  assert.deepEqual(saveRun(run, { storage: null }), { last: false, best: false });
+  assert.deepEqual(loadStored({ storage: null }), { best: null, last: null });
+  // No window in node: the default storage is simply absent.
+  assert.deepEqual(loadStored(), { best: null, last: null });
+  assert.doesNotThrow(() => clearStored());
+});
+
+test('stored: clearStored forgets both keys and leaves others alone', () => {
+  const storage = memoryStorage({ 'clarus.attentionTest.level': 'hard' });
+  const [low, high] = storedRuns();
+  saveRun(high.run, { storage, now: 1000 });
+  saveRun(low.run, { storage, now: 2000 });
+  clearStored(storage);
+  assert.deepEqual([...storage.data.keys()], ['clarus.attentionTest.level']);
+});
+
+test('stored: agoText', () => {
+  const now = Date.UTC(2026, 10, 23, 12);
+  assert.equal(agoText(now - 20_000, now), 'just now');
+  assert.equal(agoText(now + 5000, now), 'just now');
+  assert.equal(agoText(now - 60_000, now), '1 minute ago');
+  assert.equal(agoText(now - 5 * 60_000, now), '5 minutes ago');
+  assert.equal(agoText(now - 3600_000, now), '1 hour ago');
+  assert.equal(agoText(now - 2 * 3600_000, now), '2 hours ago');
+  assert.equal(agoText(now - 30 * 3600_000, now), 'yesterday');
+  assert.equal(agoText(now - 3 * 86400_000, now), '3 days ago');
+  assert.match(agoText(now - 30 * 86400_000, now), /^on [A-Z][a-z]{2} \d{1,2}$/);
 });

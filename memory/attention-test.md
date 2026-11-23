@@ -6,7 +6,9 @@ A free, roughly 2-minute browser game built from the Clarus Health app's Quick C
 - **Three parts:**
   - Reaction: 45 s, tap the green dot (iOS Quick Check part 1).
   - Digit memory: 45 s (the Android memory test).
-  - Rule switch: 10 digits, odd/even or lower/higher than 5 (iOS part 2, shortened).
+  - Rule switch: 10 questions: odd/even, lower/higher than a changing number, multiple of 3 (iOS part 2, extended).
+- **Levels Easy / Normal / Hard** change all three parts (dot size and position, digit speed and first row length, part 3 numbers, rules and answer time). `LEVELS` in scoring.js is the single source. **One shared board**: Hard +10, Easy −10 on the overall score (`LEVEL_BONUS`); rows show a Hard or Easy badge.
+- **Friends:** friend codes in challenge links (`f=`); adding a friend always needs a click. Friends can't remove each other (`remove_friend` revoked). "Show me on the global board" hides only from the global board; friends always see you. No "Remove my data" button: deletion is by email (privacy policy 1.4).
 - **Score:** 100 = typical, 15 points = one standard deviation, the same style as the app. In the app, 100 means *your own* normal; on the website it means a typical player, because strangers have to be ranked against each other.
 - **No login to play or share.** Google sign-in is needed only to join the leaderboard.
 - **Backend:** Supabase (Auth with Google, Postgres, Edge Functions). Setup steps are in `supabase/README.md`. The site itself stays static.
@@ -17,10 +19,12 @@ A free, roughly 2-minute browser game built from the Clarus Health app's Quick C
 - **Engines:** `reaction.js`, `memory.js` and `rules.js` are pure state machines, tested by `node --test scripts/tests/`. `game.js` runs the screens.
 - **Sharing:** `share.js` draws the story card (1080×1920) and the post card (1200×630) on a canvas, and uses the Web Share API with the image file where it's available.
 - **Challenge links:** `/attention-test/s/<score>?by=<name>` are 121 static pages (scores 40–160) with their own og:title and og:image, so link previews show the score with no server. Each one redirects to `/attention-test?challenge=<n>&by=<name>`. `scripts/build-attention-share.py` generates the pages and `assets/images/attention-test/og/*.png`. They are noindex, with a canonical to `/attention-test`, and are not in the sitemap.
-- **Leaderboard:** `board.js` and `supabase-config.js` hold the project URL and anon key. These are public by design; RLS protects the data. While the config is empty, the board shows "opens soon".
+- **Leaderboard:** `board.js` and `supabase-config.js` hold the project URL and anon key. These are public by design; RLS protects the data. The game page shows a compact board (Global | Friends, top 5 this week); `/attention-test/leaderboard` is the full page.
+- **Sharing later:** `stored.js` keeps the raw last/best run in localStorage (`clarus.attentionTest.lastRun` / `bestRun`), re-scored on every load, so the intro card can re-share the image or join within 7 days. Signed-in players get "Share my best score": `my_best()` returns their own best raw run, re-scored and drawn in `share-dialog.js`. Old v1 runs fall back to link-only sharing.
+- **Challenge link** carries `l=easy|hard` (normal is omitted). Preview images (`og/<score>.png`) show the score only, not name or level.
 
 ## Norms
-`NORMS_VERSION = 'beta-1'` holds published values for a browser:
+`NORMS_VERSION = 'beta-2'`, `SCORING_VERSION = 2`. `LEVEL_NORMS` in scoring.js holds a mean/SD per level for speed, performance, span, rule accuracy and rule time (100 = typical player at that level, then the level bonus). The table below is the original Normal-level basis:
 
 | Measure | Mean | SD |
 |---|---|---|
@@ -46,7 +50,7 @@ from plays where valid group by device;
 ```
 
 ## Open items
-- **Owner setup:** create the Supabase project and the Google OAuth web client (see `supabase/README.md`), then fill in `supabase-config.js`.
+- **Lesson:** this Supabase project grants nothing by default. Every new table or function needs explicit grants (service_role on tables; `grant execute` per function).
 - **Google consent screen:** it shows the supabase.co address unless a paid custom domain is set up.
 - **Free plan:** a free Supabase project pauses after 7 days with no activity.
 - **Later ideas:** a daily challenge (the same sequence for everyone), team or office boards, and a monthly "Attention report" newsroom post built from the combined data.
