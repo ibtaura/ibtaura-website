@@ -622,7 +622,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    import('./board.js?v=2')
+    import('./board.js?v=5')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
       })

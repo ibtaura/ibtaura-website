@@ -30,7 +30,8 @@ const FRIEND_CODE_RE = /^[a-hjkmnp-z2-9]{8}$/;
 const FULL_BOARD_PATH = '/attention-test/leaderboard';
 const GAME_PATH = '/attention-test';
 const PUBLIC_ORIGIN = 'https://adarna.us';
-const VARIANTS = { compact: 10, full: 100 }; // rows shown; the board() rpc caps at 100
+const INVITE_OK_KEY = 'at-invite-ok'; // sessionStorage: signed in from the invite line, so adding needs no second click
+const VARIANTS = { compact: 5, full: 100 }; // rows shown; the board() rpc caps at 100
 const DAILY_LIMIT = 20;
 
 const PERIODS = [
@@ -356,7 +357,8 @@ function createBoard(el, variant) {
   let session = null;
   let profile = null;
   let scope = 'global';
-  let period = 'today';
+  // The small board on the game page shows this week (fuller than today); the full page starts on today.
+  let period = variant === 'full' ? 'today' : 'week';
   let device = 'all';
   let loadSeq = 0;
   let flashNext = false;
@@ -450,7 +452,7 @@ function createBoard(el, variant) {
 
   const moreRow = variant === 'full'
     ? null
-    : h('p', { class: 'atb-more' }, h('a', { class: 'atb-more-link', href: FULL_BOARD_PATH, text: 'See the full leaderboard ›' }));
+    : h('p', { class: 'atb-more' }, h('a', { class: 'atb-btn atb-btn-ghost atb-more-btn', href: FULL_BOARD_PATH, text: 'See the full leaderboard ›' }));
 
   // Signed-out footer: a way back in to manage an existing entry.
   const signinRow = h('p', { class: 'atb-signin', hidden: true },
@@ -492,6 +494,7 @@ function createBoard(el, variant) {
   });
   const accountMsg = h('p', { class: 'atb-form-msg', role: 'status' });
   const account = h('div', { class: 'atb-account', hidden: true },
+    h('div', { class: 'atb-invite-box' }, copyControls('Invite friends: anyone who opens your link and joins shows up on your Friends board.')),
     h('p', { class: 'atb-who' }, 'Signed in as ', whoName),
     h('div', { class: 'atb-actions' }, editBtn, signOutBtn), // owner: no Remove my data button; deletion is by email (privacy policy)
     editForm,
@@ -722,6 +725,10 @@ function createBoard(el, variant) {
 
   // ── Scope, tabs and filter ──
   function updateSub() {
+    if (variant !== 'full') {
+      sub.textContent = scope === 'friends' ? `You and your friends, top ${top} this week.` : `Top ${top} this week.`;
+      return;
+    }
     sub.textContent = scope === 'friends'
       ? 'You and your friends, each person’s best score. Days are UTC; this week is the last 7 days.'
       : `Each person’s best score, top ${top}. Days are UTC; this week is the last 7 days.`;
@@ -752,14 +759,43 @@ function createBoard(el, variant) {
     if (reload) loadBoard();
   }
 
-  /** The signed-out lines: "Already on the board? Sign in" and "Sign in to add Priya as a friend". */
+  /**
+   * The invite lines. Signed out: "Sign in to add Priya as a friend" (that click is the consent).
+   * Signed in: "Add Priya as a friend?" with Add friend / Not now, so a link alone never adds anyone.
+   */
   function updateChrome() {
     signinRow.hidden = Boolean(session) || scope === 'friends' || !sb;
-    const invite = !session && sb ? readInvite() : null;
-    if (invite) {
+    const invite = sb ? readInvite() : null;
+    const who = invite ? invite.by || 'your friend' : '';
+    if (invite && !session) {
       inviteRow.replaceChildren(
-        h('button', { type: 'button', class: 'atb-link', text: 'Sign in', onclick: () => startGoogle(null, 'friends') }),
-        ` to add ${invite.by || 'your friend'} as a friend.`,
+        h('button', {
+          type: 'button',
+          class: 'atb-link',
+          text: 'Sign in',
+          onclick: () => {
+            try { sessionStorage.setItem(INVITE_OK_KEY, '1'); } catch (e) { /* storage blocked: they'll confirm after */ }
+            startGoogle(null, 'friends');
+          },
+        }),
+        ` to add ${who} as a friend.`,
+      );
+      inviteRow.hidden = false;
+    } else if (invite && session && profile && invite.code !== ownCode() && !inviteBusy) {
+      inviteRow.replaceChildren(
+        `Add ${who} as a friend? `,
+        h('button', { type: 'button', class: 'atb-link', text: 'Add friend', onclick: () => acceptInvite() }),
+        ' · ',
+        h('button', {
+          type: 'button',
+          class: 'atb-link',
+          text: 'Not now',
+          onclick: () => {
+            clearInvite();
+            track('friend_invite_dismissed');
+            updateChrome();
+          },
+        }),
       );
       inviteRow.hidden = false;
     } else {
@@ -785,21 +821,7 @@ function createBoard(el, variant) {
       h('span', { class: 'atb-dev', text: DEVICE_LABEL[entry.device] || '' }),
       h('span', { class: 'atb-score', text: String(entry.score) }),
     );
-    if (friends) {
-      const ref = typeof entry.friend_ref === 'string' && FRIEND_CODE_RE.test(entry.friend_ref) ? entry.friend_ref : null;
-      if (ref && !isMe) {
-        const btn = h('button', {
-          type: 'button',
-          class: 'atb-remove',
-          'aria-label': `Remove ${entry.display_name} from friends`,
-          text: 'Remove',
-        });
-        btn.addEventListener('click', () => removeFriend(ref, entry.display_name, btn));
-        li.append(btn);
-      } else {
-        li.append(h('span', { class: 'atb-remove-gap', 'aria-hidden': 'true' }));
-      }
-    }
+    // Owner: friends can't remove each other, so friend rows have no Remove control.
     if (when && !Number.isNaN(when.getTime())) li.title = when.toLocaleString();
     if (isMe) li.setAttribute('aria-current', 'true');
     return li;
@@ -947,7 +969,10 @@ function createBoard(el, variant) {
       : null;
   }
 
-  /** "Copy friend link" with a status line; falls back to a selectable field when copying is blocked. */
+  /**
+   * "Share friend link": opens the phone's share sheet where there is one, otherwise copies the link.
+   * Falls back to a selectable field when copying is blocked.
+   */
   function copyControls(lead) {
     const msg = h('p', { class: 'atb-form-msg', role: 'status' });
     const field = h('input', {
@@ -957,7 +982,8 @@ function createBoard(el, variant) {
       'aria-label': 'Your friend link',
       hidden: true,
     });
-    const button = h('button', { type: 'button', class: 'atb-btn atb-btn-primary', text: 'Copy friend link' });
+    const canShare = typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
+    const button = h('button', { type: 'button', class: 'atb-btn atb-btn-primary', text: canShare ? 'Share friend link' : 'Copy friend link' });
     button.addEventListener('click', async () => {
       const code = ownCode();
       if (!code) {
@@ -965,6 +991,21 @@ function createBoard(el, variant) {
         return;
       }
       const link = friendLink(code);
+      if (canShare) {
+        try {
+          await navigator.share({
+            title: 'Clarus Attention Test',
+            text: 'How sharp is your attention? Take the 2-minute test and join my friends board.',
+            url: link,
+          });
+          track('friend_link_share');
+          msg.textContent = '';
+          return;
+        } catch (err) {
+          if (err && err.name === 'AbortError') return; // closed the share sheet
+          // Anything else: fall through to copying.
+        }
+      }
       const ok = await copyText(link);
       track('friend_link_copy');
       if (ok) {
@@ -1015,31 +1056,6 @@ function createBoard(el, variant) {
     );
   }
 
-  async function removeFriend(ref, name, btn) {
-    const sure = window.confirm(`Remove ${name} from your friends? You’ll both leave each other’s friends board.`);
-    if (!sure) return;
-    btn.disabled = true;
-    let res;
-    try {
-      res = await sb.rpc('remove_friend', { code: ref });
-    } catch (err) {
-      res = { data: null, error: err };
-    }
-    if (res.error) {
-      btn.disabled = false;
-      showFriendNotice(`Couldn’t remove ${name}. Please try again.`);
-      track('leaderboard_error', { reason: 'remove_friend' });
-      return;
-    }
-    track('friend_removed');
-    showFriendNotice(`${name} is no longer on your friends board.`);
-    await loadBoard();
-    try {
-      panel.focus({ preventScroll: true });
-    } catch (_) {
-      panel.focus();
-    }
-  }
 
   /** With a session and a stored invite that isn't our own code: become friends, then open the Friends tab. */
   async function acceptInvite() {
@@ -1121,7 +1137,14 @@ function createBoard(el, variant) {
     mailInput.checked = profile ? profile.launch_emails : false;
     for (const input of [showInput, mailInput]) input.disabled = !profile;
     editBtn.disabled = !profile;
-    acceptInvite();
+    // Add the friend straight away only when they signed in from "Sign in to add Priya as a friend".
+    let consented = false;
+    try {
+      consented = sessionStorage.getItem(INVITE_OK_KEY) === '1';
+      sessionStorage.removeItem(INVITE_OK_KEY);
+    } catch (e) { /* storage blocked */ }
+    if (consented) acceptInvite();
+    else updateChrome();
   }
 
   async function updateProfile(fields) {

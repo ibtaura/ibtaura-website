@@ -510,3 +510,17 @@
 .at-lb-hero { --at-blue: #0071e3; }
 .at-lb-hero .at-btn { text-decoration: none; }
 .at-lb-hero .at-btn:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }
+
+/* Signed-in invite box at the top of the account panel. */
+.atb-invite-box { margin: 0 0 16px; padding: 14px 16px; border-radius: 14px; background: #fff; }
+.atb-invite-box .atb-copy-lead { margin-top: 0; }
+
+/* Small board on the game page: Global | Friends, top 5 this week, and a way to the full page.
+   Period and device filters, the friends footer and the profile settings live on the full page only. */
+.atb-compact .atb-controls,
+.atb-compact .atb-friends-foot,
+.atb-compact .atb-signin,
+.atb-compact .atb-account > :not(.atb-invite-box):not(.atb-who) { display: none !important; }
+.atb-compact .atb-panel { min-height: 0; }
+.atb-compact .atb-more { margin-top: 14px; }
+.atb-more-btn { display: flex; width: 100%; box-sizing: border-box; justify-content: center; text-decoration: none; }
