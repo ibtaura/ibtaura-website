@@ -24,16 +24,6 @@ export const FRIEND_CODE_RE = /^[a-hjkmnp-z2-9]{8}$/;
 // Control characters, zero-width and bidi-override characters.
 const BAD_CHARS = new RegExp('[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u2028-\u202e\u2066-\u2069]', 'g');
 const FONT_STACK = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif';
-const C = {
-  bg: '#f5f5f7',
-  white: '#ffffff',
-  ink: '#1d1d1f',
-  grey: '#6e6e73',
-  light: '#86868b',
-  green: '#34C759',
-  orange: '#FF6B35',
-  dotOff: '#c7c7cc',
-};
 // Own copy of the level labels (scoring.js has LEVELS too) so sharing never depends on load order.
 export const LEVEL_LABELS = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
 const FOOTER_URL = 'adarna.us/attention-test';
@@ -171,26 +161,6 @@ function fillText(ctx, text, x, y, { weight = 400, size, maxW, color, align = 'l
   return w;
 }
 
-function roundRect(ctx, x, y, w, h, r, color) {
-  const rr = Math.min(r, w / 2, h / 2);
-  ctx.beginPath();
-  ctx.moveTo(x + rr, y);
-  ctx.arcTo(x + w, y, x + w, y + h, rr);
-  ctx.arcTo(x + w, y + h, x, y + h, rr);
-  ctx.arcTo(x, y + h, x, y, rr);
-  ctx.arcTo(x, y, x + w, y, rr);
-  ctx.closePath();
-  ctx.fillStyle = color;
-  ctx.fill();
-}
-
-function dot(ctx, cx, cy, r, color = C.green) {
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI * 2);
-  ctx.fillStyle = color;
-  ctx.fill();
-}
-
 function canvasOf(w, h) {
   const c = document.createElement('canvas');
   c.width = w;
@@ -200,18 +170,105 @@ function canvasOf(w, h) {
 
 const scoredLine = (d) => (d.name ? `${d.name} scored` : 'I scored');
 
-/** Kicker: green dot + letter-spaced "ATTENTION TEST". (x, y) is the dot's left edge and the text baseline. Returns its width. */
-function kicker(ctx, x, y, size, align = 'left', maxW = 600) {
-  const tracking = size * 0.17;
-  const r = size * 0.36;
-  const gap = size * 0.55;
-  fitFont(ctx, 'ATTENTION TEST', 600, size, maxW, tracking);
-  const tw = widthOf(ctx, 'ATTENTION TEST', tracking);
-  const total = r * 2 + gap + tw;
-  const left = align === 'center' ? x - total / 2 : x;
-  dot(ctx, left + r, y - size * 0.36, r);
-  fillText(ctx, 'ATTENTION TEST', left + r * 2 + gap, y, { weight: 600, size, maxW, color: C.light, tracking });
-  return total;
+// ---------- the cards (24 Nov 2026): the site's dark tile design. A grain square in blue and green,
+// white text beside it, the parts as divided rows and a blue "Can you beat me? ›".
+
+const D = {
+  bg: '#000000',
+  ink: '#f5f5f7',
+  grey: '#a1a1a6',
+  faint: '#86868b',
+  line: 'rgba(255, 255, 255, 0.16)',
+  blue: '#2997ff',
+};
+
+function roundPath(ctx, x, y, w, h, r) {
+  const rr = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rr, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rr);
+  ctx.arcTo(x + w, y + h, x, y + h, rr);
+  ctx.arcTo(x, y + h, x, y, rr);
+  ctx.arcTo(x, y, x + w, y, rr);
+  ctx.closePath();
+}
+
+let noise = null;
+/** A 200 px tile of grey noise, made once, laid over the square for film grain. */
+function noiseTile() {
+  if (noise) return noise;
+  noise = canvasOf(200, 200);
+  const nctx = noise.getContext('2d');
+  const img = nctx.createImageData(200, 200);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = Math.floor(Math.random() * 256);
+    img.data[i] = v;
+    img.data[i + 1] = v;
+    img.data[i + 2] = v;
+    img.data[i + 3] = 255;
+  }
+  nctx.putImageData(img, 0, 0);
+  return noise;
+}
+
+/** The blue-green grain square from the page, drawn still: a gradient, four soft lights and grain. */
+function grainSquare(ctx, x, y, size, radius) {
+  ctx.save();
+  roundPath(ctx, x, y, size, size, radius);
+  ctx.clip();
+  const lg = ctx.createLinearGradient(x, y, x + size * 0.6, y + size);
+  lg.addColorStop(0, '#1f5fe0');
+  lg.addColorStop(0.45, '#1a4bb8');
+  lg.addColorStop(1, '#11a37f');
+  ctx.fillStyle = lg;
+  ctx.fillRect(x, y, size, size);
+  ctx.globalCompositeOperation = 'screen';
+  const lights = [
+    [0.28, 0.22, 0.6, '77, 134, 255', 0.9],
+    [0.82, 0.86, 0.6, '35, 224, 168', 0.9],
+    [0.86, 0.14, 0.42, '95, 208, 245', 0.7],
+    [0.3, 0.92, 0.42, '154, 240, 210', 0.45],
+  ];
+  for (const [fx, fy, fr, rgb, a] of lights) {
+    const cx = x + size * fx;
+    const cy = y + size * fy;
+    const r = size * fr;
+    const rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    rg.addColorStop(0, `rgba(${rgb}, ${a})`);
+    rg.addColorStop(1, `rgba(${rgb}, 0)`);
+    ctx.fillStyle = rg;
+    ctx.fillRect(x, y, size, size);
+  }
+  ctx.globalCompositeOperation = 'overlay';
+  ctx.globalAlpha = 0.3;
+  ctx.fillStyle = ctx.createPattern(noiseTile(), 'repeat');
+  ctx.fillRect(x, y, size, size);
+  ctx.restore();
+}
+
+/** Letter-spaced grey "CLARUS ATTENTION TEST" on the baseline y. */
+function cardKicker(ctx, x, y, size, maxW) {
+  fillText(ctx, 'CLARUS ATTENTION TEST', x, y, { weight: 600, size, maxW, color: D.faint, tracking: size * 0.16 });
+}
+
+/** The parts as divided rows from y, each rowH tall: label, detail (grey) and score on the right. */
+function partRows(ctx, d, x0, x1, y, rowH, { label, detail, score }) {
+  ctx.fillStyle = D.line;
+  ctx.fillRect(x0, y, x1 - x0, 2);
+  for (const p of d.parts) {
+    const base = y + rowH / 2 + label * 0.36;
+    fillText(ctx, p.label, x0, base, { weight: 500, size: label, maxW: (x1 - x0) * 0.4, color: D.ink });
+    if (Number.isFinite(p.score)) {
+      const sw = fillText(ctx, String(p.score), x1, y + rowH / 2 + score * 0.36, { weight: 600, size: score, maxW: score * 2.4, color: D.ink, align: 'right' });
+      if (p.detail) fillText(ctx, p.detail, x1 - sw - score * 0.6, y + rowH / 2 + detail * 0.36, { weight: 400, size: detail, maxW: (x1 - x0) * 0.4, color: D.faint, align: 'right' });
+    } else {
+      fillText(ctx, p.hint, x1, y + rowH / 2 + detail * 0.36, { weight: 400, size: detail, maxW: (x1 - x0) * 0.5, color: D.faint, align: 'right' });
+    }
+    y += rowH;
+    ctx.fillStyle = D.line;
+    ctx.fillRect(x0, y - 2, x1 - x0, 2);
+  }
+  return y;
 }
 
 /** 1080x1920 card for Instagram / WhatsApp stories. Key content stays between y 250 and 1670 (story UI). */
@@ -219,84 +276,52 @@ export function drawStoryCard(d) {
   const W = 1080;
   const canvas = canvasOf(W, 1920);
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = C.bg;
+  ctx.fillStyle = D.bg;
   ctx.fillRect(0, 0, W, 1920);
-  const cx = W / 2;
+  const L = 96;
+  const R = W - 96;
 
-  kicker(ctx, cx, 300, 34, 'center', 800);
+  // The tile: the square on the left, the score beside it, inside the square's height.
+  const sq = 380;
+  const top = 330;
+  grainSquare(ctx, L, top, sq, 24);
+  const tx = L + sq + 48;
+  const tw = R - tx;
+  cardKicker(ctx, tx, top + 30, 24, tw);
+  fillText(ctx, scoredLine(d), tx, top + 104, { weight: 500, size: 48, maxW: tw, color: D.ink });
+  fillText(ctx, String(d.score), tx - 8, top + 290, { weight: 600, size: 200, maxW: tw, color: D.ink });
+  fillText(ctx, d.band, tx, top + sq - 6, { weight: 500, size: 44, maxW: tw, color: D.ink });
 
-  roundRect(ctx, 72, 350, 936, 720, 56, C.white);
-  fillText(ctx, scoredLine(d), cx, 500, { weight: 600, size: 52, maxW: 800, color: C.ink, align: 'center' });
-  fillText(ctx, String(d.score), cx, 832, { weight: 700, size: 340, maxW: 820, color: C.ink, align: 'center' });
-  fillText(ctx, d.band, cx, 934, { weight: 700, size: 72, maxW: 820, color: C.ink, align: 'center' });
-  fillText(ctx, `Sharper than ${d.pct}% of people`, cx, 1006, { weight: 400, size: 44, maxW: 820, color: C.grey, align: 'center' });
+  fillText(ctx, `Sharper than ${d.pct}% of people`, L, top + sq + 110, { weight: 400, size: 40, maxW: R - L, color: D.grey });
+  const end = partRows(ctx, d, L, R, top + sq + 170, 136, { label: 44, detail: 30, score: 64 });
 
-  const tw = 296;
-  d.parts.forEach((p, i) => {
-    const x = 72 + i * (tw + 24);
-    const tcx = x + tw / 2;
-    roundRect(ctx, x, 1100, tw, 280, 40, C.white);
-    ctx.font = font(600, 32);
-    const lw = Math.min(widthOf(ctx, p.label), tw - 80);
-    dot(ctx, tcx - lw / 2 - 20, 1165 - 11, 9);
-    fillText(ctx, p.label, tcx + 10, 1165, { weight: 600, size: 32, maxW: tw - 80, color: C.grey, align: 'center' });
-    if (!Number.isFinite(p.score)) {
-      fillText(ctx, p.hint, tcx, 1290, { weight: 600, size: 38, maxW: tw - 40, color: C.ink, align: 'center' });
-      return;
-    }
-    fillText(ctx, String(p.score), tcx, 1300, { weight: 700, size: 112, maxW: tw - 40, color: C.ink, align: 'center' });
-    if (p.detail) fillText(ctx, p.detail, tcx, 1350, { weight: 400, size: 30, maxW: tw - 40, color: C.light, align: 'center' });
-  });
-
-  const cta = 'Can you beat me?';
-  const cs = fitFont(ctx, cta, 700, 60, 760);
-  const cw = widthOf(ctx, cta) + 120;
-  roundRect(ctx, cx - cw / 2, 1420, cw, 104, 52, C.orange);
-  fillText(ctx, cta, cx, 1420 + 52 + cs * 0.35, { weight: 700, size: cs, maxW: 760, color: C.white, align: 'center' });
-
-  fillText(ctx, FOOTER_URL, cx, 1600, { weight: 600, size: 40, maxW: 900, color: C.ink, align: 'center' });
-  fillText(ctx, FOOTER_BRAND, cx, 1652, { weight: 400, size: 32, maxW: 900, color: C.light, align: 'center' });
+  fillText(ctx, 'Can you beat me? ›', L, end + 150, { weight: 500, size: 60, maxW: R - L, color: D.blue });
+  fillText(ctx, FOOTER_URL, L, 1590, { weight: 500, size: 38, maxW: R - L, color: D.ink });
+  fillText(ctx, FOOTER_BRAND, L, 1640, { weight: 400, size: 30, maxW: R - L, color: D.faint });
   return canvas;
 }
 
-/** 1200x630 card for X, LinkedIn and Facebook posts; the same layout as the generated og images. */
+/** 1200x630 card for X, LinkedIn and Facebook posts: the square on the left, the score and parts on the right. */
 export function drawPostCard(d) {
   const canvas = canvasOf(1200, 630);
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = C.bg;
+  ctx.fillStyle = D.bg;
   ctx.fillRect(0, 0, 1200, 630);
-  roundRect(ctx, 40, 40, 1120, 550, 36, C.white);
 
-  const left = 104;
-  const colW = 520;
-  kicker(ctx, left, 112, 24, 'left', colW);
-  fillText(ctx, scoredLine(d), left, 172, { weight: 600, size: 32, maxW: colW, color: C.ink });
-  fillText(ctx, String(d.score), left - 6, 352, { weight: 700, size: 200, maxW: colW, color: C.ink });
-  fillText(ctx, d.band, left, 420, { weight: 700, size: 40, maxW: colW, color: C.ink });
-  fillText(ctx, `Sharper than ${d.pct}% of people`, left, 466, { weight: 400, size: 28, maxW: colW, color: C.grey });
-
-  const x0 = 680;
-  const x1 = 1096;
-  let y = 96;
-  for (const p of d.parts) {
-    roundRect(ctx, x0, y, x1 - x0, 104, 24, C.bg);
-    dot(ctx, x0 + 35, y + 52, 7);
-    const hasDetail = Boolean(p.detail);
-    fillText(ctx, p.label, x0 + 60, y + (hasDetail ? 50 : 63), { weight: 700, size: 30, maxW: 200, color: C.ink });
-    if (hasDetail) fillText(ctx, p.detail, x0 + 60, y + 82, { weight: 400, size: 22, maxW: 200, color: C.grey });
-    if (Number.isFinite(p.score)) fillText(ctx, String(p.score), x1 - 28, y + 70, { weight: 700, size: 52, maxW: 130, color: C.ink, align: 'right' });
-    else fillText(ctx, p.hint, x1 - 28, y + 63, { weight: 400, size: 24, maxW: 180, color: C.grey, align: 'right' });
-    y += 120;
-  }
-
-  const cta = 'Can you beat me?';
-  const cs = fitFont(ctx, cta, 700, 34, x1 - x0 - 64);
-  const cw = widthOf(ctx, cta) + 64;
-  roundRect(ctx, x0, 462, cw, 72, 36, C.orange);
-  fillText(ctx, cta, x0 + 32, 498 + cs * 0.35, { weight: 700, size: cs, maxW: x1 - x0 - 64, color: C.white });
-
-  const footer = `${FOOTER_URL} · ${FOOTER_BRAND}`;
-  fillText(ctx, footer, left, 548, { weight: 400, size: 20, maxW: colW, color: C.light });
+  const sq = 470;
+  const top = 56;
+  grainSquare(ctx, 56, top, sq, 20);
+  const x0 = 56 + sq + 48;
+  const x1 = 1200 - 56;
+  const cw = x1 - x0;
+  cardKicker(ctx, x0, top + 20, 18, cw);
+  fillText(ctx, scoredLine(d), x0, top + 66, { weight: 500, size: 28, maxW: cw, color: D.ink });
+  fillText(ctx, String(d.score), x0 - 5, top + 190, { weight: 600, size: 130, maxW: cw, color: D.ink });
+  fillText(ctx, `${d.band} · sharper than ${d.pct}% of people`, x0, top + 236, { weight: 400, size: 22, maxW: cw, color: D.grey });
+  partRows(ctx, d, x0, x1, top + 262, 50, { label: 22, detail: 17, score: 26 });
+  fillText(ctx, 'Can you beat me? ›', x0, top + sq - 4, { weight: 500, size: 26, maxW: cw * 0.55, color: D.blue });
+  fillText(ctx, FOOTER_URL, x1, top + sq - 4, { weight: 400, size: 18, maxW: cw * 0.45, color: D.faint, align: 'right' });
+  fillText(ctx, FOOTER_BRAND, 56, top + sq + 46, { weight: 400, size: 18, maxW: sq, color: D.faint });
   return canvas;
 }
 

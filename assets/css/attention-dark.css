@@ -761,3 +761,108 @@ body.at-dark #at-share .ats-panel { grid-column: 1 / -1; margin-top: 16px; }
   body.at-dark #at-share .ats-desc { font-size: 15px; }
   body.at-dark #at-share .ats-field { grid-column: 1 / -1; grid-row: auto; }
 }
+
+/* ─── Seventh pass (owner, 24 Nov 2026): every tile fits inside its square ───
+   One square size (--sq). The square never shrinks below --sq; the text column is exactly as tall as the
+   square (heading at the top, action on the bottom line). If text ever runs longer (a rare restart note,
+   a friend invite), the square grows with it so the two edges still line up. */
+body.at-dark { --sq: 200px; }
+@media (max-width: 600px) { body.at-dark { --sq: 112px; } }
+body.at-dark .at-feature { align-items: stretch; gap: 28px; }
+body.at-dark .at-feature .at-square,
+body.at-dark .at-feature-part .at-square,
+body.at-dark .at-result-row .at-square {
+  width: var(--sq); min-height: var(--sq); height: auto; aspect-ratio: auto; align-self: stretch;
+}
+body.at-dark .at-feature .at-feature-text,
+body.at-dark .at-feature-part .at-feature-text,
+body.at-dark .at-result-row .at-feature-text { min-height: var(--sq); }
+body.at-dark .at-feature-row { column-gap: 40px; }
+
+/* Result tile: "Attention" the same size as "Join the leaderboard", the number large, all within the square */
+body.at-dark .at-result .at-feature-title,
+body.at-dark .at-join-slot .atb-status-title { font-size: 24px; line-height: 1.2; letter-spacing: -0.3px; margin: 0; }
+body.at-dark .at-result .at-score #at-score { margin-top: 2px; font-size: 60px; line-height: 0.95; letter-spacing: -1.5px; }
+body.at-dark .at-result .at-feature-top .at-feature-desc { margin-top: 8px; font-size: 15px; line-height: 1.4; }
+body.at-dark .at-result .at-feature-text { gap: 12px; }
+.at-tile-links { gap: 4px 20px; }
+.at-tile-links .at-start-link { font-size: 16px; line-height: 1.3; }
+/* "You beat Priya by 12" (challenge links only) sits under the tiles so it never pushes past the square */
+body.at-dark .at-result > .at-vs { margin: 28px 0 0; text-align: center; }
+
+/* Join tile: title and text at the top; Google and the e-mail box on the bottom line */
+body.at-dark .at-join-slot .atb-join-body { gap: 8px; }
+body.at-dark .at-join-slot .atb-status-text { font-size: 15px; line-height: 1.45; }
+body.at-dark .at-join-slot .atb-google { font-size: 16px; }
+body.at-dark .at-join-slot .atb-check { font-size: 13px; line-height: 1.3; }
+body.at-dark .at-join-slot .atb-fine { display: none; }
+
+/* Headings focused by the script (after each screen change) get no focus ring; real controls keep theirs. */
+body.at-dark .at-game :is(h1, h2)[tabindex="-1"]:focus,
+body.at-dark .at-game :is(h1, h2)[tabindex="-1"]:focus-visible { outline: none; }
+
+@media (max-width: 600px) {
+  body.at-dark .at-feature { gap: 16px; }
+  body.at-dark .at-intro h1,
+  body.at-dark .at-intro .at-feature-title,
+  body.at-dark .at-result .at-feature-title,
+  body.at-dark .at-join-slot .atb-status-title,
+  body.at-dark .at-inter .at-feature-title,
+  body.at-dark .at-invalid .at-feature-title { font-size: 19px; }
+  body.at-dark .at-result .at-score #at-score { font-size: 44px; }
+  .at-tile-links .at-start-link,
+  .at-start-link { font-size: 15px; }
+  body.at-dark .at-join-slot .atb-google { font-size: 15px; }
+}
+
+/* Saved scores under the start tiles: one divided row. "Your best on this device 61" on the left,
+   blue "Share ›" / "Put it on the leaderboard ›" on the right, the last score and Forget under it in grey. */
+body.at-dark .at-intro .at-stored {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 24px;
+  max-width: none; margin: var(--at-space) 0 0; padding: 18px 0; border: 0;
+  border-top: 1px solid var(--dk-line); border-bottom: 1px solid var(--dk-line); border-radius: 0;
+  background: none; box-shadow: none; text-align: left;
+}
+body.at-dark .at-intro .at-stored[hidden] { display: none; }
+body.at-dark .at-stored-best { grid-column: 1; justify-content: flex-start; gap: 4px 10px; }
+body.at-dark .at-stored-label { font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--dk-muted); }
+body.at-dark .at-stored-score { font-size: 20px; color: #fff; }
+body.at-dark .at-stored-actions { grid-column: 2; grid-row: 1; justify-content: flex-end; gap: 6px 20px; margin: 0; }
+body.at-dark .at-stored-actions .at-start-link { font-size: 16px; }
+body.at-dark .at-stored-last { grid-column: 1; margin: 0; font-size: 14px; color: var(--dk-faint); }
+body.at-dark .at-stored-forget { grid-column: 2; justify-self: end; margin: 0; font-size: 14px; font-weight: 400; color: var(--dk-faint); text-decoration: none; }
+body.at-dark .at-intro .at-stored .at-link-btn { text-decoration: none; }
+@media (max-width: 600px) {
+  body.at-dark .at-intro .at-stored { grid-template-columns: minmax(0, 1fr); }
+  body.at-dark .at-stored-actions,
+  body.at-dark .at-stored-forget { grid-column: 1; grid-row: auto; justify-content: flex-start; justify-self: start; }
+}
+body.at-dark .at-intro .at-stored .at-stored-forget { color: var(--dk-faint); }
+
+/* Board filters never stretch: each dropdown keeps its own height; on phones the three share one row. */
+body.at-dark .atb-filters,
+body.at-dark .atb-board .atb-controls { align-items: center; }
+body.at-dark .atb-scope { align-self: center; }
+@media (max-width: 600px) {
+  body.at-dark .atb-filters { flex-wrap: nowrap; gap: 6px; }
+  body.at-dark .atb-board .atb-controls { flex-wrap: nowrap; gap: 6px; }
+  body.at-dark .atb-scope-select { min-height: 30px; padding: 4px 24px 4px 11px; font-size: 13px; }
+  body.at-dark .atb-scope::after { right: 10px; width: 5px; height: 5px; }
+}
+@media (max-width: 600px) {
+  body.at-dark .atb-board .atb-controls { flex-direction: row; align-items: center; }
+  body.at-dark .at-join-slot .atb-google { width: auto; justify-content: flex-start; }
+}
+/* Leaderboard page: the gap above the footer text equals the gap under the nav (the footer adds its own 24 px). */
+body.at-dark .at-board-page { margin-bottom: calc(var(--at-space) - 24px); }
+/* Phones: tiles whose text is longer than the square (Parts, can't be scored, result, join) stack — the
+   square on top, the text under it — so the square stays square. The short start tiles stay side by side. */
+@media (max-width: 600px) {
+  body.at-dark .at-feature-part,
+  body.at-dark .at-result-row .at-feature { flex-direction: column; align-items: flex-start; gap: 18px; width: 100%; }
+  body.at-dark .at-feature-part .at-square,
+  body.at-dark .at-result-row .at-square { height: var(--sq); min-height: var(--sq); align-self: flex-start; }
+  body.at-dark .at-feature-part .at-feature-text,
+  body.at-dark .at-result-row .at-feature-text { min-height: 0; width: 100%; max-width: none; gap: 14px; }
+  body.at-dark .at-result-row { row-gap: var(--at-space); }
+}

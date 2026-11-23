@@ -296,7 +296,7 @@ function init() {
     } catch (_) {
       /* browser memory is optional */
     }
-    import('./share.js?v=7')
+    import('./share.js?v=8')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
         /* the result still shows without sharing */
@@ -727,9 +727,9 @@ function init() {
     const head = el('p', 'at-stored-best');
     head.append(el('span', 'at-stored-label', 'Your best on this device'), el('strong', 'at-stored-score', storedScoreText(best)));
     const actions = el('div', 'at-stored-actions');
-    actions.append(actionButton('Share', 'at-btn at-btn-secondary at-btn-small', () => shareStored(best, 'best')));
+    actions.append(actionButton('Share \u203A', 'at-start-link', () => shareStored(best, 'best')));
     if (canJoin(best, now)) {
-      actions.append(actionButton('Put it on the leaderboard', 'at-btn at-btn-secondary at-btn-small', () => joinStored(best, 'best')));
+      actions.append(actionButton('Put it on the leaderboard \u203A', 'at-start-link', () => joinStored(best, 'best')));
     }
     const nodes = [head, actions];
     if (last) {
@@ -806,7 +806,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=15')
+    boardReady = import('./board.js?v=16')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
         if (!$('at-result').hidden) placeNotice(true);

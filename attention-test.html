@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
   <link rel="stylesheet" href="/assets/css/attention-board.css?v=7" />
   <link rel="stylesheet" href="/assets/css/attention-dialog.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=12" />
 </head>
 <body class="at-dark">
 
@@ -267,10 +267,8 @@
             <div class="at-square at-square-result" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
             <div class="at-feature-text">
               <div class="at-feature-top">
-                <p class="at-kicker">Your result</p>
-                <h2 class="at-feature-title at-score" id="at-result-title" tabindex="-1">Attention <span id="at-score">100</span></h2>
+                <h2 class="at-feature-title at-score" id="at-result-title" tabindex="-1" aria-label="Your result">Attention <span id="at-score">100</span></h2>
                 <p class="at-feature-desc"><span class="at-band" id="at-band">Steady</span>. <span id="at-pct">Higher than about 50% of people</span> <span class="at-beta">(beta norms)</span></p>
-                <p class="at-vs" id="at-vs" hidden></p>
               </div>
               <p class="at-tile-links">
                 <button type="button" class="at-start-link" id="at-share-link">Share my score<span aria-hidden="true"> ›</span></button>
@@ -284,6 +282,7 @@
             <div class="at-feature-text at-join-slot" id="at-join-slot"></div>
           </article>
         </div>
+        <p class="at-vs" id="at-vs" hidden></p>
         <ul class="at-tiles" id="at-tiles">
           <li><span class="at-tile-name">Reaction</span><span class="at-tile-raw" id="at-r-raw"></span><span class="at-tile-score" id="at-r-score">100</span></li>
           <li><span class="at-tile-name">Memory</span><span class="at-tile-raw" id="at-m-raw"></span><span class="at-tile-score" id="at-m-score">100</span></li>
@@ -527,7 +526,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/game.js?v=16"></script>
+  <script type="module" src="/assets/js/attention-test/game.js?v=18"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>

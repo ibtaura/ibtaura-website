@@ -40,14 +40,15 @@ SCORING_SRC = os.path.join(ROOT, 'assets', 'js', 'attention-test', 'scoring.js')
 SCORING_DST = os.path.join(ROOT, 'supabase', 'functions', '_shared', 'scoring.js')
 
 W, H = 1200, 630
-BG = (245, 245, 247)
-WHITE = (255, 255, 255)
-INK = (29, 29, 31)
-GREY = (110, 110, 115)
-LIGHT = (134, 134, 139)
-GREEN = (52, 199, 89)
-ORANGE = (255, 107, 53)
-FOOTER = 'adarna.us/attention-test \u00b7 Clarus Health by Adarna Inc.'
+# The site's dark tile design (24 Nov 2026), matching drawPostCard in share.js.
+BG = (0, 0, 0)
+INK = (245, 245, 247)
+GREY = (161, 161, 166)
+FAINT = (134, 134, 139)
+LINE = (41, 41, 41)          # rgba(255,255,255,0.16) on black
+BLUE = (41, 151, 255)
+FOOTER_URL = 'adarna.us/attention-test'
+FOOTER_BRAND = 'Clarus Health by Adarna Inc.'
 
 
 # ---------- scoring copy, mirrors scoring.js (percentileOf, bandOf)
@@ -112,6 +113,7 @@ class Fonts:
                           'semibold': (os.path.join(fonts, 'seguisb.ttf'), 0, None),
                           'bold': (os.path.join(fonts, 'segoeuib.ttf'), 0, None)}),
             ('SF (SFNS.ttf)', {'regular': ('/System/Library/Fonts/SFNS.ttf', 0, 'Regular'),
+                               'medium': ('/System/Library/Fonts/SFNS.ttf', 0, 'Medium'),
                                'semibold': ('/System/Library/Fonts/SFNS.ttf', 0, 'Semibold'),
                                'bold': ('/System/Library/Fonts/SFNS.ttf', 0, 'Bold')}),
             ('Helvetica', {'regular': ('/System/Library/Fonts/Helvetica.ttc', 0, None),
@@ -134,7 +136,7 @@ class Fonts:
         if self.paths is None:
             font = self.IF.load_default(size=size)
         else:
-            path, index, variation = self.paths[weight]
+            path, index, variation = self.paths.get(weight) or self.paths['semibold']  # 'medium' falls back
             font = self.IF.truetype(path, size=size, index=index)
             if variation:
                 try:
@@ -188,75 +190,106 @@ def wrap(draw, text, font, max_w):
     return lines
 
 
+_SQUARE = {}
+
+
+def grain_square(size):
+    """The blue-green square from the page, drawn still (gradient plus four soft lights), cached per size."""
+    if size in _SQUARE:
+        return _SQUARE[size]
+    from PIL import Image
+    import math
+    n = size
+    img = Image.new('RGB', (n, n))
+    px = img.load()
+    stops = [(0.0, (31, 95, 224)), (0.45, (26, 75, 184)), (1.0, (17, 163, 127))]
+    lights = [(0.28, 0.22, 0.6, (77, 134, 255), 0.9), (0.82, 0.86, 0.6, (35, 224, 168), 0.9),
+              (0.86, 0.14, 0.42, (95, 208, 245), 0.7), (0.3, 0.92, 0.42, (154, 240, 210), 0.45)]
+    for y in range(n):
+        for x in range(n):
+            # linear gradient along (0.6, 1)
+            t = (x * 0.6 + y * 1.0) / (n * 1.6)
+            for (t0, c0), (t1, c1) in zip(stops, stops[1:]):
+                if t <= t1:
+                    f = (t - t0) / (t1 - t0)
+                    base = [c0[i] + (c1[i] - c0[i]) * f for i in range(3)]
+                    break
+            r, g, b = base
+            for fx, fy, fr, col, a in lights:
+                dist = math.hypot(x / n - fx, y / n - fy) / fr
+                if dist < 1.6:
+                    k = a * math.exp(-2.6 * dist * dist)  # soft, no visible edge
+                    # screen blend
+                    r = 255 - (255 - r) * (255 - col[0] * k) / 255
+                    g = 255 - (255 - g) * (255 - col[1] * k) / 255
+                    b = 255 - (255 - b) * (255 - col[2] * k) / 255
+            px[x, y] = (int(r), int(g), int(b))
+    _SQUARE[size] = img
+    return img
+
+
 def render_card(fonts, score=None):
-    """1200x630 preview: the same layout as the canvas post card in share.js, without part scores."""
+    """1200x630 preview: the layout of drawPostCard in share.js (dark tile), without part scores."""
     from PIL import Image, ImageDraw
     S = 2  # draw at 2x and scale down for smooth edges
     img = Image.new('RGB', (W * S, H * S), BG)
     d = ImageDraw.Draw(img)
     s = lambda v: int(round(v * S))
 
-    # white card
-    d.rounded_rectangle((s(40), s(40), s(1160), s(590)), radius=s(36), fill=WHITE)
-    left, col_w = 104, 520
+    # the square, with rounded corners
+    sq, top, left = 470, 56, 56
+    tile = grain_square(140).resize((s(sq), s(sq)), Image.BICUBIC)
+    # film grain, like the page: seeded so the images only change when the design does
+    import random
+    rnd = random.Random(7)
+    noise = Image.frombytes('L', tile.size, bytes(rnd.randrange(108, 148) for _ in range(tile.size[0] * tile.size[1])))
+    from PIL import ImageChops
+    tile = ImageChops.overlay(tile, Image.merge('RGB', (noise, noise, noise)))
+    mask = Image.new('L', (s(sq), s(sq)), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, s(sq) - 1, s(sq) - 1), radius=s(20), fill=255)
+    img.paste(tile, (s(left), s(top)), mask)
 
-    # kicker
-    d.ellipse((s(104), s(94), s(122), s(112)), fill=GREEN)
-    draw_text(d, (s(136), s(112)), 'ATTENTION TEST', fonts.get('semibold', s(24)), LIGHT, tracking=s(4))
-
+    x0, x1 = left + sq + 48, W - 56
+    cw = x1 - x0
+    draw_text(d, (s(x0), s(top + 20)), 'CLARUS ATTENTION TEST', fonts.get('semibold', s(18)), FAINT, tracking=s(3))
     if score is not None:
-        draw_text(d, (s(left), s(172)), 'I scored', fit(d, fonts, 'I scored', 'semibold', s(32), s(col_w)), INK)
+        draw_text(d, (s(x0), s(top + 66)), 'I scored', fit(d, fonts, 'I scored', 'medium', s(28), s(cw)), INK)
         num = str(score)
-        draw_text(d, (s(left - 6), s(352)), num, fit(d, fonts, num, 'bold', s(200), s(col_w)), INK)
-        band = band_of(score)
-        draw_text(d, (s(left), s(420)), band, fit(d, fonts, band, 'bold', s(40), s(col_w)), INK)
-        pct = 'Sharper than %d%% of people' % percentile_of(score)
-        draw_text(d, (s(left), s(466)), pct, fit(d, fonts, pct, 'regular', s(28), s(col_w)), GREY)
-        cta = 'Can you beat it?'
+        draw_text(d, (s(x0 - 5), s(top + 190)), num, fit(d, fonts, num, 'semibold', s(130), s(cw)), INK)
+        line = '%s \u00b7 sharper than %d%% of people' % (band_of(score), percentile_of(score))
+        draw_text(d, (s(x0), s(top + 236)), line, fit(d, fonts, line, 'regular', s(22), s(cw)), GREY)
+        cta = 'Can you beat it? \u203a'
     else:
         head = 'How sharp is your attention right now?'
-        size = 64
-        while True:
-            font = fonts.get('bold', s(size))
-            lines = wrap(d, head, font, s(col_w))
-            if len(lines) <= 3 or size <= 30:
-                break
-            size -= 2
-        y = 240
-        for line in lines:
-            draw_text(d, (s(left), s(y)), line, font, INK)
-            y += int(size * 1.15)
-        cta = 'Take the free 2-minute test'
+        font = fonts.get('medium', s(40))
+        y = top + 100
+        for ln in wrap(d, head, font, s(cw)):
+            draw_text(d, (s(x0), s(y)), ln, font, INK)
+            y += 50
+        cta = 'Take the free 2-minute test \u203a'
 
-    # three tiles: what each part tests
-    tiles = [('Reaction', 'Tap the dot'), ('Memory', 'Recall digits'), ('Rules', 'Switch fast')]
-    tx0, tx1, ty, th, gap = 680, 1096, 96, 104, 16
-    for label, sub in tiles:
-        d.rounded_rectangle((s(tx0), s(ty), s(tx1), s(ty + th)), radius=s(24), fill=BG)
-        d.ellipse((s(tx0 + 28), s(ty + th / 2 - 7), s(tx0 + 42), s(ty + th / 2 + 7)), fill=GREEN)
-        draw_text(d, (s(tx0 + 60), s(ty + th / 2)), label, fonts.get('bold', s(32)), INK, anchor='lm')
-        draw_text(d, (s(tx1 - 28), s(ty + th / 2)), sub, fit(d, fonts, sub, 'regular', s(24), s(180)), GREY, anchor='rm')
-        ty += th + gap
+    # what each part tests, as divided rows
+    y, row = top + 262, 50
+    d.rectangle((s(x0), s(y), s(x1), s(y) + S), fill=LINE)
+    for label, sub in [('Reaction', 'Tap the dot'), ('Memory', 'Recall digits'), ('Rules', 'Switch fast')]:
+        draw_text(d, (s(x0), s(y + row / 2)), label, fonts.get('medium', s(22)), INK, anchor='lm')
+        draw_text(d, (s(x1), s(y + row / 2)), sub, fit(d, fonts, sub, 'regular', s(17), s(200)), FAINT, anchor='rm')
+        y += row
+        d.rectangle((s(x0), s(y) - S, s(x1), s(y)), fill=LINE)
 
-    # call to action (orange pill)
-    cfont = fit(d, fonts, cta, 'bold', s(34), s(tx1 - tx0 - 64))
-    cw = text_width(d, cta, cfont)
-    px0, py0, py1 = tx0, 462, 534
-    d.rounded_rectangle((s(px0), s(py0), s(px0) + cw + s(64), s(py1)), radius=s(36), fill=ORANGE)
-    draw_text(d, (s(px0 + 32), s((py0 + py1) / 2)), cta, cfont, WHITE, anchor='lm')
-
-    # footer
-    draw_text(d, (s(left), s(548)), FOOTER, fit(d, fonts, FOOTER, 'regular', s(20), s(col_w)), LIGHT)
-
+    draw_text(d, (s(x0), s(top + sq - 4)), cta, fit(d, fonts, cta, 'medium', s(26), s(cw * 0.6)), BLUE)
+    draw_text(d, (s(x1), s(top + sq - 4)), FOOTER_URL, fit(d, fonts, FOOTER_URL, 'regular', s(18), s(cw * 0.4)), FAINT, anchor='rs')
+    draw_text(d, (s(left), s(top + sq + 46)), FOOTER_BRAND, fonts.get('regular', s(18)), FAINT)
     return img.resize((W, H), Image.LANCZOS)
 
 
 def png_bytes(img):
     """256-colour palette PNG, optimised. Palette entries close to a brand colour snap to it exactly,
-    so the flat areas (page grey, white card, ink, green, orange) keep their true values."""
-    q = img.quantize(colors=256, method=1, dither=0)  # 1 = max coverage: lowest error for flat art
+    so the flat areas (black, ink, greys, blue) keep their true values."""
+    # Floyd-Steinberg dithering keeps the grain square free of bands; text and black stay exact (snapped below).
+    q = img.quantize(colors=256, method=1, dither=1)
     pal = q.getpalette()[:256 * 3]
-    keys = (BG, WHITE, INK, GREY, LIGHT, GREEN, ORANGE)
+    keys = (BG, INK, GREY, FAINT, LINE, BLUE)
     for i in range(0, len(pal), 3):
         c = pal[i:i + 3]
         for k in keys:
@@ -267,7 +300,7 @@ def png_bytes(img):
     buf = io.BytesIO()
     q.save(buf, 'PNG', optimize=True)
     data = buf.getvalue()
-    if len(data) >= 60_000:  # never expected; fall back to full colour if the palette version is big anyway
+    if len(data) >= 120_000:  # never expected; fall back to full colour if the palette version is big anyway
         buf = io.BytesIO()
         img.save(buf, 'PNG', optimize=True)
         data = min(data, buf.getvalue(), key=len)
@@ -295,7 +328,7 @@ def page_html(n):
   <meta name="description" content="{esc(desc)}" />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="{SITE}/attention-test" />
-  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="theme-color" content="#000000" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Adarna" />
   <meta property="og:url" content="{url}" />
@@ -362,9 +395,9 @@ def generate():
     sizes.sort()
     print('image sizes: total %.1f KB, smallest %s %.1f KB, largest %s %.1f KB'
           % (total / 1024, sizes[0][1], sizes[0][0] / 1024, sizes[-1][1], sizes[-1][0] / 1024))
-    over = [nm for sz, nm in sizes if sz >= 60_000]
+    over = [nm for sz, nm in sizes if sz >= 150_000]  # the grain square makes each about 100 KB
     if over:
-        print('WARNING: over 60 KB:', ', '.join(over))
+        print('WARNING: over 150 KB:', ', '.join(over))
 
 
 def read(path):
