@@ -1,0 +1,36 @@
+# Supabase CLI config for the Clarus Attention Test leaderboard (see supabase/README.md).
+# project_id is only a local name; the live project is chosen with `npx supabase link --project-ref <ref>`.
+# Nothing secret belongs in this file: the repo is public.
+project_id = "adarna-attention-test"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[auth]
+enabled = true
+# These auth settings apply to `npx supabase start` (local) only. The live project's settings are set in the
+# dashboard (Authentication -> URL Configuration / Providers), as the README describes.
+site_url = "https://adarna.us"
+additional_redirect_urls = ["https://adarna.us/attention-test", "http://localhost:8787/attention-test"]
+
+[auth.external.google]
+enabled = false
+client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
+skip_nonce_check = false
+
+# Both functions check the caller's sign-in themselves (supabase-js getUser), so the gateway check is off.
+# That also lets the browser's CORS preflight (which carries no token) reach the function.
+[functions.submit-score]
+verify_jwt = false
+
+[functions.delete-me]
+verify_jwt = false

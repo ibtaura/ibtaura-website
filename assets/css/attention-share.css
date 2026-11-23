@@ -1,0 +1,241 @@
+/* Clarus Attention Test: share block (assets/js/attention-test/share.js). */
+
+.ats {
+  --ats-ink: #1d1d1f;
+  --ats-grey: #6e6e73;
+  --ats-line: rgba(0, 0, 0, 0.14);
+  --ats-green: #34C759;
+  --ats-orange: #FF6B35;
+  --ats-focus: #007fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  color: var(--ats-ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+}
+
+.ats,
+.ats *,
+.ats *::before,
+.ats *::after {
+  box-sizing: border-box;
+}
+
+.ats-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+/* name field */
+.ats-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ats-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ats-grey);
+}
+.ats-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 16px; /* 16px keeps iOS from zooming in */
+  color: var(--ats-ink);
+  background: #fff;
+  border: 1px solid var(--ats-line);
+  border-radius: 12px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ats-input::placeholder {
+  color: #a1a1a6;
+}
+.ats-input:focus {
+  outline: none;
+  border-color: var(--ats-focus);
+  box-shadow: 0 0 0 3px rgba(0, 127, 255, 0.25);
+}
+
+/* card preview: the story card, kept to a sensible height */
+.ats-preview {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.ats-preview-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(440px, 62vh);
+  aspect-ratio: 1080 / 1920;
+  border-radius: 18px;
+  background: #f5f5f7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+.ats-preview-img:not([src]) {
+  height: min(440px, 62vh);
+}
+
+/* buttons */
+.ats-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ats-btn,
+.ats-opt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 20px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.ats-btn:active,
+.ats-opt:active {
+  transform: scale(0.98);
+}
+.ats-btn:focus-visible,
+.ats-opt:focus-visible {
+  outline: 3px solid var(--ats-focus);
+  outline-offset: 3px;
+}
+.ats-btn-primary {
+  color: #fff;
+  background: var(--ats-ink);
+  border: 1px solid var(--ats-ink);
+}
+.ats-btn-primary:hover {
+  background: #000;
+}
+.ats-btn-ghost {
+  color: var(--ats-ink);
+  background: #fff;
+  border: 1px solid var(--ats-line);
+}
+.ats-btn-ghost::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ats-orange);
+}
+.ats-btn-ghost:hover {
+  border-color: var(--ats-ink);
+}
+
+/* fallback share panel */
+.ats-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.ats-panel[hidden] {
+  display: none;
+}
+.ats-opt-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.ats-opt-row-download {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.ats-opt-caption {
+  grid-column: 1 / -1;
+  padding-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ats-grey);
+}
+.ats-opt {
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 15px;
+  color: var(--ats-ink);
+  background: #f5f5f7;
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+.ats-opt:hover {
+  border-color: var(--ats-line);
+}
+.ats-opt-copy::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ats-green);
+}
+
+@media (min-width: 600px) {
+  .ats-actions {
+    flex-direction: row;
+  }
+  .ats-actions .ats-btn {
+    flex: 1 1 0;
+  }
+  .ats-opt-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* toast */
+.ats-toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 1000;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  color: #fff;
+  background: rgba(29, 29, 31, 0.94);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.ats-toast.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ats-btn,
+  .ats-opt,
+  .ats-toast {
+    transition: none;
+  }
+}

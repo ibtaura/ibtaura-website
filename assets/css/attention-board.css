@@ -1,0 +1,512 @@
+/* Clarus Attention Test leaderboard (assets/js/attention-test/board.js).
+   Light grey cards like the Clarus Health pages; every class starts with atb-. */
+
+.atb {
+  --atb-card: #f4f5f5;
+  --atb-ink: #1d1d1f;
+  --atb-muted: #6e6e73;
+  --atb-line: rgba(0, 0, 0, 0.08);
+  --atb-blue: #0071e3;
+  --atb-blue-hover: #0064cc;
+  --atb-me: #e6f0fd;
+  --atb-danger: #c4271c;
+  --atb-ok: #1e7f3c;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--atb-ink);
+  text-align: left;
+  scroll-margin-top: 80px;
+}
+
+.atb [hidden] { display: none !important; }
+
+.atb-card {
+  background: var(--atb-card);
+  border-radius: 22px;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.atb-notice { display: flex; flex-direction: column; }
+
+.atb-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--atb-muted);
+}
+
+.atb-title,
+.atb-status-title {
+  margin: 0;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  line-height: 1.15;
+  color: var(--atb-ink);
+}
+
+.atb-sub,
+.atb-status-text {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--atb-muted);
+}
+
+/* ─── Opens soon ─── */
+.atb-soon { text-align: center; padding: 40px 28px; }
+
+/* ─── Status cards (saving, rank, errors) ─── */
+.atb-status.is-ok .atb-eyebrow { color: var(--atb-ok); }
+.atb-status.is-error .atb-status-title { color: var(--atb-danger); }
+.atb-status.is-busy .atb-status-title::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 10px;
+  border: 2px solid var(--atb-line);
+  border-top-color: var(--atb-blue);
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: atb-spin 0.8s linear infinite;
+}
+.atb-status-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+@keyframes atb-spin { to { transform: rotate(360deg); } }
+
+/* ─── Join card ─── */
+.atb-join {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.atb-join-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  padding: 18px 14px;
+  background: #fff;
+  border-radius: 16px;
+}
+.atb-join-score .atb-eyebrow { margin: 0; }
+.atb-join-number {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.atb-join-body { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; min-width: 0; }
+.atb-join-body .atb-status-text { margin: 0; }
+
+.atb-google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border-radius: 980px;
+  border: 1px solid #dadce0;
+  background: #fff;
+  color: #1f1f1f;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.atb-google:hover { background: #f8f9fa; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+.atb-google:disabled { opacity: 0.6; cursor: default; }
+
+.atb-fine { margin: 0; font-size: 12.5px; color: var(--atb-muted); }
+
+/* ─── Buttons, links, inputs ─── */
+.atb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 20px;
+  border-radius: 980px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.atb-btn-primary { background: var(--atb-blue); color: #fff; }
+.atb-btn-primary:hover { background: var(--atb-blue-hover); }
+.atb-btn-ghost { background: transparent; color: var(--atb-ink); border-color: rgba(0, 0, 0, 0.18); }
+.atb-btn-ghost:hover { background: rgba(0, 0, 0, 0.04); border-color: var(--atb-ink); }
+
+.atb-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: #006ddb;
+  cursor: pointer;
+  text-decoration: none;
+}
+.atb-link:hover { text-decoration: underline; }
+.atb-link:disabled { color: var(--atb-muted); cursor: default; text-decoration: none; }
+.atb-danger { color: var(--atb-danger); }
+
+.atb button:focus-visible,
+.atb input:focus-visible,
+.atb-panel:focus-visible {
+  outline: 2px solid var(--atb-blue);
+  outline-offset: 2px;
+}
+
+.atb-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--atb-ink);
+  cursor: pointer;
+}
+.atb-check input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--atb-blue);
+  cursor: pointer;
+}
+
+/* "Show me on the board" as a switch */
+.atb-switch .atb-switch-input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 36px;
+  height: 22px;
+  margin: -1px 0 0;
+  border-radius: 999px;
+  background: #c7c7cc;
+  transition: background 0.2s ease;
+}
+.atb-switch .atb-switch-input::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+.atb-switch .atb-switch-input:checked { background: #34c759; }
+.atb-switch .atb-switch-input:checked::after { transform: translateX(14px); }
+.atb-switch .atb-switch-input:disabled { opacity: 0.5; }
+
+.atb-label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; }
+.atb-input {
+  flex: 1 1 160px;
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--atb-ink);
+  font: inherit;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+.atb-hint { margin: 6px 0 0; font-size: 12.5px; color: var(--atb-muted); }
+.atb-form-msg { margin: 0; font-size: 13.5px; color: var(--atb-muted); min-height: 0; }
+.atb-form-msg:empty { display: none; }
+.atb-edit .atb-form-msg { margin-top: 6px; color: var(--atb-danger); }
+
+/* ─── Board ─── */
+.atb-head { margin-bottom: 18px; }
+
+.atb-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.atb-tabs,
+.atb-seg {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 980px;
+  background: rgba(0, 0, 0, 0.06);
+}
+.atb-tab,
+.atb-seg-btn {
+  min-height: 34px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 980px;
+  background: transparent;
+  color: var(--atb-muted);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.atb-tab:hover,
+.atb-seg-btn:hover { color: var(--atb-ink); }
+.atb-tab[aria-selected='true'],
+.atb-seg-btn[aria-pressed='true'] {
+  background: #fff;
+  color: var(--atb-ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.atb-panel { position: relative; min-height: 120px; border-radius: 14px; }
+.atb-panel.is-loading .atb-list { opacity: 0.45; transition: opacity 0.2s ease; }
+.atb-panel.is-loading:empty::before,
+.atb-panel.is-loading .atb-list:empty::before {
+  content: 'Loading…';
+  display: block;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--atb-muted);
+}
+
+.atb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.atb-list:empty { background: transparent; }
+
+.atb-row {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto 48px;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  font-size: 15px;
+  border-top: 1px solid var(--atb-line);
+}
+.atb-row:first-child { border-top: 0; }
+.atb-row.is-me { background: var(--atb-me); }
+.atb-row.is-new { animation: atb-flash 1.6s ease-out 1; }
+@keyframes atb-flash {
+  0% { background: #bcd7fb; }
+  100% { background: var(--atb-me); }
+}
+
+.atb-rank { font-weight: 600; color: var(--atb-muted); font-variant-numeric: tabular-nums; }
+.atb-row:nth-child(-n + 3) .atb-rank { color: var(--atb-ink); }
+.atb-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.atb-name-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.atb-you {
+  flex: none;
+  padding: 1px 8px;
+  border-radius: 980px;
+  background: var(--atb-blue);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.atb-dev { font-size: 12.5px; color: var(--atb-muted); }
+.atb-score {
+  text-align: right;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.atb-empty,
+.atb-error p {
+  margin: 0;
+  padding: 32px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--atb-muted);
+  background: #fff;
+  border-radius: 14px;
+}
+.atb-error { display: flex; flex-direction: column; align-items: center; gap: 4px; background: #fff; border-radius: 14px; padding-bottom: 20px; }
+.atb-error p { padding-bottom: 8px; }
+
+.atb-me {
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--atb-me);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.atb-signin { margin: 16px 0 0; font-size: 14px; color: var(--atb-muted); }
+
+/* ─── Global | Friends ─── */
+.atb-scope {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 12px;
+  padding: 4px;
+  border-radius: 980px;
+  background: rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+.atb-scope-btn {
+  flex: 1 1 0;
+  min-height: 38px;
+  padding: 6px 16px;
+  border: 0;
+  border-radius: 980px;
+  background: transparent;
+  color: var(--atb-muted);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.atb-scope-btn:hover { color: var(--atb-ink); }
+.atb-scope-btn[aria-pressed='true'] { background: var(--atb-blue); color: #fff; }
+
+/* Friend notices: "You and Priya are now friends", "Sign in to add Priya as a friend" */
+.atb-friend-notice,
+.atb-invite {
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.atb-friend-notice { background: #e8f5ec; color: var(--atb-ok); font-weight: 500; }
+.atb-invite { background: #fff; color: var(--atb-ink); }
+
+/* Friends scope messages in place of the list */
+.atb-friends-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 14px;
+}
+.atb-friends-title {
+  margin: 0;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+  color: var(--atb-ink);
+}
+.atb-friends-card .atb-status-text { margin: 0; }
+
+.atb-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 100%; }
+.atb-copy-lead { margin: 0; font-size: 14px; color: var(--atb-muted); }
+.atb-copy-field { width: 100%; flex: none; font-size: 14px; }
+.atb-friends-foot { margin-top: 14px; }
+
+/* Friends rows get a Remove control */
+.atb-row.has-remove { grid-template-columns: 52px minmax(0, 1fr) auto 48px 64px; }
+.atb-remove {
+  justify-self: end;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 980px;
+  background: transparent;
+  color: var(--atb-muted);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.atb-remove:hover { color: var(--atb-danger); border-color: var(--atb-danger); }
+.atb-remove:disabled { opacity: 0.5; cursor: default; }
+
+/* Compact board: link to the full page */
+.atb-more { margin: 16px 0 0; font-size: 15px; }
+.atb-more-link { color: #006ddb; font-weight: 500; text-decoration: none; }
+.atb-more-link:hover { text-decoration: underline; }
+.atb-more-link:focus-visible { outline: 2px solid var(--atb-blue); outline-offset: 2px; border-radius: 4px; }
+
+/* ─── Signed-in account ─── */
+.atb-account {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--atb-line);
+}
+.atb-who { margin: 0; font-size: 14px; color: var(--atb-muted); }
+.atb-who-name { color: var(--atb-ink); font-weight: 600; overflow-wrap: anywhere; }
+.atb-actions { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.atb-edit { padding: 14px; background: #fff; border-radius: 14px; }
+.atb-edit-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ─── Small screens (down to 360 px) ─── */
+@media (max-width: 600px) {
+  .atb-card { padding: 20px 16px; border-radius: 18px; }
+  .atb-title,
+  .atb-status-title { font-size: 22px; }
+  .atb-join { grid-template-columns: 1fr; gap: 16px; }
+  .atb-join-score { flex-direction: row; justify-content: space-between; min-width: 0; padding: 12px 16px; }
+  .atb-join-number { font-size: 36px; }
+  .atb-google { width: 100%; }
+  .atb-controls { flex-direction: column; align-items: stretch; }
+  .atb-tabs,
+  .atb-seg { display: flex; }
+  .atb-tab,
+  .atb-seg-btn { flex: 1 1 0; padding: 6px 8px; }
+  .atb-row { grid-template-columns: 40px minmax(0, 1fr) auto 40px; gap: 8px; padding: 10px 12px; font-size: 14.5px; }
+  .atb-dev { font-size: 11.5px; }
+  .atb-scope { max-width: none; }
+  .atb-friends-card { padding: 20px 16px; }
+  .atb-friends-card .atb-btn { width: 100%; }
+  .atb-friends-foot .atb-btn { width: 100%; }
+  /* Friends rows: drop the device label to make room for Remove (the device filter is still above). */
+  .atb-row.has-remove { grid-template-columns: 36px minmax(0, 1fr) 40px auto; }
+  .atb-row.has-remove .atb-dev { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atb *,
+  .atb *::before,
+  .atb *::after { animation: none !important; transition: none !important; }
+}
+
+/* ─── /attention-test/leaderboard page hero (the buttons come from attention-test.css) ─── */
+.at-lb-hero { --at-blue: #0071e3; }
+.at-lb-hero .at-btn { text-decoration: none; }
+.at-lb-hero .at-btn:focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }

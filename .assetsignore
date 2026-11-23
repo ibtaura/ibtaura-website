@@ -16,3 +16,4 @@ wrangler.jsonc
 scripts/
 memory/
 CLAUDE.md
+supabase/
