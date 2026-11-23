@@ -108,16 +108,17 @@ export function cardData(result, name, level) {
     level: lvl,
     levelLabel: LEVEL_LABELS[lvl],
     bonus,
+    // A score-only result (a best score saved before part data was kept) shows what each part tests instead.
     parts: [
-      { label: 'Reaction', score: r.score, detail: Number.isFinite(r.medianMs) ? `${r.medianMs} ms` : '' },
-      { label: 'Memory', score: m.score, detail: Number.isFinite(m.bestSpan) ? `${m.bestSpan} digits` : '' },
-      { label: 'Rules', score: ru.score, detail: Number.isFinite(ru.total) ? `${ru.correct}/${ru.total} right` : '' },
+      { label: 'Reaction', score: r.score, detail: Number.isFinite(r.medianMs) ? `${r.medianMs} ms` : '', hint: 'Tap the dot' },
+      { label: 'Memory', score: m.score, detail: Number.isFinite(m.bestSpan) ? `${m.bestSpan} digits` : '', hint: 'Recall digits' },
+      { label: 'Rules', score: ru.score, detail: Number.isFinite(ru.total) ? `${ru.correct}/${ru.total} right` : '', hint: 'Switch fast' },
     ],
   };
 }
 
 function altText(d) {
-  const parts = d.parts.map((p) => `${p.label} ${p.score ?? '-'}`).join(', ');
+  const parts = d.parts.map((p) => (Number.isFinite(p.score) ? `${p.label} ${p.score}` : p.label)).join(', ');
   const bonus = d.bonus > 0 ? ` including a ${d.bonus}-point ${d.levelLabel} bonus` : '';
   return `Attention Test score card: ${d.score} on ${d.levelLabel}${bonus}, ${d.band}, sharper than ${d.pct}% of people. ${parts}.`;
 }
@@ -272,7 +273,11 @@ export function drawStoryCard(d) {
     const lw = Math.min(widthOf(ctx, p.label), tw - 80);
     dot(ctx, tcx - lw / 2 - 20, 1165 - 11, 9);
     fillText(ctx, p.label, tcx + 10, 1165, { weight: 600, size: 32, maxW: tw - 80, color: C.grey, align: 'center' });
-    fillText(ctx, String(p.score ?? '-'), tcx, 1300, { weight: 700, size: 112, maxW: tw - 40, color: C.ink, align: 'center' });
+    if (!Number.isFinite(p.score)) {
+      fillText(ctx, p.hint, tcx, 1290, { weight: 600, size: 38, maxW: tw - 40, color: C.ink, align: 'center' });
+      return;
+    }
+    fillText(ctx, String(p.score), tcx, 1300, { weight: 700, size: 112, maxW: tw - 40, color: C.ink, align: 'center' });
     if (p.detail) fillText(ctx, p.detail, tcx, 1350, { weight: 400, size: 30, maxW: tw - 40, color: C.light, align: 'center' });
   });
 
@@ -314,7 +319,8 @@ export function drawPostCard(d) {
     const hasDetail = Boolean(p.detail);
     fillText(ctx, p.label, x0 + 60, y + (hasDetail ? 50 : 63), { weight: 700, size: 30, maxW: 200, color: C.ink });
     if (hasDetail) fillText(ctx, p.detail, x0 + 60, y + 82, { weight: 400, size: 22, maxW: 200, color: C.grey });
-    fillText(ctx, String(p.score ?? '-'), x1 - 28, y + 70, { weight: 700, size: 52, maxW: 130, color: C.ink, align: 'right' });
+    if (Number.isFinite(p.score)) fillText(ctx, String(p.score), x1 - 28, y + 70, { weight: 700, size: 52, maxW: 130, color: C.ink, align: 'right' });
+    else fillText(ctx, p.hint, x1 - 28, y + 63, { weight: 400, size: 24, maxW: 180, color: C.grey, align: 'right' });
     y += 120;
   }
 

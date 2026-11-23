@@ -1206,7 +1206,7 @@ function createBoard(el, variant) {
 
   /** The challenge link for the best score: the share sheet on phones, otherwise copied. */
   async function shareBestLink(score, level) {
-    const mod = await import('./share.js?v=3');
+    const mod = await import('./share.js?v=4');
     const url = mod.shareUrl(score, profile ? profile.display_name : '', mod.loadFriendCode() || ownCode() || '', level);
     const text = mod.shareText(score, level);
     const canShare = typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
@@ -1245,7 +1245,7 @@ function createBoard(el, variant) {
         showBest(null); // no valid play any more
         return;
       }
-      // Only v2 runs re-score (checkRun's 'badVersion' test); older runs stored before scoring v2 share the link.
+      // Only v2 runs re-score (checkRun's 'badVersion' test); older runs get a score-only card.
       if (row && row.raw && typeof row.raw === 'object' && checkRun(row.raw) !== 'badVersion') {
         let result = null;
         try {
@@ -1255,7 +1255,7 @@ function createBoard(el, variant) {
         }
         if (result && result.valid && Number.isFinite(result.overall)) {
           showBest({ score: result.overall, level: levelOf(result.level) || levelOf(row.level) });
-          const { openShareDialog } = await import('./share-dialog.js?v=1');
+          const { openShareDialog } = await import('./share-dialog.js?v=2');
           track('share_open', { channel: 'best', kind: 'card' });
           bestBusy = false;
           bestBtn.removeAttribute('aria-busy');
@@ -1263,14 +1263,27 @@ function createBoard(el, variant) {
           return;
         }
       }
-      // An old (v1) run that scoring.js can't re-score, or my_best() not deployed yet: share the link.
+      // An old (v1) run that scoring.js can't re-score, or my_best() not deployed yet: a score-only card.
       const score = row ? Number(row.overall) : best && best.score;
       const level = levelOf(row ? row.level : best && best.level) || 'normal';
       if (!Number.isFinite(score)) {
         bestMsg.textContent = 'Couldn’t load your best score. Please try again.';
         return;
       }
-      await shareBestLink(score, level);
+      // Score-only card: old runs can't be re-drawn part by part, so the card shows the score and level.
+      try {
+        const { openShareDialog } = await import('./share-dialog.js?v=2');
+        track('share_open', { channel: 'best', kind: 'card_score_only' });
+        bestBusy = false;
+        bestBtn.removeAttribute('aria-busy');
+        await openShareDialog({
+          result: { valid: true, overall: score, level, bonus: 0, scoreOnly: true },
+          run: { level },
+          title: 'Share your best score',
+        });
+      } catch (_) {
+        await shareBestLink(score, level);
+      }
     } catch (_) {
       bestMsg.textContent = 'Couldn’t share your best score. Please try again.';
       track('leaderboard_error', { reason: 'share_best' });

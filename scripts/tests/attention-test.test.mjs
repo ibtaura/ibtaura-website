@@ -9,7 +9,7 @@ import {
   REACTION, MEMORY, RULES, LEVELS, LEVEL_KEYS, DEFAULT_LEVEL, LEVEL_BONUS, SCORING_VERSION, NORMS_VERSION, WEIGHTS, COMPOSITE_SD,
   LEVEL_NORMS, scoreRun, scoreReaction, scoreMemory, scoreRules, checkRun,
 } from '../../assets/js/attention-test/scoring.js';
-import { shareUrl, shareText, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=3';
+import { shareUrl, shareText, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=4';
 import { LAST_KEY, BEST_KEY, MAX_AGE_MS, saveRun, loadStored, readEntry, validEntry, canJoin, clearStored, agoText } from '../../assets/js/attention-test/stored.js';
 
 /** A scripted random source: returns the values in turn, then repeats the last. */

@@ -342,7 +342,7 @@ function init() {
     } catch (_) {
       /* browser memory is optional */
     }
-    import('./share.js?v=3')
+    import('./share.js?v=4')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
         /* the result still shows without sharing */
@@ -734,7 +734,7 @@ function init() {
 
   function shareStored(entry, which) {
     track('stored_share', storedParams(entry, which));
-    import('./share-dialog.js?v=1')
+    import('./share-dialog.js?v=2')
       .then((m) => m.openShareDialog({ result: entry.result, run: entry.run, title: which === 'best' ? 'Share your best score' : 'Share your last score' }))
       .catch(() => announce('Sharing is not available right now.'));
   }
@@ -846,7 +846,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=7')
+    boardReady = import('./board.js?v=8')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
       })
