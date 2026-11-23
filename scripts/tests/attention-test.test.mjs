@@ -9,7 +9,7 @@ import {
   REACTION, MEMORY, RULES, LEVELS, LEVEL_KEYS, DEFAULT_LEVEL, LEVEL_BONUS, SCORING_VERSION, NORMS_VERSION, WEIGHTS, COMPOSITE_SD,
   LEVEL_NORMS, scoreRun, scoreReaction, scoreMemory, scoreRules, checkRun,
 } from '../../assets/js/attention-test/scoring.js';
-import { shareUrl, shareText, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=4';
+import { shareUrl, shareText, shareMessage, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=5';
 import { LAST_KEY, BEST_KEY, MAX_AGE_MS, saveRun, loadStored, readEntry, validEntry, canJoin, clearStored, agoText } from '../../assets/js/attention-test/stored.js';
 
 /** A scripted random source: returns the values in turn, then repeats the last. */
@@ -920,4 +920,12 @@ test('stored: agoText', () => {
   assert.equal(agoText(now - 30 * 3600_000, now), 'yesterday');
   assert.equal(agoText(now - 3 * 86400_000, now), '3 days ago');
   assert.match(agoText(now - 30 * 86400_000, now), /^on [A-Z][a-z]{2} \d{1,2}$/);
+});
+
+test('shareMessage puts the link in the text and invites to the Friends board when there is a friend code', () => {
+  const withCode = shareMessage(118, 'hard', 'https://adarna.us/attention-test/s/118?by=Priya&f=abcd2345&l=hard');
+  assert.ok(withCode.startsWith('I scored 118 on Hard'));
+  assert.ok(withCode.endsWith('Play and join my Friends board: https://adarna.us/attention-test/s/118?by=Priya&f=abcd2345&l=hard'));
+  const noCode = shareMessage(118, 'normal', 'https://adarna.us/attention-test/s/118');
+  assert.ok(noCode.endsWith('Play here: https://adarna.us/attention-test/s/118'));
 });

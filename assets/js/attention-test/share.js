@@ -92,6 +92,18 @@ export function shareText(score, level) {
   return `I scored ${score} on ${label} on the Clarus Attention Test (sharper than ${percentileOf(score)}% of people). Can you beat me? \u{1F9E0}`;
 }
 
+/**
+ * The message that goes with a shared image: the score line plus the link, inside the text. Many apps
+ * (WhatsApp, Instagram, Telegram) drop the separate url field when a file is attached, so the link must be
+ * in the text. A link with a friend code (f=) also invites the reader to the sharer's Friends board.
+ */
+export function shareMessage(score, level, url) {
+  const invite = /[?&]f=/.test(String(url)) ? 'Play and join my Friends board' : 'Play here';
+  return `${shareText(score, level)}
+
+${invite}: ${url}`;
+}
+
 /** The numbers the cards show, from scoreRun()'s result. `level` defaults to result.level. */
 export function cardData(result, name, level) {
   const score = result.overall;
@@ -557,7 +569,8 @@ export function mountShare(el, { result, run } = {}) {
     // The story file is drawn ahead of time, so share() runs inside the tap (Safari needs that).
     if (canShareFile()) {
       try {
-        await navigator.share({ files: [story.file], title: 'Clarus Attention Test', text: shareText(score, level), url: currentUrl() });
+        // No separate url: the link sits in the text, which apps keep alongside the image.
+        await navigator.share({ files: [story.file], title: 'Clarus Attention Test', text: shareMessage(score, level, currentUrl()) });
         track('share', { method: 'native' });
         return;
       } catch (err) {

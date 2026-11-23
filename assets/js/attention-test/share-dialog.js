@@ -190,7 +190,7 @@ export function openShareDialog({ result, run, title } = {}) {
   closeBtn.focus();
   current = close;
 
-  Promise.all([ensureCss(), import('./share.js?v=4')])
+  Promise.all([ensureCss(), import('./share.js?v=5')])
     .then(([, mod]) => {
       if (closed) return;
       const mount = h('div', { class: 'atd-share' });
