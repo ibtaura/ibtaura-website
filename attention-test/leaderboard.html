@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="theme-color" content="#000000" />
   <meta name="google-site-verification" content="K-g3yFTIMBtNPSRqDhcoGiYalnTWt61Vxw5HGrGh3_g" />
   <meta name="color-scheme" content="light only" />
   <meta name="supported-color-schemes" content="light only" />
@@ -61,12 +61,13 @@
   <link rel="stylesheet" href="/assets/css/style.css?v=35" />
   <link rel="stylesheet" href="/assets/css/clarus.css?v=2" />
   <link rel="stylesheet" href="/assets/css/landing.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-test.css?v=3" />
+  <link rel="stylesheet" href="/assets/css/attention-test.css?v=4" />
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-board.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/attention-board.css?v=7" />
   <link rel="stylesheet" href="/assets/css/attention-dialog.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=1" />
 </head>
-<body>
+<body class="at-dark">
 
   <div class="announcement-bar">
     <p>New: how sharp is your attention right now? Take the free 2-minute test. <a href="/attention-test" class="announcement-cta">Play now &rsaquo;</a></p>
@@ -92,7 +93,7 @@
     <section class="lp-card lp-hero at-lb-hero" aria-labelledby="lb-title">
       <p class="lp-eyebrow">Clarus Attention Test</p>
       <h1 id="lb-title">Leaderboard</h1>
-      <p class="lp-lead">Each player's best Attention score, ranked today, this week and of all time. Easy, Normal and Hard runs share one board: Hard earns bonus points and Easy scores a little lower. Switch to Friends to see how you rank against the people you challenged.</p>
+      <p class="lp-lead">Each player's best Attention score, ranked today, this week and of all time. Switch to Friends to see how you rank against the people you challenged.</p>
       <a href="/attention-test" class="at-btn at-btn-primary at-btn-big">Take the test</a>
     </section>
 
@@ -229,7 +230,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/leaderboard-page.js?v=9"></script>
+  <script type="module" src="/assets/js/attention-test/leaderboard-page.js?v=10"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>

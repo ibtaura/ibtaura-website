@@ -36,7 +36,7 @@ const FULL_BOARD_PATH = '/attention-test/leaderboard';
 const GAME_PATH = '/attention-test';
 const PUBLIC_ORIGIN = 'https://adarna.us';
 const INVITE_OK_KEY = 'at-invite-ok'; // sessionStorage: the invite code the visitor agreed to add before the Google round trip
-const VARIANTS = { compact: 5, full: 100 }; // rows shown; the board() rpc caps at 100
+const VARIANTS = { compact: 10, full: 100 }; // rows shown; the board() rpc caps at 100
 const DAILY_LIMIT = 20;
 
 const PERIODS = [
@@ -50,8 +50,8 @@ const DEVICES = [
   ['computer', 'Computer'],
 ];
 const DEVICE_LABEL = { phone: 'Phone', computer: 'Computer' };
-// One shared board for every level (scoring.js adds the level bonus to the overall score); each row shows the
-// level of that person's best run. Rows from before the levels migration have no level and show nothing.
+// One score for everyone (23 Nov 2026): the game plays one level, so rows no longer show a level badge. Rows
+// still carry a level from older runs; levelOf is kept only to read those safely.
 const LEVEL_LABEL = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
 const levelOf = (value) => (Object.prototype.hasOwnProperty.call(LEVEL_LABEL, value) ? value : null);
 const SCOPES = [
@@ -460,9 +460,12 @@ function createBoard(el, variant) {
     'aria-labelledby': `${uid}-tab-${period}`,
     'aria-busy': 'true',
     tabindex: '0',
-  }, list, empty, panelError, friendsBox);
+  }, h('div', { class: 'atb-cols', 'aria-hidden': 'true' },
+    h('span', { text: 'Rank' }), h('span', { text: 'Player' }), h('span', { text: 'Score' }),
+  ), list, empty, panelError, friendsBox);
 
-  const me = h('p', { class: 'atb-me', role: 'status', hidden: true });
+  // The caller's own row, pinned under the list (renderMe).
+  const me = h('div', { class: 'atb-me', role: 'status', 'aria-label': 'Your rank', hidden: true });
 
   // "You and Priya are now friends on the board", "Sign in to add Priya as a friend".
   const friendNotice = h('p', { class: 'atb-friend-notice', role: 'status', hidden: true });
@@ -706,8 +709,7 @@ function createBoard(el, variant) {
     if (status === 200) {
       retryPending = null;
       track('leaderboard_joined', { rank: body.rankToday || 0 });
-      const level = levelOf(body.level) || levelOf(pending.run && pending.run.level);
-      const bits = [level ? `Score ${body.score} on ${LEVEL_LABEL[level]}` : `Score ${body.score}`];
+      const bits = [`Score ${body.score}`];
       if (body.rankAll) bits.push(`#${fmt(body.rankAll)} all time`);
       showNotice(statusCard({
         kind: 'ok',
@@ -860,31 +862,59 @@ function createBoard(el, variant) {
     return (PERIODS.find((p) => p[0] === key) || PERIODS[0])[2];
   }
 
-  /** "Hard" (accent) or "Easy" (muted) after the name; Normal, the default, shows nothing. */
-  function levelBadge(value) {
-    const level = levelOf(value);
-    if (!level || level === 'normal') return null;
-    return h('span', { class: `atb-level is-${level}`, title: `Played on ${LEVEL_LABEL[level]}` },
-      h('span', { class: 'atb-sr', text: 'Level ' }),
-      LEVEL_LABEL[level],
-    );
+  /** Standard leaderboard rank cell: 1, 2 and 3 get a medal circle; the rest a plain number. */
+  function rankCell(rank) {
+    const n = Number(rank);
+    const medal = n >= 1 && n <= 3 ? ` is-top is-top-${n}` : '';
+    return h('span', { class: `atb-rank${medal}`, text: Number.isFinite(n) && n > 0 ? fmt(n) : '–' });
   }
 
-  /** " on Hard" for the status lines, or '' when the level is unknown. */
-  function onLevel(value) {
-    const level = levelOf(value);
-    return level ? ` on ${LEVEL_LABEL[level]}` : '';
+  /** The first letter of a display name, for the round avatar. */
+  function avatar(name) {
+    const first = Array.from(String(name || '').trim())[0] || '?';
+    return h('span', { class: 'atb-avatar', 'aria-hidden': 'true', text: first.toUpperCase() });
   }
+
+  /**
+   * The caller's own row, pinned under the list like a standard leaderboard: rank, avatar, name with a
+   * "You" chip and a short line under it, and the score. rank / score are null when there is none yet.
+   */
+  function renderMe({ rank = null, name = '', line = '', score = null }) {
+    me.replaceChildren(
+      h('div', { class: 'atb-row atb-me-row is-me' },
+        rankCell(rank),
+        avatar(name || 'You'),
+        h('span', { class: 'atb-name' },
+          h('span', { class: 'atb-name-line' },
+            h('span', { class: 'atb-name-text', text: name || 'You' }),
+            name ? h('span', { class: 'atb-you', text: 'You' }) : null,
+          ),
+          line ? h('span', { class: 'atb-me-line', text: line }) : null,
+        ),
+        h('span', { class: 'atb-score', text: score === null || score === undefined ? '–' : String(score) }),
+      ),
+    );
+    me.hidden = false;
+  }
+
+  /** The pinned row for someone who isn't signed in: no rank yet, and how to get one. */
+  function renderMeSignedOut() {
+    renderMe({ line: 'Play and join to get your rank.' });
+  }
+
+  const myName = () => (profile && profile.display_name) || '';
 
   function row(entry) {
     const isMe = entry.is_me === true;
     const when = entry.achieved_at ? new Date(entry.achieved_at) : null;
     const li = h('li', { class: `atb-row${isMe ? ' is-me' : ''}${isMe && flashNext ? ' is-new' : ''}` },
-      h('span', { class: 'atb-rank', text: `#${fmt(entry.rank)}` }),
+      rankCell(entry.rank),
+      avatar(entry.display_name),
       h('span', { class: 'atb-name' },
-        h('span', { class: 'atb-name-text', text: entry.display_name }),
-        isMe ? h('span', { class: 'atb-you', text: 'You' }) : null,
-        levelBadge(entry.level),
+        h('span', { class: 'atb-name-line' },
+          h('span', { class: 'atb-name-text', text: entry.display_name }),
+          isMe ? h('span', { class: 'atb-you', text: 'You' }) : null,
+        ),
       ),
       h('span', { class: 'atb-dev', text: DEVICE_LABEL[entry.device] || '' }),
       h('span', { class: 'atb-score', text: String(entry.score) }),
@@ -968,18 +998,17 @@ function createBoard(el, variant) {
     }
 
     if (!session) {
-      me.hidden = true;
+      renderMeSignedOut();
       return;
     }
     const mine = !meRes.error && Array.isArray(meRes.data) ? meRes.data[0] : null;
     if (mine) {
-      let text = `You’re #${fmt(mine.rank)} of ${fmt(mine.total)} ${periodWord(p)}, best score ${mine.score}${onLevel(mine.level)}`;
-      if (mine.hidden) text += ' (hidden from the global board)';
-      me.textContent = `${text}.`;
+      let line = `#${fmt(mine.rank)} of ${fmt(mine.total)} ${periodWord(p)}`;
+      if (mine.hidden) line += ' · hidden from the global board';
+      renderMe({ rank: mine.rank, name: myName(), line, score: mine.score });
     } else {
-      me.textContent = `No score from you ${periodWord(p)} yet.`;
+      renderMe({ name: myName(), line: `No score from you ${periodWord(p)} yet.` });
     }
-    me.hidden = false;
   }
 
   async function loadFriends(seq, p, d) {
@@ -1023,10 +1052,11 @@ function createBoard(el, variant) {
         : `No scores from you or your friends ${periodWord(p)} yet.`;
     }
     const mine = rows.find((r) => r.is_me === true);
-    me.textContent = mine
-      ? `You’re #${fmt(mine.rank)} of ${fmt(rows.length)} among friends ${periodWord(p)}, best score ${mine.score}${onLevel(mine.level)}.`
-      : `No score from you ${periodWord(p)} yet.`;
-    me.hidden = false;
+    if (mine) {
+      renderMe({ rank: mine.rank, name: mine.display_name || myName(), line: `#${fmt(mine.rank)} of ${fmt(rows.length)} among friends ${periodWord(p)}`, score: mine.score });
+    } else {
+      renderMe({ name: myName(), line: `No score from you ${periodWord(p)} yet.` });
+    }
     friendsFoot.hidden = false;
   }
 
@@ -1220,12 +1250,12 @@ function createBoard(el, variant) {
       bestField.hidden = true;
       return;
     }
-    bestLead.textContent = `Your best score is ${best.score}${onLevel(best.level)}. Share it with friends.`;
+    bestLead.textContent = `Your best score is ${best.score}. Share it with friends.`;
   }
 
   /** The challenge link for the best score: the share sheet on phones, otherwise copied. */
   async function shareBestLink(score, level) {
-    const mod = await import('./share.js?v=5');
+    const mod = await import('./share.js?v=6');
     const url = mod.shareUrl(score, profile ? profile.display_name : '', mod.loadFriendCode() || ownCode() || '', level);
     const text = mod.shareText(score, level);
     const canShare = typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
@@ -1274,7 +1304,7 @@ function createBoard(el, variant) {
         }
         if (result && result.valid && Number.isFinite(result.overall)) {
           showBest({ score: result.overall, level: levelOf(result.level) || levelOf(row.level) });
-          const { openShareDialog } = await import('./share-dialog.js?v=3');
+          const { openShareDialog } = await import('./share-dialog.js?v=4');
           track('share_open', { channel: 'best', kind: 'card' });
           bestBusy = false;
           bestBtn.removeAttribute('aria-busy');
@@ -1291,7 +1321,7 @@ function createBoard(el, variant) {
       }
       // Score-only card: old runs can't be re-drawn part by part, so the card shows the score and level.
       try {
-        const { openShareDialog } = await import('./share-dialog.js?v=3');
+        const { openShareDialog } = await import('./share-dialog.js?v=4');
         track('share_open', { channel: 'best', kind: 'card_score_only' });
         bestBusy = false;
         bestBtn.removeAttribute('aria-busy');

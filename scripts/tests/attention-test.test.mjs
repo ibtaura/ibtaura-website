@@ -9,7 +9,7 @@ import {
   REACTION, MEMORY, RULES, LEVELS, LEVEL_KEYS, DEFAULT_LEVEL, LEVEL_BONUS, SCORING_VERSION, NORMS_VERSION, WEIGHTS, COMPOSITE_SD,
   LEVEL_NORMS, scoreRun, scoreReaction, scoreMemory, scoreRules, checkRun,
 } from '../../assets/js/attention-test/scoring.js';
-import { shareUrl, shareText, shareMessage, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=5';
+import { shareUrl, shareText, shareMessage, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=6';
 import { LAST_KEY, BEST_KEY, MAX_AGE_MS, saveRun, loadStored, readEntry, validEntry, canJoin, clearStored, agoText } from '../../assets/js/attention-test/stored.js';
 
 /** A scripted random source: returns the values in turn, then repeats the last. */
@@ -732,16 +732,13 @@ test('loadFriendCode reads localStorage at call time and survives missing or bro
   }
 });
 
-test('shareUrl carries the level, leaving out normal and anything unknown', () => {
+test('shareUrl never carries a level (one score since 23 Nov 2026)', () => {
   const base = 'https://adarna.us/attention-test/s/118';
-  assert.equal(shareUrl(118, 'Priya', 'abcd2345', 'hard'), `${base}?by=Priya&f=abcd2345&l=hard`);
-  assert.equal(shareUrl(118, '', '', 'easy'), `${base}?l=easy`);
-  assert.equal(shareUrl(118, 'Priya', 'abcd2345', 'normal'), `${base}?by=Priya&f=abcd2345`);
+  assert.equal(shareUrl(118, 'Priya', 'abcd2345', 'hard'), `${base}?by=Priya&f=abcd2345`);
+  assert.equal(shareUrl(118, '', '', 'easy'), base);
+  assert.equal(shareUrl(118, 'Priya', 'abcd2345'), `${base}?by=Priya&f=abcd2345`);
   assert.equal(shareUrl(118, 'Priya'), `${base}?by=Priya`);
-  for (const bad of ['HARD', 'bad', '__proto__', { toString: () => 'hard' }, null]) {
-    assert.equal(shareUrl(118, '', '', bad), base);
-  }
-  assert.equal(shareUrl(118, '', 'bad-code', 'hard'), `${base}?l=hard`);
+  assert.equal(shareUrl(118, '', 'bad-code'), base);
 });
 
 test('cleanLevel keeps only the three level keys', () => {
@@ -749,9 +746,9 @@ test('cleanLevel keeps only the three level keys', () => {
   for (const bad of [undefined, '', 'Hard', 'constructor']) assert.equal(cleanLevel(bad), 'normal');
 });
 
-test('share text and card data name the level and bonus', () => {
-  assert.ok(shareText(118, 'hard').startsWith('I scored 118 on Hard on the Clarus Attention Test'));
-  assert.ok(shareText(118).includes('on Normal'));
+test('share text names no level; card data still reads old runs safely', () => {
+  assert.ok(shareText(118).startsWith('I scored 118 on the Clarus Attention Test'));
+  assert.ok(!/Normal|Hard|Easy/.test(shareText(118, 'hard')));
   const hard = cardData({ valid: true, overall: 128, bonus: 10, level: 'hard' }, 'Priya');
   assert.equal(hard.level, 'hard'); assert.equal(hard.levelLabel, 'Hard'); assert.equal(hard.bonus, 10);
   const plain = cardData({ valid: true, overall: 100 }, 'Priya');
@@ -924,7 +921,7 @@ test('stored: agoText', () => {
 
 test('shareMessage puts the link in the text and invites to the Friends board when there is a friend code', () => {
   const withCode = shareMessage(118, 'hard', 'https://adarna.us/attention-test/s/118?by=Priya&f=abcd2345&l=hard');
-  assert.ok(withCode.startsWith('I scored 118 on Hard'));
+  assert.ok(withCode.startsWith('I scored 118 on the Clarus Attention Test'));
   assert.ok(withCode.endsWith('Play and join my Friends board: https://adarna.us/attention-test/s/118?by=Priya&f=abcd2345&l=hard'));
   const noCode = shareMessage(118, 'normal', 'https://adarna.us/attention-test/s/118');
   assert.ok(noCode.endsWith('Play here: https://adarna.us/attention-test/s/118'));

@@ -5,7 +5,7 @@
 // engine, so a dot or digit is timed from the frame that first paints it. Presses use the event's own timestamp
 // (the same clock as performance.now()), falling back to performance.now().
 
-import { MEMORY, RULES, LEVELS, LEVEL_KEYS, DEFAULT_LEVEL, levelOf, scoreRun, checkRun, percentileOf, bandOf } from './scoring.js?v=2';
+import { MEMORY, RULES, LEVELS, DEFAULT_LEVEL, scoreRun, checkRun, percentileOf, bandOf } from './scoring.js?v=2';
 import { track } from './track.js?v=1';
 import { ReactionRun, dotLayout } from './reaction.js?v=2';
 import { MemoryRun } from './memory.js?v=2';
@@ -24,21 +24,11 @@ function init() {
 
   const seconds = (ms) => `${String(ms / 1000)} ${ms === 1000 ? 'second' : 'seconds'}`;
 
-  // Per-level copy: the rule-switch questions, and the line under the level picker.
+  // One level for everyone (Normal in scoring.js): the Easy / Hard picker was removed on 23 Nov 2026 so every
+  // run gets one comparable score. scoring.js and the server still know the old levels, so older runs and
+  // links stay valid; this page only ever plays DEFAULT_LEVEL.
   const RULES_COPY = {
-    easy: { rules: 'odd or even, or lower or higher than 5', items: 'numbers' },
     normal: { rules: 'odd or even, lower or higher than a number, or a multiple of 3', items: 'numbers' },
-    hard: { rules: 'odd or even, lower or higher than a number, or a multiple of 3', items: 'two-digit numbers' },
-  };
-  const LEVEL_HINT = {
-    easy: 'Big dot · slower digits · simple questions · −10 points',
-    normal: 'Moving dot · mixed questions · standard scoring',
-    hard: 'Small moving dot · fast digits · two-digit numbers · +10 bonus points',
-  };
-  const PART3_SUMMARY = {
-    easy: '10 numbers. Odd or even, lower or higher than 5.',
-    normal: '10 numbers. Odd or even, lower or higher, multiple of 3.',
-    hard: '10 two-digit numbers. Odd or even, lower or higher, multiple of 3.',
   };
 
   const PARTS = [
@@ -48,7 +38,7 @@ function init() {
       title: 'Tap the green dot',
       text: (lv) => {
         const dot = LEVELS[lv].reactionDot;
-        const what = `the ${lv === 'hard' ? 'small ' : lv === 'easy' ? 'big ' : ''}green dot appears ${dot.position === 'center' ? 'in the middle' : 'somewhere on the pad'}`;
+        const what = `the green dot appears ${dot.position === 'center' ? 'in the middle' : 'somewhere on the pad'}`;
         return device === 'phone'
           ? `Tap the pad as soon as ${what}. It runs for 45 seconds; taps before the dot count as too soon.`
           : `Click the pad, or press Space, as soon as ${what}. It runs for 45 seconds; presses before the dot count as too soon.`;
@@ -77,7 +67,6 @@ function init() {
     },
   ];
 
-  const LEVEL_KEY = 'clarus.attentionTest.level';
   let run = null; // the raw run being built
   let partIndex = 0;
   let active = null; // the part on screen: { kind, frame(ts), key(e, t), abort() }
@@ -93,6 +82,7 @@ function init() {
 
   function show(id) {
     for (const s of screens) s.hidden = s.id !== id;
+    game.classList.toggle('is-intro', id === 'at-intro'); // the gradient hero shows only on the intro
     const screen = $(id);
     const heading = screen && screen.querySelector('h1, h2');
     if (heading) heading.focus({ preventScroll: true });
@@ -167,17 +157,7 @@ function init() {
         .slice(0, 24)
         .join('')
         .trim();
-      return { score, by: name || null, level: readUrlLevel() };
-    } catch (_) {
-      return null;
-    }
-  }
-
-  /** The level from the URL (`l=easy|normal|hard`, carried by challenge links), or null. */
-  function readUrlLevel() {
-    try {
-      const raw = (new URLSearchParams(window.location.search).get('l') || '').trim().toLowerCase();
-      return levelOf(raw) ? raw : null;
+      return { score, by: name || null };
     } catch (_) {
       return null;
     }
@@ -185,76 +165,19 @@ function init() {
 
   if (challenge) {
     const banner = $('at-challenge');
-    const on = challenge.level ? ` on ${LEVELS[challenge.level].label}` : '';
-    banner.textContent = `${challenge.by || 'Someone'} scored ${challenge.score}${on}. Can you beat it?`;
+    banner.textContent = `${challenge.by || 'Someone'} scored ${challenge.score}. Can you beat it?`;
     banner.hidden = false;
-    track('challenge_open', challenge.level ? { score: challenge.score, level: challenge.level } : { score: challenge.score });
+    track('challenge_open', { score: challenge.score });
   }
 
-  // ---------- Level picker ----------
-
-  function loadLevel() {
-    try {
-      const saved = window.localStorage.getItem(LEVEL_KEY);
-      return levelOf(saved) ? saved : null;
-    } catch (_) {
-      return null;
-    }
-  }
-  function saveLevel(key) {
-    try {
-      window.localStorage.setItem(LEVEL_KEY, key);
-    } catch (_) {
-      /* private mode or blocked storage: the choice just isn't remembered */
-    }
-  }
-
-  let level = readUrlLevel() || loadLevel() || DEFAULT_LEVEL;
-  const levelButtons = Array.from(game.querySelectorAll('[data-level]'));
-
-  function renderLevel() {
-    for (const b of levelButtons) {
-      const on = b.dataset.level === level;
-      b.setAttribute('aria-checked', on ? 'true' : 'false');
-      b.tabIndex = on ? 0 : -1;
-    }
-    const hint = $('at-level-hint');
-    if (hint) setText(hint, LEVEL_HINT[level]);
-    const part3 = $('at-part3-text');
-    if (part3) setText(part3, PART3_SUMMARY[level]);
-  }
-
-  function chooseLevel(key, focus) {
-    if (!levelOf(key)) return;
-    level = key;
-    saveLevel(key);
-    renderLevel();
-    if (focus) {
-      const b = levelButtons.find((x) => x.dataset.level === key);
-      if (b) b.focus();
-    }
-  }
-
-  for (const b of levelButtons) {
-    b.addEventListener('click', () => chooseLevel(b.dataset.level, false));
-    // A radio group: the arrow keys move the choice.
-    b.addEventListener('keydown', (e) => {
-      const step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
-      if (!step) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const i = LEVEL_KEYS.indexOf(level);
-      chooseLevel(LEVEL_KEYS[(i + step + LEVEL_KEYS.length) % LEVEL_KEYS.length], true);
-    });
-  }
-  renderLevel();
+  const level = DEFAULT_LEVEL;
 
   // ---------- Flow ----------
 
   function startTest() {
     run = { v: 2, level, device };
     inTest = true;
-    track('test_start', { device, level });
+    track('test_start', { device });
     $('at-share').replaceChildren();
     showInterstitial(0);
   }
@@ -262,7 +185,7 @@ function init() {
   function showInterstitial(index, note) {
     partIndex = index;
     const part = PARTS[index];
-    setText($('at-inter-kicker'), `Part ${index + 1} of ${PARTS.length} · ${part.name} · ${LEVELS[run.level].label}`);
+    setText($('at-inter-kicker'), `Part ${index + 1} of ${PARTS.length} · ${part.name}`);
     setText($('at-inter-title'), part.title);
     setText($('at-inter-text'), part.text(run.level));
     const noteEl = $('at-inter-note');
@@ -330,10 +253,10 @@ function init() {
       showInvalid(result.reason);
       return;
     }
-    track('test_complete', { score: result.overall, level: result.level });
+    track('test_complete', { score: result.overall });
     renderResult(result);
     show('at-result');
-    announce(`Attention ${result.overall}, ${LEVELS[result.level].label}. ${bandOf(result.overall).label}.`);
+    announce(`Attention ${result.overall}. ${bandOf(result.overall).label}.`);
     scrollToGame();
     const finished = run;
     try {
@@ -342,7 +265,7 @@ function init() {
     } catch (_) {
       /* browser memory is optional */
     }
-    import('./share.js?v=5')
+    import('./share.js?v=6')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
         /* the result still shows without sharing */
@@ -356,10 +279,6 @@ function init() {
 
   function renderResult(result) {
     setText($('at-score'), String(result.overall));
-    setText($('at-score-level'), `· ${LEVELS[result.level].label}`);
-    const bonusEl = $('at-bonus');
-    bonusEl.hidden = !result.bonus;
-    setText(bonusEl, result.bonus > 0 ? `${LEVELS[result.level].label} bonus +${result.bonus}` : result.bonus < 0 ? `${LEVELS[result.level].label} −${-result.bonus}` : '');
     setText($('at-band'), bandOf(result.overall).label);
     $('at-result').dataset.band = bandOf(result.overall).key;
 
@@ -729,12 +648,12 @@ function init() {
     return b;
   }
 
-  const storedScoreText = (entry) => `${entry.result.overall} · ${LEVELS[entry.result.level].label}`;
-  const storedParams = (entry, which) => ({ score: entry.result.overall, level: entry.result.level, which });
+  const storedScoreText = (entry) => String(entry.result.overall);
+  const storedParams = (entry, which) => ({ score: entry.result.overall, which });
 
   function shareStored(entry, which) {
     track('stored_share', storedParams(entry, which));
-    import('./share-dialog.js?v=3')
+    import('./share-dialog.js?v=4')
       .then((m) => m.openShareDialog({ result: entry.result, run: entry.run, title: which === 'best' ? 'Share your best score' : 'Share your last score' }))
       .catch(() => announce('Sharing is not available right now.'));
   }
@@ -846,7 +765,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=10')
+    boardReady = import('./board.js?v=11')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
       })
