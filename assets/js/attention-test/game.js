@@ -82,7 +82,10 @@ function init() {
 
   function show(id) {
     for (const s of screens) s.hidden = s.id !== id;
-    game.classList.toggle('is-intro', id === 'at-intro'); // the gradient hero shows only on the intro
+    game.classList.toggle('is-intro', id === 'at-intro'); // the tiles show only on the intro
+    // While a part runs, the leaderboard and FAQ step aside (owner, 23 Nov 2026); they come back on the
+    // start screen and the result screen, where people join the board.
+    document.body.classList.toggle('at-testing', id !== 'at-intro' && id !== 'at-result');
     const screen = $(id);
     const heading = screen && screen.querySelector('h1, h2');
     if (heading) heading.focus({ preventScroll: true });
@@ -191,6 +194,7 @@ function init() {
     const noteEl = $('at-inter-note');
     noteEl.hidden = !note;
     noteEl.textContent = note || '';
+    $('at-inter').dataset.part = part.key; // colours the square (attention-dark.css)
     show('at-inter');
     scrollToGame();
   }

@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
   <link rel="stylesheet" href="/assets/css/attention-board.css?v=7" />
   <link rel="stylesheet" href="/assets/css/attention-dialog.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=3" />
+  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=4" />
 </head>
 <body class="at-dark">
 
@@ -188,11 +188,18 @@
 
       <!-- Between parts -->
       <div class="at-screen at-inter" id="at-inter" hidden>
-        <p class="at-kicker" id="at-inter-kicker">Part 1 of 3 · Reaction</p>
-        <h2 id="at-inter-title" tabindex="-1">Reaction</h2>
-        <p class="at-inter-text" id="at-inter-text"></p>
-        <p class="at-inter-note" id="at-inter-note" hidden></p>
-        <button type="button" class="at-btn at-btn-primary at-btn-big" id="at-inter-start">Start</button>
+        <article class="at-feature at-feature-part">
+          <div class="at-square at-square-part" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
+          <div class="at-feature-text">
+            <div class="at-feature-top">
+              <p class="at-kicker" id="at-inter-kicker">Part 1 of 3 · Reaction</p>
+              <h2 class="at-feature-title" id="at-inter-title" tabindex="-1">Reaction</h2>
+              <p class="at-feature-desc" id="at-inter-text"></p>
+              <p class="at-inter-note" id="at-inter-note" hidden></p>
+            </div>
+            <button type="button" class="at-start-link" id="at-inter-start">Start<span aria-hidden="true"> ›</span></button>
+          </div>
+        </article>
       </div>
 
       <!-- Part 1: reaction -->
@@ -497,7 +504,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/game.js?v=13"></script>
+  <script type="module" src="/assets/js/attention-test/game.js?v=14"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>

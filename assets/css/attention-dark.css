@@ -489,3 +489,92 @@ body.at-dark .atb-row:has(.atb-rank.is-top-3) { background: linear-gradient(90de
   body.at-dark .atb-me-row { padding-left: 10px; padding-right: 10px; }
   body.at-dark .atb-rank.is-top { font-size: 24px; }
 }
+
+/* ─── Fourth pass (owner, 23 Nov 2026): the test itself in the tile language ───
+   Flat on black (no card), small grain squares, blue text actions, hairlines and 8 px corners
+   like the squares. The leaderboard and FAQ step aside while a part runs (body.at-testing). */
+body.at-testing .at-board-section,
+body.at-testing .at-faq { display: none !important; }
+
+body.at-dark .at-game,
+body.at-dark .at-game.is-intro { background: none; border-radius: 0; padding: 40px 0 8px; min-height: 0; }
+body.at-dark .at-play,
+body.at-dark .at-result,
+body.at-dark .at-invalid { max-width: 720px; }
+
+/* "Part n of 3": one tile, a larger square with the part's colours */
+body.at-dark .at-inter { max-width: 760px; margin: 0; text-align: left; }
+.at-feature-part .at-square { width: 220px; }
+.at-feature-part .at-feature-text { min-height: 220px; }
+body.at-dark .at-inter .at-kicker { margin: 0 0 8px; font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--dk-faint); }
+body.at-dark .at-inter .at-feature-title {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 30px; font-weight: 500; line-height: 1.2; letter-spacing: -0.4px; color: #fff; margin: 0 0 12px; text-align: left;
+}
+body.at-dark .at-inter .at-feature-desc { max-width: 46ch; }
+body.at-dark .at-inter .at-inter-note { margin: 14px 0 0; padding: 0; border: 0; background: none; max-width: 46ch; font-size: 15px; color: var(--dk-orange); }
+.at-square-part { background: linear-gradient(160deg, #16b364 0%, #0f8f6e 50%, #1fb3c9 100%); }
+.at-square-part .at-glow-1 { background: radial-gradient(circle, #3ee08a 0%, rgba(62, 224, 138, 0) 70%); }
+.at-square-part .at-glow-2 { background: radial-gradient(circle, #29c4e8 0%, rgba(41, 196, 232, 0) 70%); }
+.at-square-part .at-glow-3 { background: radial-gradient(circle, #b8f5c9 0%, rgba(184, 245, 201, 0) 70%); }
+.at-square-part .at-glow-4 { background: radial-gradient(circle, #0fd1a0 0%, rgba(15, 209, 160, 0) 70%); }
+.at-inter[data-part="memory"] .at-square-part { background: linear-gradient(160deg, #3d5afe 0%, #5b3fd6 50%, #8a63ff 100%); }
+.at-inter[data-part="memory"] .at-glow-1 { background: radial-gradient(circle, #6f8bff 0%, rgba(111, 139, 255, 0) 70%); }
+.at-inter[data-part="memory"] .at-glow-2 { background: radial-gradient(circle, #b78cff 0%, rgba(183, 140, 255, 0) 70%); }
+.at-inter[data-part="memory"] .at-glow-3 { background: radial-gradient(circle, #9fd0ff 0%, rgba(159, 208, 255, 0) 70%); }
+.at-inter[data-part="memory"] .at-glow-4 { background: radial-gradient(circle, #7a5cff 0%, rgba(122, 92, 255, 0) 70%); }
+.at-inter[data-part="rules"] .at-square-part { background: linear-gradient(160deg, #ff7a3d 0%, #ff4f6d 55%, #ff9a8a 100%); }
+.at-inter[data-part="rules"] .at-glow-1 { background: radial-gradient(circle, #ffb15c 0%, rgba(255, 177, 92, 0) 70%); }
+.at-inter[data-part="rules"] .at-glow-2 { background: radial-gradient(circle, #ff6fa0 0%, rgba(255, 111, 160, 0) 70%); }
+.at-inter[data-part="rules"] .at-glow-3 { background: radial-gradient(circle, #ffd3b0 0%, rgba(255, 211, 176, 0) 70%); }
+.at-inter[data-part="rules"] .at-glow-4 { background: radial-gradient(circle, #ff5a3c 0%, rgba(255, 90, 60, 0) 70%); }
+
+/* Play screens: a heading row over a divider, then the board */
+body.at-dark .at-play-head { margin: 0 0 20px; padding-bottom: 14px; border-bottom: 1px solid var(--dk-line); }
+body.at-dark .at-game .at-play-title {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 26px; font-weight: 500; letter-spacing: -0.3px; color: #fff;
+}
+body.at-dark .at-clock {
+  min-width: 0; padding: 0; border: 0; background: none; box-shadow: none;
+  font-size: 20px; font-weight: 500; color: var(--dk-blue); font-variant-numeric: tabular-nums;
+}
+body.at-dark .at-pad,
+body.at-dark .at-mem-board,
+body.at-dark .at-rule-board { background: none; border: 1px solid var(--dk-line); border-radius: 8px; }
+body.at-dark .at-pad[data-state="wait"] .at-pad-circle,
+body.at-dark .at-pad .at-pad-circle { background: #2c2c2e; }
+body.at-dark .at-pad[data-state="dot"] .at-pad-circle { background: var(--dk-green); box-shadow: 0 0 28px rgba(48, 209, 88, 0.55); }
+body.at-dark .at-pad[data-state="missed"] .at-pad-circle { background: #2c2c2e; }
+
+/* "Last times": plain numbers, no pills */
+body.at-dark .at-last { justify-content: flex-start; margin-top: 16px; }
+body.at-dark .at-last-head { color: var(--dk-faint); }
+body.at-dark .at-last-list li { min-width: 0; padding: 0 12px 0 0; border: 0; border-radius: 0; background: none; color: #fff; font-weight: 500; }
+
+/* Keypad and answers: flat keys with hairlines and the squares' corners */
+body.at-dark .at-key { background: none; border: 1px solid var(--dk-line); border-radius: 8px; color: #fff; font-weight: 500; }
+body.at-dark .at-key:hover { border-color: var(--dk-line-strong); }
+body.at-dark .at-key:active { background: var(--dk-raise); }
+body.at-dark .at-btn-answer { background: none; border: 1px solid var(--dk-line-strong); border-radius: 8px; color: #fff; font-weight: 500; }
+body.at-dark .at-btn-answer:hover { background: var(--dk-raise); }
+body.at-dark .at-btn-answer.is-pressed { background: rgba(10, 132, 255, 0.18); border-color: #0a84ff; }
+body.at-dark .at-btn-answer:disabled { opacity: 0.45; }
+body.at-dark .at-kbd { background: rgba(255, 255, 255, 0.1); color: var(--dk-muted); }
+
+/* Result and "can't be scored": the same flat language */
+body.at-dark .at-tiles li,
+body.at-dark .at-cta,
+body.at-dark .at-vs { border-radius: 8px; background: none; }
+
+@media (max-width: 600px) {
+  .at-feature-part .at-square { width: 112px; border-radius: 6px; }
+  .at-feature-part .at-feature-text { min-height: 112px; }
+  body.at-dark .at-inter .at-feature-title { font-size: 22px; margin-bottom: 8px; }
+  body.at-dark .at-inter .at-kicker { font-size: 13px; margin-bottom: 4px; }
+  body.at-dark .at-inter .at-feature { gap: 18px; }
+  body.at-dark .at-game, body.at-dark .at-game.is-intro { padding: 28px 0 8px; }
+  body.at-dark .at-game .at-play-title { font-size: 22px; }
+}
+body.at-testing .at-about { margin-top: 140px; }
+.at-feature .at-square { align-self: flex-start; }
