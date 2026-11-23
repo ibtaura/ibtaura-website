@@ -425,3 +425,67 @@ body.at-dark .atb-more { margin-top: 20px; }
 /* FAQ: no background card */
 body.at-dark .lp-card.at-faq { background: none; border-radius: 0; padding: 0; margin-top: 72px; }
 body.at-dark .atb-me .atb-row.is-me { background: none; }
+
+/* ─── Third pass (owner, 23 Nov 2026) ─── */
+/* Intro tiles: heading and text at the top of the square, the action on its bottom line. */
+.at-feature { align-items: stretch; }
+.at-feature-text { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; min-height: 180px; }
+.at-feature-meta { margin: 0; }
+.at-start-link {
+  align-self: flex-start; padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: 17px; font-weight: 500; line-height: 1.4; color: var(--dk-blue, #2997ff);
+  -webkit-tap-highlight-color: transparent;
+}
+.at-start-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.at-start-link:focus-visible { outline: 2px solid var(--dk-blue, #2997ff); outline-offset: 4px; border-radius: 4px; }
+@media (max-width: 480px) {
+  .at-feature-text { min-height: 112px; gap: 10px; }
+  .at-start-link { font-size: 16px; }
+}
+
+/* Board filters: three small dropdowns on the right of the heading. */
+body.at-dark .atb-filters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+body.at-dark .atb-board .atb-controls { display: inline-flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+body.at-dark .atb-board .atb-controls[hidden] { display: none !important; }
+body.at-dark .at-board-page { margin-top: 112px; }
+body.at-dark .at-board-page .atb-title { font-size: clamp(32px, 2.6vw + 18px, 44px); }
+
+/* Rows without avatars: rank, player, device, score. */
+body.at-dark .atb-row { grid-template-columns: 44px minmax(0, 1fr) auto 64px; }
+body.at-dark .atb-me-row { grid-template-columns: 44px minmax(0, 1fr) 64px; }
+
+/* Ranks 1 to 3: large metallic numerals instead of plain numbers, with the name in white. */
+body.at-dark .atb-rank { width: auto; height: auto; justify-content: flex-start; border-radius: 0; background: none; }
+body.at-dark .atb-rank.is-top {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 24px; font-weight: 700; line-height: 1; letter-spacing: -0.5px;
+  background: none; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+}
+body.at-dark .atb-rank.is-top-1 { background-image: linear-gradient(160deg, #fff1b8 0%, #f5c542 45%, #c98a12 100%); }
+body.at-dark .atb-rank.is-top-2 { background-image: linear-gradient(160deg, #ffffff 0%, #d4d7de 45%, #8e939c 100%); }
+body.at-dark .atb-rank.is-top-3 { background-image: linear-gradient(160deg, #ffd9b8 0%, #e09a5f 45%, #a35d2a 100%); }
+body.at-dark .atb-row:has(.atb-rank.is-top) .atb-name-text { color: #fff; font-weight: 600; }
+body.at-dark .atb-row:has(.atb-rank.is-top) { padding-top: 16px; padding-bottom: 16px; }
+
+@media (max-width: 600px) {
+  body.at-dark .atb:not(.atb-compact) .atb-board .atb-head { flex-direction: column; align-items: flex-start; }
+  body.at-dark .atb-filters { justify-content: flex-start; }
+  body.at-dark .atb-row { grid-template-columns: 34px minmax(0, 1fr) 48px; }
+  body.at-dark .atb-me-row { grid-template-columns: 34px minmax(0, 1fr) 48px; }
+  body.at-dark .atb-rank.is-top { font-size: 21px; }
+  body.at-dark .at-board-page { margin-top: 88px; }
+}
+/* Top three rows: a soft metallic fade from the left, behind larger numerals (no corners, no card). */
+body.at-dark .atb-cols,
+body.at-dark .atb-row,
+body.at-dark .atb-me-row { padding-left: 14px; padding-right: 14px; }
+body.at-dark .atb-rank.is-top { font-size: 28px; }
+body.at-dark .atb-row:has(.atb-rank.is-top-1) { background: linear-gradient(90deg, rgba(245, 197, 66, 0.16), rgba(245, 197, 66, 0) 55%); }
+body.at-dark .atb-row:has(.atb-rank.is-top-2) { background: linear-gradient(90deg, rgba(212, 215, 222, 0.12), rgba(212, 215, 222, 0) 55%); }
+body.at-dark .atb-row:has(.atb-rank.is-top-3) { background: linear-gradient(90deg, rgba(224, 154, 95, 0.14), rgba(224, 154, 95, 0) 55%); }
+@media (max-width: 600px) {
+  body.at-dark .atb-cols,
+  body.at-dark .atb-row,
+  body.at-dark .atb-me-row { padding-left: 10px; padding-right: 10px; }
+  body.at-dark .atb-rank.is-top { font-size: 24px; }
+}

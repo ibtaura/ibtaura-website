@@ -389,56 +389,21 @@ function createBoard(el, variant) {
   // Notice slot: the join card, "Saving…", "You're #N today" or an error.
   const notice = h('div', { class: 'atb-notice', hidden: true });
 
-  // Scope switch (Global | Friends): a small dropdown on the right of the board's heading.
-  const scopeSelect = h('select', {
-    class: 'atb-scope-select',
-    'aria-label': 'Whose scores',
-    onchange: () => setScope(scopeSelect.value),
-  }, SCOPES.map(([key, label]) => h('option', { value: key, text: label })));
-  const scopeGroup = h('span', { class: 'atb-scope' }, scopeSelect);
-
-  // Tabs (period) and segmented filter (device).
-  const tabs = PERIODS.map(([key, label]) =>
-    h('button', {
-      type: 'button',
-      class: 'atb-tab',
-      role: 'tab',
-      id: `${uid}-tab-${key}`,
-      'aria-controls': `${uid}-panel`,
-      'aria-selected': key === period ? 'true' : 'false',
-      tabindex: key === period ? '0' : '-1',
-      'data-period': key,
-      text: label,
-      onclick: () => setPeriod(key),
-    }),
-  );
-  const tablist = h('div', { class: 'atb-tabs', role: 'tablist', 'aria-label': 'Time period' }, tabs);
-  tablist.addEventListener('keydown', (e) => {
-    const i = tabs.indexOf(document.activeElement);
-    if (i < 0) return;
-    let next = null;
-    if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
-    else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
-    else if (e.key === 'Home') next = 0;
-    else if (e.key === 'End') next = tabs.length - 1;
-    if (next === null) return;
-    e.preventDefault();
-    tabs[next].focus();
-    setPeriod(tabs[next].dataset.period);
-  });
-
-  const segButtons = DEVICES.map(([key, label]) =>
-    h('button', {
-      type: 'button',
-      class: 'atb-seg-btn',
-      'aria-pressed': key === device ? 'true' : 'false',
-      'data-device': key,
-      text: label,
-      onclick: () => setDevice(key),
-    }),
-  );
-  const seg = h('div', { class: 'atb-seg', role: 'group', 'aria-label': 'Device' }, segButtons);
-  const controls = h('div', { class: 'atb-controls' }, tablist, seg);
+  // The board's switches are small dropdowns on the right of its heading (owner, 23 Nov 2026):
+  // whose scores (Global | Friends), the period (Today | This week | All time) and the device.
+  function dropdown(label, options, value, onChange) {
+    const select = h('select', { class: 'atb-scope-select', 'aria-label': label },
+      options.map(([key, text]) => h('option', { value: key, text })));
+    select.value = value;
+    select.addEventListener('change', () => onChange(select.value));
+    return { select, wrap: h('span', { class: 'atb-scope' }, select) };
+  }
+  const scopeDrop = dropdown('Whose scores', SCOPES, scope, (v) => setScope(v));
+  const periodDrop = dropdown('Time period', PERIODS.map(([key, label]) => [key, label]), period, (v) => setPeriod(v));
+  const deviceDrop = dropdown('Device', DEVICES.map(([key, label]) => [key, key === 'all' ? 'All devices' : label]), device, (v) => setDevice(v));
+  const scopeSelect = scopeDrop.select;
+  const scopeGroup = scopeDrop.wrap;
+  const controls = h('span', { class: 'atb-controls' }, periodDrop.wrap, deviceDrop.wrap);
 
   const list = h('ol', { class: 'atb-list' });
   const empty = h('p', { class: 'atb-empty', hidden: true });
@@ -450,9 +415,8 @@ function createBoard(el, variant) {
   const friendsBox = h('div', { class: 'atb-friends-box', hidden: true });
   const panel = h('div', {
     class: 'atb-panel is-loading',
-    role: 'tabpanel',
     id: `${uid}-panel`,
-    'aria-labelledby': `${uid}-tab-${period}`,
+    'aria-label': 'Scores',
     'aria-busy': 'true',
     tabindex: '0',
   }, h('div', { class: 'atb-cols', 'aria-hidden': 'true' },
@@ -541,13 +505,12 @@ function createBoard(el, variant) {
   const sub = h('p', { class: 'atb-sub' });
   const boardCard = h('section', { class: 'atb-card atb-board', 'aria-labelledby': `${uid}-title` },
     h('div', { class: 'atb-head' },
-      h('h2', { class: 'atb-title', id: `${uid}-title`, text: variant === 'full' ? 'Top scores' : 'Leaderboard' }),
-      scopeGroup,
+      // The full page has no hero card any more, so its board title is the page's h1.
+      h(variant === 'full' ? 'h1' : 'h2', { class: 'atb-title', id: `${uid}-title`, text: 'Leaderboard' }),
+      h('div', { class: 'atb-filters' }, scopeGroup, controls),
     ),
-    variant === 'full' ? sub : null, // the game page shows no subtitle (owner, 23 Nov 2026)
     friendNotice,
     inviteRow,
-    controls,
     panel,
     me,
     friendsFoot,
@@ -789,18 +752,13 @@ function createBoard(el, variant) {
 
   function setPeriod(key, reload = true) {
     period = key;
-    for (const tab of tabs) {
-      const on = tab.dataset.period === key;
-      tab.setAttribute('aria-selected', on ? 'true' : 'false');
-      tab.tabIndex = on ? 0 : -1;
-    }
-    panel.setAttribute('aria-labelledby', `${uid}-tab-${key}`);
+    periodDrop.select.value = key;
     if (reload) loadBoard();
   }
 
   function setDevice(key, reload = true) {
     device = key;
-    for (const b of segButtons) b.setAttribute('aria-pressed', b.dataset.device === key ? 'true' : 'false');
+    deviceDrop.select.value = key;
     if (reload) loadBoard();
   }
 
@@ -864,21 +822,14 @@ function createBoard(el, variant) {
     return h('span', { class: `atb-rank${medal}`, text: Number.isFinite(n) && n > 0 ? fmt(n) : '–' });
   }
 
-  /** The first letter of a display name, for the round avatar. */
-  function avatar(name) {
-    const first = Array.from(String(name || '').trim())[0] || '?';
-    return h('span', { class: 'atb-avatar', 'aria-hidden': 'true', text: first.toUpperCase() });
-  }
-
   /**
-   * The caller's own row, pinned under the list like a standard leaderboard: rank, avatar, name with a
+   * The caller's own row, pinned under the list like a standard leaderboard: rank, name with a
    * "You" chip and a short line under it, and the score. rank / score are null when there is none yet.
    */
   function renderMe({ rank = null, name = '', line = '', score = null }) {
     me.replaceChildren(
       h('div', { class: 'atb-row atb-me-row is-me' },
         rankCell(rank),
-        avatar(name || 'You'),
         h('span', { class: 'atb-name' },
           h('span', { class: 'atb-name-line' },
             h('span', { class: 'atb-name-text', text: name || 'You' }),
@@ -904,7 +855,6 @@ function createBoard(el, variant) {
     const when = entry.achieved_at ? new Date(entry.achieved_at) : null;
     const li = h('li', { class: `atb-row${isMe ? ' is-me' : ''}${isMe && flashNext ? ' is-new' : ''}` },
       rankCell(entry.rank),
-      avatar(entry.display_name),
       h('span', { class: 'atb-name' },
         h('span', { class: 'atb-name-line' },
           h('span', { class: 'atb-name-text', text: entry.display_name }),

@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
   <link rel="stylesheet" href="/assets/css/attention-board.css?v=7" />
   <link rel="stylesheet" href="/assets/css/attention-dialog.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=2" />
+  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=3" />
 </head>
 <body class="at-dark">
 
@@ -163,17 +163,21 @@
           <article class="at-feature">
             <div class="at-square at-square-test" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
             <div class="at-feature-text">
-              <h1 id="at-title" tabindex="-1">Clarus Attention Test</h1>
-              <p class="at-feature-desc">How sharp is your attention right now?</p>
-              <p class="at-challenge" id="at-challenge" hidden></p>
-              <button type="button" class="at-btn at-btn-primary at-hero-btn" id="at-start">Start now</button>
+              <div class="at-feature-top">
+                <h1 id="at-title" tabindex="-1">Clarus Attention Test</h1>
+                <p class="at-feature-desc">How sharp is your attention right now?</p>
+                <p class="at-challenge" id="at-challenge" hidden></p>
+              </div>
+              <button type="button" class="at-start-link" id="at-start">Start now<span aria-hidden="true"> ›</span></button>
             </div>
           </article>
           <article class="at-feature">
             <div class="at-square at-square-about" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
             <div class="at-feature-text">
-              <h2 class="at-feature-title">About the test</h2>
-              <p class="at-feature-desc">Three quick parts from the Clarus Health app's Quick Check: reaction, digit memory and rule switch. About two minutes, then an Attention score where 100 is typical.</p>
+              <div class="at-feature-top">
+                <h2 class="at-feature-title">About the test</h2>
+                <p class="at-feature-desc">Reaction, memory and rule switching in two minutes.</p>
+              </div>
               <p class="at-feature-meta"><span>Free</span><span>Not a medical test</span></p>
             </div>
           </article>
@@ -493,7 +497,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/game.js?v=12"></script>
+  <script type="module" src="/assets/js/attention-test/game.js?v=13"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>
