@@ -25,14 +25,16 @@
   <meta name="twitter:image:alt" content="Clarus Attention Test score card: 142, Laser focus, sharper than 99% of people." />
   <script>
     (function () {
-      var by = '', f = '';
+      var by = '', f = '', l = '';
       try {
         var q = new URLSearchParams(location.search);
         by = (q.get('by') || '').trim().slice(0, 24);
         f = q.get('f') || '';
         if (!/^[a-hjkmnp-z2-9]{8}$/.test(f)) f = '';
+        l = q.get('l') || '';
+        if (!/^(easy|normal|hard)$/.test(l)) l = '';
       } catch (e) {}
-      location.replace('/attention-test?challenge=142' + (by ? '&by=' + encodeURIComponent(by) : '') + (f ? '&f=' + f : ''));
+      location.replace('/attention-test?challenge=142' + (by ? '&by=' + encodeURIComponent(by) : '') + (f ? '&f=' + f : '') + (l ? '&l=' + l : ''));
     })();
   </script>
   <style>

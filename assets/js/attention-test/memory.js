@@ -3,12 +3,14 @@
 // feedback that QuickCheckFlow.kt adds between rows). Times are milliseconds on one monotonic clock; every method
 // takes the moment it happens, so tests can script the clock.
 //
-// Flow: showing (a row of `length` digits, no digit equal to the one before, for length x 1 s) -> entering (typed
-// back on a keypad) -> feedback (0.8 s) -> showing the next row ... -> finished.
+// Flow: showing (a row of `length` digits, no digit equal to the one before, for length x the level's show time per
+// digit: 1.2 s Easy, 1 s Normal, 0.75 s Hard) -> entering (typed back on a keypad) -> feedback (0.8 s) -> showing the
+// next row ... -> finished.
+// The first row has the level's memoryStartLength digits (3, or 4 on Hard).
 // A right answer adds a digit; a right answer at 9 digits finishes. Two wrong answers at the same length finish.
 // The test runs 45 s from the first row; a row still showing or half typed at time-up is dropped.
 
-import { MEMORY } from './scoring.js?v=1';
+import { MEMORY, LEVELS, DEFAULT_LEVEL, levelOf } from './scoring.js?v=2';
 
 const RUN_MS = MEMORY.durationSeconds * 1000;
 
@@ -16,12 +18,15 @@ export class MemoryRun {
   /**
    * @param {number} start  the moment the first row shows (the 45 s run from here)
    * @param {() => number} random  a source in [0, 1); a digit is floor(random() * 10)
+   * @param {string} level  a key of LEVELS; sets the first row's length and the show time per digit
    */
-  constructor(start, random = Math.random) {
+  constructor(start, random = Math.random, level = DEFAULT_LEVEL) {
     this.random = random;
+    const lv = levelOf(level) || LEVELS[DEFAULT_LEVEL];
+    this.showPerDigitMs = lv.memoryShowPerDigitMs;
     this.start = start;
     this.end = start + RUN_MS;
-    this.length = MEMORY.startLength;
+    this.length = lv.memoryStartLength;
     this.wrongAtLength = 0;
     /** One per row answered, in order: { length, correct }. */
     this.rounds = [];
@@ -120,7 +125,7 @@ export class MemoryRun {
     this.digits = this.drawRow(this.length);
     this.typed = [];
     this.phase = 'showing';
-    this.phaseEnds = moment + this.digits.length * MEMORY.showPerDigitMs;
+    this.phaseEnds = moment + this.digits.length * this.showPerDigitMs;
   }
 
   oneDigit() {

@@ -14,6 +14,9 @@ Challenge links look like https://adarna.us/attention-test/s/118?by=Maya. Crawle
 meta tags do the preview; a visitor's browser goes straight on to /attention-test?challenge=118&by=Maya.
 A valid friend code (f=, 8 chars of [a-hjkmnp-z2-9], for the friends leaderboard) is forwarded too:
 /s/118?by=Maya&f=abcd2345 -> /attention-test?challenge=118&by=Maya&f=abcd2345. Anything else in f is dropped.
+The level (l=easy|normal|hard; share.js leaves it out for normal) is forwarded the same way so the game can preselect
+it: /s/118?by=Maya&l=hard -> /attention-test?challenge=118&by=Maya&l=hard. Any other l is dropped.
+The og tags stay level-agnostic (crawlers never see the query string).
 The score pages are noindex and stay out of sitemap.xml.
 
 --sync-scoring copies assets/js/attention-test/scoring.js to supabase/functions/_shared/scoring.js byte for byte.
@@ -310,14 +313,16 @@ def page_html(n):
   <meta name="twitter:image:alt" content="{esc(alt)}" />
   <script>
     (function () {{
-      var by = '', f = '';
+      var by = '', f = '', l = '';
       try {{
         var q = new URLSearchParams(location.search);
         by = (q.get('by') || '').trim().slice(0, 24);
         f = q.get('f') || '';
         if (!/^[a-hjkmnp-z2-9]{{8}}$/.test(f)) f = '';
+        l = q.get('l') || '';
+        if (!/^(easy|normal|hard)$/.test(l)) l = '';
       }} catch (e) {{}}
-      location.replace('{game}' + (by ? '&by=' + encodeURIComponent(by) : '') + (f ? '&f=' + f : ''));
+      location.replace('{game}' + (by ? '&by=' + encodeURIComponent(by) : '') + (f ? '&f=' + f : '') + (l ? '&l=' + l : ''));
     }})();
   </script>
   <style>

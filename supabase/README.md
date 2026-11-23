@@ -9,6 +9,8 @@ What is in here:
 | Path | What it is |
 |---|---|
 | `migrations/*_attention_test.sql` | Tables `profiles` and `plays`, security rules, the `board()` and `my_rank()` queries |
+| `migrations/*_friends.sql`, `*_no_friend_removal.sql` | Friend codes, `friendships`, `add_friend()` and `friends_board()` (friends can't remove each other) |
+| `migrations/*_levels.sql` | `plays.level` (Easy / Normal / Hard) and the board queries returning each best run's level |
 | `functions/submit-score/` | Checks and re-scores a run on the server, then saves it (20 per person per UTC day) |
 | `functions/delete-me/` | "Remove my data": deletes the person's sign-in, which also deletes their profile and plays |
 | `functions/_shared/scoring.js` | An exact copy of `assets/js/attention-test/scoring.js` (keep them identical) |
@@ -124,8 +126,13 @@ Redirect URLs list from step 4. Function logs: Supabase â†’ **Edge Functions** â
   traffic keeps it awake; upgrade to Pro if a pause would be a problem.
 - **Daily limit**: 20 saved runs per person per UTC day; the 21st gets a friendly "That's today's limit".
 - **Days are UTC.** *Today* starts at 00:00 UTC; *This week* is the rolling last 7 days.
-- **What the public can see**: rank, display name, score, Phone/Computer and the time of the best run. Never
-  emails, user ids or raw runs.
+- **What the public can see**: rank, display name, score, Phone/Computer, the level (Easy / Normal / Hard) and
+  the time of the best run. Never emails, user ids, friend codes or raw runs.
+- **Levels share one board.** `scoring.js` adds the level bonus to the overall score (Easy -10, Hard +10), so
+  `board()`, `my_rank()` and `friends_board()` rank every level together and only return the level as a label.
+  Plays saved before the levels migration count as Normal.
+- **"Show me on the global board"** (`profiles.show_on_board`) hides a player from `board()` only. Friends always
+  see each other on `friends_board()`, and a hidden player still sees their own rank in `my_rank()`.
 - **Scoring changes**: edit `assets/js/attention-test/scoring.js`, copy it over with
   `python scripts/build-attention-share.py --sync-scoring`, then `npx supabase functions deploy submit-score`.
   Every raw run is stored in `plays.raw`, so scores can be recomputed later.

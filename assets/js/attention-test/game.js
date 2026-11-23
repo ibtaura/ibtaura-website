@@ -5,11 +5,11 @@
 // engine, so a dot or digit is timed from the frame that first paints it. Presses use the event's own timestamp
 // (the same clock as performance.now()), falling back to performance.now().
 
-import { MEMORY, RULES, scoreRun, checkRun, percentileOf, bandOf } from './scoring.js?v=1';
+import { MEMORY, RULES, LEVELS, LEVEL_KEYS, DEFAULT_LEVEL, levelOf, scoreRun, checkRun, percentileOf, bandOf } from './scoring.js?v=2';
 import { track } from './track.js?v=1';
-import { ReactionRun } from './reaction.js?v=1';
-import { MemoryRun } from './memory.js?v=1';
-import { RulesRun, planSteps, ruleQuestion, ruleLabels } from './rules.js?v=1';
+import { ReactionRun, dotLayout } from './reaction.js?v=2';
+import { MemoryRun } from './memory.js?v=2';
+import { RulesRun, planSteps, ruleQuestion, ruleLabels } from './rules.js?v=2';
 
 const $ = (id) => document.getElementById(id);
 const game = $('at-game');
@@ -21,39 +21,62 @@ function init() {
   const live = $('at-live');
   const screens = Array.from(game.querySelectorAll('.at-screen'));
 
+  const seconds = (ms) => `${String(ms / 1000)} ${ms === 1000 ? 'second' : 'seconds'}`;
+
+  // Per-level copy: the rule-switch questions, and the line under the level picker.
+  const RULES_COPY = {
+    easy: { rules: 'odd or even, or lower or higher than 5', items: 'numbers' },
+    normal: { rules: 'odd or even, lower or higher than a number, or a multiple of 3', items: 'numbers' },
+    hard: { rules: 'odd or even, lower or higher than a number, or a multiple of 3', items: 'two-digit numbers' },
+  };
+  const LEVEL_HINT = {
+    easy: 'Big dot · slower digits · simple questions · −10 points',
+    normal: 'Moving dot · mixed questions · standard scoring',
+    hard: 'Small moving dot · fast digits · two-digit numbers · +10 bonus points',
+  };
+  const PART3_SUMMARY = {
+    easy: '10 numbers. Odd or even, lower or higher than 5.',
+    normal: '10 numbers. Odd or even, lower or higher, multiple of 3.',
+    hard: '10 two-digit numbers. Odd or even, lower or higher, multiple of 3.',
+  };
+
   const PARTS = [
     {
       key: 'reaction',
       name: 'Reaction',
       title: 'Tap the green dot',
-      text:
-        device === 'phone'
-          ? 'Tap the pad as soon as the green dot appears. It runs for 45 seconds; taps before the dot count as too soon.'
-          : 'Click the pad, or press Space, as soon as the green dot appears. It runs for 45 seconds; presses before the dot count as too soon.',
+      text: (lv) => {
+        const dot = LEVELS[lv].reactionDot;
+        const what = `the ${lv === 'hard' ? 'small ' : lv === 'easy' ? 'big ' : ''}green dot appears ${dot.position === 'center' ? 'in the middle' : 'somewhere on the pad'}`;
+        return device === 'phone'
+          ? `Tap the pad as soon as ${what}. It runs for 45 seconds; taps before the dot count as too soon.`
+          : `Click the pad, or press Space, as soon as ${what}. It runs for 45 seconds; presses before the dot count as too soon.`;
+      },
       start: startReaction,
     },
     {
       key: 'memory',
       name: 'Digit memory',
       title: 'Remember the digits',
-      text:
-        device === 'phone'
-          ? 'A row of digits shows for a moment, then hides. Type it back on the keypad. Each right answer adds a digit. 45 seconds.'
-          : 'A row of digits shows for a moment, then hides. Type it back with the number keys or the keypad. Each right answer adds a digit. 45 seconds.',
+      text: (lv) =>
+        `A row of ${LEVELS[lv].memoryStartLength} digits shows for ${seconds(LEVELS[lv].memoryShowPerDigitMs)} a digit, then hides. ` +
+        (device === 'phone' ? 'Type it back on the keypad.' : 'Type it back with the number keys or the keypad.') +
+        ' Each right answer adds a digit. 45 seconds.',
       start: startMemory,
     },
     {
       key: 'rules',
       name: 'Rule switch',
       title: 'Follow the rule',
-      text:
-        device === 'phone'
-          ? 'Answer each digit by the rule above it: odd or even, or lower or higher than 5. 10 digits, 3 seconds each.'
-          : 'Answer each digit by the rule above it: odd or even, or lower or higher than 5. Press F for the left button and J for the right. 10 digits, 3 seconds each.',
+      text: (lv) =>
+        `Answer each number by the rule above it: ${RULES_COPY[lv].rules}.` +
+        (device === 'phone' ? '' : ' Press F for the left button and J for the right.') +
+        ` 10 ${RULES_COPY[lv].items}, ${seconds(LEVELS[lv].answerWindowMs)} each.`,
       start: startRules,
     },
   ];
 
+  const LEVEL_KEY = 'clarus.attentionTest.level';
   let run = null; // the raw run being built
   let partIndex = 0;
   let active = null; // the part on screen: { kind, frame(ts), key(e, t), abort() }
@@ -142,7 +165,17 @@ function init() {
         .slice(0, 24)
         .join('')
         .trim();
-      return { score, by: name || null };
+      return { score, by: name || null, level: readUrlLevel() };
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /** The level from the URL (`l=easy|normal|hard`, carried by challenge links), or null. */
+  function readUrlLevel() {
+    try {
+      const raw = (new URLSearchParams(window.location.search).get('l') || '').trim().toLowerCase();
+      return levelOf(raw) ? raw : null;
     } catch (_) {
       return null;
     }
@@ -150,17 +183,76 @@ function init() {
 
   if (challenge) {
     const banner = $('at-challenge');
-    banner.textContent = `${challenge.by || 'Someone'} scored ${challenge.score}. Can you beat it?`;
+    const on = challenge.level ? ` on ${LEVELS[challenge.level].label}` : '';
+    banner.textContent = `${challenge.by || 'Someone'} scored ${challenge.score}${on}. Can you beat it?`;
     banner.hidden = false;
-    track('challenge_open', { score: challenge.score });
+    track('challenge_open', challenge.level ? { score: challenge.score, level: challenge.level } : { score: challenge.score });
   }
+
+  // ---------- Level picker ----------
+
+  function loadLevel() {
+    try {
+      const saved = window.localStorage.getItem(LEVEL_KEY);
+      return levelOf(saved) ? saved : null;
+    } catch (_) {
+      return null;
+    }
+  }
+  function saveLevel(key) {
+    try {
+      window.localStorage.setItem(LEVEL_KEY, key);
+    } catch (_) {
+      /* private mode or blocked storage: the choice just isn't remembered */
+    }
+  }
+
+  let level = readUrlLevel() || loadLevel() || DEFAULT_LEVEL;
+  const levelButtons = Array.from(game.querySelectorAll('[data-level]'));
+
+  function renderLevel() {
+    for (const b of levelButtons) {
+      const on = b.dataset.level === level;
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
+    }
+    const hint = $('at-level-hint');
+    if (hint) setText(hint, LEVEL_HINT[level]);
+    const part3 = $('at-part3-text');
+    if (part3) setText(part3, PART3_SUMMARY[level]);
+  }
+
+  function chooseLevel(key, focus) {
+    if (!levelOf(key)) return;
+    level = key;
+    saveLevel(key);
+    renderLevel();
+    if (focus) {
+      const b = levelButtons.find((x) => x.dataset.level === key);
+      if (b) b.focus();
+    }
+  }
+
+  for (const b of levelButtons) {
+    b.addEventListener('click', () => chooseLevel(b.dataset.level, false));
+    // A radio group: the arrow keys move the choice.
+    b.addEventListener('keydown', (e) => {
+      const step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+      if (!step) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const i = LEVEL_KEYS.indexOf(level);
+      chooseLevel(LEVEL_KEYS[(i + step + LEVEL_KEYS.length) % LEVEL_KEYS.length], true);
+    });
+  }
+  renderLevel();
 
   // ---------- Flow ----------
 
   function startTest() {
-    run = { v: 1, device };
+    run = { v: 2, level, device };
     inTest = true;
-    track('test_start', { device });
+    track('test_start', { device, level });
     $('at-share').replaceChildren();
     showInterstitial(0);
   }
@@ -168,9 +260,9 @@ function init() {
   function showInterstitial(index, note) {
     partIndex = index;
     const part = PARTS[index];
-    setText($('at-inter-kicker'), `Part ${index + 1} of ${PARTS.length} · ${part.name}`);
+    setText($('at-inter-kicker'), `Part ${index + 1} of ${PARTS.length} · ${part.name} · ${LEVELS[run.level].label}`);
     setText($('at-inter-title'), part.title);
-    setText($('at-inter-text'), part.text);
+    setText($('at-inter-text'), part.text(run.level));
     const noteEl = $('at-inter-note');
     noteEl.hidden = !note;
     noteEl.textContent = note || '';
@@ -236,13 +328,13 @@ function init() {
       showInvalid(result.reason);
       return;
     }
-    track('test_complete', { score: result.overall });
+    track('test_complete', { score: result.overall, level: result.level });
     renderResult(result);
     show('at-result');
-    announce(`Attention ${result.overall}. ${bandOf(result.overall).label}.`);
+    announce(`Attention ${result.overall}, ${LEVELS[result.level].label}. ${bandOf(result.overall).label}.`);
     scrollToGame();
     const finished = run;
-    import('./share.js?v=2')
+    import('./share.js?v=3')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
         /* the result still shows without sharing */
@@ -256,6 +348,10 @@ function init() {
 
   function renderResult(result) {
     setText($('at-score'), String(result.overall));
+    setText($('at-score-level'), `· ${LEVELS[result.level].label}`);
+    const bonusEl = $('at-bonus');
+    bonusEl.hidden = !result.bonus;
+    setText(bonusEl, result.bonus > 0 ? `${LEVELS[result.level].label} bonus +${result.bonus}` : result.bonus < 0 ? `${LEVELS[result.level].label} −${-result.bonus}` : '');
     setText($('at-band'), bandOf(result.overall).label);
     $('at-result').dataset.band = bandOf(result.overall).key;
 
@@ -289,17 +385,33 @@ function init() {
   // ---------- Part 1: reaction ----------
 
   const pad = $('at-pad');
+  const padCircle = $('at-pad-circle');
   const padLabel = $('at-pad-label');
   const lastList = $('at-last-list');
+  // The band at the bottom of the pad that holds the label; dots are placed above it.
+  const PAD_LABEL_BAND = 64;
 
   function startReaction() {
     const engine = new ReactionRun(performance.now());
+    const dot = LEVELS[run.level].reactionDot;
     const last = [];
     const clock = $('at-reaction-clock');
     pad.dataset.state = 'wait';
+    pad.dataset.dot = dot.position;
     setText(padLabel, 'Wait for the dot…');
     renderLast();
     show('at-reaction');
+    placeDot();
+
+    // Each dot gets its box before the frame that paints it green (a new random spot on Normal and Hard).
+    function placeDot() {
+      const box = dotLayout({ width: pad.clientWidth, height: pad.clientHeight - PAD_LABEL_BAND }, dot, Math.random);
+      const style = padCircle.style;
+      style.width = `${box.size}px`;
+      style.height = `${box.size}px`;
+      style.left = `${box.left}px`;
+      style.top = `${box.top}px`;
+    }
 
     function renderLast() {
       const items = lastList.children;
@@ -333,7 +445,10 @@ function init() {
           partDone('reaction', engine.result());
           return;
         }
-        if (handled.includes('showDot')) announce('Tap!');
+        if (handled.includes('showDot')) {
+          placeDot();
+          announce('Tap!');
+        }
         if (handled.includes('timeOut')) announce('Missed');
         render(ts);
       },
@@ -440,7 +555,7 @@ function init() {
       frame(ts) {
         if (!engine) {
           if (ts < readyUntil) return;
-          engine = new MemoryRun(ts);
+          engine = new MemoryRun(ts, Math.random, run.level);
         }
         engine.advance(ts);
         if (engine.isFinished) {
@@ -492,7 +607,7 @@ function init() {
   const ruleDigit = $('at-rule-digit');
 
   function startRules() {
-    const steps = planSteps();
+    const steps = planSteps(run.level);
     const count = $('at-rules-count');
     const readyUntil = performance.now() + 1000;
     let engine = null;
@@ -500,8 +615,9 @@ function init() {
     setText(count, `1 of ${RULES.trials}`);
     setText(ruleQ, 'Get ready');
     setText(ruleDigit, '');
-    setText($('at-ans-left-label'), 'Odd');
-    setText($('at-ans-right-label'), 'Even');
+    const firstLabels = ruleLabels(steps[0].rule);
+    setText($('at-ans-left-label'), firstLabels.left);
+    setText($('at-ans-right-label'), firstLabels.right);
     setIdle(ansLeft, true);
     setIdle(ansRight, true);
     show('at-rules');
@@ -514,13 +630,14 @@ function init() {
       lastIndex = index;
       if (step) {
         const labels = ruleLabels(step.rule);
-        setText(ruleQ, ruleQuestion(step.rule));
-        setText(ruleDigit, String(step.digit));
+        const question = ruleQuestion(step.rule, step.pivot);
+        setText(ruleQ, question);
+        setText(ruleDigit, String(step.n));
         setText($('at-ans-left-label'), labels.left);
         setText($('at-ans-right-label'), labels.right);
         setIdle(ansLeft, false);
         setIdle(ansRight, false);
-        announce(`${ruleQuestion(step.rule)} ${step.digit}`);
+        announce(`${question} ${step.n}`);
       } else {
         setText(ruleQ, ' ');
         setText(ruleDigit, '');
@@ -534,7 +651,7 @@ function init() {
       frame(ts) {
         if (!engine) {
           if (ts < readyUntil) return;
-          engine = new RulesRun(steps, ts);
+          engine = new RulesRun(steps, ts, run.level);
         }
         engine.advance(ts);
         if (engine.isOver) {
@@ -622,7 +739,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    import('./board.js?v=5')
+    import('./board.js?v=6')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
       })

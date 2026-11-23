@@ -80,7 +80,15 @@
           "name": "How long does the attention test take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "About two minutes. The reaction part runs for 45 seconds, the digit memory part for up to 45 seconds, and the rule switch part is 10 digits with up to 3 seconds each."
+            "text": "About two minutes. The reaction part runs for 45 seconds, the digit memory part for up to 45 seconds, and the rule switch part is 10 numbers with 2.5 to 4 seconds each, depending on the level."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the Easy, Normal and Hard levels change?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The level changes all three parts. Easy has a big dot in the middle of the pad, memory digits that show for 1.2 seconds each, and one-digit numbers with odd or even and lower or higher than 5 (4 seconds to answer). Normal has a dot that moves around the pad, 1 second a digit, and adds a multiple-of-3 rule and changing comparison numbers (3 seconds). Hard has a small moving dot, memory rows that start at 4 digits and show for 0.75 seconds a digit, and two-digit numbers (2.5 seconds). Each level is scored against typical players at that level, then Easy scores lose 10 points and Hard scores gain 10, so all levels share one leaderboard."
           }
         },
         {
@@ -117,9 +125,9 @@
   <link rel="stylesheet" href="/assets/css/style.css?v=35" />
   <link rel="stylesheet" href="/assets/css/clarus.css?v=2" />
   <link rel="stylesheet" href="/assets/css/landing.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-test.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/attention-test.css?v=2" />
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-board.css?v=4" />
+  <link rel="stylesheet" href="/assets/css/attention-board.css?v=5" />
 </head>
 <body>
 
@@ -156,8 +164,17 @@
         <ol class="at-parts">
           <li><span class="at-part-num">1</span><strong>Reaction</strong><span>45 s. Tap when the green dot appears.</span></li>
           <li><span class="at-part-num">2</span><strong>Digit memory</strong><span>45 s. Type back rows of digits.</span></li>
-          <li><span class="at-part-num">3</span><strong>Rule switch</strong><span>10 digits. Odd or even, lower or higher.</span></li>
+          <li><span class="at-part-num">3</span><strong>Rule switch</strong><span id="at-part3-text">10 numbers. Odd or even, lower or higher, multiple of 3.</span></li>
         </ol>
+        <div class="at-level">
+          <p class="at-level-label" id="at-level-label">Level</p>
+          <div class="at-levels" role="radiogroup" aria-labelledby="at-level-label" aria-describedby="at-level-hint">
+            <button type="button" class="at-level-btn" role="radio" data-level="easy" aria-checked="false" tabindex="-1">Easy</button>
+            <button type="button" class="at-level-btn" role="radio" data-level="normal" aria-checked="true">Normal</button>
+            <button type="button" class="at-level-btn" role="radio" data-level="hard" aria-checked="false" tabindex="-1">Hard</button>
+          </div>
+          <p class="at-level-hint" id="at-level-hint">Moving dot · mixed questions · standard scoring</p>
+        </div>
         <button type="button" class="at-btn at-btn-primary at-btn-big" id="at-start">Start the test</button>
         <noscript><p class="at-noscript-note">The test needs JavaScript. Turn it on and reload the page to play.</p></noscript>
         <p class="at-disclaimer">A fun attention check, not a medical test.</p>
@@ -233,8 +250,9 @@
       <!-- Result -->
       <div class="at-screen at-result" id="at-result" hidden>
         <p class="lp-eyebrow">Your result</p>
-        <h2 class="at-score" id="at-result-title" tabindex="-1">Attention <span id="at-score">100</span></h2>
+        <h2 class="at-score" id="at-result-title" tabindex="-1">Attention <span id="at-score">100</span> <span class="at-score-level" id="at-score-level">· Normal</span></h2>
         <p class="at-band" id="at-band">Steady</p>
+        <p class="at-bonus" id="at-bonus" hidden></p>
         <p class="at-vs" id="at-vs" hidden></p>
         <ul class="at-tiles" id="at-tiles">
           <li><span class="at-tile-name">Reaction</span><span class="at-tile-score" id="at-r-score">100</span><span class="at-tile-raw" id="at-r-raw"></span></li>
@@ -271,7 +289,7 @@
       <ul class="lp-tiles lp-tiles-3">
         <li><strong>Sustained attention</strong>The reaction part is a vigilance task like the psychomotor vigilance task (PVT). You wait for a dot that comes at random moments and tap as fast as you can. Its 45-second length follows the brief PVT-B that Basner and colleagues validated in 2011. Slow taps and taps before the dot are what tiredness changes first.</li>
         <li><strong>Working memory</strong>The digit memory part is a digit span task. A row of digits shows for a moment and you type it back. Every right answer adds a digit, so the longest row you get right is your span: how much you can hold in mind at once.</li>
-        <li><strong>Cognitive flexibility</strong>The rule switch part is a task-switching test. The rule changes between odd or even and lower or higher than 5, and switching costs time, as Monsell described in his 2003 review. It shows how quickly you can let go of one rule and pick up another.</li>
+        <li><strong>Cognitive flexibility</strong>The rule switch part is a task-switching test. The rule changes between odd or even, lower or higher than a number and, on Normal and Hard, whether the number is a multiple of 3. Switching costs time, as Monsell described in his 2003 review. It shows how quickly you can let go of one rule and pick up another.</li>
       </ul>
       <p>Together they give a quick picture of how alert you are right now, not a fixed trait. Sleep, stress, time of day and caffeine all move these numbers from one day to the next.</p>
     </section>
@@ -296,7 +314,9 @@
     <section class="lp-card lp-prose lp-faq" aria-labelledby="faq-title">
       <h2 id="faq-title">Frequently asked questions</h2>
       <h3>How long does the attention test take?</h3>
-      <p>About two minutes. The reaction part runs for 45 seconds, the digit memory part for up to 45 seconds, and the rule switch part is 10 digits with up to 3 seconds each.</p>
+      <p>About two minutes. The reaction part runs for 45 seconds, the digit memory part for up to 45 seconds, and the rule switch part is 10 numbers with 2.5 to 4 seconds each, depending on the level.</p>
+      <h3>What do the Easy, Normal and Hard levels change?</h3>
+      <p>The level changes all three parts. Easy has a big dot in the middle of the pad, memory digits that show for 1.2 seconds each, and one-digit numbers with odd or even and lower or higher than 5 (4 seconds to answer). Normal has a dot that moves around the pad, 1 second a digit, and adds a multiple-of-3 rule and changing comparison numbers (3 seconds). Hard has a small moving dot, memory rows that start at 4 digits and show for 0.75 seconds a digit, and two-digit numbers (2.5 seconds). Each level is scored against typical players at that level, then Easy scores lose 10 points and Hard scores gain 10, so all levels share one leaderboard.</p>
       <h3>What is a good attention score?</h3>
       <p>100 is typical. Each 15 points is one standard deviation, so 115 is higher than about 84% of people and 130 is higher than about 98%. Your score moves with sleep, time of day and caffeine, so play more than once.</p>
       <h3>Is this a medical test?</h3>
@@ -439,7 +459,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/game.js?v=5"></script>
+  <script type="module" src="/assets/js/attention-test/game.js?v=6"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>

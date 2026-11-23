@@ -8,10 +8,34 @@
 // The first second after an answer, a false start or a timeout shows the result; presses then are ignored.
 // A press while waiting (after that second) is a false start ("Too soon") and restarts the wait.
 
-import { REACTION } from './scoring.js?v=1';
+import { REACTION } from './scoring.js?v=2';
 
 const RUN_MS = REACTION.durationSeconds * 1000;
 const round1 = (ms) => Math.round(ms * 10) / 10;
+
+/** The smallest gap between the dot and the edge of its area, in CSS pixels. */
+export const DOT_MARGIN = 8;
+
+/**
+ * Where to draw a dot inside an area (the pad, minus the label band), for a level's reactionDot
+ * ({ sizePx, position: 'center' | 'random' }). The size shrinks to fit a small area; a random spot keeps the whole
+ * dot inside with at least DOT_MARGIN px to spare. Pure: the caller passes the area and a random source in [0, 1).
+ * @returns {{ size: number, left: number, top: number }}  the dot's box, relative to the area's top-left corner
+ */
+export function dotLayout(area, dot, random = Math.random) {
+  const width = Math.max(0, Number(area && area.width) || 0);
+  const height = Math.max(0, Number(area && area.height) || 0);
+  const size = Math.max(0, Math.min(dot.sizePx, width - 2 * DOT_MARGIN, height - 2 * DOT_MARGIN));
+  const spot = (room) => {
+    if (dot.position !== 'random' || room <= 0) return Math.max(0, room) / 2;
+    const r = Math.min(Math.max(Number(random()) || 0, 0), 1);
+    return r * room;
+  };
+  const left = DOT_MARGIN + spot(width - 2 * DOT_MARGIN - size);
+  const top = DOT_MARGIN + spot(height - 2 * DOT_MARGIN - size);
+  // Floors keep the dot inside: floor(left) + floor(size) <= left + size.
+  return { size: Math.floor(size), left: Math.floor(left), top: Math.floor(top) };
+}
 
 export class ReactionRun {
   /**

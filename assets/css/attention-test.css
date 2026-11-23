@@ -59,6 +59,24 @@
 }
 .at-parts strong { font-size: 17px; font-weight: 600; color: var(--at-ink); }
 .at-parts li > span:last-child { font-size: 15px; color: var(--at-muted); line-height: 1.4; }
+/* Level picker: a segmented control (a radio group of three buttons). */
+.at-level { margin: 24px auto 0; max-width: 420px; }
+.at-level-label { margin: 0 0 8px; font-size: 14px; font-weight: 600; color: var(--at-muted); letter-spacing: 0.02em; }
+.at-levels {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px;
+  border-radius: 980px; background: #e8e8ed;
+}
+.at-level-btn {
+  min-height: 44px; padding: 8px 10px; border: 0; border-radius: 980px; background: transparent; cursor: pointer;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 16px; font-weight: 600; color: var(--at-muted);
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: background-color 0.15s ease, color 0.15s ease;
+}
+.at-level-btn:hover { color: var(--at-ink); }
+.at-level-btn[aria-checked="true"] { background: #fff; color: var(--at-ink); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+.at-level-btn:focus-visible { outline: 3px solid var(--at-blue); outline-offset: 2px; }
+.at-level-hint { margin: 10px auto 0; min-height: 2.8em; font-size: 15px; line-height: 1.4; color: var(--at-muted); }
+.at-level + .at-btn-big { margin-top: 16px; }
 .at-disclaimer { margin: 20px auto 0; font-size: 13px; line-height: 1.4; color: var(--at-muted); }
 .at-noscript-note { margin: 16px auto 0; font-size: 15px; color: var(--at-orange-ink); }
 
@@ -88,15 +106,20 @@
   font: inherit; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent; overscroll-behavior: contain;
 }
+/* The dot: game.js sets its size and place per level (reaction.js dotLayout), above the label band at the bottom. */
 .at-pad-circle {
-  display: block; width: min(48vw, 200px); aspect-ratio: 1; border-radius: 50%; background: var(--at-pad);
+  position: absolute; left: calc(50% - 70px); top: calc(50% - 102px); display: block; width: 140px; height: 140px;
+  border-radius: 50%; background: var(--at-pad); pointer-events: none;
 }
+/* A moving dot (Normal, Hard) shows only while it is up; there is no grey spot that gives the next place away. */
+.at-pad[data-dot="random"]:not([data-state="dot"]) .at-pad-circle { visibility: hidden; }
 /* No transition on the dot: it must be fully green on the frame it is timed from. */
 .at-pad[data-state="dot"] .at-pad-circle { background: var(--at-green); }
 .at-pad[data-state="result"] .at-pad-circle,
 .at-pad[data-state="tooEarly"] .at-pad-circle,
 .at-pad[data-state="missed"] .at-pad-circle { background: #E3E3E6; }
 .at-pad-label {
+  position: absolute; left: 12px; right: 12px; bottom: 16px;
   display: block; min-height: 1.3em; font-size: 24px; font-weight: 600; line-height: 1.3;
   font-variant-numeric: tabular-nums; color: var(--at-ink);
 }
@@ -173,6 +196,12 @@
   font-size: clamp(44px, 6vw + 20px, 76px); font-weight: 700; letter-spacing: -1px; line-height: 1.05; margin: 0 0 6px;
 }
 .at-score span { font-variant-numeric: tabular-nums; }
+.at-game .at-score .at-score-level { font-size: 0.42em; font-weight: 600; letter-spacing: -0.2px; color: var(--at-muted); white-space: nowrap; }
+.at-bonus {
+  display: block; width: fit-content; margin: 10px auto 0; padding: 4px 12px; border-radius: 980px; background: #fff;
+  box-shadow: inset 0 0 0 1px var(--at-line); font-size: 15px; font-weight: 600; color: var(--at-ink);
+}
+.at-bonus[hidden] { display: none; }
 .at-band { margin: 0; font-size: 21px; font-weight: 600; color: var(--at-muted); }
 .at-vs {
   display: inline-block; margin: 16px auto 0; padding: 8px 16px; border-radius: 980px; background: #fff;

@@ -16,7 +16,7 @@
 //   - saves an incoming ?f= to localStorage[INVITE_KEY] (kept 7 days) and, once signed in, calls
 //     add_friend(code) so both people become friends.
 import { track } from './track.js';
-import { checkRun, scoreRun } from './scoring.js';
+import { checkRun, scoreRun } from './scoring.js?v=2';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase-config.js?v=1'; // bump ?v= when the values change (/assets/js is cached for a year)
 
 const SUPABASE_JS = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/+esm';
@@ -30,7 +30,7 @@ const FRIEND_CODE_RE = /^[a-hjkmnp-z2-9]{8}$/;
 const FULL_BOARD_PATH = '/attention-test/leaderboard';
 const GAME_PATH = '/attention-test';
 const PUBLIC_ORIGIN = 'https://adarna.us';
-const INVITE_OK_KEY = 'at-invite-ok'; // sessionStorage: signed in from the invite line, so adding needs no second click
+const INVITE_OK_KEY = 'at-invite-ok'; // sessionStorage: the invite code the visitor agreed to add before the Google round trip
 const VARIANTS = { compact: 5, full: 100 }; // rows shown; the board() rpc caps at 100
 const DAILY_LIMIT = 20;
 
@@ -45,6 +45,10 @@ const DEVICES = [
   ['computer', 'Computer'],
 ];
 const DEVICE_LABEL = { phone: 'Phone', computer: 'Computer' };
+// One shared board for every level (scoring.js adds the level bonus to the overall score); each row shows the
+// level of that person's best run. Rows from before the levels migration have no level and show nothing.
+const LEVEL_LABEL = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
+const levelOf = (value) => (Object.prototype.hasOwnProperty.call(LEVEL_LABEL, value) ? value : null);
 const SCOPES = [
   ['global', 'Global'],
   ['friends', 'Friends'],
@@ -466,7 +470,13 @@ function createBoard(el, variant) {
   const editBtn = h('button', { type: 'button', class: 'atb-link', text: 'Edit name', onclick: () => openEdit() });
   const signOutBtn = h('button', { type: 'button', class: 'atb-link', text: 'Sign out', onclick: () => signOut() });
   const removeBtn = h('button', { type: 'button', class: 'atb-link atb-danger', text: 'Remove my data', onclick: () => removeData() });
-  const showInput = h('input', { type: 'checkbox', role: 'switch', class: 'atb-switch-input', onchange: () => saveShow() });
+  const showInput = h('input', {
+    type: 'checkbox',
+    role: 'switch',
+    class: 'atb-switch-input',
+    'aria-describedby': `${uid}-show-hint`,
+    onchange: () => saveShow(),
+  });
   const mailInput = h('input', { type: 'checkbox', onchange: () => saveMail() });
   const nameInput = h('input', {
     type: 'text',
@@ -498,7 +508,8 @@ function createBoard(el, variant) {
     h('p', { class: 'atb-who' }, 'Signed in as ', whoName),
     h('div', { class: 'atb-actions' }, editBtn, signOutBtn), // owner: no Remove my data button; deletion is by email (privacy policy)
     editForm,
-    h('label', { class: 'atb-check atb-switch' }, showInput, h('span', { text: 'Show me on the board' })),
+    h('label', { class: 'atb-check atb-switch' }, showInput, h('span', { text: 'Show me on the global board' })),
+    h('p', { class: 'atb-hint atb-switch-hint', id: `${uid}-show-hint`, text: 'Friends always see your best score.' }),
     h('label', { class: 'atb-check' }, mailInput, h('span', { text: 'Email me when Clarus Health launches' })),
     accountMsg,
   );
@@ -659,7 +670,8 @@ function createBoard(el, variant) {
     if (status === 200) {
       retryPending = null;
       track('leaderboard_joined', { rank: body.rankToday || 0 });
-      const bits = [`Score ${body.score}`];
+      const level = levelOf(body.level) || levelOf(pending.run && pending.run.level);
+      const bits = [level ? `Score ${body.score} on ${LEVEL_LABEL[level]}` : `Score ${body.score}`];
       if (body.rankAll) bits.push(`#${fmt(body.rankAll)} all time`);
       showNotice(statusCard({
         kind: 'ok',
@@ -677,7 +689,7 @@ function createBoard(el, variant) {
           kind: 'ok',
           eyebrow: 'Score saved',
           title: body.rankToday ? `You’re #${fmt(body.rankToday)} today` : 'Score saved',
-          text: `${bits.join(' · ')}. You’re hidden from the board, so only you can see this.`,
+          text: `${bits.join(' · ')}. You’re hidden from the global board, so only you and your friends can see this.`,
         }));
       }
       scrollToBoard();
@@ -774,7 +786,9 @@ function createBoard(el, variant) {
           class: 'atb-link',
           text: 'Sign in',
           onclick: () => {
-            try { sessionStorage.setItem(INVITE_OK_KEY, '1'); } catch (e) { /* storage blocked: they'll confirm after */ }
+            // Remember which code they agreed to, so only that invite is added without a second click.
+            const ss = sess();
+            if (ss) storeSet(ss, INVITE_OK_KEY, invite.code); // storage blocked: they'll confirm after
             startGoogle(null, 'friends');
           },
         }),
@@ -792,6 +806,7 @@ function createBoard(el, variant) {
           text: 'Not now',
           onclick: () => {
             clearInvite();
+            clearInviteConsent();
             track('friend_invite_dismissed');
             updateChrome();
           },
@@ -809,19 +824,36 @@ function createBoard(el, variant) {
     return (PERIODS.find((p) => p[0] === key) || PERIODS[0])[2];
   }
 
-  function row(entry, friends) {
+  /** "Hard" (accent) or "Easy" (muted) after the name; Normal, the default, shows nothing. */
+  function levelBadge(value) {
+    const level = levelOf(value);
+    if (!level || level === 'normal') return null;
+    return h('span', { class: `atb-level is-${level}`, title: `Played on ${LEVEL_LABEL[level]}` },
+      h('span', { class: 'atb-sr', text: 'Level ' }),
+      LEVEL_LABEL[level],
+    );
+  }
+
+  /** " on Hard" for the status lines, or '' when the level is unknown. */
+  function onLevel(value) {
+    const level = levelOf(value);
+    return level ? ` on ${LEVEL_LABEL[level]}` : '';
+  }
+
+  function row(entry) {
     const isMe = entry.is_me === true;
     const when = entry.achieved_at ? new Date(entry.achieved_at) : null;
-    const li = h('li', { class: `atb-row${friends ? ' has-remove' : ''}${isMe ? ' is-me' : ''}${isMe && flashNext ? ' is-new' : ''}` },
+    const li = h('li', { class: `atb-row${isMe ? ' is-me' : ''}${isMe && flashNext ? ' is-new' : ''}` },
       h('span', { class: 'atb-rank', text: `#${fmt(entry.rank)}` }),
       h('span', { class: 'atb-name' },
         h('span', { class: 'atb-name-text', text: entry.display_name }),
         isMe ? h('span', { class: 'atb-you', text: 'You' }) : null,
+        levelBadge(entry.level),
       ),
       h('span', { class: 'atb-dev', text: DEVICE_LABEL[entry.device] || '' }),
       h('span', { class: 'atb-score', text: String(entry.score) }),
     );
-    // Owner: friends can't remove each other, so friend rows have no Remove control.
+    // Owner: friends can't remove each other, so friend rows have no Remove control (and no friend codes).
     if (when && !Number.isNaN(when.getTime())) li.title = when.toLocaleString();
     if (isMe) li.setAttribute('aria-current', 'true');
     return li;
@@ -892,7 +924,7 @@ function createBoard(el, variant) {
     }
     panelError.hidden = true;
     const rows = boardRes.data;
-    list.replaceChildren(...rows.map((r) => row(r, false)));
+    list.replaceChildren(...rows.map((r) => row(r)));
     flashNext = false;
     empty.hidden = rows.length > 0;
     if (!rows.length) {
@@ -905,8 +937,8 @@ function createBoard(el, variant) {
     }
     const mine = !meRes.error && Array.isArray(meRes.data) ? meRes.data[0] : null;
     if (mine) {
-      let text = `You’re #${fmt(mine.rank)} of ${fmt(mine.total)} ${periodWord(p)}, best score ${mine.score}`;
-      if (mine.hidden) text += ' (hidden from the board)';
+      let text = `You’re #${fmt(mine.rank)} of ${fmt(mine.total)} ${periodWord(p)}, best score ${mine.score}${onLevel(mine.level)}`;
+      if (mine.hidden) text += ' (hidden from the global board)';
       me.textContent = `${text}.`;
     } else {
       me.textContent = `No score from you ${periodWord(p)} yet.`;
@@ -938,7 +970,7 @@ function createBoard(el, variant) {
     const rows = boardRes.data;
     const friendCount = countRes && !countRes.error && typeof countRes.count === 'number'
       ? countRes.count
-      : rows.filter((r) => r.friend_ref).length;
+      : rows.filter((r) => r.is_me !== true).length;
     if (friendCount === 0) {
       showFriendsBox(noFriendsCard());
       return;
@@ -946,7 +978,7 @@ function createBoard(el, variant) {
 
     showListMode();
     panelError.hidden = true;
-    list.replaceChildren(...rows.slice(0, top).map((r) => row(r, true)));
+    list.replaceChildren(...rows.slice(0, top).map((r) => row(r)));
     flashNext = false;
     empty.hidden = rows.length > 0;
     if (!rows.length) {
@@ -956,13 +988,18 @@ function createBoard(el, variant) {
     }
     const mine = rows.find((r) => r.is_me === true);
     me.textContent = mine
-      ? `You’re #${fmt(mine.rank)} of ${fmt(rows.length)} among friends ${periodWord(p)}, best score ${mine.score}.`
+      ? `You’re #${fmt(mine.rank)} of ${fmt(rows.length)} among friends ${periodWord(p)}, best score ${mine.score}${onLevel(mine.level)}.`
       : `No score from you ${periodWord(p)} yet.`;
     me.hidden = false;
     friendsFoot.hidden = false;
   }
 
   // ── Friends ──
+  function clearInviteConsent() {
+    const ss = sess();
+    if (ss) storeRemove(ss, INVITE_OK_KEY);
+  }
+
   function ownCode() {
     return profile && typeof profile.friend_code === 'string' && FRIEND_CODE_RE.test(profile.friend_code)
       ? profile.friend_code
@@ -1118,6 +1155,7 @@ function createBoard(el, variant) {
   async function refreshAccount() {
     if (!session) {
       profile = null;
+      clearInviteConsent();
       clearOwnCode();
       account.hidden = true;
       updateChrome();
@@ -1137,12 +1175,13 @@ function createBoard(el, variant) {
     mailInput.checked = profile ? profile.launch_emails : false;
     for (const input of [showInput, mailInput]) input.disabled = !profile;
     editBtn.disabled = !profile;
-    // Add the friend straight away only when they signed in from "Sign in to add Priya as a friend".
-    let consented = false;
-    try {
-      consented = sessionStorage.getItem(INVITE_OK_KEY) === '1';
-      sessionStorage.removeItem(INVITE_OK_KEY);
-    } catch (e) { /* storage blocked */ }
+    // Add the friend straight away only when they signed in from "Sign in to add Priya as a friend", and only
+    // the invite they agreed to then (the stored code must match the current invite).
+    const ss = sess();
+    const agreed = ss ? storeGet(ss, INVITE_OK_KEY) : null;
+    clearInviteConsent();
+    const invite = readInvite();
+    const consented = Boolean(agreed && invite && agreed === invite.code);
     if (consented) acceptInvite();
     else updateChrome();
   }
@@ -1215,7 +1254,9 @@ function createBoard(el, variant) {
       return;
     }
     profile.show_on_board = want;
-    accountMsg.textContent = want ? 'You’re shown on the board.' : 'You’re hidden from the board. Your scores are kept.';
+    accountMsg.textContent = want
+      ? 'You’re shown on the global board.'
+      : 'You’re hidden from the global board. Friends still see your best score, and your scores are kept.';
     loadBoard();
   }
 

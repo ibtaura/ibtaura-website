@@ -2,8 +2,8 @@
 // Body: { run, launchEmails }. Header: Authorization: Bearer <the signed-in user's access token>.
 // The score is never taken from the browser: the raw run is checked and re-scored here with the same
 // scoring.js the game uses, then stored with the service role.
-// Replies 200 { score, reaction, memory, rules, rankToday, rankAll }, or 4xx { error, reason }.
-import { checkRun, scoreRun, MEMORY, RULES } from '../_shared/scoring.js';
+// Replies 200 { score, level, reaction, memory, rules, rankToday, rankAll }, or 4xx { error, reason }.
+import { checkRun, scoreRun } from '../_shared/scoring.js';
 import { adminClient, getCaller, json, preflight, userClient } from '../_shared/http.ts';
 
 const MAX_BODY_BYTES = 32 * 1024;
@@ -12,36 +12,11 @@ const PLAYS_PER_DAY = 20;
 // deno-lint-ignore no-explicit-any
 type Json = any;
 
-/**
- * Checks checkRun leaves to the caller: every memory row must be one the game could have shown (checkRun stops
- * reading at the end of the part, so rows after that are refused here), and the rules part must have all its
- * digits (each digit is recorded even when its 3 s run out).
- */
-function extraCheck(run: Json): string | null {
-  let length = MEMORY.startLength;
-  let missesAtLength = 0;
-  const rounds = run.memory.rounds as Json[];
-  for (let i = 0; i < rounds.length; i++) {
-    const row = rounds[i];
-    if (!row || row.length !== length || typeof row.correct !== 'boolean') return 'impossibleMemory';
-    const last = i === rounds.length - 1;
-    if (row.correct) {
-      if (length >= MEMORY.maxLength) return last ? null : 'impossibleMemory';
-      length += 1;
-      missesAtLength = 0;
-    } else {
-      missesAtLength += 1;
-      if (missesAtLength >= MEMORY.missesToEnd && !last) return 'impossibleMemory';
-    }
-  }
-  if (run.rules.trials.length !== RULES.trials) return 'incompleteRules';
-  return null;
-}
-
 /** Keeps only the fields of the documented run format, so nothing else gets stored. */
 function cleanRun(run: Json): Json {
   return {
     v: run.v,
+    level: run.level,
     device: run.device,
     reaction: {
       durationSeconds: run.reaction.durationSeconds,
@@ -51,8 +26,9 @@ function cleanRun(run: Json): Json {
     memory: { rounds: run.memory.rounds.map((r: Json) => ({ length: r.length, correct: r.correct })) },
     rules: {
       trials: run.rules.trials.map((t: Json) => ({
-        digit: t.digit,
+        n: t.n,
         rule: t.rule,
+        pivot: t.pivot ?? null,
         isSwitch: Boolean(t.isSwitch),
         answer: t.answer,
         correct: t.correct,
@@ -105,7 +81,9 @@ Deno.serve(async (req: Request) => {
 
     let reason: string | null;
     try {
-      reason = checkRun(run) || extraCheck(run);
+      // checkRun covers the whole format, including the level, the memory rows the game could have shown and
+      // every rules trial (number range, pivot, answer, timing), so no extra checks are needed here.
+      reason = checkRun(run);
     } catch {
       reason = 'badShape';
     }
@@ -154,6 +132,7 @@ Deno.serve(async (req: Request) => {
     const { error: insertError } = await admin.from('plays').insert({
       user_id: userId,
       device: run.device,
+      level: result.level,
       overall: result.overall,
       reaction: result.reaction.score,
       memory: result.memory.score,
@@ -190,6 +169,7 @@ Deno.serve(async (req: Request) => {
 
     return json(req, 200, {
       score: result.overall,
+      level: result.level,
       reaction: result.reaction.score,
       memory: result.memory.score,
       rules: result.rules.score,

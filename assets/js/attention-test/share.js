@@ -5,13 +5,15 @@
 // otherwise a panel of X / LinkedIn / WhatsApp / Facebook / download / copy link), and "Challenge a friend".
 // No login is needed. Styles: /assets/css/attention-share.css.
 //
-// Every share link points at adarna.us/attention-test/s/SCORE (plus ?by=NAME and &f=FRIENDCODE), a static
-// page whose og:image shows the score (made by scripts/build-attention-share.py) and which forwards to the game.
+// Every share link points at adarna.us/attention-test/s/SCORE (plus ?by=NAME, &f=FRIENDCODE and &l=LEVEL), a
+// static page whose og:image shows the score (made by scripts/build-attention-share.py) and which forwards to the
+// game. l is the level (easy | hard) so the friend plays the same one; it's left out for normal to keep links short.
+// One leaderboard for all levels: result.overall already includes the level bonus (result.bonus, Hard +10, Easy -10).
 // The user's name only ever goes into textContent, canvas text and encoded URL parameters.
 // f is the sharer's friend code for the friends leaderboard. board.js stores it in localStorage while the
 // sharer is signed in; it's read at the moment of sharing (they may sign in after the result screen shows).
 
-import { bandOf, percentileOf } from './scoring.js?v=1';
+import { bandOf, percentileOf } from './scoring.js?v=2';
 import { track } from './track.js?v=1';
 
 const ORIGIN = 'https://adarna.us';
@@ -30,7 +32,11 @@ const C = {
   light: '#86868b',
   green: '#34C759',
   orange: '#FF6B35',
+  dotOff: '#c7c7cc',
 };
+// Own copy of the level labels (scoring.js has LEVELS too) so sharing never depends on load order.
+export const LEVEL_LABELS = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
+const LEVEL_DOTS = { easy: 1, normal: 2, hard: 3 };
 const FOOTER_URL = 'adarna.us/attention-test';
 const FOOTER_BRAND = 'Clarus Health by Adarna Inc.';
 
@@ -60,26 +66,37 @@ export function loadFriendCode() {
   }
 }
 
+/** 'easy' | 'normal' | 'hard'; anything else (missing, unknown, wrong type) is 'normal'. */
+export function cleanLevel(raw) {
+  return typeof raw === 'string' && Object.prototype.hasOwnProperty.call(LEVEL_LABELS, raw) ? raw : 'normal';
+}
+
 /**
- * The challenge link adarna.us/attention-test/s/SCORE (https), plus ?by=NAME when a name is given and
- * f=CODE when a valid friend code is given: /s/118?by=Maya&f=abcd2345, /s/118?f=abcd2345 or /s/118.
+ * The challenge link adarna.us/attention-test/s/SCORE (https), plus ?by=NAME when a name is given,
+ * f=CODE when a valid friend code is given and l=LEVEL for easy or hard (normal is the default, so it's left out):
+ * /s/118?by=Maya&f=abcd2345&l=hard, /s/118?f=abcd2345, /s/118?l=easy or /s/118.
  */
-export function shareUrl(score, name, friendCode) {
+export function shareUrl(score, name, friendCode, level) {
   const n = cleanName(name);
   const f = cleanFriendCode(friendCode);
+  const l = cleanLevel(level);
   const params = [];
   if (n) params.push(`by=${encodeURIComponent(n)}`);
   if (f) params.push(`f=${f}`);
+  if (l !== 'normal') params.push(`l=${l}`);
   return `${ORIGIN}/attention-test/s/${score}${params.length ? `?${params.join('&')}` : ''}`;
 }
 
-export function shareText(score) {
-  return `I scored ${score} on the Clarus Attention Test (sharper than ${percentileOf(score)}% of people). Can you beat me? \u{1F9E0}`;
+export function shareText(score, level) {
+  const label = LEVEL_LABELS[cleanLevel(level)];
+  return `I scored ${score} on ${label} on the Clarus Attention Test (sharper than ${percentileOf(score)}% of people). Can you beat me? \u{1F9E0}`;
 }
 
-/** The numbers the cards show, from scoreRun()'s result. */
-export function cardData(result, name) {
+/** The numbers the cards show, from scoreRun()'s result. `level` defaults to result.level. */
+export function cardData(result, name, level) {
   const score = result.overall;
+  const lvl = cleanLevel(level ?? result.level);
+  const bonus = Number.isFinite(result.bonus) ? result.bonus : 0;
   const r = result.reaction || {};
   const m = result.memory || {};
   const ru = result.rules || {};
@@ -88,6 +105,9 @@ export function cardData(result, name) {
     band: bandOf(score).label,
     pct: percentileOf(score),
     name: cleanName(name),
+    level: lvl,
+    levelLabel: LEVEL_LABELS[lvl],
+    bonus,
     parts: [
       { label: 'Reaction', score: r.score, detail: Number.isFinite(r.medianMs) ? `${r.medianMs} ms` : '' },
       { label: 'Memory', score: m.score, detail: Number.isFinite(m.bestSpan) ? `${m.bestSpan} digits` : '' },
@@ -98,7 +118,8 @@ export function cardData(result, name) {
 
 function altText(d) {
   const parts = d.parts.map((p) => `${p.label} ${p.score ?? '-'}`).join(', ');
-  return `Attention Test score card: ${d.score}, ${d.band}, sharper than ${d.pct}% of people. ${parts}.`;
+  const bonus = d.bonus > 0 ? ` including a ${d.bonus}-point ${d.levelLabel} bonus` : '';
+  return `Attention Test score card: ${d.score} on ${d.levelLabel}${bonus}, ${d.band}, sharper than ${d.pct}% of people. ${parts}.`;
 }
 
 // ---------- canvas drawing
@@ -172,7 +193,7 @@ function canvasOf(w, h) {
 
 const scoredLine = (d) => (d.name ? `${d.name} scored` : 'I scored');
 
-/** Kicker: green dot + letter-spaced "ATTENTION TEST". (x, y) is the dot's left edge and the text baseline. */
+/** Kicker: green dot + letter-spaced "ATTENTION TEST". (x, y) is the dot's left edge and the text baseline. Returns its width. */
 function kicker(ctx, x, y, size, align = 'left', maxW = 600) {
   const tracking = size * 0.17;
   const r = size * 0.36;
@@ -183,6 +204,45 @@ function kicker(ctx, x, y, size, align = 'left', maxW = 600) {
   const left = align === 'center' ? x - total / 2 : x;
   dot(ctx, left + r, y - size * 0.36, r);
   fillText(ctx, 'ATTENTION TEST', left + r * 2 + gap, y, { weight: 600, size, maxW, color: C.light, tracking });
+  return total;
+}
+
+/** Pill texts from longest to shortest: "HARD · +10 BONUS", "HARD +10", "HARD" (no bonus: just the level). */
+const pillTexts = (d) => {
+  const label = d.levelLabel.toUpperCase();
+  return d.bonus > 0 ? [`${label} · +${d.bonus} BONUS`, `${label} +${d.bonus}`, label] : [label];
+};
+
+/**
+ * Level pill: three intensity dots (1 filled = Easy, 2 = Normal, 3 = Hard) and the letter-spaced level name,
+ * plus the bonus when the level added points. Uses the longest text that fits maxW without shrinking much.
+ * (x, cy) is the pill's left edge (its centre with align 'center') and vertical centre; returns its width.
+ */
+function levelPill(ctx, d, x, cy, h, align = 'left', maxW = 600) {
+  const r = h * 0.1;
+  const step = r * 3.1;
+  const padX = h * 0.42;
+  const dotsW = r * 2 + step * 2;
+  const gap = h * 0.28;
+  const want = Math.round(h * 0.42);
+  const room = maxW - padX * 2 - dotsW - gap;
+  const texts = pillTexts(d);
+  let text = texts[0];
+  let size = want;
+  for (const t of texts) {
+    text = t;
+    size = fitFont(ctx, t, 700, want, room, want * 0.14);
+    if (size >= want * 0.9) break;
+  }
+  const tracking = size * 0.14;
+  const tw = widthOf(ctx, text, tracking);
+  const w = padX * 2 + dotsW + gap + tw;
+  const left = align === 'center' ? x - w / 2 : x;
+  roundRect(ctx, left, cy - h / 2, w, h, h / 2, C.bg);
+  const filled = LEVEL_DOTS[d.level] || 2;
+  for (let i = 0; i < 3; i++) dot(ctx, left + padX + r + i * step, cy, r, i < filled ? C.ink : C.dotOff);
+  fillText(ctx, text, left + padX + dotsW + gap, cy + size * 0.36, { weight: 700, size, maxW: tw + 1, color: C.ink, tracking });
+  return w;
 }
 
 /** 1080x1920 card for Instagram / WhatsApp stories. Key content stays between y 250 and 1670 (story UI). */
@@ -197,10 +257,11 @@ export function drawStoryCard(d) {
   kicker(ctx, cx, 300, 34, 'center', 800);
 
   roundRect(ctx, 72, 350, 936, 720, 56, C.white);
-  fillText(ctx, scoredLine(d), cx, 470, { weight: 600, size: 52, maxW: 800, color: C.ink, align: 'center' });
-  fillText(ctx, String(d.score), cx, 790, { weight: 700, size: 360, maxW: 820, color: C.ink, align: 'center' });
-  fillText(ctx, d.band, cx, 900, { weight: 700, size: 72, maxW: 820, color: C.ink, align: 'center' });
-  fillText(ctx, `Sharper than ${d.pct}% of people`, cx, 978, { weight: 400, size: 44, maxW: 820, color: C.grey, align: 'center' });
+  levelPill(ctx, d, cx, 432, 68, 'center', 800);
+  fillText(ctx, scoredLine(d), cx, 540, { weight: 600, size: 52, maxW: 800, color: C.ink, align: 'center' });
+  fillText(ctx, String(d.score), cx, 832, { weight: 700, size: 340, maxW: 820, color: C.ink, align: 'center' });
+  fillText(ctx, d.band, cx, 934, { weight: 700, size: 72, maxW: 820, color: C.ink, align: 'center' });
+  fillText(ctx, `Sharper than ${d.pct}% of people`, cx, 1006, { weight: 400, size: 44, maxW: 820, color: C.grey, align: 'center' });
 
   const tw = 296;
   d.parts.forEach((p, i) => {
@@ -236,7 +297,9 @@ export function drawPostCard(d) {
 
   const left = 104;
   const colW = 520;
-  kicker(ctx, left, 112, 24, 'left', colW);
+  const kw = kicker(ctx, left, 112, 24, 'left', colW);
+  // right edge 640: 40 px clear of the part tiles
+  levelPill(ctx, d, left + kw + 20, 104, 40, 'left', 640 - (left + kw + 20));
   fillText(ctx, scoredLine(d), left, 172, { weight: 600, size: 32, maxW: colW, color: C.ink });
   fillText(ctx, String(d.score), left - 6, 352, { weight: 700, size: 200, maxW: colW, color: C.ink });
   fillText(ctx, d.band, left, 420, { weight: 700, size: 40, maxW: colW, color: C.ink });
@@ -354,9 +417,9 @@ let uid = 0;
  * Returns { update(name), destroy() } and a `ready` promise that resolves once the first cards are drawn.
  */
 export function mountShare(el, { result, run } = {}) {
-  void run; // the raw run isn't needed for sharing
   if (!el || !result || !result.valid || !Number.isFinite(result.overall)) return null;
   const score = result.overall;
+  const level = cleanLevel(result.level ?? (run && run.level));
   const id = `ats-${++uid}`;
   let name = loadName();
   let story = null; // { blob, file }
@@ -390,7 +453,7 @@ export function mountShare(el, { result, run } = {}) {
   // preview
   const figure = h('figure', { class: 'ats-preview' });
   const img = h('img', { class: 'ats-preview-img', width: '1080', height: '1920', alt: '', decoding: 'async' });
-  img.alt = altText(cardData(result, name));
+  img.alt = altText(cardData(result, name, level));
   figure.appendChild(img);
   root.appendChild(figure);
 
@@ -437,11 +500,11 @@ export function mountShare(el, { result, run } = {}) {
   }
 
   // The link as of now: the friend code is read on every share, not once at mount.
-  const currentUrl = () => shareUrl(score, name, loadFriendCode());
+  const currentUrl = () => shareUrl(score, name, loadFriendCode(), level);
 
   function updateLinks() {
     const url = currentUrl();
-    const text = shareText(score);
+    const text = shareText(score, level);
     xLink.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
     liLink.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
     waLink.href = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url);
@@ -452,12 +515,12 @@ export function mountShare(el, { result, run } = {}) {
     const token = ++drawToken;
     await fontsReady();
     if (token !== drawToken) return;
-    const d = cardData(result, name);
+    const d = cardData(result, name, level);
     const [sBlob, pBlob] = await Promise.all([canvasBlob(drawStoryCard(d)), canvasBlob(drawPostCard(d))]);
     if (token !== drawToken) return;
     let file = null;
     try {
-      file = new File([sBlob], `clarus-attention-${score}.png`, { type: 'image/png' });
+      file = new File([sBlob], `clarus-attention-${score}-${level}.png`, { type: 'image/png' });
     } catch (_) {
       /* old browsers without the File constructor: no native file share */
     }
@@ -488,7 +551,7 @@ export function mountShare(el, { result, run } = {}) {
     // The story file is drawn ahead of time, so share() runs inside the tap (Safari needs that).
     if (canShareFile()) {
       try {
-        await navigator.share({ files: [story.file], title: 'Clarus Attention Test', text: shareText(score), url: currentUrl() });
+        await navigator.share({ files: [story.file], title: 'Clarus Attention Test', text: shareText(score, level), url: currentUrl() });
         track('share', { method: 'native' });
         return;
       } catch (err) {
@@ -528,7 +591,7 @@ export function mountShare(el, { result, run } = {}) {
     try {
       if (!story || !post) await draw();
       const blob = which === 'story' ? story.blob : post.blob;
-      downloadBlob(blob, `clarus-attention-${score}-${which}.png`);
+      downloadBlob(blob, `clarus-attention-${score}-${level}-${which}.png`);
       track('share', { method: 'download', size: which });
     } catch (_) {
       showToast('Sorry, the image could not be made in this browser');
