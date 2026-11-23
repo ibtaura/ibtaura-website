@@ -223,6 +223,15 @@ function writeOwnCode(code) {
   else storeRemove(ls, FRIEND_CODE_KEY);
 }
 
+// share.js signs challenge links with this name ("by="); fill it from the board name when the player
+// hasn't typed one, so a friend's invite says "Add Maheswara as a friend" rather than "your friend".
+const SHARE_NAME_KEY = 'clarus.attentionTest.shareName';
+function fillShareName(name) {
+  const ls = local();
+  if (!ls || !name || storeGet(ls, SHARE_NAME_KEY)) return;
+  storeSet(ls, SHARE_NAME_KEY, String(name).slice(0, 24));
+}
+
 function clearOwnCode() {
   const ls = local();
   if (ls) storeRemove(ls, FRIEND_CODE_KEY);
@@ -595,8 +604,15 @@ function createBoard(el, variant) {
     // Ticked by default; the visitor can untick it before signing in.
     const mail = h('input', { type: 'checkbox', checked: true });
     const msg = h('p', { class: 'atb-form-msg', role: 'status', text: message });
+    // Came from a friend's link: offer to add them in the same step. Ticking the box (shown, and on by
+    // default) next to the button they press is the consent; the code is stored so only that invite is added.
+    const invite = readInvite();
+    const friendBox = invite ? h('input', { type: 'checkbox', checked: true }) : null;
     const button = googleButton(msg, () => {
       track('leaderboard_join_click');
+      const ss = sess();
+      if (ss && invite && friendBox && friendBox.checked) storeSet(ss, INVITE_OK_KEY, invite.code);
+      else if (ss) storeRemove(ss, INVITE_OK_KEY);
       return startGoogle({ run, launchEmails: mail.checked });
     });
     showNotice(
@@ -609,6 +625,9 @@ function createBoard(el, variant) {
           h('h2', { class: 'atb-status-title', text: 'Join the leaderboard' }),
           h('p', { class: 'atb-status-text', text: 'Sign in with Google to put this score on the board. Only a display name like “Priya S.” is shown, and you can change or hide it any time.' }),
           button,
+          friendBox
+            ? h('label', { class: 'atb-check' }, friendBox, h('span', { text: `Add ${invite.by || 'the friend who sent you the link'} as a friend` }))
+            : null,
           h('label', { class: 'atb-check' }, mail, h('span', { text: 'Email me when Clarus Health launches' })),
           h('p', { class: 'atb-fine', text: 'Playing and sharing never need an account.' }),
           msg,
@@ -1325,7 +1344,10 @@ function createBoard(el, variant) {
     const data = await loadProfile(userId);
     if (!session || session.user.id !== userId) return;
     profile = data;
-    if (profile) writeOwnCode(profile.friend_code);
+    if (profile) {
+      writeOwnCode(profile.friend_code);
+      fillShareName(profile.display_name);
+    }
     whoName.textContent = profile ? profile.display_name : 'your Google account';
     showInput.checked = profile ? profile.show_on_board : true;
     mailInput.checked = profile ? profile.launch_emails : false;
