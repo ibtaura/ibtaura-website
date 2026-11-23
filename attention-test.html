@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
   <link rel="stylesheet" href="/assets/css/attention-board.css?v=7" />
   <link rel="stylesheet" href="/assets/css/attention-dialog.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=4" />
+  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=5" />
 </head>
 <body class="at-dark">
 
@@ -260,34 +260,46 @@
         </div>
       </div>
 
-      <!-- Result -->
+      <!-- Result: a tile with the score, then the parts as divided rows -->
       <div class="at-screen at-result" id="at-result" hidden>
-        <p class="lp-eyebrow">Your result</p>
-        <h2 class="at-score" id="at-result-title" tabindex="-1">Attention <span id="at-score">100</span></h2>
-        <p class="at-band" id="at-band">Steady</p>
-        <p class="at-vs" id="at-vs" hidden></p>
+        <article class="at-feature at-feature-part at-feature-result">
+          <div class="at-square at-square-result" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
+          <div class="at-feature-text">
+            <div class="at-feature-top">
+              <p class="at-kicker">Your result</p>
+              <h2 class="at-feature-title at-score" id="at-result-title" tabindex="-1">Attention <span id="at-score">100</span></h2>
+              <p class="at-feature-desc"><span class="at-band" id="at-band">Steady</span>. <span id="at-pct">Higher than about 50% of people</span> <span class="at-beta">(beta norms)</span></p>
+              <p class="at-vs" id="at-vs" hidden></p>
+            </div>
+            <button type="button" class="at-start-link" id="at-again">Play again<span aria-hidden="true"> ›</span></button>
+          </div>
+        </article>
         <ul class="at-tiles" id="at-tiles">
-          <li><span class="at-tile-name">Reaction</span><span class="at-tile-score" id="at-r-score">100</span><span class="at-tile-raw" id="at-r-raw"></span></li>
-          <li><span class="at-tile-name">Memory</span><span class="at-tile-score" id="at-m-score">100</span><span class="at-tile-raw" id="at-m-raw"></span></li>
-          <li><span class="at-tile-name">Rules</span><span class="at-tile-score" id="at-s-score">100</span><span class="at-tile-raw" id="at-s-raw"></span></li>
+          <li><span class="at-tile-name">Reaction</span><span class="at-tile-raw" id="at-r-raw"></span><span class="at-tile-score" id="at-r-score">100</span></li>
+          <li><span class="at-tile-name">Memory</span><span class="at-tile-raw" id="at-m-raw"></span><span class="at-tile-score" id="at-m-score">100</span></li>
+          <li><span class="at-tile-name">Rules</span><span class="at-tile-raw" id="at-s-raw"></span><span class="at-tile-score" id="at-s-score">100</span></li>
         </ul>
-        <p class="at-pct"><span id="at-pct">Higher than about 50% of people</span> <span class="at-beta">(beta norms)</span></p>
         <div id="at-share" class="at-share"></div>
-        <button type="button" class="at-btn at-btn-secondary" id="at-again">Play again</button>
         <div class="at-cta">
           <p class="at-cta-text">Clarus Health checks this every morning against your own normal.</p>
-          <a href="/clarus-health/iphone" class="desktop-notify-btn">See Clarus Health for iPhone</a>
+          <a href="/clarus-health/iphone" class="at-cta-link">See Clarus Health for iPhone<span aria-hidden="true"> ›</span></a>
         </div>
         <p class="at-disclaimer">A fun attention check, not a medical test.</p>
       </div>
 
-      <!-- Run that can't be scored -->
+      <!-- Run that can't be scored: the same tile, with a grey square -->
       <div class="at-screen at-invalid" id="at-invalid" hidden>
-        <p class="lp-eyebrow">No score this time</p>
-        <h2 id="at-invalid-title" tabindex="-1">This run can't be scored</h2>
-        <p class="at-inter-text" id="at-invalid-text"></p>
-        <button type="button" class="at-btn at-btn-primary at-btn-big" id="at-retry">Try again</button>
-        <p class="at-disclaimer">A fun attention check, not a medical test.</p>
+        <article class="at-feature at-feature-part">
+          <div class="at-square at-square-invalid" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
+          <div class="at-feature-text">
+            <div class="at-feature-top">
+              <p class="at-kicker">No score this time</p>
+              <h2 class="at-feature-title" id="at-invalid-title" tabindex="-1">This run can't be scored</h2>
+              <p class="at-feature-desc" id="at-invalid-text"></p>
+            </div>
+            <button type="button" class="at-start-link" id="at-retry">Try again<span aria-hidden="true"> ›</span></button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -504,7 +516,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/game.js?v=14"></script>
+  <script type="module" src="/assets/js/attention-test/game.js?v=15"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>

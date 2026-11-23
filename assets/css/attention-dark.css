@@ -238,10 +238,6 @@ body.at-dark .atb-rank {
   display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%;
   font-size: 14px; color: var(--dk-muted);
 }
-body.at-dark .atb-rank.is-top { color: #000; font-weight: 700; }
-body.at-dark .atb-rank.is-top-1 { background: linear-gradient(145deg, #ffe08a, #e0a82e); }
-body.at-dark .atb-rank.is-top-2 { background: linear-gradient(145deg, #f2f2f5, #a9adb6); }
-body.at-dark .atb-rank.is-top-3 { background: linear-gradient(145deg, #f3c39a, #b8743f); }
 .atb-avatar { display: none; }
 body.at-dark .atb-avatar {
   display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%;
@@ -454,40 +450,22 @@ body.at-dark .at-board-page .atb-title { font-size: clamp(32px, 2.6vw + 18px, 44
 body.at-dark .atb-row { grid-template-columns: 44px minmax(0, 1fr) auto 64px; }
 body.at-dark .atb-me-row { grid-template-columns: 44px minmax(0, 1fr) 64px; }
 
-/* Ranks 1 to 3: large metallic numerals instead of plain numbers, with the name in white. */
 body.at-dark .atb-rank { width: auto; height: auto; justify-content: flex-start; border-radius: 0; background: none; }
-body.at-dark .atb-rank.is-top {
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-size: 24px; font-weight: 700; line-height: 1; letter-spacing: -0.5px;
-  background: none; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
-}
-body.at-dark .atb-rank.is-top-1 { background-image: linear-gradient(160deg, #fff1b8 0%, #f5c542 45%, #c98a12 100%); }
-body.at-dark .atb-rank.is-top-2 { background-image: linear-gradient(160deg, #ffffff 0%, #d4d7de 45%, #8e939c 100%); }
-body.at-dark .atb-rank.is-top-3 { background-image: linear-gradient(160deg, #ffd9b8 0%, #e09a5f 45%, #a35d2a 100%); }
-body.at-dark .atb-row:has(.atb-rank.is-top) .atb-name-text { color: #fff; font-weight: 600; }
-body.at-dark .atb-row:has(.atb-rank.is-top) { padding-top: 16px; padding-bottom: 16px; }
 
 @media (max-width: 600px) {
   body.at-dark .atb:not(.atb-compact) .atb-board .atb-head { flex-direction: column; align-items: flex-start; }
   body.at-dark .atb-filters { justify-content: flex-start; }
   body.at-dark .atb-row { grid-template-columns: 34px minmax(0, 1fr) 48px; }
   body.at-dark .atb-me-row { grid-template-columns: 34px minmax(0, 1fr) 48px; }
-  body.at-dark .atb-rank.is-top { font-size: 21px; }
   body.at-dark .at-board-page { margin-top: 88px; }
 }
-/* Top three rows: a soft metallic fade from the left, behind larger numerals (no corners, no card). */
 body.at-dark .atb-cols,
 body.at-dark .atb-row,
 body.at-dark .atb-me-row { padding-left: 14px; padding-right: 14px; }
-body.at-dark .atb-rank.is-top { font-size: 28px; }
-body.at-dark .atb-row:has(.atb-rank.is-top-1) { background: linear-gradient(90deg, rgba(245, 197, 66, 0.16), rgba(245, 197, 66, 0) 55%); }
-body.at-dark .atb-row:has(.atb-rank.is-top-2) { background: linear-gradient(90deg, rgba(212, 215, 222, 0.12), rgba(212, 215, 222, 0) 55%); }
-body.at-dark .atb-row:has(.atb-rank.is-top-3) { background: linear-gradient(90deg, rgba(224, 154, 95, 0.14), rgba(224, 154, 95, 0) 55%); }
 @media (max-width: 600px) {
   body.at-dark .atb-cols,
   body.at-dark .atb-row,
   body.at-dark .atb-me-row { padding-left: 10px; padding-right: 10px; }
-  body.at-dark .atb-rank.is-top { font-size: 24px; }
 }
 
 /* ─── Fourth pass (owner, 23 Nov 2026): the test itself in the tile language ───
@@ -578,3 +556,133 @@ body.at-dark .at-vs { border-radius: 8px; background: none; }
 }
 body.at-testing .at-about { margin-top: 140px; }
 .at-feature .at-square { align-self: flex-start; }
+
+/* ─── Fifth pass (owner, 24 Nov 2026): one layout system for every screen ───
+   1. One content width for the game, the board, the FAQ and the footer-style text.
+   2. One vertical rhythm (--at-space): the gap under the nav equals the gap between blocks.
+   3. A single tile on its own is centred on the page.
+   4. Result, "can't be scored", share, join and saved-score blocks in the same flat language. */
+body.at-dark { --at-space: 96px; --at-gutter: 40px; --at-max: 1020px; }
+@media (max-width: 768px) { body.at-dark { --at-space: 72px; --at-gutter: 32px; } }
+@media (max-width: 480px) { body.at-dark { --at-space: 56px; --at-gutter: 24px; } }
+
+body.at-dark .at-game,
+body.at-dark .at-game.is-intro,
+body.at-dark .at-board-section,
+body.at-dark .lp-card.at-faq,
+body.at-dark .at-about {
+  width: calc(100% - 2 * var(--at-gutter)); max-width: var(--at-max);
+  margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0; box-sizing: border-box;
+}
+/* --at-top is measured so the first block sits --at-space under the nav (see the script note in the commit). */
+body.at-dark .at-game,
+body.at-dark .at-game.is-intro { margin-top: var(--at-top, 60px); padding-top: 0; padding-bottom: 0; }
+body.at-dark .at-board-section,
+body.at-dark .lp-card.at-faq,
+body.at-dark .at-about,
+body.at-testing .at-about { margin-top: var(--at-space); }
+body.at-dark .at-board-page { margin-top: var(--at-top, 60px); }
+
+/* A single tile is centred */
+body.at-dark .at-inter,
+body.at-dark .at-invalid,
+body.at-dark .at-result { max-width: none; margin: 0; text-align: left; }
+body.at-dark .at-feature-part { width: fit-content; max-width: 100%; margin: 0 auto; }
+body.at-dark .at-feature-part .at-feature-text { max-width: 460px; }
+body.at-dark .at-invalid .at-kicker,
+body.at-dark .at-result .at-kicker { margin: 0 0 8px; font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--dk-faint); }
+body.at-dark .at-invalid .at-feature-title,
+body.at-dark .at-result .at-feature-title {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 30px; font-weight: 500; line-height: 1.2; letter-spacing: -0.4px; color: #fff; margin: 0 0 12px; text-align: left;
+}
+.at-square-invalid { background: linear-gradient(160deg, #5a5a60 0%, #2f2f33 55%, #6b6b72 100%); }
+.at-square-invalid .at-glow-1 { background: radial-gradient(circle, #9a9aa2 0%, rgba(154, 154, 162, 0) 70%); }
+.at-square-invalid .at-glow-2 { background: radial-gradient(circle, #c7c7cc 0%, rgba(199, 199, 204, 0) 70%); opacity: 0.5; }
+.at-square-invalid .at-glow-3 { background: radial-gradient(circle, #7d7d85 0%, rgba(125, 125, 133, 0) 70%); }
+.at-square-invalid .at-glow-4 { background: radial-gradient(circle, #48484d 0%, rgba(72, 72, 77, 0) 70%); }
+.at-square-result { background: linear-gradient(160deg, #1f5fe0 0%, #1a4bb8 45%, #11a37f 100%); }
+.at-square-result .at-glow-1 { background: radial-gradient(circle, #4d86ff 0%, rgba(77, 134, 255, 0) 70%); }
+.at-square-result .at-glow-2 { background: radial-gradient(circle, #23e0a8 0%, rgba(35, 224, 168, 0) 70%); }
+.at-square-result .at-glow-3 { background: radial-gradient(circle, #5fd0f5 0%, rgba(95, 208, 245, 0) 70%); }
+.at-square-result .at-glow-4 { background: radial-gradient(circle, #9af0d2 0%, rgba(154, 240, 210, 0) 70%); }
+
+/* Result: the big number in the tile, the parts as divided rows, then share and the app link */
+body.at-dark .at-result .at-score #at-score {
+  display: block; margin-top: 2px; font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -1.5px;
+  color: #fff; font-variant-numeric: tabular-nums;
+}
+body.at-dark .at-result .at-band { margin: 0; font-size: inherit; font-weight: 500; color: #fff; }
+body.at-dark .at-result .at-beta { font-size: 13px; color: var(--dk-faint); }
+body.at-dark .at-result .at-vs { display: block; margin: 12px 0 0; padding: 0; border: 0; background: none; font-size: 15px; font-weight: 500; color: var(--dk-blue); }
+body.at-dark .at-result .at-vs[hidden] { display: none; }
+body.at-dark .at-result > :not(.at-feature-part) { max-width: 720px; margin-left: auto; margin-right: auto; }
+body.at-dark .at-tiles { display: block; margin-top: var(--at-space); padding: 0; list-style: none; border-top: 1px solid var(--dk-line); }
+body.at-dark .at-tiles li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto 56px; align-items: baseline; gap: 16px;
+  padding: 16px 0; border: 0; border-bottom: 1px solid var(--dk-line); border-radius: 0; background: none; text-align: left;
+}
+body.at-dark .at-tile-name { font-size: 17px; font-weight: 500; color: #fff; }
+body.at-dark .at-tile-raw { grid-column: auto; font-size: 14px; color: var(--dk-faint); text-align: right; }
+body.at-dark .at-tile-score { font-size: 22px; font-weight: 600; color: #fff; text-align: right; }
+body.at-dark .at-share { margin-top: var(--at-space); }
+body.at-dark .at-cta {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+  margin-top: var(--at-space); padding: 20px 0; border: 0; border-top: 1px solid var(--dk-line); border-bottom: 1px solid var(--dk-line);
+  border-radius: 0; background: none; text-align: left;
+}
+body.at-dark .at-cta-text { margin: 0; font-size: 16px; font-weight: 400; color: var(--dk-muted); }
+.at-cta-link { font-size: 16px; font-weight: 500; color: var(--dk-blue, #2997ff); text-decoration: none; white-space: nowrap; }
+.at-cta-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+body.at-dark .at-result .at-disclaimer { margin-top: 16px; text-align: left; color: var(--dk-faint); }
+
+/* Share block: flat, left aligned, hairline buttons with the squares' corners */
+body.at-dark .ats-title { text-align: left; font-size: 22px; font-weight: 500; color: #fff; }
+body.at-dark .ats-input { border-radius: 8px; background: none; }
+body.at-dark .ats-preview { justify-content: flex-start; }
+body.at-dark .ats-preview-img { border-radius: 8px; box-shadow: none; border: 1px solid var(--dk-line); }
+body.at-dark .ats-btn,
+body.at-dark .ats-opt { border-radius: 8px; background: none; border: 1px solid var(--dk-line-strong); color: #fff; font-weight: 500; }
+body.at-dark .ats-btn:hover,
+body.at-dark .ats-opt:hover { background: var(--dk-raise); }
+body.at-dark .ats-btn-primary { color: var(--dk-blue); border-color: var(--dk-line-strong); }
+body.at-dark .ats-panel { background: none; border: 1px solid var(--dk-line); border-radius: 8px; box-shadow: none; }
+
+/* Board notices (join, saving, rank, errors) and account boxes: hairline, 8 px corners, no fill */
+body.at-dark .atb-card:not(.atb-board) { background: none; border: 1px solid var(--dk-line); border-radius: 8px; padding: 24px; }
+body.at-dark .atb-join-score,
+body.at-dark .atb-invite-box,
+body.at-dark .atb-best-box,
+body.at-dark .atb-edit,
+body.at-dark .atb-input { border-radius: 8px; background: none; }
+/* "See the full leaderboard ›" as a blue text link, like "View more" */
+body.at-dark .atb-more-btn {
+  display: inline-flex; width: auto; min-height: 0; padding: 0; border: 0; background: none;
+  color: var(--dk-blue); font-size: 16px; font-weight: 500;
+}
+body.at-dark .atb-more-btn:hover { background: none; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Saved scores under the start tiles: a divided row, not a box */
+body.at-dark .at-intro .at-stored {
+  margin-top: 40px; padding: 20px 0 0; border: 0; border-top: 1px solid var(--dk-line); border-radius: 0;
+  background: none; -webkit-backdrop-filter: none; backdrop-filter: none; text-align: left; color: var(--dk-ink);
+}
+body.at-dark .at-intro .at-stored-label,
+body.at-dark .at-intro .at-stored-last { color: var(--dk-faint); }
+body.at-dark .at-intro .at-link-btn { color: var(--dk-blue); text-decoration: none; }
+
+@media (max-width: 600px) {
+  body.at-dark .at-invalid .at-feature-title,
+  body.at-dark .at-result .at-feature-title { font-size: 22px; margin-bottom: 8px; }
+  body.at-dark .at-result .at-score #at-score { font-size: 48px; }
+  body.at-dark .at-invalid .at-kicker,
+  body.at-dark .at-result .at-kicker { font-size: 13px; margin-bottom: 4px; }
+  body.at-dark .at-tiles li { grid-template-columns: minmax(0, 1fr) 48px; }
+  body.at-dark .at-tile-raw { grid-column: 1; grid-row: 2; text-align: left; margin-top: -10px; }
+  body.at-dark .at-tile-score { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
+/* The first block sits --at-space under the nav: on desktop the nav ends 40 px below where the page
+   content starts (after the announcement bar); at 768 px and under there is no bar and it ends at 48 px. */
+body.at-dark { --at-top: calc(var(--at-space) + 40px); }
+@media (max-width: 768px) { body.at-dark { --at-top: calc(var(--at-space) + 48px); } }
+body.at-dark .at-game > .at-screen { padding-top: 0; padding-bottom: 0; min-height: 0; }

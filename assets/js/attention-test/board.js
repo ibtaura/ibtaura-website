@@ -815,11 +815,10 @@ function createBoard(el, variant) {
     return (PERIODS.find((p) => p[0] === key) || PERIODS[0])[2];
   }
 
-  /** Standard leaderboard rank cell: 1, 2 and 3 get a medal circle; the rest a plain number. */
+  /** Rank cell: a plain number for every row, 1 to 3 included (owner: no special design for the top 3). */
   function rankCell(rank) {
     const n = Number(rank);
-    const medal = n >= 1 && n <= 3 ? ` is-top is-top-${n}` : '';
-    return h('span', { class: `atb-rank${medal}`, text: Number.isFinite(n) && n > 0 ? fmt(n) : '–' });
+    return h('span', { class: 'atb-rank', text: Number.isFinite(n) && n > 0 ? fmt(n) : '–' });
   }
 
   /**
