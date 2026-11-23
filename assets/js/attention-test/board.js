@@ -584,13 +584,13 @@ function createBoard(el, variant) {
         ),
         h('div', { class: 'atb-join-body' },
           h('h2', { class: 'atb-status-title', text: 'Join the leaderboard' }),
-          h('p', { class: 'atb-status-text', text: 'Sign in with Google to put this score on the board. Only a display name like “Priya S.” is shown, and you can change or hide it any time.' }),
+          h('p', { class: 'atb-status-text', text: 'Would you like to see where you rank? Sign in with Google. We only show a display name, like “Priya S.”' }),
           button,
           friendBox
             ? h('label', { class: 'atb-check' }, friendBox, h('span', { text: `Add ${invite.by || 'the friend who sent you the link'} as a friend` }))
             : null,
           h('label', { class: 'atb-check' }, mail, h('span', { text: 'Email me when Clarus Health launches' })),
-          h('p', { class: 'atb-fine', text: 'Playing and sharing never need an account.' }),
+          h('p', { class: 'atb-fine', text: 'Playing and sharing will always work without an account.' }),
           msg,
         ),
       ),
@@ -1199,7 +1199,7 @@ function createBoard(el, variant) {
 
   /** The challenge link for the best score: the share sheet on phones, otherwise copied. */
   async function shareBestLink(score, level) {
-    const mod = await import('./share.js?v=6');
+    const mod = await import('./share.js?v=7');
     const url = mod.shareUrl(score, profile ? profile.display_name : '', mod.loadFriendCode() || ownCode() || '', level);
     const text = mod.shareText(score, level);
     const canShare = typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
@@ -1248,7 +1248,7 @@ function createBoard(el, variant) {
         }
         if (result && result.valid && Number.isFinite(result.overall)) {
           showBest({ score: result.overall, level: levelOf(result.level) || levelOf(row.level) });
-          const { openShareDialog } = await import('./share-dialog.js?v=4');
+          const { openShareDialog } = await import('./share-dialog.js?v=5');
           track('share_open', { channel: 'best', kind: 'card' });
           bestBusy = false;
           bestBtn.removeAttribute('aria-busy');
@@ -1265,7 +1265,7 @@ function createBoard(el, variant) {
       }
       // Score-only card: old runs can't be re-drawn part by part, so the card shows the score and level.
       try {
-        const { openShareDialog } = await import('./share-dialog.js?v=4');
+        const { openShareDialog } = await import('./share-dialog.js?v=5');
         track('share_open', { channel: 'best', kind: 'card_score_only' });
         bestBusy = false;
         bestBtn.removeAttribute('aria-busy');

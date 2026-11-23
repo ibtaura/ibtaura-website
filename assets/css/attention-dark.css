@@ -686,3 +686,78 @@ body.at-dark .at-intro .at-link-btn { color: var(--dk-blue); text-decoration: no
 body.at-dark { --at-top: calc(var(--at-space) + 40px); }
 @media (max-width: 768px) { body.at-dark { --at-top: calc(var(--at-space) + 48px); } }
 body.at-dark .at-game > .at-screen { padding-top: 0; padding-bottom: 0; min-height: 0; }
+
+/* ─── Sixth pass (owner, 24 Nov 2026): the result page as tiles ───
+   Row 1: the result tile (Share my score › / Challenge a friend ›) and, beside it, the join tile in
+   violet, built from the board's join card. Then the parts, "Play again", the score card tile and the app row. */
+body.at-dark .at-result > :not(.at-feature-part) { max-width: none; }
+body.at-dark .at-result-row { margin: 0; }
+body.at-dark .at-result-row.is-single { display: flex; justify-content: center; }
+body.at-dark .at-result-row .at-feature { align-items: stretch; }
+body.at-dark .at-result-row .at-square { width: 180px; }
+body.at-dark .at-result-row .at-feature-text { min-height: 180px; }
+.at-tile-links { display: flex; flex-wrap: wrap; gap: 6px 24px; margin: 0; }
+
+/* Join tile: violet square; the board's card restyled as tile text */
+.at-square-join { background: linear-gradient(160deg, #7b5cff 0%, #b14fe0 50%, #ff6fb5 100%); }
+.at-square-join .at-glow-1 { background: radial-gradient(circle, #9d84ff 0%, rgba(157, 132, 255, 0) 70%); }
+.at-square-join .at-glow-2 { background: radial-gradient(circle, #ff8ccf 0%, rgba(255, 140, 207, 0) 70%); }
+.at-square-join .at-glow-3 { background: radial-gradient(circle, #e0b8ff 0%, rgba(224, 184, 255, 0) 70%); }
+.at-square-join .at-glow-4 { background: radial-gradient(circle, #6a4dff 0%, rgba(106, 77, 255, 0) 70%); }
+body.at-dark .at-join-slot { justify-content: flex-start; }
+body.at-dark .at-join-slot .atb-notice { flex: 1; display: flex; flex-direction: column; }
+body.at-dark .at-join-slot .atb-card,
+body.at-dark .at-join-slot .atb-card:not(.atb-board) {
+  flex: 1; display: flex; flex-direction: column; padding: 0; border: 0; border-radius: 0; background: none;
+}
+body.at-dark .at-join-slot .atb-join-score { display: none; }
+body.at-dark .at-join-slot .atb-join-body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+body.at-dark .at-join-slot .atb-status-title {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 26px; font-weight: 500; line-height: 1.2; letter-spacing: -0.3px; color: #fff; margin: 0 0 2px;
+}
+body.at-dark .at-join-slot .atb-eyebrow { font-size: 14px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--dk-faint); }
+body.at-dark .at-join-slot .atb-status-text { margin: 0; font-size: 16px; line-height: 1.5; color: var(--dk-muted); }
+body.at-dark .at-join-slot .atb-google {
+  margin-top: auto; min-height: 0; padding: 0; gap: 8px; border: 0; border-radius: 0; background: none; box-shadow: none;
+  color: var(--dk-blue); font-size: 17px; font-weight: 500;
+}
+body.at-dark .at-join-slot .atb-google::after { content: ' ›'; }
+body.at-dark .at-join-slot .atb-google:hover { background: none; box-shadow: none; text-decoration: underline; text-underline-offset: 3px; }
+body.at-dark .at-join-slot .atb-google svg { width: 16px; height: 16px; }
+body.at-dark .at-join-slot .atb-check { font-size: 14px; color: var(--dk-muted); }
+body.at-dark .at-join-slot .atb-check input { width: 16px; height: 16px; }
+body.at-dark .at-join-slot .atb-fine { font-size: 13px; color: var(--dk-faint); }
+body.at-dark .at-join-slot .atb-status-actions { margin-top: auto; }
+
+/* "Would you like another try? Play again ›" */
+.at-again-row {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px;
+  margin: 0; padding: 18px 0; border-bottom: 1px solid var(--dk-line, rgba(255, 255, 255, 0.1));
+  font-size: 16px; color: var(--dk-muted, #a1a1a6); text-align: left;
+}
+
+/* The score card: a tile, the card image as the "square" and the text beside it.
+   The share buttons stay in the DOM (the result tile's links press them) but are not shown here. */
+body.at-dark #at-share .ats {
+  display: grid; grid-template-columns: 180px minmax(0, 1fr); column-gap: 32px; row-gap: 10px; align-items: start;
+}
+body.at-dark #at-share .ats-preview { grid-column: 1; grid-row: 1 / span 4; margin: 0; }
+body.at-dark #at-share .ats-preview-img { width: 180px; max-height: none; height: auto; }
+body.at-dark #at-share .ats-title { grid-column: 2; grid-row: 1; margin: 0; text-align: left; font-size: 26px; font-weight: 500; letter-spacing: -0.3px; }
+body.at-dark #at-share .ats-desc { grid-column: 2; grid-row: 2; margin: 0 0 8px; max-width: 46ch; font-size: 16px; line-height: 1.5; color: var(--dk-muted); }
+body.at-dark #at-share .ats-field { grid-column: 2; grid-row: 3; max-width: 420px; }
+body.at-dark #at-share .ats-actions { display: none; }
+body.at-dark #at-share .ats-panel { grid-column: 1 / -1; margin-top: 16px; }
+
+@media (max-width: 600px) {
+  body.at-dark .at-result-row .at-square { width: 112px; }
+  body.at-dark .at-result-row .at-feature-text { min-height: 112px; }
+  body.at-dark .at-join-slot .atb-status-title { font-size: 20px; }
+  body.at-dark .at-join-slot .atb-status-text { font-size: 15px; }
+  body.at-dark #at-share .ats { grid-template-columns: 112px minmax(0, 1fr); column-gap: 18px; }
+  body.at-dark #at-share .ats-preview-img { width: 112px; }
+  body.at-dark #at-share .ats-title { font-size: 20px; }
+  body.at-dark #at-share .ats-desc { font-size: 15px; }
+  body.at-dark #at-share .ats-field { grid-column: 1 / -1; grid-row: auto; }
+}

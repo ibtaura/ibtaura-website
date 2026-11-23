@@ -85,10 +85,37 @@ function init() {
     game.classList.toggle('is-intro', id === 'at-intro'); // the tiles show only on the intro
     // While a part runs, the leaderboard and FAQ step aside (owner, 23 Nov 2026); they come back on the
     // start screen and the result screen, where people join the board.
-    document.body.classList.toggle('at-testing', id !== 'at-intro' && id !== 'at-result');
+    // The leaderboard and FAQ step aside everywhere but the start screen (owner, 23-24 Nov 2026). On the
+    // result screen the board's join card moves into the right-hand tile instead.
+    document.body.classList.toggle('at-testing', id !== 'at-intro');
+    placeNotice(id === 'at-result');
     const screen = $(id);
     const heading = screen && screen.querySelector('h1, h2');
     if (heading) heading.focus({ preventScroll: true });
+  }
+
+  // The board's notice slot (join card, "Saving…", "You're #N today") lives in the join tile while the
+  // result shows and goes back to the top of the board otherwise. The tile shows only when the notice does.
+  let noticeWatch = null;
+  function syncJoin() {
+    const n = $('at-join-slot').querySelector('.atb-notice');
+    const on = Boolean(n) && !n.hidden;
+    $('at-join-tile').hidden = !on;
+    $('at-result-row').classList.toggle('is-single', !on);
+  }
+  function placeNotice(inResult) {
+    const n = document.querySelector('#at-board .atb-notice, #at-join-slot .atb-notice');
+    if (!n) return;
+    if (inResult) {
+      $('at-join-slot').append(n);
+      if (!noticeWatch && 'MutationObserver' in window) {
+        noticeWatch = new MutationObserver(syncJoin);
+        noticeWatch.observe(n, { attributes: true, attributeFilter: ['hidden'] });
+      }
+    } else if (n.parentElement !== $('at-board')) {
+      $('at-board').prepend(n);
+    }
+    syncJoin();
   }
 
   let announceFlip = false;
@@ -269,7 +296,7 @@ function init() {
     } catch (_) {
       /* browser memory is optional */
     }
-    import('./share.js?v=6')
+    import('./share.js?v=7')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
         /* the result still shows without sharing */
@@ -657,7 +684,7 @@ function init() {
 
   function shareStored(entry, which) {
     track('stored_share', storedParams(entry, which));
-    import('./share-dialog.js?v=4')
+    import('./share-dialog.js?v=5')
       .then((m) => m.openShareDialog({ result: entry.result, run: entry.run, title: which === 'best' ? 'Share your best score' : 'Share your last score' }))
       .catch(() => announce('Sharing is not available right now.'));
   }
@@ -763,15 +790,26 @@ function init() {
   $('at-start').addEventListener('click', startTest);
   $('at-inter-start').addEventListener('click', startPart);
   $('at-again').addEventListener('click', startTest);
+  // The result tile's blue links press the share block's own buttons (share.js), which stay hidden.
+  function pressShare(selector) {
+    const b = $('at-share').querySelector(selector);
+    if (!b) return;
+    b.click();
+    const panel = $('at-share').querySelector('.ats-panel');
+    if (panel && !panel.hidden) panel.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' });
+  }
+  $('at-share-link').addEventListener('click', () => pressShare('.ats-btn-primary'));
+  $('at-challenge-link').addEventListener('click', () => pressShare('.ats-btn-ghost'));
   $('at-retry').addEventListener('click', startTest);
 
   // ---------- Leaderboard ----------
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=14')
+    boardReady = import('./board.js?v=15')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
+        if (!$('at-result').hidden) placeNotice(true);
       })
       .catch(() => {
         /* the game works without the leaderboard */

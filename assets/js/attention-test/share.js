@@ -402,11 +402,12 @@ export function mountShare(el, { result, run } = {}) {
 
   el.replaceChildren();
   const root = h('section', { class: 'ats', 'aria-labelledby': `${id}-title` });
-  root.appendChild(h('h2', { class: 'ats-title', id: `${id}-title` }, 'Share your score'));
+  root.appendChild(h('h2', { class: 'ats-title', id: `${id}-title` }, 'Your score card'));
+  root.appendChild(h('p', { class: 'ats-desc' }, 'Here’s a card you can share with friends. If you’d like your name on it, add it below. It’s completely optional.'));
 
   // name field
   const field = h('div', { class: 'ats-field' });
-  field.appendChild(h('label', { class: 'ats-label', for: `${id}-name` }, 'Your name on the card (optional)'));
+  field.appendChild(h('label', { class: 'ats-label', for: `${id}-name` }, 'Name on the card (optional)'));
   const input = h('input', {
     class: 'ats-input',
     id: `${id}-name`,
