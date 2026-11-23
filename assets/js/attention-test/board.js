@@ -389,18 +389,13 @@ function createBoard(el, variant) {
   // Notice slot: the join card, "Saving…", "You're #N today" or an error.
   const notice = h('div', { class: 'atb-notice', hidden: true });
 
-  // Scope switch (Global | Friends), above the period tabs.
-  const scopeButtons = SCOPES.map(([key, label]) =>
-    h('button', {
-      type: 'button',
-      class: 'atb-scope-btn',
-      'aria-pressed': key === scope ? 'true' : 'false',
-      'data-scope': key,
-      text: label,
-      onclick: () => setScope(key),
-    }),
-  );
-  const scopeGroup = h('div', { class: 'atb-scope', role: 'group', 'aria-label': 'Whose scores' }, scopeButtons);
+  // Scope switch (Global | Friends): a small dropdown on the right of the board's heading.
+  const scopeSelect = h('select', {
+    class: 'atb-scope-select',
+    'aria-label': 'Whose scores',
+    onchange: () => setScope(scopeSelect.value),
+  }, SCOPES.map(([key, label]) => h('option', { value: key, text: label })));
+  const scopeGroup = h('span', { class: 'atb-scope' }, scopeSelect);
 
   // Tabs (period) and segmented filter (device).
   const tabs = PERIODS.map(([key, label]) =>
@@ -547,11 +542,11 @@ function createBoard(el, variant) {
   const boardCard = h('section', { class: 'atb-card atb-board', 'aria-labelledby': `${uid}-title` },
     h('div', { class: 'atb-head' },
       h('h2', { class: 'atb-title', id: `${uid}-title`, text: variant === 'full' ? 'Top scores' : 'Leaderboard' }),
-      sub,
+      scopeGroup,
     ),
+    variant === 'full' ? sub : null, // the game page shows no subtitle (owner, 23 Nov 2026)
     friendNotice,
     inviteRow,
-    scopeGroup,
     controls,
     panel,
     me,
@@ -786,7 +781,7 @@ function createBoard(el, variant) {
 
   function setScope(key, reload = true) {
     scope = key === 'friends' ? 'friends' : 'global';
-    for (const b of scopeButtons) b.setAttribute('aria-pressed', b.dataset.scope === scope ? 'true' : 'false');
+    scopeSelect.value = scope;
     updateSub();
     updateChrome();
     if (reload) loadBoard();

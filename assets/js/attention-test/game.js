@@ -765,7 +765,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=11')
+    boardReady = import('./board.js?v=12')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
       })

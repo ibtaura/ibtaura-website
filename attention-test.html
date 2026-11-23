@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="/assets/css/attention-share.css?v=1" />
   <link rel="stylesheet" href="/assets/css/attention-board.css?v=7" />
   <link rel="stylesheet" href="/assets/css/attention-dialog.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=1" />
+  <link rel="stylesheet" href="/assets/css/attention-dark.css?v=2" />
 </head>
 <body class="at-dark">
 
@@ -155,25 +155,31 @@
   <main class="lp-page" id="main">
 
     <section class="lp-card at-game is-intro" id="at-game" aria-label="Clarus Attention Test">
-      <!-- Hero background: drifting blue and green light with film grain (attention-dark.css). -->
-      <div class="at-hero-bg" aria-hidden="true">
-        <span class="at-glow at-glow-1"></span>
-        <span class="at-glow at-glow-2"></span>
-        <span class="at-glow at-glow-3"></span>
-        <span class="at-glow at-glow-4"></span>
-        <span class="at-grain"></span>
-      </div>
       <p class="at-sr" id="at-live" aria-live="polite" aria-atomic="true"></p>
 
-      <!-- Intro: the hero -->
+      <!-- Intro: two tiles, a small animated square with the text beside it (attention-dark.css). -->
       <div class="at-screen at-intro" id="at-intro">
-        <h1 id="at-title" tabindex="-1">Clarus Attention Test</h1>
-        <p class="at-hero-lead">How sharp is your attention right now?</p>
-        <p class="at-challenge" id="at-challenge" hidden></p>
-        <button type="button" class="at-btn at-btn-primary at-btn-big at-hero-btn" id="at-start">Start now</button>
+        <div class="at-feature-row">
+          <article class="at-feature">
+            <div class="at-square at-square-test" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
+            <div class="at-feature-text">
+              <h1 id="at-title" tabindex="-1">Clarus Attention Test</h1>
+              <p class="at-feature-desc">How sharp is your attention right now?</p>
+              <p class="at-challenge" id="at-challenge" hidden></p>
+              <button type="button" class="at-btn at-btn-primary at-hero-btn" id="at-start">Start now</button>
+            </div>
+          </article>
+          <article class="at-feature">
+            <div class="at-square at-square-about" aria-hidden="true"><span class="at-glow at-glow-1"></span><span class="at-glow at-glow-2"></span><span class="at-glow at-glow-3"></span><span class="at-glow at-glow-4"></span><span class="at-grain"></span></div>
+            <div class="at-feature-text">
+              <h2 class="at-feature-title">About the test</h2>
+              <p class="at-feature-desc">Three quick parts from the Clarus Health app's Quick Check: reaction, digit memory and rule switch. About two minutes, then an Attention score where 100 is typical.</p>
+              <p class="at-feature-meta"><span>Free</span><span>Not a medical test</span></p>
+            </div>
+          </article>
+        </div>
         <div class="at-stored" id="at-stored" hidden></div>
         <noscript><p class="at-noscript-note">The test needs JavaScript. Turn it on and reload the page to play.</p></noscript>
-        <p class="at-hero-note">About two minutes. A fun attention check, not a medical test.</p>
       </div>
 
       <!-- Between parts -->
@@ -487,7 +493,7 @@
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   </script>
-  <script type="module" src="/assets/js/attention-test/game.js?v=11"></script>
+  <script type="module" src="/assets/js/attention-test/game.js?v=12"></script>
 
   <!-- Cookie consent + analytics -->
   <script src="/assets/js/analytics-config.js?v=1"></script>
