@@ -806,7 +806,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=18')
+    boardReady = import('./board.js?v=19')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
         if (!$('at-result').hidden) placeNotice(true);

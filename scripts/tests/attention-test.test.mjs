@@ -12,6 +12,10 @@ import {
 import { shareUrl, shareText, shareMessage, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY, cleanName, clampName } from '../../assets/js/attention-test/share.js?v=10';
 import { track } from '../../assets/js/attention-test/track.js?v=2';
 import { LAST_KEY, BEST_KEY, MAX_AGE_MS, saveRun, loadStored, readEntry, validEntry, canJoin, clearStored, agoText } from '../../assets/js/attention-test/stored.js';
+import {
+  INVITES_KEY, LEGACY_INVITE_KEY, INVITE_MAX, INVITE_MAX_AGE_MS, parseStoredInvites, mergeInvite, liveInvites, declineInvite,
+  removeInvite, inviteTarget, addedNotice,
+} from '../../assets/js/attention-test/invites.js?v=1';
 
 /** A scripted random source: returns the values in turn, then repeats the last. */
 const scripted = (...values) => {
@@ -993,4 +997,122 @@ test('shareMessage puts the link in the text and invites to the Friends board wh
   assert.ok(withCode.endsWith('Play and join my Friends board: https://adarna.us/attention-test/s/118?by=Priya&f=abcd2345&l=hard'));
   const noCode = shareMessage(118, 'normal', 'https://adarna.us/attention-test/s/118');
   assert.ok(noCode.endsWith('Play here: https://adarna.us/attention-test/s/118'));
+});
+
+// ---------- Friend invites (invites.js) ----------
+
+const DAY = 24 * 60 * 60 * 1000;
+const NOW = Date.UTC(2026, 10, 24, 12);
+const inviteCode = (i) => `abcd23${'abcdefghjk'[Math.floor(i / 10)]}${'abcdefghjk'[i % 10]}`;
+
+test('invites: the list key is new and the old single-invite key is kept for migration', () => {
+  assert.equal(INVITES_KEY, 'clarus.attentionTest.invites');
+  assert.equal(LEGACY_INVITE_KEY, 'clarus.attentionTest.invite');
+  assert.equal(INVITE_MAX, 10);
+  assert.equal(INVITE_MAX_AGE_MS, 30 * DAY);
+});
+
+test('invites: mergeInvite puts the newest link first and refreshes a repeated code instead of duplicating it', () => {
+  let list = mergeInvite([], { code: 'abcd2345', by: 'Priya' }, NOW - 2 * DAY);
+  list = mergeInvite(list, { code: 'wxyz6789', by: 'Sam' }, NOW - DAY);
+  assert.deepEqual(list.map((e) => e.code), ['wxyz6789', 'abcd2345']);
+  list = mergeInvite(list, { code: 'abcd2345', by: 'Priya S.' }, NOW);
+  assert.deepEqual(list, [
+    { code: 'abcd2345', by: 'Priya S.', savedAt: NOW },
+    { code: 'wxyz6789', by: 'Sam', savedAt: NOW - DAY },
+  ]);
+  // A newer link without a name keeps the name we had; a bad code changes nothing.
+  assert.equal(mergeInvite(list, { code: 'wxyz6789', by: '' }, NOW + 1)[0].by, 'Sam');
+  assert.deepEqual(mergeInvite(list, { code: 'NOPE', by: 'x' }, NOW), list);
+});
+
+test('invites: re-opening a declined link clears the decline', () => {
+  const declined = declineInvite(mergeInvite([], { code: 'abcd2345', by: 'Priya' }, NOW - DAY), 'abcd2345');
+  assert.equal(declined[0].declined, true);
+  const again = mergeInvite(declined, { code: 'abcd2345', by: 'Priya' }, NOW);
+  assert.equal(again[0].declined, undefined);
+  assert.equal(liveInvites(again, NOW).length, 1);
+});
+
+test('invites: at most 10 are kept, newest first', () => {
+  let list = [];
+  for (let i = 0; i < 13; i += 1) list = mergeInvite(list, { code: inviteCode(i), by: `F${i}` }, NOW - (13 - i) * 1000);
+  assert.equal(list.length, 10);
+  assert.equal(list[0].code, inviteCode(12));
+  assert.equal(list[9].code, inviteCode(3));
+  assert.ok(!list.some((e) => e.code === inviteCode(0)));
+  const raw = JSON.stringify(Array.from({ length: 12 }, (_, i) => ({ code: inviteCode(i), by: '', savedAt: NOW - i })));
+  assert.equal(parseStoredInvites(raw, NOW).length, 10);
+});
+
+test('invites: entries expire 30 days after the link was opened', () => {
+  const raw = JSON.stringify([
+    { code: 'abcd2345', by: 'Priya', savedAt: NOW - 30 * DAY + 1000 },
+    { code: 'wxyz6789', by: 'Sam', savedAt: NOW - 30 * DAY },
+    { code: 'mnpq2345', by: 'Future', savedAt: NOW + 3 * DAY }, // a wrong clock: not trusted
+  ]);
+  const list = parseStoredInvites(raw, NOW);
+  assert.deepEqual(list.map((e) => e.code), ['abcd2345']);
+  assert.equal(liveInvites(list, NOW + 2000).length, 0);
+  assert.equal(mergeInvite(list, { code: 'wxyz6789', by: 'Sam' }, NOW + 2000).length, 1);
+});
+
+test('invites: liveInvites leaves out the own code and declined entries', () => {
+  let list = [];
+  for (const c of ['abcd2345', 'wxyz6789', 'mnpq2345']) list = mergeInvite(list, { code: c, by: c }, NOW);
+  assert.deepEqual(liveInvites(list, NOW, 'wxyz6789').map((e) => e.code).sort(), ['abcd2345', 'mnpq2345']);
+  const declined = declineInvite(list, ['abcd2345', 'mnpq2345']);
+  assert.deepEqual(liveInvites(declined, NOW, 'wxyz6789'), []);
+  assert.deepEqual(liveInvites(declined, NOW).map((e) => e.code), ['wxyz6789']);
+  // Ticking the box again clears the mark.
+  assert.equal(liveInvites(declineInvite(declined, 'abcd2345', false), NOW, 'wxyz6789').length, 1);
+  // Declined entries survive a storage round trip.
+  assert.deepEqual(liveInvites(parseStoredInvites(JSON.stringify(declined), NOW), NOW), liveInvites(declined, NOW));
+  assert.equal(parseStoredInvites(JSON.stringify(declined), NOW).filter((e) => e.declined).length, 2);
+});
+
+test('invites: removeInvite drops one code', () => {
+  const list = mergeInvite(mergeInvite([], { code: 'abcd2345', by: 'A' }, NOW), { code: 'wxyz6789', by: 'B' }, NOW + 1);
+  assert.deepEqual(removeInvite(list, 'abcd2345').map((e) => e.code), ['wxyz6789']);
+  assert.deepEqual(removeInvite(list, 'zzzz2222'), list);
+});
+
+test('invites: the old single-object format is read, alone or next to a list', () => {
+  const legacy = JSON.stringify({ code: 'abcd2345', by: 'Priya', savedAt: NOW - DAY });
+  assert.deepEqual(parseStoredInvites(legacy, NOW), [{ code: 'abcd2345', by: 'Priya', savedAt: NOW - DAY }]);
+  const listRaw = JSON.stringify([{ code: 'wxyz6789', by: 'Sam', savedAt: NOW }, { code: 'abcd2345', by: 'Old', savedAt: NOW - 5 * DAY }]);
+  assert.deepEqual(parseStoredInvites([listRaw, legacy], NOW), [
+    { code: 'wxyz6789', by: 'Sam', savedAt: NOW },
+    { code: 'abcd2345', by: 'Priya', savedAt: NOW - DAY }, // the newer copy of a code wins
+  ]);
+  assert.equal(parseStoredInvites([null, legacy], NOW).length, 1);
+  // A legacy invite older than 7 days now lives on up to 30 days.
+  assert.equal(parseStoredInvites(JSON.stringify({ code: 'abcd2345', by: '', savedAt: NOW - 20 * DAY }), NOW).length, 1);
+});
+
+test('invites: corrupt or odd storage gives an empty list', () => {
+  for (const raw of [null, undefined, '', '{', 'null', '42', '"text"', '[1, "x", null]', '{"code": "abcd2345"}',
+    JSON.stringify([{ code: 'ABCD2345', by: 'x', savedAt: NOW }]), JSON.stringify({ code: 'abcd2345', savedAt: 'yesterday' })]) {
+    assert.deepEqual(parseStoredInvites(raw, NOW), [], String(raw));
+  }
+  assert.deepEqual(parseStoredInvites(['{', '[]'], NOW), []);
+});
+
+test('invites: names are cleaned with the given cleaner and missing names become empty', () => {
+  const raw = JSON.stringify([{ code: 'abcd2345', by: '  Priya   S. ', savedAt: NOW }, { code: 'wxyz6789', by: 7, savedAt: NOW - 1 }]);
+  const tidyName = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
+  assert.deepEqual(parseStoredInvites(raw, NOW, tidyName).map((e) => e.by), ['Priya S.', '7']);
+  assert.deepEqual(parseStoredInvites(raw, NOW).map((e) => e.by), ['  Priya   S. ', '']);
+});
+
+test('invites: invite line and notice texts', () => {
+  const one = [{ code: 'abcd2345', by: 'Priya', savedAt: NOW }];
+  assert.equal(inviteTarget([]), '');
+  assert.equal(inviteTarget(one), 'Priya as a friend');
+  assert.equal(inviteTarget([{ code: 'abcd2345', by: '', savedAt: NOW }]), 'the friend who sent you the link as a friend');
+  assert.equal(inviteTarget([...one, { code: 'wxyz6789', by: 'Sam', savedAt: NOW }]), 'Priya and 1 more friend');
+  assert.equal(inviteTarget([...one, ...one, ...one]), 'Priya and 2 more friends');
+  assert.equal(addedNotice([]), '');
+  assert.equal(addedNotice(['Priya']), 'You and Priya are now friends on the board');
+  assert.equal(addedNotice(['Priya', 'Sam', 'Ana']), 'You and 3 friends are now connected on the board');
 });

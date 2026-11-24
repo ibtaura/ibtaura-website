@@ -12,9 +12,15 @@
 // Friends (supabase/migrations/*_friends.sql): every profile has an 8-character friend_code. A signed-in
 // player's challenge link carries it as ?f=<code>. This module
 //   - writes the own code to localStorage[FRIEND_CODE_KEY] whenever a session and profile are loaded, and
-//     removes it on sign-out and after "Remove my data" (share.js reads it to build links);
-//   - saves an incoming ?f= to localStorage[INVITE_KEY] (kept 7 days) and, once signed in, calls
-//     add_friend(code) so both people become friends.
+//     removes it on sign-out (share.js reads it to build links);
+//   - remembers every friend link it is opened with: ?f= (and ?by=) go into a list in localStorage[INVITES_KEY]
+//     (invites.js: up to 10 links, newest first, one per code, each kept 30 days);
+//   - treats opening the link as the consent: on any sign-in (a session found on load, the return from Google, or
+//     a sign-in in another tab) it calls add_friend(code) for every live invite, one after another, so both people
+//     become friends; each invite is removed once added or permanently bad, and kept after a network error;
+//   - lets the visitor opt out: unticking "Add Priya as a friend" next to the Google button, or "Not now" on the
+//     signed-in invite line, marks those invites declined (in localStorage, so it survives the Google round trip).
+//   After at least one friend is added it shows one notice and switches the board to Friends.
 //
 // "Share my best score" (supabase/migrations/*_my_best.sql): the account panel offers it while the player has a
 // valid play. A click fetches the raw best run with my_best(), re-scores it with scoreRun() and opens the share
@@ -23,19 +29,20 @@
 import { track } from './track.js?v=2'; // same specifier as game.js and share.js, or the browser loads two copies
 import { checkRun, scoreRun } from './scoring.js?v=2';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase-config.js?v=1'; // bump ?v= when the values change (/assets/js is cached for a year)
+import {
+  INVITES_KEY, LEGACY_INVITE_KEY, parseStoredInvites, mergeInvite, liveInvites, declineInvite, removeInvite,
+  inviteTarget, addedNotice,
+} from './invites.js?v=1';
 
 const SUPABASE_JS = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/+esm';
 const PENDING_KEY = 'at-pending-run';
 const PENDING_MAX_AGE_MS = 60 * 60 * 1000;
 const SCOPE_KEY = 'at-board-scope'; // sessionStorage: reopen the Friends tab after the Google round trip
 const FRIEND_CODE_KEY = 'clarus.attentionTest.friendCode';
-const INVITE_KEY = 'clarus.attentionTest.invite';
-const INVITE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 const FRIEND_CODE_RE = /^[a-hjkmnp-z2-9]{8}$/;
 const FULL_BOARD_PATH = '/attention-test/leaderboard';
 const GAME_PATH = '/attention-test';
 const PUBLIC_ORIGIN = 'https://adarna.us';
-const INVITE_OK_KEY = 'at-invite-ok'; // sessionStorage: the invite code the visitor agreed to add before the Google round trip
 const VARIANTS = { compact: 10, full: 100 }; // rows shown; the board() rpc caps at 100
 const DAILY_LIMIT = 20;
 
@@ -246,29 +253,30 @@ function cleanBy(value) {
   return clampName(normalizeName(value));
 }
 
-/** The stored invite { code, by, savedAt } if it is valid and under 7 days old; otherwise clears it. */
-function readInvite() {
+function writeInvites(list) {
   const ls = local();
-  if (!ls) return null;
-  const raw = storeGet(ls, INVITE_KEY);
-  if (!raw) return null;
-  let value = null;
-  try {
-    value = JSON.parse(raw);
-  } catch (_) {
-    value = null;
-  }
-  if (value && typeof value.code === 'string' && FRIEND_CODE_RE.test(value.code)
-      && typeof value.savedAt === 'number' && Date.now() - value.savedAt < INVITE_MAX_AGE_MS) {
-    return { code: value.code, by: cleanBy(value.by), savedAt: value.savedAt };
-  }
-  storeRemove(ls, INVITE_KEY);
-  return null;
+  if (!ls) return;
+  if (list.length) storeSet(ls, INVITES_KEY, JSON.stringify(list));
+  else storeRemove(ls, INVITES_KEY);
 }
 
-function clearInvite() {
+/**
+ * Every stored invite (declined ones too), newest first; see invites.js. Moves the old single invite
+ * (LEGACY_INVITE_KEY, before 24 Nov 2026) into the list, and writes back when expired or bad entries were dropped.
+ */
+function readInvites() {
   const ls = local();
-  if (ls) storeRemove(ls, INVITE_KEY);
+  if (!ls) return [];
+  const raw = storeGet(ls, INVITES_KEY);
+  const legacy = storeGet(ls, LEGACY_INVITE_KEY);
+  const list = parseStoredInvites([raw, legacy], Date.now(), cleanBy);
+  if (legacy !== null || (raw !== null && raw !== JSON.stringify(list))) writeInvites(list);
+  if (legacy !== null) storeRemove(ls, LEGACY_INVITE_KEY);
+  return list;
+}
+
+function updateInvites(change) {
+  writeInvites(change(readInvites()));
 }
 
 /** Saves ?f=<code> (and ?by=) from the address to storage, then drops f from the address bar. */
@@ -283,8 +291,8 @@ function captureInvite() {
   if (raw === null) return;
   const code = raw.trim().toLowerCase();
   if (FRIEND_CODE_RE.test(code)) {
-    const ls = local();
-    if (ls) storeSet(ls, INVITE_KEY, JSON.stringify({ code, by: cleanBy(url.searchParams.get('by')), savedAt: Date.now() }));
+    const by = cleanBy(url.searchParams.get('by'));
+    updateInvites((list) => mergeInvite(list, { code, by }, Date.now()));
   }
   try {
     url.searchParams.delete('f');
@@ -385,7 +393,8 @@ function createBoard(el, variant) {
   let loadSeq = 0;
   let flashNext = false;
   let retryPending = null;
-  let inviteBusy = false;
+  let inviteBusy = false; // acceptInvites is running
+  let inviteHold = false; // a score from before the Google round trip is being saved; add friends right after
   let best = null; // { score, level } of the caller's best valid play (all time), or null
   let bestSeq = 0;
   let bestBusy = false;
@@ -570,15 +579,20 @@ function createBoard(el, variant) {
     // (false for a new profile; an earlier opt-in is changed only with the account panel's switch).
     const mail = h('input', { type: 'checkbox', checked: false });
     const msg = h('p', { class: 'atb-form-msg', role: 'status', text: message });
-    // Came from a friend's link: offer to add them in the same step. Ticking the box (shown, and on by
-    // default) next to the button they press is the consent; the code is stored so only that invite is added.
-    const invite = readInvite();
-    const friendBox = invite ? h('input', { type: 'checkbox', checked: true }) : null;
+    // Came from friends' links: they are added on sign-in (opening the link is the consent). The box, ticked by
+    // default, is the opt-out: unticking it marks those invites declined in localStorage, so the choice survives
+    // the Google round trip; ticking it again clears the mark.
+    const invites = liveList();
+    const codes = invites.map((invite) => invite.code);
+    const friendBox = invites.length ? h('input', { type: 'checkbox', checked: true }) : null;
+    if (friendBox) {
+      friendBox.addEventListener('change', () => {
+        updateInvites((list) => declineInvite(list, codes, !friendBox.checked));
+        if (!friendBox.checked) track('friend_invite_dismissed');
+      });
+    }
     const button = googleButton(msg, () => {
       track('leaderboard_join_click');
-      const ss = sess();
-      if (ss && invite && friendBox && friendBox.checked) storeSet(ss, INVITE_OK_KEY, invite.code);
-      else if (ss) storeRemove(ss, INVITE_OK_KEY);
       return startGoogle({ run, launchEmails: mail.checked });
     });
     showNotice(
@@ -592,7 +606,7 @@ function createBoard(el, variant) {
           h('p', { class: 'atb-status-text', text: 'Would you like to see your rank? We only ever show a display name, like “Priya S.”' }),
           button,
           friendBox
-            ? h('label', { class: 'atb-check' }, friendBox, h('span', { text: `Add ${invite.by || 'the friend who sent you the link'} as a friend` }))
+            ? h('label', { class: 'atb-check' }, friendBox, h('span', { text: `Add ${inviteTarget(invites)}` }))
             : null,
           h('label', { class: 'atb-check' }, mail, h('span', { text: 'Email me when Clarus launches' })),
           h('p', { class: 'atb-fine', text: 'Playing and sharing will always work without an account.' }),
@@ -767,42 +781,38 @@ function createBoard(el, variant) {
     if (reload) loadBoard();
   }
 
+  /** The stored invites that sign-in would add (not declined, not expired, not our own code). */
+  function liveList() {
+    return sb ? liveInvites(readInvites(), Date.now(), ownCode()) : [];
+  }
+
   /**
-   * The invite lines. Signed out: "Sign in to add Priya as a friend" (that click is the consent).
-   * Signed in: "Add Priya as a friend?" with Add friend / Not now, so a link alone never adds anyone.
+   * The invite lines. Signed out: "Sign in to add Priya as a friend" (they are added on sign-in anyway).
+   * Signed in, shown only when invites are still waiting (the automatic add hit a network error): "Add Priya as a
+   * friend?" with Add friend / Not now; Not now declines those codes so they are never added automatically.
    */
   function updateChrome() {
     signinRow.hidden = Boolean(session) || scope === 'friends' || !sb;
-    const invite = sb ? readInvite() : null;
-    const who = invite ? invite.by || 'your friend' : '';
-    if (invite && !session) {
+    const invites = session && (!profile || inviteBusy || inviteHold) ? [] : liveList();
+    const target = inviteTarget(invites);
+    if (invites.length && !session) {
       inviteRow.replaceChildren(
-        h('button', {
-          type: 'button',
-          class: 'atb-link',
-          text: 'Sign in',
-          onclick: () => {
-            // Remember which code they agreed to, so only that invite is added without a second click.
-            const ss = sess();
-            if (ss) storeSet(ss, INVITE_OK_KEY, invite.code); // storage blocked: they'll confirm after
-            startGoogle(null, 'friends');
-          },
-        }),
-        ` to add ${who} as a friend.`,
+        h('button', { type: 'button', class: 'atb-link', text: 'Sign in', onclick: () => startGoogle(null, 'friends') }),
+        ` to add ${target}.`,
       );
       inviteRow.hidden = false;
-    } else if (invite && session && profile && invite.code !== ownCode() && !inviteBusy) {
+    } else if (invites.length && session) {
+      const codes = invites.map((invite) => invite.code);
       inviteRow.replaceChildren(
-        `Add ${who} as a friend? `,
-        h('button', { type: 'button', class: 'atb-link', text: 'Add friend', onclick: () => acceptInvite() }),
+        `Add ${target}? `,
+        h('button', { type: 'button', class: 'atb-link', text: invites.length > 1 ? 'Add friends' : 'Add friend', onclick: () => acceptInvites() }),
         ' · ',
         h('button', {
           type: 'button',
           class: 'atb-link',
           text: 'Not now',
           onclick: () => {
-            clearInvite();
-            clearInviteConsent();
+            updateInvites((list) => declineInvite(list, codes));
             track('friend_invite_dismissed');
             updateChrome();
           },
@@ -1010,11 +1020,6 @@ function createBoard(el, variant) {
   }
 
   // ── Friends ──
-  function clearInviteConsent() {
-    const ss = sess();
-    if (ss) storeRemove(ss, INVITE_OK_KEY);
-  }
-
   function ownCode() {
     return profile && typeof profile.friend_code === 'string' && FRIEND_CODE_RE.test(profile.friend_code)
       ? profile.friend_code
@@ -1109,48 +1114,69 @@ function createBoard(el, variant) {
   }
 
 
-  /** With a session and a stored invite that isn't our own code: become friends, then open the Friends tab. */
-  async function acceptInvite() {
-    if (inviteBusy || !sb || !session) return;
-    const invite = readInvite();
-    if (!invite) return;
-    if (invite.code === ownCode()) {
-      clearInvite();
+  /**
+   * On sign-in: add every live invite with add_friend(code), one after another (never in parallel). Each invite
+   * is removed once added or once its code is permanently bad (own_code, bad_code, friend_limit); a network
+   * error keeps it for the next sign-in. After at least one friend: one notice, then the Friends board (reloaded).
+   */
+  async function acceptInvites() {
+    if (inviteBusy || inviteHold || !sb || !session) return;
+    const userId = session.user.id;
+    const own = ownCode();
+    if (own && readInvites().some((invite) => invite.code === own)) updateInvites((list) => removeInvite(list, own));
+    const todo = liveInvites(readInvites(), Date.now(), own);
+    if (!todo.length) {
       updateChrome();
       return;
     }
     inviteBusy = true;
-    let res;
-    try {
-      res = await sb.rpc('add_friend', { code: invite.code });
-    } catch (err) {
-      res = { data: null, error: err };
+    updateChrome();
+    const added = [];
+    let full = false;
+    let gone = 0;
+    for (const invite of todo) {
+      if (!session || session.user.id !== userId) break;
+      let res;
+      try {
+        res = await sb.rpc('add_friend', { code: invite.code });
+      } catch (err) {
+        res = { data: null, error: err };
+      }
+      if (res.error) {
+        const text = `${res.error.message || ''} ${res.error.hint || ''}`;
+        if (/own_code|bad_code/.test(text)) {
+          updateInvites((list) => removeInvite(list, invite.code));
+        } else if (/friend_limit/.test(text)) {
+          updateInvites((list) => removeInvite(list, invite.code));
+          full = true;
+        } else {
+          // Network trouble or the friends feature isn't live yet: keep the invite (up to 30 days) for later.
+          track('leaderboard_error', { reason: 'add_friend' });
+        }
+        continue;
+      }
+      updateInvites((list) => removeInvite(list, invite.code));
+      if (typeof res.data === 'string' && res.data) {
+        added.push(res.data);
+        track('friend_added');
+      } else {
+        gone += 1; // the code belongs to nobody (any more)
+      }
     }
     inviteBusy = false;
-    if (!session) return;
-    if (res.error) {
-      const text = `${res.error.message || ''} ${res.error.hint || ''}`;
-      if (/own_code|bad_code/.test(text)) {
-        clearInvite();
-      } else if (/friend_limit/.test(text)) {
-        clearInvite();
-        showFriendNotice('Your friends board is full (500 people), so this friend wasn’t added.');
-      } else {
-        // Network trouble or the friends feature isn't live yet: keep the invite (up to 7 days) for later.
-        track('leaderboard_error', { reason: 'add_friend' });
-      }
+    if (!session || session.user.id !== userId) {
       updateChrome();
       return;
     }
-    clearInvite();
-    updateChrome();
-    if (typeof res.data === 'string' && res.data) {
-      track('friend_added');
-      showFriendNotice(`You and ${res.data} are now friends on the board`);
-      setScope('friends');
-    } else {
-      showFriendNotice('That friend link isn’t valid any more.');
+    const fullText = 'Your friends board is full (500 people), so ';
+    if (added.length) {
+      showFriendNotice(full ? `${addedNotice(added)}. ${fullText}not everyone was added.` : addedNotice(added));
+      setScope('friends'); // reloads the board and the invite line
+      return;
     }
+    if (full) showFriendNotice(`${fullText}${todo.length > 1 ? 'these friends weren’t' : 'this friend wasn’t'} added.`);
+    else if (gone) showFriendNotice(gone > 1 ? 'Those friend links aren’t valid any more.' : 'That friend link isn’t valid any more.');
+    updateChrome();
   }
 
   // ── Share my best score ──
@@ -1308,7 +1334,6 @@ function createBoard(el, variant) {
   async function refreshAccount() {
     if (!session) {
       profile = null;
-      clearInviteConsent();
       clearOwnCode();
       account.hidden = true;
       refreshBest();
@@ -1333,15 +1358,8 @@ function createBoard(el, variant) {
     for (const input of [showInput, mailInput]) input.disabled = !profile;
     editBtn.disabled = !profile;
     refreshBest();
-    // Add the friend straight away only when they signed in from "Sign in to add Priya as a friend", and only
-    // the invite they agreed to then (the stored code must match the current invite).
-    const ss = sess();
-    const agreed = ss ? storeGet(ss, INVITE_OK_KEY) : null;
-    clearInviteConsent();
-    const invite = readInvite();
-    const consented = Boolean(agreed && invite && agreed === invite.code);
-    if (consented) acceptInvite();
-    else updateChrome();
+    // Any sign-in adds the friends from stored links (skipped while a pending score is saved; init adds them after).
+    await acceptInvites();
   }
 
   async function updateProfile(fields) {
@@ -1522,8 +1540,16 @@ function createBoard(el, variant) {
 
     const pending = readPending();
     if (pending && session) {
-      refreshAccount();
-      await submit(pending);
+      // Back from Google with a score: save it first, then add the friends, whether or not the save worked.
+      inviteHold = true;
+      const accountReady = refreshAccount();
+      try {
+        await submit(pending);
+      } finally {
+        inviteHold = false;
+      }
+      await accountReady;
+      await acceptInvites();
     } else {
       if (pending) {
         clearPending();
