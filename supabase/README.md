@@ -10,10 +10,10 @@ What is in here:
 |---|---|
 | `migrations/*_attention_test.sql` | Tables `profiles` and `plays`, security rules, the `board()` and `my_rank()` queries |
 | `migrations/*_friends.sql`, `*_no_friend_removal.sql` | Friend codes, `friendships`, `add_friend()` and `friends_board()` (friends can't remove each other) |
-| `migrations/*_levels.sql` | `plays.level` (Easy / Normal / Hard) and the board queries returning each best run's level |
+| `migrations/*_levels.sql` | `plays.level` (Easy / Normal / Hard) and the board queries returning each best run's level. The game now always plays Normal; the column stays for old runs |
 | `migrations/*_my_best.sql` | `my_best()`: the signed-in player's own best valid run (raw, score, level, date) for "Share my best score" |
 | `functions/submit-score/` | Checks and re-scores a run on the server, then saves it (20 per person per UTC day) |
-| `functions/delete-me/` | "Remove my data": deletes the person's sign-in, which also deletes their profile and plays |
+| `functions/delete-me/` | Deletes the person's sign-in, which also deletes their profile and plays. The page has no "Remove my data" button (owner's decision: deletion is by email, privacy policy 1.4), so nothing calls it today |
 | `functions/_shared/scoring.js` | An exact copy of `assets/js/attention-test/scoring.js` (keep them identical) |
 | `config.toml` | Settings for the Supabase command line tool |
 
@@ -51,7 +51,8 @@ All commands are typed in **PowerShell** inside the repo folder.
    what they can do. Do **not** use the `service_role` / `sb_secret_` key here.
 4. Files under `/assets/js/` are cached by browsers for a year, so make them fetch the new values:
    in `assets/js/attention-test/board.js` change `./supabase-config.js?v=1` to `?v=2`, then bump the `?v=`
-   on the line that loads `board.js` (in the game script) and on the game script in `attention-test.html`.
+   on every line that loads `board.js` (in `game.js` and `leaderboard-page.js`), and then on the scripts that load
+   those two (`attention-test.html` and `attention-test/leaderboard.html`).
 
 ## 3. Google sign-in (Google Cloud console)
 
@@ -114,7 +115,7 @@ npx supabase secrets set ALLOWED_ORIGINS="https://adarna.us,https://*.workers.de
 1. Open https://adarna.us/attention-test (or the preview), play a run, click **Continue with Google**.
 2. After Google sends you back you should see "You're #1 today" and your row highlighted on the board.
 3. In Supabase → **Table Editor** you should see one row in `profiles` and one in `plays`.
-4. Try **Edit name**, the **Show me on the board** switch, **Sign out**, and **Remove my data** (the rows disappear).
+4. Try **Edit name**, the **Show me on the board** switch and **Sign out**.
 
 If sign-in fails with "redirect_uri_mismatch", the redirect URI in step 3 doesn't exactly match
 `https://<ref>.supabase.co/auth/v1/callback`. If you come back signed out, the page address isn't in the
@@ -127,11 +128,14 @@ Redirect URLs list from step 4. Function logs: Supabase → **Edge Functions** �
   traffic keeps it awake; upgrade to Pro if a pause would be a problem.
 - **Daily limit**: 20 saved runs per person per UTC day; the 21st gets a friendly "That's today's limit".
 - **Days are UTC.** *Today* starts at 00:00 UTC; *This week* is the rolling last 7 days.
-- **What the public can see**: rank, display name, score, Phone/Computer, the level (Easy / Normal / Hard) and
-  the time of the best run. Never emails, user ids, friend codes or raw runs.
-- **Levels share one board.** `scoring.js` adds the level bonus to the overall score (Easy -10, Hard +10), so
-  `board()`, `my_rank()` and `friends_board()` rank every level together and only return the level as a label.
-  Plays saved before the levels migration count as Normal.
+- **What the public can see**: rank, display name, score, Phone/Computer and the time of the best run (the
+  queries also return the run's level, but new runs are always Normal). Never emails, user ids, friend codes or raw runs.
+- **One level, one score (since 23 Nov 2026).** The game always plays Normal: there is no level picker, badge or
+  `l=` link parameter any more. `scoring.js` (and so `submit-score`) still accepts Easy and Hard runs, with their
+  level bonus on the overall score (Easy -10, Hard +10), so old runs, old links and old board rows stay valid.
+  `board()`, `my_rank()` and `friends_board()` rank everything on one board. Plays saved before the levels
+  migration count as Normal. Dropping Easy and Hard for good means editing `scoring.js`, re-syncing it,
+  updating the tests and redeploying `submit-score`.
 - **"Show me on the global board"** (`profiles.show_on_board`) hides a player from `board()` only. Friends always
   see each other on `friends_board()`, and a hidden player still sees their own rank in `my_rank()`.
 - **Scoring changes**: edit `assets/js/attention-test/scoring.js`, copy it over with

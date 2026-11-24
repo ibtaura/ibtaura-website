@@ -14,7 +14,7 @@
 // sharer is signed in; it's read at the moment of sharing (they may sign in after the result screen shows).
 
 import { bandOf, percentileOf } from './scoring.js?v=2';
-import { track } from './track.js?v=1';
+import { track } from './track.js?v=2'; // same specifier everywhere, or the browser loads two copies
 
 const ORIGIN = 'https://adarna.us';
 const NAME_KEY = 'clarus.attentionTest.shareName';
@@ -31,13 +31,23 @@ const FOOTER_BRAND = 'Clarus Health by Adarna Inc.';
 
 // ---------- data
 
-/** Trims, drops control characters, collapses spaces and caps the length. */
+// A high surrogate with no low one after it, or a low one with no high one before it.
+const LONE_SURROGATE = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g;
+
+/**
+ * Drops lone surrogates and keeps at most `max` code points, so an emoji at the end is never cut in half
+ * (String.slice counts UTF-16 units, and half an emoji makes encodeURIComponent throw).
+ */
+export function clampName(raw, max = NAME_MAX) {
+  return [...String(raw ?? '').replace(LONE_SURROGATE, '')].slice(0, max).join('');
+}
+
+/** Trims, drops control characters, collapses spaces and caps the length (in code points). */
 export function cleanName(raw) {
-  return String(raw || '')
+  return clampName(String(raw || '')
     .replace(BAD_CHARS, '')
     .replace(/\s+/g, ' ')
-    .trim()
-    .slice(0, NAME_MAX)
+    .trim())
     .trim();
 }
 
@@ -68,7 +78,13 @@ export function shareUrl(score, name, friendCode) {
   const n = cleanName(name);
   const f = cleanFriendCode(friendCode);
   const params = [];
-  if (n) params.push(`by=${encodeURIComponent(n)}`);
+  if (n) {
+    try {
+      params.push(`by=${encodeURIComponent(n)}`);
+    } catch (_) {
+      /* a malformed name: share the link without it */
+    }
+  }
   if (f) params.push(`f=${f}`);
   return `${ORIGIN}/attention-test/s/${score}${params.length ? `?${params.join('&')}` : ''}`;
 }

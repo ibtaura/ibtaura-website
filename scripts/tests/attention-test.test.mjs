@@ -9,7 +9,8 @@ import {
   REACTION, MEMORY, RULES, LEVELS, LEVEL_KEYS, DEFAULT_LEVEL, LEVEL_BONUS, SCORING_VERSION, NORMS_VERSION, WEIGHTS, COMPOSITE_SD,
   LEVEL_NORMS, scoreRun, scoreReaction, scoreMemory, scoreRules, checkRun,
 } from '../../assets/js/attention-test/scoring.js';
-import { shareUrl, shareText, shareMessage, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY } from '../../assets/js/attention-test/share.js?v=6';
+import { shareUrl, shareText, shareMessage, cardData, cleanLevel, cleanFriendCode, loadFriendCode, FRIEND_CODE_KEY, cleanName, clampName } from '../../assets/js/attention-test/share.js?v=10';
+import { track } from '../../assets/js/attention-test/track.js?v=2';
 import { LAST_KEY, BEST_KEY, MAX_AGE_MS, saveRun, loadStored, readEntry, validEntry, canJoin, clearStored, agoText } from '../../assets/js/attention-test/stored.js';
 
 /** A scripted random source: returns the values in turn, then repeats the last. */
@@ -739,6 +740,73 @@ test('shareUrl never carries a level (one score since 23 Nov 2026)', () => {
   assert.equal(shareUrl(118, 'Priya', 'abcd2345'), `${base}?by=Priya&f=abcd2345`);
   assert.equal(shareUrl(118, 'Priya'), `${base}?by=Priya`);
   assert.equal(shareUrl(118, '', 'bad-code'), base);
+});
+
+test('clampName / cleanName cut by code points, never inside an emoji', () => {
+  const brain = '\u{1F9E0}'; // two UTF-16 units
+  const name = 'A'.repeat(23) + brain; // 24 code points, 25 UTF-16 units
+  assert.equal(name.slice(0, 24).isWellFormed(), false); // what String.slice used to do
+  assert.equal(clampName(name), name);
+  assert.equal(cleanName(name), name);
+  assert.equal(clampName('B' + name), 'B' + 'A'.repeat(23)); // the 25th code point (the emoji) is dropped whole
+  assert.equal(cleanName('  ' + brain.repeat(30) + '  '), brain.repeat(24));
+  assert.equal(clampName('abc', 2), 'ab');
+  assert.equal(clampName(null), '');
+  // Lone surrogates (half an emoji, e.g. from storage written by the old code) are dropped.
+  assert.equal(clampName('Maya\uD83E'), 'Maya');
+  assert.equal(clampName('\uDDE0Maya'), 'Maya');
+  assert.equal(cleanName('A'.repeat(23) + '\uD83E'), 'A'.repeat(23));
+  for (const s of [name, 'B' + name, 'x\uD83Ey', '\uDDE0\uD83E']) assert.ok(clampName(s).isWellFormed(), JSON.stringify(s));
+});
+
+test('shareUrl: a 24-character name ending in an emoji makes a valid link', () => {
+  const base = 'https://adarna.us/attention-test/s/118';
+  const brain = '\u{1F9E0}';
+  const name = 'A'.repeat(23) + brain;
+  assert.equal(shareUrl(118, name, 'abcd2345'), `${base}?by=${'A'.repeat(23)}%F0%9F%A7%A0&f=abcd2345`);
+  // One code point too many: the emoji is dropped whole instead of split (which made encodeURIComponent throw).
+  assert.equal(shareUrl(118, 'B' + name), `${base}?by=B${'A'.repeat(23)}`);
+  // A name with half an emoji never throws; the broken half is dropped.
+  assert.doesNotThrow(() => shareUrl(118, 'A'.repeat(23) + '\uD83E'));
+  assert.equal(shareUrl(118, 'A'.repeat(23) + '\uD83E'), `${base}?by=${'A'.repeat(23)}`);
+  assert.equal(decodeURIComponent(new URL(shareUrl(118, name)).searchParams.get('by')), name);
+});
+
+test('track sends nothing before analytics consent and never touches gtag directly', () => {
+  const saved = { window: Object.getOwnPropertyDescriptor(globalThis, 'window'), document: Object.getOwnPropertyDescriptor(globalThis, 'document') };
+  const set = (k, v) => Object.defineProperty(globalThis, k, { value: v, configurable: true, writable: true });
+  try {
+    // No window/document at all (or no consent.js): a silent no-op.
+    delete globalThis.window;
+    delete globalThis.document;
+    assert.doesNotThrow(() => track('test_start'));
+
+    let consent = null;
+    set('document', { documentElement: { getAttribute: (n) => (n === 'data-consent-analytics' ? consent : null) } });
+    const sent = [];
+    const gtagCalls = [];
+    set('window', { gtag: (...a) => gtagCalls.push(a), auraTrack: (name, params) => sent.push([name, params]) });
+
+    track('test_start'); // before any choice: consent.js's gtag would only queue it, so nothing may be sent
+    consent = '0';
+    track('test_complete', { score: 118 }); // declined or withdrawn
+    assert.deepEqual(sent, []);
+
+    consent = '1';
+    track('test_complete', { score: 118 });
+    assert.deepEqual(sent, [['test_complete', { event_category: 'attention_test', score: 118 }]]);
+    assert.deepEqual(gtagCalls, []); // only through consent.js's auraTrack, never the queueing gtag stub
+
+    window.auraTrack = undefined; // consent granted but consent.js missing: still nothing
+    assert.doesNotThrow(() => track('x'));
+    window.auraTrack = () => { throw new Error('boom'); };
+    assert.doesNotThrow(() => track('x'));
+  } finally {
+    for (const [k, d] of Object.entries(saved)) {
+      if (d) Object.defineProperty(globalThis, k, d);
+      else delete globalThis[k];
+    }
+  }
 });
 
 test('cleanLevel keeps only the three level keys', () => {

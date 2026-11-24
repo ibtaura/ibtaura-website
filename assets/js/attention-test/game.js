@@ -6,7 +6,7 @@
 // (the same clock as performance.now()), falling back to performance.now().
 
 import { MEMORY, RULES, LEVELS, DEFAULT_LEVEL, scoreRun, checkRun, percentileOf, bandOf } from './scoring.js?v=2';
-import { track } from './track.js?v=1';
+import { track } from './track.js?v=2';
 import { ReactionRun, dotLayout } from './reaction.js?v=2';
 import { MemoryRun } from './memory.js?v=2';
 import { RulesRun, planSteps, ruleQuestion, ruleLabels } from './rules.js?v=2';
@@ -296,7 +296,7 @@ function init() {
     } catch (_) {
       /* browser memory is optional */
     }
-    import('./share.js?v=8')
+    import('./share.js?v=10')
       .then((m) => m.mountShare($('at-share'), { result, run: finished }))
       .catch(() => {
         /* the result still shows without sharing */
@@ -684,7 +684,7 @@ function init() {
 
   function shareStored(entry, which) {
     track('stored_share', storedParams(entry, which));
-    import('./share-dialog.js?v=5')
+    import('./share-dialog.js?v=7')
       .then((m) => m.openShareDialog({ result: entry.result, run: entry.run, title: which === 'best' ? 'Share your best score' : 'Share your last score' }))
       .catch(() => announce('Sharing is not available right now.'));
   }
@@ -806,7 +806,7 @@ function init() {
 
   const boardEl = $('at-board');
   if (boardEl) {
-    boardReady = import('./board.js?v=16')
+    boardReady = import('./board.js?v=18')
       .then((m) => {
         board = m.mountBoard(boardEl) || null;
         if (!$('at-result').hidden) placeNotice(true);

@@ -20,7 +20,7 @@
 // valid play. A click fetches the raw best run with my_best(), re-scores it with scoreRun() and opens the share
 // dialog (share-dialog.js) with the same story / post cards as a fresh result. When the stored run can't be
 // re-scored (an old v1 run) or my_best() isn't there yet, it shares the challenge link (share.js) instead.
-import { track } from './track.js';
+import { track } from './track.js?v=2'; // same specifier as game.js and share.js, or the browser loads two copies
 import { checkRun, scoreRun } from './scoring.js?v=2';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase-config.js?v=1'; // bump ?v= when the values change (/assets/js is cached for a year)
 
@@ -120,6 +120,10 @@ function googleIcon() {
 // ─── Display names ──────────────────────────────────────────────────────────────────────────────────────
 const NAME_CHARS = /^[\p{L}\p{N}\p{M} ._-]+$/u;
 const normalizeName = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+
+// Lone surrogates out, then at most `max` code points (String.slice can cut an emoji in half). Same as clampName in share.js.
+const LONE_SURROGATE = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g;
+const clampName = (s, max = 24) => [...String(s ?? '').replace(LONE_SURROGATE, '')].slice(0, max).join('');
 
 function isBlocked(name) {
   const s = name.toLowerCase().replace(/[013457]/g, (c) => ({ 0: 'o', 1: 'i', 3: 'e', 4: 'a', 5: 's', 7: 't' })[c]);
@@ -229,7 +233,7 @@ const SHARE_NAME_KEY = 'clarus.attentionTest.shareName';
 function fillShareName(name) {
   const ls = local();
   if (!ls || !name || storeGet(ls, SHARE_NAME_KEY)) return;
-  storeSet(ls, SHARE_NAME_KEY, String(name).slice(0, 24));
+  storeSet(ls, SHARE_NAME_KEY, clampName(name));
 }
 
 function clearOwnCode() {
@@ -239,7 +243,7 @@ function clearOwnCode() {
 
 /** A display-safe "by" name from the URL or storage: trimmed, at most 24 characters, or ''. */
 function cleanBy(value) {
-  return [...normalizeName(value)].slice(0, 24).join('');
+  return clampName(normalizeName(value));
 }
 
 /** The stored invite { code, by, savedAt } if it is valid and under 7 days old; otherwise clears it. */
@@ -562,8 +566,9 @@ function createBoard(el, variant) {
   }
 
   function showJoin(run, result, message = '') {
-    // Ticked by default; the visitor can untick it before signing in.
-    const mail = h('input', { type: 'checkbox', checked: true });
+    // Opt-in: unticked by default. Unticked sends launchEmails: false, and submit-score then leaves launch_emails alone
+    // (false for a new profile; an earlier opt-in is changed only with the account panel's switch).
+    const mail = h('input', { type: 'checkbox', checked: false });
     const msg = h('p', { class: 'atb-form-msg', role: 'status', text: message });
     // Came from a friend's link: offer to add them in the same step. Ticking the box (shown, and on by
     // default) next to the button they press is the consent; the code is stored so only that invite is added.
@@ -1199,7 +1204,7 @@ function createBoard(el, variant) {
 
   /** The challenge link for the best score: the share sheet on phones, otherwise copied. */
   async function shareBestLink(score, level) {
-    const mod = await import('./share.js?v=8');
+    const mod = await import('./share.js?v=10');
     const url = mod.shareUrl(score, profile ? profile.display_name : '', mod.loadFriendCode() || ownCode() || '', level);
     const text = mod.shareText(score, level);
     const canShare = typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
@@ -1248,7 +1253,7 @@ function createBoard(el, variant) {
         }
         if (result && result.valid && Number.isFinite(result.overall)) {
           showBest({ score: result.overall, level: levelOf(result.level) || levelOf(row.level) });
-          const { openShareDialog } = await import('./share-dialog.js?v=5');
+          const { openShareDialog } = await import('./share-dialog.js?v=7');
           track('share_open', { channel: 'best', kind: 'card' });
           bestBusy = false;
           bestBtn.removeAttribute('aria-busy');
@@ -1265,7 +1270,7 @@ function createBoard(el, variant) {
       }
       // Score-only card: old runs can't be re-drawn part by part, so the card shows the score and level.
       try {
-        const { openShareDialog } = await import('./share-dialog.js?v=5');
+        const { openShareDialog } = await import('./share-dialog.js?v=7');
         track('share_open', { channel: 'best', kind: 'card_score_only' });
         bestBusy = false;
         bestBtn.removeAttribute('aria-busy');

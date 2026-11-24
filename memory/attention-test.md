@@ -50,6 +50,16 @@ from plays where valid group by device;
 ```
 
 ## Open items
+- **Review of 2026-11-24, not fixed yet:**
+  - the server still accepts levels easy/hard (+/-10), so a hand-made run can claim Hard;
+  - hand-built runs pass `checkRun` (design limit);
+  - the daily limit (20) is count-then-insert, so parallel requests can exceed it;
+  - the CORS default allows `*.workers.dev`;
+  - supabase-js loads from jsdelivr without SRI and there's no CSP;
+  - challenge `by=` names aren't profanity-filtered;
+  - `delete-me` is deployed but unused;
+  - privacy §7.3 says analytics is "aggregated, non-identifying", but GA page URLs can carry `?by=<name>`.
+- Name cutting (`clampName`) is copied in share.js, board.js and game.js `readChallenge`; keep the three in sync.
 - **Lesson:** this Supabase project grants nothing by default. Every new table or function needs explicit grants (service_role on tables; `grant execute` per function).
 - **Google consent screen:** it shows the supabase.co address unless a paid custom domain is set up.
 - **Free plan:** a free Supabase project pauses after 7 days with no activity.
