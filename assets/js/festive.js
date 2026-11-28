@@ -34,38 +34,31 @@
     return s;
   }
 
-  /* ---------- light garland under the nav pill ---------- */
+  /* ---------- light garland across the full top of the page ---------- */
   function garland() {
-    var nav = document.querySelector('.navbar');
-    if (!nav) return;
     var box = deco('festive-garland');
-    nav.appendChild(box);
+    document.body.appendChild(box);
     var draw = function () {
-      var w = Math.round(nav.getBoundingClientRect().width);
+      var w = window.innerWidth;
       if (!w || box.dataset.w === String(w)) return;
       box.dataset.w = String(w);
-      var inset = 22, period = 64, depth = 11, h = 30;
-      var n = Math.max(2, Math.round((w - inset * 2) / period));
-      var step = (w - inset * 2) / n;
+      var period = w < 600 ? 58 : 76, depth = w < 600 ? 9 : 12, h = 34;
+      var n = Math.max(3, Math.round(w / period));
+      var step = w / n;
       var s = svg('svg', { width: w, height: h, viewBox: '0 0 ' + w + ' ' + h });
-      var d = 'M' + inset + ' 2';
-      for (var i = 0; i < n; i++) {
-        var x0 = inset + i * step;
-        d += ' Q' + (x0 + step / 2) + ' ' + (2 + depth * 2) + ' ' + (x0 + step) + ' 2';
-      }
+      var d = 'M0 0';
+      for (var i = 0; i < n; i++) d += ' Q' + (i * step + step / 2) + ' ' + (depth * 2) + ' ' + ((i + 1) * step) + ' 0';
       s.appendChild(svg('path', { d: d, class: 'festive-wire' }));
       var k = 0;
       for (var j = 0; j < n; j++) {
-        // two bulbs per scallop, on the curve at t = 0.3 and 0.7
-        [0.3, 0.7].forEach(function (t) {
-          var x0 = inset + j * step;
-          var x = x0 + step * t;
-          var y = 2 + 2 * (1 - t) * t * depth * 2;
+        [0.25, 0.5, 0.75].forEach(function (t) {
+          var x = j * step + step * t;
+          var y = 2 * (1 - t) * t * depth * 2;
           var g = svg('g', { class: 'festive-bulb', transform: 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' });
           g.style.setProperty('--c', BULBS[k % BULBS.length]);
-          g.style.animationDelay = ((k * 0.37) % 2.4).toFixed(2) + 's';
-          g.appendChild(svg('rect', { x: -1.6, y: 0, width: 3.2, height: 3, rx: 0.8, class: 'festive-cap' }));
-          g.appendChild(svg('ellipse', { cx: 0, cy: 7, rx: 3.1, ry: 4.6, class: 'festive-glass' }));
+          g.style.animationDelay = ((k * 0.41) % 2.4).toFixed(2) + 's';
+          g.appendChild(svg('rect', { x: -1.7, y: 0, width: 3.4, height: 3.2, rx: 0.8, class: 'festive-cap' }));
+          g.appendChild(svg('ellipse', { cx: 0, cy: 7.4, rx: 3.3, ry: 4.9, class: 'festive-glass' }));
           s.appendChild(g);
           k++;
         });
@@ -73,11 +66,37 @@
       box.replaceChildren(s);
     };
     draw();
-    if ('ResizeObserver' in window) new ResizeObserver(draw).observe(nav);
-    else window.addEventListener('resize', draw);
+    window.addEventListener('resize', draw);
   }
 
-  /* ---------- snow caps and ornaments on cards ---------- */
+  /* ---------- Santa's sleigh, flying across now and then ---------- */
+  var SLEIGH = '<svg viewBox="0 0 220 64">' +
+    '<g class="festive-deer"><path d="M8 34c6-6 18-7 26-3l6-8 3 2-4 9c2 3 1 6-2 8l2 12h-3l-3-10c-6 2-14 2-19 0l-3 10h-3l2-11c-3-2-4-6-2-9Z"/>' +
+    '<path d="M38 22l-3-9m3 9 4-8m-6 1-4-3m6 3 3-5" class="festive-antler"/></g>' +
+    '<g class="festive-deer" transform="translate(46 0)"><path d="M8 34c6-6 18-7 26-3l6-8 3 2-4 9c2 3 1 6-2 8l2 12h-3l-3-10c-6 2-14 2-19 0l-3 10h-3l2-11c-3-2-4-6-2-9Z"/>' +
+    '<path d="M38 22l-3-9m3 9 4-8m-6 1-4-3m6 3 3-5" class="festive-antler"/><circle cx="43" cy="27" r="2.2" fill="#e53935"/></g>' +
+    '<path d="M80 34c14 2 28 4 44 4" class="festive-rein"/>' +
+    '<path d="M122 52h70c6 0 10-4 12-8" class="festive-runner"/>' +
+    '<path d="M126 30h48l8 18h-52Z" fill="#c62828"/><path d="M126 30h48" stroke="#f6b93b" stroke-width="2.5"/>' +
+    '<path d="M168 30c0-10 4-16 12-16 6 0 10 6 10 16Z" fill="#8a5a3b"/>' +
+    '<circle cx="150" cy="22" r="8" fill="#e53935"/><circle cx="150" cy="18" r="4.6" fill="#f2c9a5"/>' +
+    '<path d="M145 20c1 6 9 6 10 0Z" fill="#fff"/><path d="M145 15l5-9 6 8Z" fill="#e53935"/><circle cx="156" cy="14" r="2" fill="#fff"/>' +
+    '</svg>';
+  function sleigh() {
+    if (reduced) return;
+    var el = deco('festive-sleigh', SLEIGH);
+    document.body.appendChild(el);
+    var fly = function () {
+      if (document.hidden || root.classList.contains('festive-snow-off')) { setTimeout(fly, 8000); return; }
+      el.style.top = (12 + Math.random() * 22) + 'vh';
+      el.classList.remove('is-flying');
+      void el.offsetWidth;
+      el.classList.add('is-flying');
+      setTimeout(fly, 30000 + Math.random() * 25000);
+    };
+    setTimeout(fly, 3500);
+  }
+
   /* A lumpy snow cap with a few icicles, drawn at the card's real width so nothing stretches. */
   function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
   function capSvg(w, seed) {
@@ -136,7 +155,7 @@
       '<rect x="-3" y="88" width="6" height="10" fill="#7a5233"/>' +
       '<path d="M0 22 26 90H-26Z" fill="#2f6b45"/><path d="M0 8 20 58H-20Z" fill="#3d8558"/>' +
       '<path d="M0 8 7 26c-3-2-5 1-7-1-2 2-4-1-7 1Z" fill="#fff"/><path d="M-14 44c5 2 9-1 14 1 5-2 9 1 14-1l4 10H-18Z" fill="#fff" opacity=".9"/>' +
-      '<path d="M0 0l2.4 5 5.4.6-4 3.7 1.1 5.3L0 12l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6Z" fill="#f6b93b"/></g>';
+      '<path class="festive-star" d="M0 0l2.4 5 5.4.6-4 3.7 1.1 5.3L0 12l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6Z" fill="#f6b93b"/></g>';
   }
   function gift(x, y, w, h, color, ribbon) {
     return '<g transform="translate(' + x + ' ' + y + ')"><rect width="' + w + '" height="' + h + '" rx="2" fill="' + color + '"/>' +
@@ -153,7 +172,7 @@
       '<path d="M-12 -52h24v3h-24Z M-7 -64h14v12h-14Z" fill="#2b2b2b"/></g>';
   }
   function scene() {
-    var footer = document.querySelector('footer.footer-legal-section');
+    var footer = document.querySelector('[data-festive-scene], .home-about, footer.footer-legal-section');
     if (!footer) return;
     var wrap = document.createElement('div');
     wrap.className = 'festive-scene';
@@ -214,13 +233,17 @@
     }
     ctx.restore();
   }
-  function frame() {
+  var t0 = 0, wind = 0;
+  function frame(ts) {
     ctx.clearRect(0, 0, W, H);
+    // a slow breeze that now and then picks up and pushes the snow sideways
+    t0 = ts || 0;
+    wind = Math.sin(t0 / 9000) * 0.35 + Math.max(0, Math.sin(t0 / 3100)) * Math.max(0, Math.sin(t0 / 23000)) * 1.6;
     for (var i = 0; i < flakes.length; i++) {
       var f = flakes[i];
       f.sway += f.swaySpeed; f.rot += f.spin;
-      f.y += f.vy; f.x += Math.sin(f.sway) * f.swayAmp;
-      if (f.y > H + 10 || f.x < -20 || f.x > W + 20) { flakes[i] = newFlake(false); continue; }
+      f.y += f.vy; f.x += Math.sin(f.sway) * f.swayAmp + wind * (0.5 + f.r / 6);
+      if (f.y > H + 10 || f.x < -30 || f.x > W + 30) { flakes[i] = newFlake(false); if (wind > 0.8 && Math.random() < 0.5) { flakes[i].x = -10; flakes[i].y = Math.random() * H; } continue; }
       drawFlake(f);
     }
     ctx.globalAlpha = 1;
@@ -274,8 +297,13 @@
     set(store(true) !== 'off');
   }
 
+  function buttons() {
+    var list = document.querySelectorAll('.card-btn, [data-festive-btn]');
+    for (var i = 0; i < list.length; i++) list[i].classList.add('festive-btn-snow');
+  }
+
   function init() {
-    garland(); cards(); scene(); touches(); toggle();
+    garland(); cards(); scene(); touches(); buttons(); toggle(); sleigh();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

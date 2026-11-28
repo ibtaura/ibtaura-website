@@ -7,9 +7,19 @@ html.festive .festive-snow {
 }
 html.festive .festive-snow[hidden] { display: none; }
 
-/* Light garland hanging under the nav pill */
+/* Light garland strung across the full top of the page (fixed, so it stays while you scroll).
+   On desktop the announcement bar and the nav pill move down 16 px to make room for it. */
 html.festive .festive-garland {
-  position: absolute; left: 0; top: calc(100% - 3px); width: 100%; height: 30px; pointer-events: none; overflow: visible;
+  position: fixed; left: 0; top: 0; width: 100%; height: 34px; z-index: 101; pointer-events: none; overflow: visible;
+  transition: opacity 0.2s ease;
+}
+@media (min-width: 769px) {
+  html.festive .announcement-bar { padding-top: 30px; }
+  html.festive .navbar { top: 64px; }
+}
+@media (max-width: 768px) {
+  html.festive .festive-garland { top: 48px; }       /* hangs from the bottom of the phone nav bar */
+  html.festive .navbar.m-open ~ .festive-garland { opacity: 0; }
 }
 html.festive .festive-garland svg { display: block; overflow: visible; }
 html.festive .festive-wire { fill: none; stroke: #2f5d3a; stroke-width: 1.4; opacity: 0.85; }
@@ -53,10 +63,46 @@ html.festive .festive-swing:nth-of-type(3) { transform-origin: 92px 10px; }
   50% { transform: rotate(4deg); }
 }
 
-/* Winter scene above the footer */
-html.festive .festive-scene {
-  max-width: 1100px; width: calc(100% - 24px); margin: 56px auto 0; text-align: center; pointer-events: none;
+/* Santa's sleigh crossing the sky now and then */
+html.festive .festive-sleigh {
+  position: fixed; left: 0; top: 18vh; z-index: 55; width: 190px; height: 56px; pointer-events: none;
+  transform: translateX(-240px); opacity: 0;
 }
+html.festive .festive-sleigh svg { display: block; width: 100%; height: 100%; overflow: visible; }
+html.festive .festive-sleigh.is-flying { animation: festive-fly 17s linear 1 forwards; }
+html.festive .festive-sleigh.is-flying svg { animation: festive-bob 1.6s ease-in-out infinite; }
+html.festive .festive-deer { fill: #7a5a42; }
+html.festive .festive-antler { fill: none; stroke: #7a5a42; stroke-width: 1.6; stroke-linecap: round; }
+html.festive .festive-rein { fill: none; stroke: #8f7a5a; stroke-width: 1; }
+html.festive .festive-runner { fill: none; stroke: #c9a24a; stroke-width: 3; stroke-linecap: round; }
+@keyframes festive-fly {
+  0% { transform: translateX(-240px) translateY(30px) rotate(-4deg); opacity: 0; }
+  6% { opacity: 1; }
+  50% { transform: translateX(calc(50vw - 95px)) translateY(-10px) rotate(-2deg); }
+  94% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 60px)) translateY(-40px) rotate(-6deg); opacity: 0; }
+}
+@keyframes festive-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* A little snow resting on the card buttons */
+html.festive .festive-btn-snow { position: relative; }
+html.festive .festive-btn-snow::before {
+  content: ''; position: absolute; left: 12%; right: 12%; top: -7px; height: 12px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M2 9C2 4 6 2 10 3c2-2 6-3 9-1 3-2 8-2 11 0 3-2 7-2 10 0 3-2 7-3 11-1 3-1 7-1 9 1 3-2 8-2 11 0 3-1 7-1 9 1 4 0 8 2 8 6Z' fill='%23fff'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(80, 104, 140, 0.25));
+}
+
+/* Tree-top stars twinkle */
+html.festive .festive-star { transform-box: fill-box; transform-origin: center; animation: festive-star 2.8s ease-in-out infinite; }
+@keyframes festive-star { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: 0.75; } }
+
+/* Winter scene above the home page's about text */
+html.festive .festive-scene {
+  /* white and above the fixed home cards, like the about section under it */
+  position: relative; z-index: 10; width: 100%; margin: 0; padding: 64px 12px 0; box-sizing: border-box;
+  background: #ffffff; text-align: center; pointer-events: none;
+}
+html.festive .festive-scene svg { max-width: 1100px; margin: 0 auto; }
 html.festive .festive-greeting {
   margin: 0 0 4px; font-size: 13px; line-height: 1.4; letter-spacing: 0.02em; color: #6e6e73;
 }
@@ -87,10 +133,11 @@ html.festive.festive-snow-off .festive-toggle svg { stroke: #a1a1a6; }
   html.festive .festive-holly { width: 70px; height: 48px; top: 8px; }
   html.festive .festive-right { right: 16px; }
   html.festive .festive-left { left: 16px; }
-  html.festive .festive-scene { width: calc(100% - 48px); margin-top: 40px; }
+  html.festive .festive-scene { padding: 40px 24px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html.festive .festive-bulb,
-  html.festive .festive-swing { animation: none; }
+  html.festive .festive-swing,
+  html.festive .festive-star { animation: none; }
 }
