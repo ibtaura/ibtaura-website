@@ -7,29 +7,29 @@ html.festive .festive-snow {
 }
 html.festive .festive-snow[hidden] { display: none; }
 
-/* Light garland strung across the full top of the page (fixed, so it stays while you scroll).
-   On desktop the announcement bar and the nav pill move down 16 px to make room for it. */
+/* Fairy lights across the full top of the page (fixed, so they stay while you scroll).
+   On desktop the announcement bar and the nav pill move down 12 px to make room. */
 html.festive .festive-garland {
-  position: fixed; left: 0; top: 0; width: 100%; height: 34px; z-index: 101; pointer-events: none; overflow: visible;
+  position: fixed; left: 0; top: 0; width: 100%; height: 20px; z-index: 101; pointer-events: none; overflow: visible;
   transition: opacity 0.2s ease;
 }
+html.festive .festive-garland svg { display: block; overflow: visible; }
+html.festive .festive-wire { fill: none; stroke: #b9b2a6; stroke-width: 0.8; opacity: 0.7; }
+html.festive .festive-fairy {
+  fill: #ffc85a; filter: drop-shadow(0 0 4px rgba(255, 170, 40, 0.95));
+  animation: festive-shimmer 3s ease-in-out infinite;
+}
+@keyframes festive-shimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
 @media (min-width: 769px) {
-  html.festive .announcement-bar { padding-top: 30px; }
-  html.festive .navbar { top: 64px; }
+  html.festive .announcement-bar { padding-top: 26px; }
+  html.festive .navbar { top: 60px; }
 }
 @media (max-width: 768px) {
   html.festive .festive-garland { top: 48px; }       /* hangs from the bottom of the phone nav bar */
   html.festive .navbar.m-open ~ .festive-garland { opacity: 0; }
-}
-html.festive .festive-garland svg { display: block; overflow: visible; }
-html.festive .festive-wire { fill: none; stroke: #2f5d3a; stroke-width: 1.4; opacity: 0.85; }
-html.festive .festive-cap { fill: #6b7a6d; }
-html.festive .festive-glass { fill: var(--c); filter: drop-shadow(0 0 3px var(--c)); }
-html.festive .festive-bulb { animation: festive-twinkle 2.4s ease-in-out infinite; }
-@keyframes festive-twinkle {
-  0%, 100% { opacity: 1; }
-  45% { opacity: 0.45; }
-  55% { opacity: 0.45; }
 }
 
 /* Snow cap along the top edge of each card */
@@ -137,7 +137,7 @@ html.festive.festive-snow-off .festive-toggle svg { stroke: #a1a1a6; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.festive .festive-bulb,
+  html.festive .festive-fairy,
   html.festive .festive-swing,
   html.festive .festive-star { animation: none; }
 }

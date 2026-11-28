@@ -16,7 +16,6 @@
   root.classList.add('festive');
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var NS = 'http://www.w3.org/2000/svg';
-  var BULBS = ['#e53935', '#f6b93b', '#2e9e5b', '#2f80ed', '#e84393'];
 
   function store(get, val) {
     try { return get ? localStorage.getItem(KEY) : localStorage.setItem(KEY, val); } catch (_) { return null; }
@@ -34,7 +33,9 @@
     return s;
   }
 
-  /* ---------- light garland across the full top of the page ---------- */
+  /* ---------- fairy lights across the full top of the page ----------
+     One colour (warm gold), small glowing bulbs on a thin wire in long, shallow swags. The shimmer
+     runs across the row from left to right, so it reads as one calm line rather than a busy string. */
   function garland() {
     var box = deco('festive-garland');
     document.body.appendChild(box);
@@ -42,26 +43,23 @@
       var w = window.innerWidth;
       if (!w || box.dataset.w === String(w)) return;
       box.dataset.w = String(w);
-      var period = w < 600 ? 58 : 76, depth = w < 600 ? 9 : 12, h = 34;
-      var n = Math.max(3, Math.round(w / period));
+      var period = w < 600 ? 125 : 190, depth = w < 600 ? 5 : 7, gap = w < 600 ? 22 : 28, h = 20;
+      var n = Math.max(2, Math.round(w / period));
       var step = w / n;
       var s = svg('svg', { width: w, height: h, viewBox: '0 0 ' + w + ' ' + h });
-      var d = 'M0 0';
-      for (var i = 0; i < n; i++) d += ' Q' + (i * step + step / 2) + ' ' + (depth * 2) + ' ' + ((i + 1) * step) + ' 0';
+      var d = 'M0 2';
+      for (var i = 0; i < n; i++) d += ' Q' + (i * step + step / 2) + ' ' + (2 + depth * 2) + ' ' + ((i + 1) * step) + ' 2';
       s.appendChild(svg('path', { d: d, class: 'festive-wire' }));
-      var k = 0;
+      var per = Math.max(3, Math.round(step / gap));
       for (var j = 0; j < n; j++) {
-        [0.25, 0.5, 0.75].forEach(function (t) {
+        for (var q = 1; q < per; q++) {
+          var t = q / per;
           var x = j * step + step * t;
-          var y = 2 * (1 - t) * t * depth * 2;
-          var g = svg('g', { class: 'festive-bulb', transform: 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' });
-          g.style.setProperty('--c', BULBS[k % BULBS.length]);
-          g.style.animationDelay = ((k * 0.41) % 2.4).toFixed(2) + 's';
-          g.appendChild(svg('rect', { x: -1.7, y: 0, width: 3.4, height: 3.2, rx: 0.8, class: 'festive-cap' }));
-          g.appendChild(svg('ellipse', { cx: 0, cy: 7.4, rx: 3.3, ry: 4.9, class: 'festive-glass' }));
-          s.appendChild(g);
-          k++;
-        });
+          var y = 2 + 2 * (1 - t) * t * depth * 2;
+          var c = svg('circle', { cx: x.toFixed(1), cy: (y + 3).toFixed(1), r: 2.9, class: 'festive-fairy' });
+          c.style.animationDelay = ((x / w) * 3).toFixed(2) + 's';
+          s.appendChild(c);
+        }
       }
       box.replaceChildren(s);
     };
