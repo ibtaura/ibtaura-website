@@ -13,6 +13,7 @@
   } catch (_) { return; }
 
   var root = document.documentElement;
+  var dark = function () { return document.body && document.body.classList.contains('at-dark'); };
   root.classList.add('festive');
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var NS = 'http://www.w3.org/2000/svg';
@@ -126,25 +127,48 @@
     '<circle cx="40" cy="34" r="5.5" fill="#d62828"/><circle cx="50" cy="35" r="5.5" fill="#e53935"/><circle cx="45" cy="26" r="5.5" fill="#c1121f"/>' +
     '<circle cx="43.5" cy="24.5" r="1.4" fill="#fff" opacity=".7"/></svg>';
 
+  /* Snow caps go on the home cards, or, on other pages, on the site's big rounded grey cards (found by
+     their look, so every page template gets them without per-page markup). The first card gets hanging
+     baubles and the second a sprig of holly; the rest only snow, so the decoration stays light. */
+  var CARD_GREY = ['rgb(244, 245, 245)', 'rgb(245, 245, 247)'];
+  function findCards() {
+    var home = document.querySelectorAll('.home-card, [data-festive-card]');
+    if (home.length) return { list: Array.prototype.slice.call(home), home: true };
+    var out = [];
+    var all = document.querySelectorAll('body div, body section, body article, body header, body a');
+    var minW = Math.min(500, window.innerWidth - 80);
+    for (var i = 0; i < all.length && out.length < 10; i++) {
+      var el = all[i];
+      if (el.offsetWidth < minW || el.offsetHeight < 200) continue;
+      if (el.closest('.festive-scene, footer, nav, .navbar, .site-footer, .m-sheet')) continue;
+      var cs = getComputedStyle(el);
+      if (CARD_GREY.indexOf(cs.backgroundColor) < 0 || parseFloat(cs.borderTopLeftRadius) < 14) continue;
+      if (out.some(function (o) { return o.contains(el); })) continue;
+      out.push(el);
+    }
+    return { list: out, home: false };
+  }
   function cards() {
-    var list = document.querySelectorAll('.home-card, [data-festive-card]');
-    for (var i = 0; i < list.length; i++) {
-      var c = list[i];
-      (function (card, seed) {
-        var cap = deco('festive-snowcap');
-        card.appendChild(cap);
-        var paint = function () {
-          var w = Math.round(card.getBoundingClientRect().width);
-          if (w && cap.dataset.w !== String(w)) { cap.dataset.w = String(w); cap.innerHTML = capSvg(w, seed); }
-        };
-        paint();
-        if ('ResizeObserver' in window) new ResizeObserver(paint).observe(card);
-      })(c, 1234 + i * 977);
-      var which = i % 3;
+    var found = findCards();
+    found.list.forEach(function (c, i) {
+      var cs = getComputedStyle(c);
+      if (cs.position === 'static') c.style.position = 'relative';
+      var cap = deco('festive-snowcap');
+      cap.style.borderTopLeftRadius = cs.borderTopLeftRadius;
+      cap.style.borderTopRightRadius = cs.borderTopRightRadius;
+      c.appendChild(cap);
+      var seed = 1234 + i * 977;
+      var paint = function () {
+        var w = Math.round(c.getBoundingClientRect().width);
+        if (w && cap.dataset.w !== String(w)) { cap.dataset.w = String(w); cap.innerHTML = capSvg(w, seed); }
+      };
+      paint();
+      if ('ResizeObserver' in window) new ResizeObserver(paint).observe(c);
+      var which = found.home ? i % 3 : i;
       if (which === 0) c.appendChild(deco('festive-baubles festive-right', BAUBLES));
       else if (which === 1) c.appendChild(deco('festive-holly festive-left', HOLLY));
-      else c.appendChild(deco('festive-baubles festive-left', BAUBLES));
-    }
+      else if (which === 2 && found.home) c.appendChild(deco('festive-baubles festive-left', BAUBLES));
+    });
   }
 
   /* ---------- a small winter scene above the footer ---------- */
@@ -170,7 +194,7 @@
       '<path d="M-12 -52h24v3h-24Z M-7 -64h14v12h-14Z" fill="#2b2b2b"/></g>';
   }
   function scene() {
-    var footer = document.querySelector('[data-festive-scene], .home-about, footer.footer-legal-section');
+    var footer = document.querySelector('[data-festive-scene], .home-about, .at-about, footer.footer-legal-section');
     if (!footer) return;
     var wrap = document.createElement('div');
     wrap.className = 'festive-scene';
@@ -217,12 +241,12 @@
   function drawFlake(f) {
     ctx.globalAlpha = f.a;
     if (!f.crystal) {
-      ctx.beginPath(); ctx.arc(f.x, f.y, f.r + 1.2, 0, 6.283); ctx.fillStyle = 'rgba(112,138,176,0.42)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r + 1.2, 0, 6.283); ctx.fillStyle = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(112,138,176,0.42)'; ctx.fill();
       ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fillStyle = '#ffffff'; ctx.fill();
       return;
     }
     ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.rot);
-    ctx.strokeStyle = 'rgba(96,128,172,0.9)'; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
+    ctx.strokeStyle = isDark ? 'rgba(235,242,255,0.9)' : 'rgba(96,128,172,0.9)'; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
     for (var i = 0; i < 6; i++) {
       ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -f.r);
       ctx.moveTo(0, -f.r * 0.55); ctx.lineTo(f.r * 0.3, -f.r * 0.8);
@@ -231,9 +255,11 @@
     }
     ctx.restore();
   }
-  var t0 = 0, wind = 0;
+  var t0 = 0, wind = 0, isDark = false;
   function frame(ts) {
     ctx.clearRect(0, 0, W, H);
+    // nothing falls while the Attention Test is running: it must not distract from the test
+    if (document.body.classList.contains('at-testing')) { raf = requestAnimationFrame(frame); return; }
     // a slow breeze that now and then picks up and pushes the snow sideways
     t0 = ts || 0;
     wind = Math.sin(t0 / 9000) * 0.35 + Math.max(0, Math.sin(t0 / 3100)) * Math.max(0, Math.sin(t0 / 23000)) * 1.6;
@@ -258,6 +284,7 @@
       window.addEventListener('resize', function () { if (running) sizeCanvas(); });
     }
     canvas.hidden = false;
+    isDark = dark();
     sizeCanvas();
     running = true;
     raf = requestAnimationFrame(frame);
